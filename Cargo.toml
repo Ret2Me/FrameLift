@@ -24,6 +24,10 @@ path = "rust/main.rs"
 name = "cli_integration"
 path = "rust/tests/cli_integration.rs"
 
+[[test]]
+name = "research_cli"
+path = "rust/tests/research_cli.rs"
+
 [[bin]]
 name = "telemetry-sstv"
 path = "rust/sstv_cli.rs"
@@ -32,20 +36,27 @@ path = "rust/sstv_cli.rs"
 name = "telemetry-meteor"
 path = "rust/meteor_cli.rs"
 
+[[bin]]
+name = "framelift-research"
+path = "rust/research_cli.rs"
+
 [dependencies]
+base64 = "0.22"
 cudarc = { version = "=0.19.9", optional = true, default-features = false, features = ["std", "driver", "nvrtc", "dynamic-loading", "cuda-12000"] }
 clap = { version = "4", features = ["derive"] }
 hex = "0.4"
+getrandom = "0.4"
 hound = "3.5"
 libc = "0.2"
 num-complex = "0.4"
 rayon = "1.12"
 rustfft = "6"
+rusqlite = { version = "0.40", default-features = false, features = ["bundled"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["float_roundtrip"] }
 sha2 = "0.10"
 tempfile = "3"
-chrono = { version = "0.4", default-features = false, features = ["std"] }
+chrono = { version = "0.4", default-features = false, features = ["std", "serde"] }
 caseless = "0.2"
 serde-saphyr = { version = "1.2", default-features = false, features = ["deserialize"] }
 

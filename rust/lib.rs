@@ -40,6 +40,8 @@ pub mod protocol;
 /// Coherent IQ PSK frontends with explicit ambiguity and timing hypotheses.
 pub mod psk;
 pub mod receiver;
+/// Native research utilities: metrics, event grouping, split and packet audits.
+pub mod research;
 /// Opt-in robust likelihood experiment; not enabled by receiver defaults.
 pub mod robust_sequence;
 pub mod sequence;

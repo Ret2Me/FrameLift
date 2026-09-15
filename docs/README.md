@@ -16,6 +16,8 @@
 | Guide | Purpose |
 |---|---|
 | [Native receiver guide](rust-receiver.md) | CLI examples, explicit IQ plans, metadata and library integration |
+| [Native research tools](native-research-tools.md) | Offline cohort selection, packet audits, yield metrics and SQLite leases |
+| [Repository migration status](rust-migration-status.md) | Verified Rust replacements and remaining Python responsibilities |
 | [Progressive execution](how-it-works.md#progressive-execution) | Quick/deep/full budgets, checkpoints and resumption |
 | [CPU/CUDA configuration](enterprise-compute-and-benchmark-v1.md) | Backend scope, identity and parity checks |
 | [Operations](operations.md) | Worker isolation, input safety, failures and restart behavior |

@@ -14,11 +14,15 @@ the baseline's decoded coverage. Selected detail, not a whole-recording benchmar
 
 An offline satellite receiver that revisits difficult parts of a recording with
 complementary signal-processing methods, retains validated packets, and records
-how each result was obtained. Written in Rust. CPU by default; optional CUDA FIR
+how each result was obtained. The receiver runtime is written in Rust. CPU by default; optional CUDA FIR
 acceleration. Independent of the system that captured the recording.
 
 Previously developed as **Telemetry Yield**. The receiver binaries, package names
 and frozen research artifacts retain that name for reproducibility.
+
+Repository-wide migration is still in progress: legacy Python research,
+acquisition and scheduling tools remain. The receiver does not invoke them.
+[Migration status and native replacements](docs/rust-migration-status.md).
 
 [GitHub repository](https://github.com/Ret2Me/FrameLift) ·
 
@@ -178,7 +182,8 @@ The current build is a **qualification candidate**. The
 [dated quality report](reports/repository-quality-20260914.md) records passing
 local checks, 195 bit-exact FIR cases, and full 20-frame/1,372-task parity on one
 development recording after refactoring. That regression is not a new field trial.
-CI is [configured](.github/workflows/quality.yml); remote execution is not claimed.
+The [CI portability fix passed on GitHub](https://github.com/Ret2Me/FrameLift/actions/runs/35020996678).
+Each subsequent revision must pass the [same quality workflow](.github/workflows/quality.yml).
 
 [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) ·
 [Release checklist](docs/release-checklist.md) · [Roadmap](docs/roadmap.md) ·
@@ -202,6 +207,7 @@ reports that result rather than attributing the main gain to codec conditioning.
 
 ```text
 rust/          Receiver library, CLI, DSP, protocols and integrity tests
+rust/research/ Native cohort, packet, metric and attempt-store tools
 config/rust/   Explicit native receiver plans
 tools/xtask/   Maintained developer quality gates
 docs/          Product, architecture, comparison and operational guides

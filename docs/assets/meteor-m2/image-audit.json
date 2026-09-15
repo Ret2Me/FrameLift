@@ -1,0 +1,181 @@
+{
+  "alignment": "single constant integer scan offset supported by every uniquely matched timestamp; common extent only",
+  "baseline_products": "/home/ubuntu/telemetry-yield/work/meteor-daylight-20260913/noaam2-reference/MSU-MR",
+  "candidate_products": "/home/ubuntu/telemetry-yield/work/meteor-daylight-20260913/noaam2-hybrid-products/MSU-MR",
+  "changes": "copy/crop only; original 8-bit pixel values retained",
+  "channels": [
+    {
+      "alignment_matches": 561,
+      "baseline_crop_start_y": 0,
+      "baseline_height": 4576,
+      "baseline_sha256": "d54902deb5ea87dd630623160e49ce2313dbff746c4233a599b269578e1d89a0",
+      "candidate_crop_start_y": 376,
+      "candidate_height": 4952,
+      "candidate_sha256": "51c218dac95c08831fed1bcee95035f5272dd64ba987fa9bed3d73dba4496382",
+      "changed_nonzero_pixels": 0,
+      "common_height": 4576,
+      "coverage_detail": {
+        "baseline_extent_in_detail": [
+          376,
+          4952
+        ],
+        "baseline_y_in_union": 376,
+        "candidate_extent_in_detail": [
+          0,
+          4952
+        ],
+        "candidate_y_in_union": 0,
+        "crop_y_in_union": 0,
+        "display_rule": "Source samples copied exactly to RGB; alpha=0 only OUTSIDE original output extent. Transparency means no decoded coverage, not black received pixels. Must be visibly labelled in the gallery.",
+        "extra_nonempty_rows": 328,
+        "extra_nonempty_rows_in_detail": 328,
+        "files": [
+          {
+            "arm": "baseline",
+            "file": "MSU-MR-1-baseline-coverage-detail.png",
+            "file_sha256": "02fcdb1e0534931ddd7519e73068639ed98b2dc53f6c5cc71f70eb30e394569c",
+            "rgba_sha256": "27066790ebd6fff770d90a217603297836136f0135549b7aac2b38d6818c3d07"
+          },
+          {
+            "arm": "candidate",
+            "file": "MSU-MR-1-candidate-coverage-detail.png",
+            "file_sha256": "3aebada005f7348f558d24bac8dc64967602fa9ac55a2eb8b410bc6837a39b7b",
+            "rgba_sha256": "edd237d3c381d16360e228f4e1db5b3195ccaf33aace5de36713bce956d5dad3"
+          }
+        ],
+        "height": 768,
+        "selection": "Selected area maximizes newly covered nonempty rows; not representative whole-recording quality.",
+        "union_height": 4952,
+        "width": 1568
+      },
+      "detail_crop_height": 768,
+      "detail_crop_y": 0,
+      "file": "MSU-MR-1.png",
+      "gained_112x8_zero_to_nonzero_tiles": 0,
+      "gained_tile_coordinates_common_grid": [],
+      "lost_112x8_nonzero_to_zero_tiles": 0,
+      "lost_tile_coordinates_common_grid": [],
+      "native_minus_baseline_scan_index": 47,
+      "pixel_note": "Tile presence is an image-output measure, not pixel ground truth or a substitute for packet checks",
+      "zero_to_nonzero_pixels": 0
+    },
+    {
+      "alignment_matches": 561,
+      "baseline_crop_start_y": 0,
+      "baseline_height": 4576,
+      "baseline_sha256": "234d0bf9d163c98b87e477fe127498c96460d8d594b1b60504403a12a95ca5b5",
+      "candidate_crop_start_y": 376,
+      "candidate_height": 4952,
+      "candidate_sha256": "4fd67062cf5c9e03d0e65350794bd64c3514189a6b0d12d64bdaec62f841b02c",
+      "changed_nonzero_pixels": 0,
+      "common_height": 4576,
+      "coverage_detail": {
+        "baseline_extent_in_detail": [
+          376,
+          4952
+        ],
+        "baseline_y_in_union": 376,
+        "candidate_extent_in_detail": [
+          0,
+          4952
+        ],
+        "candidate_y_in_union": 0,
+        "crop_y_in_union": 0,
+        "display_rule": "Source samples copied exactly to RGB; alpha=0 only OUTSIDE original output extent. Transparency means no decoded coverage, not black received pixels. Must be visibly labelled in the gallery.",
+        "extra_nonempty_rows": 312,
+        "extra_nonempty_rows_in_detail": 312,
+        "files": [
+          {
+            "arm": "baseline",
+            "file": "MSU-MR-2-baseline-coverage-detail.png",
+            "file_sha256": "7c6cb939b22335919347dd5397e7e90eba3c9eec660e88095998aca582de914f",
+            "rgba_sha256": "4647b9f00e6be52a1cee795cabcb8827de4c6c317d6b9a55cb8d953318649781"
+          },
+          {
+            "arm": "candidate",
+            "file": "MSU-MR-2-candidate-coverage-detail.png",
+            "file_sha256": "b4dda52b6e35c834c276c6675f1abe3d442e7b96765d39b7fa2148edbd18f425",
+            "rgba_sha256": "979bfd59989823d9cd05883883bc32a370db00aa544004376195de66b078ad18"
+          }
+        ],
+        "height": 768,
+        "selection": "Selected area maximizes newly covered nonempty rows; not representative whole-recording quality.",
+        "union_height": 4952,
+        "width": 1568
+      },
+      "detail_crop_height": 768,
+      "detail_crop_y": 0,
+      "file": "MSU-MR-2.png",
+      "gained_112x8_zero_to_nonzero_tiles": 1,
+      "gained_tile_coordinates_common_grid": [
+        [
+          0,
+          0
+        ]
+      ],
+      "lost_112x8_nonzero_to_zero_tiles": 0,
+      "lost_tile_coordinates_common_grid": [],
+      "native_minus_baseline_scan_index": 47,
+      "pixel_note": "Tile presence is an image-output measure, not pixel ground truth or a substitute for packet checks",
+      "zero_to_nonzero_pixels": 896
+    },
+    {
+      "alignment_matches": 561,
+      "baseline_crop_start_y": 0,
+      "baseline_height": 4576,
+      "baseline_sha256": "1aab726aac7449534d6cdde45f4a6c1e22c2812f1364f49dcd2b7cd50d184554",
+      "candidate_crop_start_y": 376,
+      "candidate_height": 4952,
+      "candidate_sha256": "b2da044fae09fc9493dc45edd239f774661b544a0b956895e3e3710bfcc85bd9",
+      "changed_nonzero_pixels": 0,
+      "common_height": 4576,
+      "coverage_detail": {
+        "baseline_extent_in_detail": [
+          376,
+          4952
+        ],
+        "baseline_y_in_union": 376,
+        "candidate_extent_in_detail": [
+          0,
+          4952
+        ],
+        "candidate_y_in_union": 0,
+        "crop_y_in_union": 0,
+        "display_rule": "Source samples copied exactly to RGB; alpha=0 only OUTSIDE original output extent. Transparency means no decoded coverage, not black received pixels. Must be visibly labelled in the gallery.",
+        "extra_nonempty_rows": 320,
+        "extra_nonempty_rows_in_detail": 320,
+        "files": [
+          {
+            "arm": "baseline",
+            "file": "MSU-MR-5-baseline-coverage-detail.png",
+            "file_sha256": "f245198b1641174c9d77994d5384813114ac0752bc95b732f9e18e9f00e4751e",
+            "rgba_sha256": "0a18c5ee54bf540707410b32e0ef5d1e2eba1500468e505465a6896f0a6b72ce"
+          },
+          {
+            "arm": "candidate",
+            "file": "MSU-MR-5-candidate-coverage-detail.png",
+            "file_sha256": "67441c497a203f0abd38f132e8bd76c14c1462cd81f27f216952c5477f020ad8",
+            "rgba_sha256": "f7895abaf1efa10eea227e557d20cf71a41e112a3d867ed0bdff1a3a41e586dc"
+          }
+        ],
+        "height": 768,
+        "selection": "Selected area maximizes newly covered nonempty rows; not representative whole-recording quality.",
+        "union_height": 4952,
+        "width": 1568
+      },
+      "detail_crop_height": 768,
+      "detail_crop_y": 0,
+      "file": "MSU-MR-5.png",
+      "gained_112x8_zero_to_nonzero_tiles": 0,
+      "gained_tile_coordinates_common_grid": [],
+      "lost_112x8_nonzero_to_zero_tiles": 0,
+      "lost_tile_coordinates_common_grid": [],
+      "native_minus_baseline_scan_index": 47,
+      "pixel_note": "Tile presence is an image-output measure, not pixel ground truth or a substitute for packet checks",
+      "zero_to_nonzero_pixels": 0
+    }
+  ],
+  "renderer": "same unchanged SatDump 1.2.2 MSU-MR instrument module; fill_missing=false",
+  "schema": "meteor-pixel-preserving-image-audit-v1",
+  "selection": "detail region selected for most recovered empty tiles; not an unbiased overview"
+}

@@ -2,6 +2,16 @@
 
 ### More usable telemetry from the recordings you already have.
 
+| SatDump | SatDump + FrameLift |
+|:---:|:---:|
+| ![Meteor-M2 MSU-MR channel 1: SatDump output; the blank upper area is outside its decoded coverage.](docs/assets/meteor-m2/MSU-MR-1-baseline-coverage-detail.png) | ![The same Meteor-M2 recording after adding FrameLift recovery: additional cloud and coastline coverage, with some gaps remaining.](docs/assets/meteor-m2/MSU-MR-1-candidate-coverage-detail.png) |
+
+**More of the same pass.** Meteor-M2, MSU-MR channel 1: **328 additional image
+rows containing received data**, some still incomplete. Same original IQ,
+same SatDump image renderer; no gap filling. The blank upper-left area is outside
+the baseline's decoded coverage. Selected detail, not a whole-recording benchmark.
+[Source, alignment and image checksums](docs/assets/meteor-m2/README.md).
+
 An offline satellite receiver that revisits difficult parts of a recording with
 complementary signal-processing methods, retains validated packets, and records
 how each result was obtained. Written in Rust. CPU by default; optional CUDA FIR

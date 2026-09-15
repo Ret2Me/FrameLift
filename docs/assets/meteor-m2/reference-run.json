@@ -1,0 +1,18 @@
+{
+  "software": "SatDump 1.2.2, unchanged installed binary and mission pipeline",
+  "binary_sha256": "a85668d3fda04cf3b9eb46b91d1aa1c33bcf7fd36f5b4e3e3f69935c208ba546",
+  "input_sha256": "047afccdbeaea7c3c9b0997586ebcb84b5b81da5c3e7b0535e4d730c4379a872",
+  "input_bytes": 400226684,
+  "input_seconds": 900.5108405108405,
+  "sample_rate": 222222,
+  "format": "original WAV PCM8 unsigned stereo IQ",
+  "pipeline": "meteor_m2_lrpt",
+  "satellite_number": "M2",
+  "fill_missing": false,
+  "disable_multi_modules": true,
+  "auto_process_products": false,
+  "exit_code": 0,
+  "output_cadu_sha256": "40d386020836b1f9272a6aefbe5daeda6132c4dcf8fcf7d009503adac877fa8b",
+  "log": "noaam2-reference.log",
+  "run_scope": "full original recording; exploratory image screening"
+}

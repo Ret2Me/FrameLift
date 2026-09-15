@@ -1,0 +1,33 @@
+{
+  "schema_version": "observation-planning-prospective-config-v1",
+  "campaign_id": "satnogs-network-shadow-2026-09-v4a",
+  "registered_at": "2026-09-03T12:35:00Z",
+  "start": "2026-09-04T00:00:00Z",
+  "end": "2026-10-05T00:00:00Z",
+  "mode": "shadow",
+  "planning_interval_hours": 24,
+  "minimum_elapsed_days": 30,
+  "minimum_plan_commit_days": 25,
+  "minimum_reconciled_outcomes": 30,
+  "station_ids": [766, 1710, 1864, 2029, 2968, 4186, 4497],
+  "target_norad_ids": [40071, 44909, 49008, 53807, 60535],
+  "protocol_amendment": {
+    "reason": "The first pre-start dry run failed before geometry or outcome inspection because CelesTrak returned HTTP 404 for five decayed/unavailable v3 objects. The successor retains every v3 target with a retrievable current TLE and changes no model, station, outcome or metric.",
+    "amended_before_campaign_start": true,
+    "parent_config_path": "configs/prospective/observation-planning-shadow-v4.json",
+    "parent_config_sha256": "87c35d36e9c3061a703f21d084879b20ce61618a385386f44930ea5c785e43c0",
+    "parent_ledger_path": "work/prospective-v4/ledger.jsonl",
+    "parent_ledger_sha256_at_amendment": "ff4991e7770f355f3ec8c061cf36754731578bf4a4e936a8f5cc40fd8fffec2e",
+    "excluded_norad_ids": [53106, 56933, 58468, 60477, 60523],
+    "selection_used_outcomes": false
+  },
+  "protocol_notes": {
+    "primary_scope": "Read-only shadow validation on public SatNOGS observations; no jobs are submitted.",
+    "station_selection": "High-volume stations in frozen v3 that were connected and available at registration.",
+    "target_selection": "Every frozen v3 target for which the pre-start CelesTrak availability check returned a valid current TLE.",
+    "weather": "Open-Meteo forecast snapshots are captured before passes; NASA POWER is retrospective sensitivity only.",
+    "space_weather": "NOAA SWPC Kp predictions are captured before passes; unavailable future intervals remain missing.",
+    "hardware": "SatNOGS antenna type/range snapshots are future-valid only; gain/noise stay missing without an older versioned local record.",
+    "causal_boundary": "A shadow run tests calibration and operational stability, not causal scheduler yield improvement."
+  }
+}

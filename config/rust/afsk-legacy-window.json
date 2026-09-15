@@ -1,0 +1,11 @@
+{
+  "sample_rate_hz": 57600,
+  "audio_sample_rate_hz": 9600,
+  "baudrate": 1200.0,
+  "mark_hz": 1200.0,
+  "space_hz": 2200.0,
+  "timing_rate_errors_ppm": [-2000.0, -1000.0, -500.0, 0.0, 500.0, 1000.0, 2000.0],
+  "timing_phase_bins": 16,
+  "timing_top_n": 6,
+  "max_candidate_records": 4096
+}

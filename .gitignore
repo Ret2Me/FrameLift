@@ -58,3 +58,7 @@ graphify-out/
 /0.jpg
 /1.jpg
 /spectrum_start_*
+
+# Compact, checksum-bound telemetry used to reproduce the published comparisons.
+!/publication/recovery-visuals-v1/data/
+!/publication/recovery-visuals-v1/data/**

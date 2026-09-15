@@ -1,0 +1,49 @@
+{
+  "schema": "telemetry-yield-real-payload-figure-v1",
+  "prepared_utc": "2026-09-13T01:19:28.684Z",
+  "observation_id": 14780429,
+  "source_observation_url": "https://network.satnogs.org/observations/14780429/",
+  "observation_start_utc": "2026-08-14T00:31:48Z",
+  "observation_end_utc": "2026-08-14T00:37:17Z",
+  "station_id": 2865,
+  "audio_seconds": 326.3640208333333,
+  "source": {
+    "bytes": 2290353,
+    "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-acquisition-v1/obs-14780429/capture.ogg",
+    "sha256": "187ee91e52a1d314fc698595b19943fb1c86bbb6672b617824aadc3b5f4f3658"
+  },
+  "input": {
+    "bits_per_sample": 16,
+    "bytes": 31330990,
+    "path": "/home/ubuntu/telemetry-yield/work/publication-speed-restart-20260912-v1/comparison/obs-14780429/pcm-scratch-l2pHVa/shared-pcm16.wav",
+    "sample_rate": 48000,
+    "samples": 15665473,
+    "sha256": "758176340d3fc6b42dc5a37dd8154e1824e7b30bafa9446dfd0ddcb7d82ab782"
+  },
+  "result_sha256": "90e4f4f878ececea408832ed2b05ef3c62bb371b2ae2abeb481e4c9357503925",
+  "native_result_sha256": "2ea019a010e557f3a8f498959846a75381ffa651c67dbb79126a52c1d3c8600b",
+  "direwolf_stdout_sha256": "b052f47c7b01bc7d55b259a2ba650d67203806f575627ff240fa52121396290a",
+  "gr_kiss_sha256": "211f4804a8ee6413aa8304270fcbce5720f4ec81d3b8277d5825459610e34dad",
+  "schema_url": "https://gitlab.com/librespacefoundation/satnogs/satnogs-decoders/-/blob/dcf8af2c41fa9ac9ac755173719400ccd1a6c33f/ksy/canvas.ksy",
+  "schema_sha256": "201131bf9e0a5acb9bac6009a19a573e28aedf200702e31e25e805fdcdd08baa",
+  "met_origin_seconds": 829763,
+  "met_span_seconds": 215,
+  "all_pdu_counts": {
+    "progressive": 118,
+    "direwolf": 30,
+    "gr_satellites": 2,
+    "reference_union": 31
+  },
+  "beacon_counts": {
+    "progressive": 36,
+    "reference_union": 2,
+    "added": 34,
+    "lost": 0
+  },
+  "selection": "Post-hoc illustrative positive observation; not a representative effect-size estimate.",
+  "in_interim_paper_189_snapshot": false,
+  "parsing": "264-byte CANVAS APID0x20, CCSDS version0 TLM/secondary header, exact lengths; raw u16BE readings without physical-unit conversion.",
+  "verification": "Verified received FCS for all frames; 36 CANVAS beacons; 82 other packet types excluded from sensor plots.",
+  "application_checksum_verified": false,
+  "external_fcs_note": "External outputs strip received FCS; their internal FCS checks are relied upon. Native received FCS independently rechecked for every packet."
+}

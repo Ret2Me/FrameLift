@@ -1,0 +1,12 @@
+[Unit]
+Description=Daily telemetry-yield interruptible 50-target prospective planner refresh
+
+[Timer]
+OnCalendar=2026-09-04..30 01:15:00 UTC
+OnCalendar=2026-10-01..07 01:15:00 UTC
+Persistent=true
+RandomizedDelaySec=300
+Unit=telemetry-yield-prospective-v4e.service
+
+[Install]
+WantedBy=timers.target

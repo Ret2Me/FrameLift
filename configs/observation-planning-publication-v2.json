@@ -1,0 +1,129 @@
+{
+  "schema_version": "observation-planning-publication-config-v1",
+  "study_id": "observation-planning-publication-v2",
+  "frozen_at": "2026-09-03T01:32:00Z",
+  "protocol_amended_at": "2026-09-03T01:32:00Z",
+  "protocol_amendment_scope": "Prospectively frozen count-gated successor to v1. The v1 normalized cohort was built without model fitting and failed only conditional_decode_rows_at_least_300 (217 observed versus 300 required). To obtain at least 83 additional eligible examples with bounded acquisition cost, the default six-month interval is retained for all ten targets and NORAD 60535, the largest v1 conditional-decode contributor (110 rows), receives one immediately preceding six-month acquisition interval. No real-cohort model or performance metric was fitted or inspected before this rule was frozen.",
+  "parent_protocol": {
+    "config_path": "configs/observation-planning-publication-v1.json",
+    "snapshot_manifest_sha256": "8143ba3ee44217b32cdc129a1e9dae7d583e3bec6a6670b0d1df01cfb1bb59df",
+    "dataset_manifest_sha256": "a17558e79ca8daa313413a78e7deff7129531c330058ffcaf41df26e8ea975f8",
+    "dataset_sha256": "2d7fcf00c7f5adc5a85332341df3dfeb7a63a05cf2f9c38cddf96ae5e67d8f93",
+    "count_gate": "fail",
+    "failed_requirement": "conditional_decode_rows_at_least_300",
+    "observed_count": 217,
+    "required_count": 300
+  },
+  "start": "2026-03-01T00:00:00Z",
+  "end": "2026-09-01T00:00:00Z",
+  "acquisition_windows": [
+    {
+      "norad_id": 60535,
+      "start": "2025-09-01T00:00:00Z",
+      "end": "2026-09-01T00:00:00Z"
+    }
+  ],
+  "selection_rule": "Inherit the frozen v1 targets. Enrich only NORAD 60535 using the immediately preceding six months because it had the largest eligible conditional-decode row count in the count-only v1 gate audit; no feature/outcome performance relationship inspected.",
+  "selection_snapshots": [
+    {
+      "path": "work/a1/satnogs-transmitters-active-direct-2026-08-31.json",
+      "sha256": "07059586791612b61e562b27c1fd1a9601fca817b3fb25128100deb43b8ceccd"
+    },
+    {
+      "path": "work/observation-planning-publication-v1/network-transmitter-stats-selection-2026-09-02.json",
+      "sha256": "4b6c2225c4d735a0f76e26b7eddff42e3f4739c5094483afb0bfc7e291705951",
+      "source": "https://network.satnogs.org/api/transmitters/",
+      "retrieved_on": "2026-09-02"
+    }
+  ],
+  "targets": [
+    {
+      "norad_id": 40071,
+      "selection_transmitter_uuid": "g2PQTyQ6gv4kudov7KoSQc",
+      "selection_mode": "GFSK",
+      "selection_total_count": 37023,
+      "selection_good_count": 11284,
+      "selection_bad_count": 12764
+    },
+    {
+      "norad_id": 44909,
+      "selection_transmitter_uuid": "ZiJbdMEwj92mqojjtjTN87",
+      "selection_mode": "BPSK",
+      "selection_total_count": 2773,
+      "selection_good_count": 2090,
+      "selection_bad_count": 516
+    },
+    {
+      "norad_id": 49008,
+      "selection_transmitter_uuid": "eueXbMpruNuH7k34ePxgaA",
+      "selection_mode": "BPSK",
+      "selection_total_count": 2656,
+      "selection_good_count": 1329,
+      "selection_bad_count": 728
+    },
+    {
+      "norad_id": 53106,
+      "selection_transmitter_uuid": "b6RKUFf8YvJGGrFv4AoJUy",
+      "selection_mode": "FSK AX.100 Mode 5",
+      "selection_total_count": 37686,
+      "selection_good_count": 14382,
+      "selection_bad_count": 8500
+    },
+    {
+      "norad_id": 53807,
+      "selection_transmitter_uuid": "YT4thHBcgY73CfCMH3sGKB",
+      "selection_mode": "GFSK",
+      "selection_total_count": 7608,
+      "selection_good_count": 3138,
+      "selection_bad_count": 1997
+    },
+    {
+      "norad_id": 56933,
+      "selection_transmitter_uuid": "MMDemm2pQWzcGpjFyaD9Zv",
+      "selection_mode": "GFSK",
+      "selection_total_count": 4686,
+      "selection_good_count": 1199,
+      "selection_bad_count": 778
+    },
+    {
+      "norad_id": 58468,
+      "selection_transmitter_uuid": "KssvhYC4X8LeY4Rye8UQTT",
+      "selection_mode": "FSK",
+      "selection_total_count": 4355,
+      "selection_good_count": 1023,
+      "selection_bad_count": 919
+    },
+    {
+      "norad_id": 60477,
+      "selection_transmitter_uuid": "UgLfHsfKxc7bgXVVRw9jYC",
+      "selection_mode": "BPSK",
+      "selection_total_count": 2472,
+      "selection_good_count": 783,
+      "selection_bad_count": 612
+    },
+    {
+      "norad_id": 60523,
+      "selection_transmitter_uuid": "PUDih7ogjbDhCJskydF5Y5",
+      "selection_mode": "FSK",
+      "selection_total_count": 3484,
+      "selection_good_count": 1262,
+      "selection_bad_count": 1389
+    },
+    {
+      "norad_id": 60535,
+      "selection_transmitter_uuid": "hdxq4LxTwD3moSxZ3wwd8G",
+      "selection_mode": "GFSK",
+      "selection_total_count": 2309,
+      "selection_good_count": 1353,
+      "selection_bad_count": 567
+    }
+  ],
+  "geometry_step_seconds": 30,
+  "minimum_chunk_hours": 6,
+  "max_response_bytes": 20000000,
+  "random_seed": 7538,
+  "bootstrap_replicates": 2000,
+  "temporal_test_fraction": 0.2,
+  "regularization_grid": [0.01, 0.1, 1.0, 10.0],
+  "user_agent": "telemetry-yield-research/0.1 contact=research@example.invalid"
+}

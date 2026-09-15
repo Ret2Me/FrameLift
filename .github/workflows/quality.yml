@@ -1,0 +1,52 @@
+name: Receiver quality
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      CARGO_TERM_COLOR: always
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Install audio codec used by integration tests
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y ffmpeg
+      - name: Install the repository-pinned Rust toolchain
+        run: rustup show active-toolchain
+      - name: Run the same quality gate as local development
+        run: cargo xtask check
+      - name: Verify retained research targets still compile
+        run: cargo xtask research-check
+      - name: Test the independently locked image audit tool
+        run: cargo test --locked --manifest-path tools/meteor-image-audit/Cargo.toml
+      - name: Verify the manuscript evidence and reporting tool
+        run: |
+          cargo test --locked --example paper_evidence
+          cargo run --locked --example paper_evidence -- verify publication/decoder-paper-v2/evidence
+
+  dependencies:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Install pinned vulnerability-audit tool
+        run: cargo install cargo-audit --version 0.22.2 --locked
+      - name: Audit the lockfile against current advisories
+        run: cargo audit --deny warnings
+      - name: Audit the independently locked image tool
+        run: cargo audit --file tools/meteor-image-audit/Cargo.lock --deny warnings

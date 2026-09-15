@@ -1,0 +1,22 @@
+{
+  "format": "audio",
+  "sample_rate_hz": 48000,
+  "window_seconds": 6.0,
+  "hop_seconds": 3.0,
+  "protocols": {
+    "ax25": {"type": "ax25", "g3ruh_modes": [false]}
+  },
+  "hypotheses": [
+    {
+      "protocol_id": "ax25",
+      "waveform": {
+        "hypothesis_id": "pcm-bell202-1200",
+        "demodulator_id": "pcm_bell202",
+        "decimation": 5,
+        "mark_hz": 1200,
+        "space_hz": 2200,
+        "dsp": {"mode": "afsk", "baud": 1200, "bank": "diverse", "top_timing": 16}
+      }
+    }
+  ]
+}

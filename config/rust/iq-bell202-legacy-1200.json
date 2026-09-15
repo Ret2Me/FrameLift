@@ -1,0 +1,29 @@
+{
+  "format": "ci16_le",
+  "sample_rate_hz": 57600,
+  "window_seconds": 19.91111111111111,
+  "hop_seconds": 9.955555555555556,
+  "protocols": {
+    "ax25": {"type": "ax25", "g3ruh_modes": [false]}
+  },
+  "hypotheses": [{
+    "protocol_id": "ax25",
+    "waveform": {
+      "hypothesis_id": "legacy-bell202-1200",
+      "demodulator_id": "bell202_afsk_legacy",
+      "dsp": {
+        "baud": 1200.0,
+        "mode": "afsk",
+        "bank": "global",
+        "rate_errors_ppm": [-2000.0, -1000.0, -500.0, 0.0, 500.0, 1000.0, 2000.0],
+        "phase_bins": 16,
+        "top_timing": 6
+      },
+      "decimation": 6,
+      "cutoff_hz": null,
+      "carrier_hz": null,
+      "mark_hz": 1200.0,
+      "space_hz": 2200.0
+    }
+  }]
+}

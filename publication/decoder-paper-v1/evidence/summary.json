@@ -1,0 +1,68 @@
+{
+  "schema": "telemetry-yield-paper-snapshot-v1",
+  "cutoff_utc": "2026-09-12T22:52:19.141Z",
+  "status": "preliminary_complete_case_snapshot",
+  "planned_observations": 266,
+  "remaining_observations": 77,
+  "cohort_sha256": "291d773cca67ba4a108b43338e6592974fe2c915717f92ef0bd352109b2ac1a9",
+  "all": {
+    "observations": 189,
+    "ours": 4541,
+    "reference_union": 2998,
+    "added": 1547,
+    "lost": 4,
+    "net": 1543,
+    "net_percent": 51.467645096731154,
+    "observations_with_gain": 107,
+    "arm_frames": {
+      "progressive_v3": 4541,
+      "innovation_v2": 4703,
+      "innovation_v1_no_codec": 4703,
+      "direwolf": 2973,
+      "gr_satellites": 1872
+    },
+    "arm_wall_seconds": {
+      "progressive_v3": 33887.97259487998,
+      "innovation_v2": 27212.570641001977,
+      "innovation_v1_no_codec": 26337.63095797299,
+      "direwolf": 664.2948141989998,
+      "gr_satellites": 709.4904298859999
+    },
+    "audio_seconds": 87619.66227083339
+  },
+  "confirmed_waterfall_signal": {
+    "observations": 16,
+    "ours": 136,
+    "reference_union": 87,
+    "added": 49,
+    "lost": 0,
+    "net": 49,
+    "net_percent": 56.32183908045977,
+    "observations_with_gain": 5,
+    "arm_frames": {
+      "progressive_v3": 136,
+      "innovation_v2": 141,
+      "innovation_v1_no_codec": 141,
+      "direwolf": 86,
+      "gr_satellites": 50
+    },
+    "arm_wall_seconds": {
+      "progressive_v3": 2619.0755866600007,
+      "innovation_v2": 2025.0659081879999,
+      "innovation_v1_no_codec": 1947.155941445,
+      "direwolf": 55.70473655200001,
+      "gr_satellites": 62.08032124600001
+    },
+    "audio_seconds": 7454.2737916666665
+  },
+  "confirmed_waterfall_planned": 24,
+  "pending_seen": [],
+  "caveats": [
+    "Repeated historical evaluation after performance-only restart; not an unseen holdout.",
+    "Unique AX.25 UI PDUs within observation, not globally unique spacecraft telemetry.",
+    "Reference union = controlled replays of Dire Wolf and gr-satellites, not the native SatNOGS decoder.",
+    "Independent received-FCS recheck for native arms; external arms strip FCS and rely on their internal checks.",
+    "Concurrent shared-host wall times; common PCM conversion excluded from individual arm timing.",
+    "Snapshot derived from committed result summaries; final artifact-level campaign analysis pending."
+  ]
+}

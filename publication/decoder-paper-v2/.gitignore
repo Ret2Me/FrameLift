@@ -1,0 +1,6 @@
+# Typesetting byproducts. Keep the PDF, source and small generated figures/tables.
+*.aux
+*.log
+*.out
+*.blg
+preview-page*.png

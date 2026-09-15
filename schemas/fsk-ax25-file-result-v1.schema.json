@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://telemetry-yield.invalid/schemas/fsk-ax25-file-result-v1.schema.json",
+  "title": "telemetry-yield FSK-family AX.25 file result v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "api_version",
+    "schema_version",
+    "status",
+    "attempt_fingerprint",
+    "source",
+    "route",
+    "effective_config",
+    "config_sha256",
+    "external_baseline",
+    "resource_counters",
+    "candidates",
+    "candidate_ledger",
+    "resume",
+    "failures"
+  ],
+  "properties": {
+    "api_version": {"const": "telemetry-yield-fsk-ax25-file-api-v1"},
+    "schema_version": {"const": "fsk-ax25-file-result-v1"},
+    "status": {"enum": ["partial", "completed"]},
+    "attempt_fingerprint": {"$ref": "#/$defs/sha256"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sample_format", "sample_rate_hz", "size_bytes", "sha256", "segment_start_sample", "segment_sample_count"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sample_format": {"const": "ci16_le"},
+        "sample_rate_hz": {"type": "integer", "minimum": 1},
+        "size_bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "segment_start_sample": {"type": "integer", "minimum": 0},
+        "segment_sample_count": {"type": ["integer", "null"], "minimum": 1}
+      }
+    },
+    "route": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["modulation_family", "demodulator_id", "demodulator_version", "protocol_adapter_id", "protocol_id", "qualification"],
+      "properties": {
+        "modulation_family": {"const": "binary_fsk_gfsk_gmsk"},
+        "demodulator_id": {"const": "channel_conditioned_phase_fsk"},
+        "demodulator_version": {"type": "string", "minLength": 1},
+        "protocol_adapter_id": {"enum": ["ax25_plain", "ax25_g3ruh"]},
+        "protocol_id": {"const": "ax25"},
+        "qualification": {"type": "string", "minLength": 1}
+      }
+    },
+    "effective_config": {"type": "object"},
+    "config_sha256": {"$ref": "#/$defs/sha256"},
+    "external_baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "trusted_detection_count"],
+      "properties": {
+        "path": {"type": ["string", "null"]},
+        "sha256": {"anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "trusted_detection_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "resource_counters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "windows_total",
+        "windows_completed",
+        "input_bytes_hashed",
+        "complex_samples_materialized_cumulative",
+        "maximum_complex_samples_materialized_at_once",
+        "maximum_iq_window_bytes",
+        "timing_hypotheses_examined",
+        "crc_valid_candidate_detections",
+        "strict_ax25_rejection_detections",
+        "degenerate_windows"
+      ],
+      "properties": {
+        "windows_total": {"type": "integer", "minimum": 1},
+        "windows_completed": {"type": "integer", "minimum": 0},
+        "input_bytes_hashed": {"type": "integer", "minimum": 1},
+        "complex_samples_materialized_cumulative": {"type": "integer", "minimum": 0},
+        "maximum_complex_samples_materialized_at_once": {"type": "integer", "minimum": 0},
+        "maximum_iq_window_bytes": {"type": "integer", "minimum": 0},
+        "timing_hypotheses_examined": {"type": "integer", "minimum": 0},
+        "crc_valid_candidate_detections": {"type": "integer", "minimum": 0},
+        "strict_ax25_rejection_detections": {"type": "integer", "minimum": 0},
+        "degenerate_windows": {"type": "integer", "minimum": 0}
+      }
+    },
+    "candidates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["raw", "rejected", "trusted"],
+      "properties": {
+        "raw": {"type": "array", "items": {"type": "object"}},
+        "rejected": {"type": "array", "items": {"type": "object"}},
+        "trusted": {"type": "array", "items": {"type": "object"}}
+      }
+    },
+    "candidate_ledger": {"type": "object"},
+    "resume": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["supported", "checkpoint_schema_version", "completed_window_starts"],
+      "properties": {
+        "supported": {"const": true},
+        "checkpoint_schema_version": {"const": "fsk-ax25-file-checkpoint-v1"},
+        "completed_window_starts": {"type": "array", "items": {"type": "integer", "minimum": 0}}
+      }
+    },
+    "failures": {"type": "array", "items": {"type": "object"}}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

@@ -1,0 +1,7 @@
+campaign_id: smoke
+max_workers: 1
+max_recordings: 2
+timeout_s: 30
+max_download_bytes: 0
+offline: true
+levels: [L0]

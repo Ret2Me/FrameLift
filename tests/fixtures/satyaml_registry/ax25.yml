@@ -1,0 +1,14 @@
+name: TEST AX25
+norad: 90001
+data:
+  Telemetry:
+    telemetry: ax25
+transmitters:
+  UHF telemetry:
+    frequency: 437250000
+    modulation: FSK
+    baudrate: 9600
+    deviation: 2400
+    framing: AX.25 G3RUH
+    data:
+      - Telemetry

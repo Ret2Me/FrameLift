@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="740" viewBox="0 0 1200 740" role="img" aria-labelledby="title desc">
+<title id="title">Packet recovery on the CANVAS historical cohort</title>
+<desc id="desc">6220 unique packets within observations for Telemetry Yield progressive versus 4066 in the tested Dire Wolf and gr-satellites union. 2158 added; 4 missed; +52.98% net. 266 exposed development recordings; substantially more compute, not an equal-compute test.</desc>
+<rect x="0.5" y="0.5" width="1199" height="739" rx="8" fill="#ffffff" stroke="#dce5ea"/>
+<g font-family="Arial, Helvetica, sans-serif" style="font-variant-numeric:tabular-nums">
+<rect x="48" y="32" width="5.000" height="22" fill="#087e70"/>
+<text x="66" y="50" font-size="19" fill="#087e70" font-weight="700">01 / PACKET RECOVERY</text>
+<text x="48" y="105" font-size="36" fill="#152e43" font-weight="700">More telemetry. Same recordings.</text>
+<text x="48" y="144" font-size="22" fill="#526879" font-weight="400">Unique AX.25 UI packets, counted within each observation</text>
+<text x="48" y="242" font-size="78" fill="#152e43" font-weight="700">6,220</text>
+<text x="48" y="275" font-size="20" fill="#526879" font-weight="400">RECOVERED BY THE PROGRESSIVE RECEIVER</text>
+<text x="780" y="238" font-size="62" fill="#087e70" font-weight="700">+52.98%</text>
+<text x="785" y="275" font-size="20" fill="#526879" font-weight="400">NET GAIN VS REFERENCE UNION</text>
+<line x1="48" y1="303" x2="1152" y2="303" stroke="#dce5ea"/>
+<text x="48" y="360" font-size="24" fill="#152e43" font-weight="400">Dire Wolf</text>
+<rect x="310" y="335" width="710.000" height="36" fill="#f2f5f7"/>
+<rect data-role="value-bar" data-value="4029" data-scale-max="7000" x="310" y="335" width="408.656" height="36" fill="#7b8e9c"/>
+<text x="1040" y="361" font-size="25" fill="#152e43" font-weight="700">4,029</text>
+<text x="48" y="422" font-size="24" fill="#152e43" font-weight="400">gr-satellites</text>
+<rect x="310" y="397" width="710.000" height="36" fill="#f2f5f7"/>
+<rect data-role="value-bar" data-value="2514" data-scale-max="7000" x="310" y="397" width="254.991" height="36" fill="#7b8e9c"/>
+<text x="1040" y="423" font-size="25" fill="#152e43" font-weight="700">2,514</text>
+<text x="48" y="484" font-size="24" fill="#152e43" font-weight="400">Reference union</text>
+<rect x="310" y="459" width="710.000" height="36" fill="#f2f5f7"/>
+<rect data-role="value-bar" data-value="4066" data-scale-max="7000" x="310" y="459" width="412.409" height="36" fill="#435f75"/>
+<text x="1040" y="485" font-size="25" fill="#152e43" font-weight="700">4,066</text>
+<text x="48" y="546" font-size="24" fill="#152e43" font-weight="700">Telemetry Yield</text>
+<rect x="310" y="521" width="710.000" height="36" fill="#f2f5f7"/>
+<rect data-role="value-bar" data-value="6220" data-scale-max="7000" x="310" y="521" width="630.886" height="36" fill="#087e70"/>
+<text x="1040" y="547" font-size="25" fill="#152e43" font-weight="700">6,220</text>
+<line x1="310" y1="585" x2="1020" y2="585" stroke="#dce5ea"/>
+<path d="M310 585v6" stroke="#7b8e9c"/>
+<text x="310" y="615" text-anchor="middle" font-size="19" fill="#526879">0</text>
+<path d="M512.8571428571429 585v6" stroke="#7b8e9c"/>
+<text x="512.8571428571429" y="615" text-anchor="middle" font-size="19" fill="#526879">2,000</text>
+<path d="M715.7142857142858 585v6" stroke="#7b8e9c"/>
+<text x="715.7142857142858" y="615" text-anchor="middle" font-size="19" fill="#526879">4,000</text>
+<path d="M918.5714285714286 585v6" stroke="#7b8e9c"/>
+<text x="918.5714285714286" y="615" text-anchor="middle" font-size="19" fill="#526879">6,000</text>
+<path d="M1020 585v6" stroke="#7b8e9c"/>
+<text x="1020" y="615" text-anchor="middle" font-size="19" fill="#526879">7,000</text>
+<text x="48" y="655" font-size="24" fill="#152e43" font-weight="700">+2,158 added packets   /   4 reference packets missed</text>
+<text x="48" y="691" font-size="20" fill="#526879" font-weight="400">266 historical CANVAS recordings · exposed development cohort · tested configurations only</text>
+<text x="48" y="719" font-size="20" fill="#526879" font-weight="400">Same PCM input. Additional recovery costs substantially more computation.</text>
+</g></svg>

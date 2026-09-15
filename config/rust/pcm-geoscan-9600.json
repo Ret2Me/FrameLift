@@ -1,0 +1,9 @@
+{
+  "format": "audio", "sample_rate_hz": 48000,
+  "window_seconds": 6.0, "hop_seconds": 3.0,
+  "protocols": {"geoscan": {"type":"geoscan", "maximum_sync_hamming":4}},
+  "hypotheses": [{"protocol_id":"geoscan", "waveform":{
+    "hypothesis_id":"pcm-geoscan-9600", "demodulator_id":"pcm_fsk", "decimation":2,
+    "dsp":{"mode":"fsk", "baud":9600, "bank":"diverse", "top_timing":16}
+  }}]
+}

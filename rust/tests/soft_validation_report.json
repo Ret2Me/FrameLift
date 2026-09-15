@@ -1,0 +1,38 @@
+{
+  "schema": "rust-soft-search-migration-validation-v1",
+  "recorded_utc": "2026-09-08T11:08:56Z",
+  "test_command": "CARGO_BUILD_JOBS=2 cargo test --lib soft:: -- --test-threads=2",
+  "rust_tests_passed": 5,
+  "rust_tests_failed": 0,
+  "public_list_and_syndrome_result_or_error_oracle_comparisons": 196,
+  "cost_sum_and_lazy_order_oracle_cases": 50,
+  "ordered_combinations_compared": 1630,
+  "mismatches": 0,
+  "oracle_generation_python_legacy_tests_passed": 16,
+  "oracle_generation_python_version": "3.12.3",
+  "oracle_replay_requires_python": false,
+  "additional_checks": [
+    "Complete sparse stuffing-map reparse equivalence for every single and nearby pair raw decision in a valid body",
+    "CRC-valid candidate bytes, exact correction locations/reliabilities, delimiter locations and Hamming distances",
+    "Attempt counts, region counts, exhaustion and output-limit flags, and error messages",
+    "Explicit corrected-candidate distinction, input validation and budget validation",
+    "Python 3.12 compensated float sums at corresponding source sum() sites preserve bounded queue ordering"
+  ],
+  "sources": {
+    "rust/soft.rs": "1a36e1acde1d00117fc168eef632a349257cf1408919510a41a997311391aeed",
+    "rust/tests/soft_tests.rs": "0a0a1cdb0bcf8dfdbb0f3020e06fd3b090bf59b6e025b908bb9ab3428d8f0c34",
+    "rust/tests/soft_oracle.json": "46a90410b1e33202cfa516acdf309b6054543fd1eeae302ef615ee5756786c53",
+    "rust/tests/soft_cost_oracle.json": "b52eecf3318fc82650055b998240783836c1eb5f47982ea4a94c2e40de05436e",
+    "src/telemetry_yield/soft_sync.py": "f377156e37611f269902dafda37c8331942ceb2b6f7b5ddca789496a305c0a74",
+    "src/telemetry_yield/symbol_boundary.py": "41013122654386bc58ee3964fd3c94dda2c9b61df39a5640ab38c157ce78dd7d"
+  },
+  "numeric_reference": "https://raw.githubusercontent.com/python/cpython/v3.12.3/Python/bltinmodule.c",
+  "preserved_legacy_quirks": [
+    "Exhaustive list path ignores per-region attempts and maximum_output_frames; global attempts still bounded. Syndrome applies both.",
+    "List ignores syndrome-only options and always applies G3RUH descrambling.",
+    "Syndrome descramble=false still uses the legacy six-position G3RUH correction impulse; no expanded plain-mode correction qualification is claimed.",
+    "Original NaN checks do not reject positive infinity despite finite wording; normal finite-input path is regression-qualified.",
+    "Correction indices and passed CRC never make repaired frames independently trusted telemetry."
+  ],
+  "qualification_scope": "Protocol-level algorithm equivalence on stated fixtures; not end-to-end IQ equivalence or publication/deployment qualification."
+}

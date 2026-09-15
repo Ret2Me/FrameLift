@@ -1,0 +1,5000 @@
+{
+  "schema": "python-physical-differential-fixture-v1",
+  "numpy": "2.5.2",
+  "source_sha256": "c2ffb75a8ff03098f08e604c1170434dffa931f0a262c9e7d473c2c051f3327d",
+  "note": "Unaligned bits are not telemetry frames. Truth enters alignment fixtures only.",
+  "physical": [
+    {
+      "seed": 42,
+      "sample_count": 512,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 6000.0,
+        "modulation": "BPSK",
+        "recovery_version": "legacy",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "binary_timing"
+      ],
+      "lengths": [
+        64
+      ],
+      "bit_sha256": [
+        "b6e01cdc273ed1300380131c4eb102b18d65ac401211604cf1f72a38ce5037c1"
+      ],
+      "diagnostics": {
+        "cfo_hz": -30.865020015936793,
+        "carrier_phase_rad_mod_pi": 0.19986252430875104,
+        "timing_phase_samples": 4.75,
+        "timing_score": 0.8390726136394107
+      }
+    },
+    {
+      "seed": 42,
+      "sample_count": 512,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 6000.0,
+        "modulation": "BPSK",
+        "recovery_version": "carrier_timing_v2",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "binary_timing"
+      ],
+      "lengths": [
+        64
+      ],
+      "bit_sha256": [
+        "ebf04438b36c4817818206bbda705d70f62b15716f83cd6d5ed1e2b52a4cf4d9"
+      ],
+      "diagnostics": {
+        "cfo_hz": 1056.884765625,
+        "carrier_phase_rad_mod_pi": -1.0307463365903275,
+        "timing_phase_samples": 0.0,
+        "timing_score": 0.8774647723871211
+      }
+    },
+    {
+      "seed": 42,
+      "sample_count": 512,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 6000.0,
+        "modulation": "FSK",
+        "recovery_version": "legacy",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "binary_timing"
+      ],
+      "lengths": [
+        64
+      ],
+      "bit_sha256": [
+        "6d81752cc9f61cb23ba447713dc2ea5ad6e5226e59a100a1aa4416ffc71734f4"
+      ],
+      "diagnostics": {
+        "cfo_hz": -275.5004722908873,
+        "tone_separation_hz": 23423.072630158385,
+        "timing_phase_samples": 6.0,
+        "timing_score": 0.861289430437874
+      }
+    },
+    {
+      "seed": 42,
+      "sample_count": 512,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 6000.0,
+        "modulation": "QPSK",
+        "recovery_version": "legacy",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "common_iq_timing"
+      ],
+      "lengths": [
+        128
+      ],
+      "bit_sha256": [
+        "d8f4a6b9389f4eb83174ac92656eb575042fb7479fb00b980a0b42e7600e44dc"
+      ],
+      "diagnostics": {
+        "cfo_hz": 0.0,
+        "carrier_phase_rad_mod_pi_over_2": -0.006229602266189567,
+        "timing": {
+          "selected_phase_samples": 1.0,
+          "eye_score": 0.3680226890834324
+        }
+      }
+    },
+    {
+      "seed": 42,
+      "sample_count": 512,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 6000.0,
+        "modulation": "QPSK",
+        "recovery_version": "carrier_timing_v2",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "common_iq_timing"
+      ],
+      "lengths": [
+        128
+      ],
+      "bit_sha256": [
+        "56f9c8a5769fb57eafbf45c01d11455b59d9724ebf878ac83b178428805feb3d"
+      ],
+      "diagnostics": {
+        "cfo_hz": 0.732421875,
+        "carrier_phase_rad_mod_pi_over_2": -0.03243086214146408,
+        "timing": {
+          "selected_phase_samples": 1.0,
+          "eye_score": 0.3680777691056267
+        }
+      }
+    },
+    {
+      "seed": 42,
+      "sample_count": 512,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 6000.0,
+        "modulation": "OQPSK",
+        "recovery_version": "legacy",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "q_delayed_half_symbol",
+        "i_delayed_half_symbol"
+      ],
+      "lengths": [
+        126,
+        126
+      ],
+      "bit_sha256": [
+        "b99fe669b7fe0c1a13ccb4ce9f7ca2f42f11dc68cc7aabfb835879d050db29e7",
+        "af558dcb7c0b35f7d9410bcd5c3c8cc9dc002a83ddda582ae1832256e2531af7"
+      ],
+      "diagnostics": {
+        "cfo_hz": 0.0,
+        "carrier_phase_rad_mod_pi_over_2": -0.006229602266189567,
+        "timing": {
+          "q_delayed_half_symbol": {
+            "selected_phase_samples": 4.5,
+            "eye_score": 0.3899063702053527
+          },
+          "i_delayed_half_symbol": {
+            "selected_phase_samples": 3.5,
+            "eye_score": 0.3957575430151601
+          }
+        }
+      }
+    },
+    {
+      "seed": 42,
+      "sample_count": 512,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 6000.0,
+        "modulation": "OQPSK",
+        "recovery_version": "carrier_timing_v2",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "q_delayed_half_symbol_pair_offset_-1",
+        "q_delayed_half_symbol_pair_offset_+0",
+        "q_delayed_half_symbol_pair_offset_+1",
+        "i_delayed_half_symbol_pair_offset_-1",
+        "i_delayed_half_symbol_pair_offset_+0",
+        "i_delayed_half_symbol_pair_offset_+1"
+      ],
+      "lengths": [
+        124,
+        126,
+        124,
+        124,
+        126,
+        124
+      ],
+      "bit_sha256": [
+        "a1c8f78a09b8d1fba21c9dfe1c4805298df5d98c19526b977e4221e4cc963a21",
+        "05d425743575df972d7879fdbcba06500f24f14a592c7f2160bfd93c018cd3ff",
+        "7b2fb5169973400c009e77f64c4c3956606e8f1a39b51c39c67d5bfb69a6319e",
+        "c5dfc33936ff8aae76f7a958aa24a5650dc9c15f01d266b46e9e7e1ae6bece34",
+        "9648afc579f73c8b79224da134b38f4b37a0f0b93a1fae26f6e71154b1d2baca",
+        "f9cea3ea686d389ebd35b522e30248efa93bb582e4ceedb188a9dfbc6ded3ec2"
+      ],
+      "diagnostics": {
+        "cfo_hz": 0.732421875,
+        "carrier_phase_rad_mod_pi_over_2": -0.03243086214146408,
+        "timing": {
+          "q_delayed_half_symbol_pair_offset_-1": {
+            "selected_phase_samples": 4.5,
+            "eye_score": 0.39036174439772664
+          },
+          "q_delayed_half_symbol_pair_offset_+0": {
+            "selected_phase_samples": 4.5,
+            "eye_score": 0.39036174439772664
+          },
+          "q_delayed_half_symbol_pair_offset_+1": {
+            "selected_phase_samples": 4.5,
+            "eye_score": 0.39036174439772664
+          },
+          "i_delayed_half_symbol_pair_offset_-1": {
+            "selected_phase_samples": 3.5,
+            "eye_score": 0.39539975183595255
+          },
+          "i_delayed_half_symbol_pair_offset_+0": {
+            "selected_phase_samples": 3.5,
+            "eye_score": 0.39539975183595255
+          },
+          "i_delayed_half_symbol_pair_offset_+1": {
+            "selected_phase_samples": 3.5,
+            "eye_score": 0.39539975183595255
+          }
+        }
+      }
+    },
+    {
+      "seed": 91,
+      "sample_count": 513,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 6000.0,
+        "modulation": "BPSK",
+        "recovery_version": "legacy",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "binary_timing"
+      ],
+      "lengths": [
+        64
+      ],
+      "bit_sha256": [
+        "b0b9c525ad45bca1aea5cf877cce6323ec8e5e48696f19db8bb980ae98ac1cbd"
+      ],
+      "diagnostics": {
+        "cfo_hz": -30.29872154622354,
+        "carrier_phase_rad_mod_pi": -0.866233680923939,
+        "timing_phase_samples": 6.75,
+        "timing_score": 0.8345113608235767
+      }
+    },
+    {
+      "seed": 91,
+      "sample_count": 513,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 6000.0,
+        "modulation": "BPSK",
+        "recovery_version": "carrier_timing_v2",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "binary_timing"
+      ],
+      "lengths": [
+        64
+      ],
+      "bit_sha256": [
+        "69bfff1bdd6a390cc8570188d0321bca4c1149a636afd314d9b28dc9810d9aa3"
+      ],
+      "diagnostics": {
+        "cfo_hz": -1739.8681640625,
+        "carrier_phase_rad_mod_pi": 1.314949638946373,
+        "timing_phase_samples": 1.5,
+        "timing_score": 0.8436717343300519
+      }
+    },
+    {
+      "seed": 91,
+      "sample_count": 513,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 6000.0,
+        "modulation": "FSK",
+        "recovery_version": "legacy",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "binary_timing"
+      ],
+      "lengths": [
+        64
+      ],
+      "bit_sha256": [
+        "371217547d7fe0fa6cbf7098de7ecdc22acfffae6dfd22ea61427d460b18815d"
+      ],
+      "diagnostics": {
+        "cfo_hz": 214.09223346980568,
+        "tone_separation_hz": 23279.83720449663,
+        "timing_phase_samples": 3.75,
+        "timing_score": 0.8576246987138889
+      }
+    },
+    {
+      "seed": 91,
+      "sample_count": 513,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 6000.0,
+        "modulation": "QPSK",
+        "recovery_version": "legacy",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "common_iq_timing"
+      ],
+      "lengths": [
+        128
+      ],
+      "bit_sha256": [
+        "fb7313f7519a3680ce211e4a2a47a85d2b4f5fd5e09369e26841da4ab1243c57"
+      ],
+      "diagnostics": {
+        "cfo_hz": 0.0,
+        "carrier_phase_rad_mod_pi_over_2": 0.016048638437785322,
+        "timing": {
+          "selected_phase_samples": 2.0,
+          "eye_score": 0.3915068476710811
+        }
+      }
+    },
+    {
+      "seed": 91,
+      "sample_count": 513,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 6000.0,
+        "modulation": "QPSK",
+        "recovery_version": "carrier_timing_v2",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "common_iq_timing"
+      ],
+      "lengths": [
+        128
+      ],
+      "bit_sha256": [
+        "fb7313f7519a3680ce211e4a2a47a85d2b4f5fd5e09369e26841da4ab1243c57"
+      ],
+      "diagnostics": {
+        "cfo_hz": -0.3662109375,
+        "carrier_phase_rad_mod_pi_over_2": 0.02939056088195746,
+        "timing": {
+          "selected_phase_samples": 2.0,
+          "eye_score": 0.39163697586128793
+        }
+      }
+    },
+    {
+      "seed": 91,
+      "sample_count": 513,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 6000.0,
+        "modulation": "OQPSK",
+        "recovery_version": "legacy",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "q_delayed_half_symbol",
+        "i_delayed_half_symbol"
+      ],
+      "lengths": [
+        128,
+        126
+      ],
+      "bit_sha256": [
+        "93e5bcd54e1d1c1ed789cb30cc77b14945bb687eb66bb46cbfc7940757149801",
+        "c9c398c26fb0e5e9147c0cb593406bc57e2f2edd78de04075f62f2eae65464c0"
+      ],
+      "diagnostics": {
+        "cfo_hz": 0.0,
+        "carrier_phase_rad_mod_pi_over_2": 0.016048638437785322,
+        "timing": {
+          "q_delayed_half_symbol": {
+            "selected_phase_samples": 2.0,
+            "eye_score": 0.404062886960299
+          },
+          "i_delayed_half_symbol": {
+            "selected_phase_samples": 7.75,
+            "eye_score": 0.40538577207497656
+          }
+        }
+      }
+    },
+    {
+      "seed": 91,
+      "sample_count": 513,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 6000.0,
+        "modulation": "OQPSK",
+        "recovery_version": "carrier_timing_v2",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "q_delayed_half_symbol_pair_offset_-1",
+        "q_delayed_half_symbol_pair_offset_+0",
+        "q_delayed_half_symbol_pair_offset_+1",
+        "i_delayed_half_symbol_pair_offset_-1",
+        "i_delayed_half_symbol_pair_offset_+0",
+        "i_delayed_half_symbol_pair_offset_+1"
+      ],
+      "lengths": [
+        126,
+        128,
+        126,
+        124,
+        126,
+        124
+      ],
+      "bit_sha256": [
+        "72b046f83c6721d4312f2c157fc47bd3c8d40b665a170bba7f52362d21278875",
+        "93e5bcd54e1d1c1ed789cb30cc77b14945bb687eb66bb46cbfc7940757149801",
+        "af90de8ed2e7401eb98c462bd63e98e50a68065a900e4c0c0fa1bff6ddcbbabe",
+        "425aac1182568bfce7282603ee003c7dec564634df074fc5e53117e4ae80acd6",
+        "c9c398c26fb0e5e9147c0cb593406bc57e2f2edd78de04075f62f2eae65464c0",
+        "0f0d57f24da5c0ffa0129407fc131b8116f64cc2239b55dae9c777a430624e72"
+      ],
+      "diagnostics": {
+        "cfo_hz": -0.3662109375,
+        "carrier_phase_rad_mod_pi_over_2": 0.02939056088195746,
+        "timing": {
+          "q_delayed_half_symbol_pair_offset_-1": {
+            "selected_phase_samples": 2.0,
+            "eye_score": 0.40538549873039426
+          },
+          "q_delayed_half_symbol_pair_offset_+0": {
+            "selected_phase_samples": 2.0,
+            "eye_score": 0.40538549873039426
+          },
+          "q_delayed_half_symbol_pair_offset_+1": {
+            "selected_phase_samples": 2.0,
+            "eye_score": 0.40538549873039426
+          },
+          "i_delayed_half_symbol_pair_offset_-1": {
+            "selected_phase_samples": 7.75,
+            "eye_score": 0.40537581983544557
+          },
+          "i_delayed_half_symbol_pair_offset_+0": {
+            "selected_phase_samples": 7.75,
+            "eye_score": 0.40537581983544557
+          },
+          "i_delayed_half_symbol_pair_offset_+1": {
+            "selected_phase_samples": 7.75,
+            "eye_score": 0.40537581983544557
+          }
+        }
+      }
+    },
+    {
+      "seed": 17,
+      "sample_count": 768,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 7000.0,
+        "modulation": "BPSK",
+        "recovery_version": "legacy",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "binary_timing"
+      ],
+      "lengths": [
+        112
+      ],
+      "bit_sha256": [
+        "535e2403b99bcc31a69cba040b4d57e18e8e6adc92681f56d8b98e89053cee7e"
+      ],
+      "diagnostics": {
+        "cfo_hz": -147.26422509995683,
+        "carrier_phase_rad_mod_pi": 1.0141495022461147,
+        "timing_phase_samples": 4.408163265306122,
+        "timing_score": 0.8426578415930646
+      }
+    },
+    {
+      "seed": 17,
+      "sample_count": 768,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 7000.0,
+        "modulation": "BPSK",
+        "recovery_version": "carrier_timing_v2",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "binary_timing"
+      ],
+      "lengths": [
+        112
+      ],
+      "bit_sha256": [
+        "6c01e59d58150ce2614121e92b9ff7e1e0193998bee54198f4e186eafe62aa49"
+      ],
+      "diagnostics": {
+        "cfo_hz": -1003.41796875,
+        "carrier_phase_rad_mod_pi": -0.46210136052101874,
+        "timing_phase_samples": 4.163265306122449,
+        "timing_score": 0.826989650974449
+      }
+    },
+    {
+      "seed": 17,
+      "sample_count": 768,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 7000.0,
+        "modulation": "FSK",
+        "recovery_version": "legacy",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "binary_timing"
+      ],
+      "lengths": [
+        112
+      ],
+      "bit_sha256": [
+        "9a2648386e95b635ead4279ef764951771e5b6126a48f7ad9a4540653e118633"
+      ],
+      "diagnostics": {
+        "cfo_hz": 901.6633784415376,
+        "tone_separation_hz": 24193.7942723532,
+        "timing_phase_samples": 0.0,
+        "timing_score": 0.8319281601324654
+      }
+    },
+    {
+      "seed": 17,
+      "sample_count": 768,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 7000.0,
+        "modulation": "QPSK",
+        "recovery_version": "legacy",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "common_iq_timing"
+      ],
+      "lengths": [
+        224
+      ],
+      "bit_sha256": [
+        "61d20f37c01c528671ffe21616df9dea2992ffd9a5e9bf5d85d0eda0ce78f97f"
+      ],
+      "diagnostics": {
+        "cfo_hz": 0.732421875,
+        "carrier_phase_rad_mod_pi_over_2": -0.04268321133774943,
+        "timing": {
+          "selected_phase_samples": 3.673469387755102,
+          "eye_score": 0.3677027474737071
+        }
+      }
+    },
+    {
+      "seed": 17,
+      "sample_count": 768,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 7000.0,
+        "modulation": "QPSK",
+        "recovery_version": "carrier_timing_v2",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "common_iq_timing"
+      ],
+      "lengths": [
+        224
+      ],
+      "bit_sha256": [
+        "61d20f37c01c528671ffe21616df9dea2992ffd9a5e9bf5d85d0eda0ce78f97f"
+      ],
+      "diagnostics": {
+        "cfo_hz": 0.732421875,
+        "carrier_phase_rad_mod_pi_over_2": -0.04268321133774943,
+        "timing": {
+          "selected_phase_samples": 3.673469387755102,
+          "eye_score": 0.3677027474737071
+        }
+      }
+    },
+    {
+      "seed": 17,
+      "sample_count": 768,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 7000.0,
+        "modulation": "OQPSK",
+        "recovery_version": "legacy",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "q_delayed_half_symbol",
+        "i_delayed_half_symbol"
+      ],
+      "lengths": [
+        224,
+        222
+      ],
+      "bit_sha256": [
+        "c0b4be8cc2dba187a63a4a0493e0aea3d2bf287fdc5e228789a626db654651f3",
+        "29c6a1c097797fcad8fbf2469c05aac3f094f13d0cdaf3892b771a98c11078f7"
+      ],
+      "diagnostics": {
+        "cfo_hz": 0.732421875,
+        "carrier_phase_rad_mod_pi_over_2": -0.04268321133774943,
+        "timing": {
+          "q_delayed_half_symbol": {
+            "selected_phase_samples": 1.9591836734693877,
+            "eye_score": 0.3812796889101893
+          },
+          "i_delayed_half_symbol": {
+            "selected_phase_samples": 2.9387755102040813,
+            "eye_score": 0.366279075056147
+          }
+        }
+      }
+    },
+    {
+      "seed": 17,
+      "sample_count": 768,
+      "config": {
+        "sample_rate_hz": 48000.0,
+        "symbol_rate_hz": 7000.0,
+        "modulation": "OQPSK",
+        "recovery_version": "carrier_timing_v2",
+        "max_carrier_offset_hz": 2000.0,
+        "delayed_branch": null
+      },
+      "variant_names": [
+        "q_delayed_half_symbol_pair_offset_-1",
+        "q_delayed_half_symbol_pair_offset_+0",
+        "q_delayed_half_symbol_pair_offset_+1",
+        "i_delayed_half_symbol_pair_offset_-1",
+        "i_delayed_half_symbol_pair_offset_+0",
+        "i_delayed_half_symbol_pair_offset_+1"
+      ],
+      "lengths": [
+        222,
+        224,
+        222,
+        220,
+        222,
+        220
+      ],
+      "bit_sha256": [
+        "b1d24cc8bfde0f3183646c4258ec14adf7ddd4e66f0681eddc391d5aaa7a3f34",
+        "c0b4be8cc2dba187a63a4a0493e0aea3d2bf287fdc5e228789a626db654651f3",
+        "04025583dc56aa5f9083859be9b6a6ce0b7fa44f64aca5e71eaaf05d38209b74",
+        "086c3cbe75f3de0df968e5f6deca7fdcd4bd8feffbb1d07b99c59d06b854cb55",
+        "29c6a1c097797fcad8fbf2469c05aac3f094f13d0cdaf3892b771a98c11078f7",
+        "a013504c190853f6eca750cd55409ebfca3bdad52e4d84b91f46f749d0f8e2d6"
+      ],
+      "diagnostics": {
+        "cfo_hz": 0.732421875,
+        "carrier_phase_rad_mod_pi_over_2": -0.04268321133774943,
+        "timing": {
+          "q_delayed_half_symbol_pair_offset_-1": {
+            "selected_phase_samples": 1.9591836734693877,
+            "eye_score": 0.3812796889101893
+          },
+          "q_delayed_half_symbol_pair_offset_+0": {
+            "selected_phase_samples": 1.9591836734693877,
+            "eye_score": 0.3812796889101893
+          },
+          "q_delayed_half_symbol_pair_offset_+1": {
+            "selected_phase_samples": 1.9591836734693877,
+            "eye_score": 0.3812796889101893
+          },
+          "i_delayed_half_symbol_pair_offset_-1": {
+            "selected_phase_samples": 2.9387755102040813,
+            "eye_score": 0.366279075056147
+          },
+          "i_delayed_half_symbol_pair_offset_+0": {
+            "selected_phase_samples": 2.9387755102040813,
+            "eye_score": 0.366279075056147
+          },
+          "i_delayed_half_symbol_pair_offset_+1": {
+            "selected_phase_samples": 2.9387755102040813,
+            "eye_score": 0.366279075056147
+          }
+        }
+      }
+    }
+  ],
+  "alignment": [
+    {
+      "qpsk": false,
+      "truth": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 0,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": false,
+        "missing_truth_bits_count_as_errors": false
+      },
+      "candidate": [
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "aligned": [
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "polarity_inverted": false,
+        "overlap_bits": 11,
+        "truth_bits": 17,
+        "errors_including_missing": 5
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 0,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": false,
+        "missing_truth_bits_count_as_errors": false
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "shift_symbols": 0,
+        "constellation_rotation_quarter_turns": 3,
+        "constellation_reflected": false,
+        "timing_hypothesis": "first",
+        "overlap_bits": 10,
+        "truth_bits": 17,
+        "errors_including_missing": 2
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 1,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": [
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "aligned": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": -1,
+        "polarity_inverted": false,
+        "overlap_bits": 12,
+        "truth_bits": 18,
+        "errors_including_missing": 9
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 1,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "shift_symbols": 0,
+        "constellation_rotation_quarter_turns": 1,
+        "constellation_reflected": true,
+        "timing_hypothesis": "first",
+        "overlap_bits": 12,
+        "truth_bits": 18,
+        "errors_including_missing": 8
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 2,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "aligned": [
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": -1,
+        "polarity_inverted": false,
+        "overlap_bits": 13,
+        "truth_bits": 19,
+        "errors_including_missing": 12
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 2,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "shift_symbols": 0,
+        "constellation_rotation_quarter_turns": 0,
+        "constellation_reflected": true,
+        "timing_hypothesis": "second",
+        "overlap_bits": 12,
+        "truth_bits": 19,
+        "errors_including_missing": 9
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 3,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": false,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0
+      ],
+      "aligned": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 1,
+        "polarity_inverted": true,
+        "overlap_bits": 13,
+        "truth_bits": 20,
+        "errors_including_missing": 10
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 3,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": false,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "shift_symbols": 0,
+        "constellation_rotation_quarter_turns": 3,
+        "constellation_reflected": false,
+        "timing_hypothesis": "second",
+        "overlap_bits": 14,
+        "truth_bits": 20,
+        "errors_including_missing": 9
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 4,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": false
+      },
+      "candidate": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      "aligned": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 2,
+        "polarity_inverted": false,
+        "overlap_bits": 13,
+        "truth_bits": 21,
+        "errors_including_missing": 3
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 4,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": false
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "shift_symbols": 0,
+        "constellation_rotation_quarter_turns": 0,
+        "constellation_reflected": false,
+        "timing_hypothesis": "second",
+        "overlap_bits": 14,
+        "truth_bits": 21,
+        "errors_including_missing": 3
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 5,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "aligned": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      "diagnostics": {
+        "shift_bits": -2,
+        "polarity_inverted": false,
+        "overlap_bits": 15,
+        "truth_bits": 17,
+        "errors_including_missing": 8
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 5,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "shift_symbols": 0,
+        "constellation_rotation_quarter_turns": 3,
+        "constellation_reflected": false,
+        "timing_hypothesis": "first",
+        "overlap_bits": 16,
+        "truth_bits": 17,
+        "errors_including_missing": 7
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 6,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": false,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "aligned": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 1,
+        "polarity_inverted": false,
+        "overlap_bits": 16,
+        "truth_bits": 18,
+        "errors_including_missing": 5
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 6,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": false,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "shift_symbols": 0,
+        "constellation_rotation_quarter_turns": 1,
+        "constellation_reflected": false,
+        "timing_hypothesis": "second",
+        "overlap_bits": 16,
+        "truth_bits": 18,
+        "errors_including_missing": 6
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 7,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "aligned": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 1,
+        "polarity_inverted": true,
+        "overlap_bits": 17,
+        "truth_bits": 19,
+        "errors_including_missing": 6
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 7,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "shift_symbols": 0,
+        "constellation_rotation_quarter_turns": 3,
+        "constellation_reflected": true,
+        "timing_hypothesis": "first",
+        "overlap_bits": 18,
+        "truth_bits": 19,
+        "errors_including_missing": 4
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 8,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": false
+      },
+      "candidate": [
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      "aligned": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 6,
+        "polarity_inverted": false,
+        "overlap_bits": 13,
+        "truth_bits": 20,
+        "errors_including_missing": 4
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 8,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": false
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 6,
+        "shift_symbols": 3,
+        "constellation_rotation_quarter_turns": 0,
+        "constellation_reflected": false,
+        "timing_hypothesis": "first",
+        "overlap_bits": 12,
+        "truth_bits": 20,
+        "errors_including_missing": 3
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 0,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": false,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "aligned": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "polarity_inverted": true,
+        "overlap_bits": 11,
+        "truth_bits": 21,
+        "errors_including_missing": 15
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 0,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": false,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "shift_symbols": 0,
+        "constellation_rotation_quarter_turns": 3,
+        "constellation_reflected": false,
+        "timing_hypothesis": "second",
+        "overlap_bits": 10,
+        "truth_bits": 21,
+        "errors_including_missing": 14
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 1,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": [
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "aligned": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "diagnostics": {
+        "shift_bits": -1,
+        "polarity_inverted": false,
+        "overlap_bits": 12,
+        "truth_bits": 17,
+        "errors_including_missing": 7
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 1,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "shift_symbols": 0,
+        "constellation_rotation_quarter_turns": 2,
+        "constellation_reflected": false,
+        "timing_hypothesis": "first",
+        "overlap_bits": 12,
+        "truth_bits": 17,
+        "errors_including_missing": 7
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 2,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": [
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "aligned": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": -1,
+        "polarity_inverted": true,
+        "overlap_bits": 13,
+        "truth_bits": 18,
+        "errors_including_missing": 9
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 2,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": -2,
+        "shift_symbols": -1,
+        "constellation_rotation_quarter_turns": 1,
+        "constellation_reflected": false,
+        "timing_hypothesis": "first",
+        "overlap_bits": 12,
+        "truth_bits": 18,
+        "errors_including_missing": 8
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 3,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": false,
+        "missing_truth_bits_count_as_errors": false
+      },
+      "candidate": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "aligned": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": -2,
+        "polarity_inverted": false,
+        "overlap_bits": 14,
+        "truth_bits": 19,
+        "errors_including_missing": 4
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 3,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": false,
+        "missing_truth_bits_count_as_errors": false
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 2,
+        "shift_symbols": 1,
+        "constellation_rotation_quarter_turns": 3,
+        "constellation_reflected": false,
+        "timing_hypothesis": "first",
+        "overlap_bits": 12,
+        "truth_bits": 19,
+        "errors_including_missing": 3
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 4,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": [
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "aligned": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": -3,
+        "polarity_inverted": true,
+        "overlap_bits": 15,
+        "truth_bits": 20,
+        "errors_including_missing": 11
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 4,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": -4,
+        "shift_symbols": -2,
+        "constellation_rotation_quarter_turns": 0,
+        "constellation_reflected": true,
+        "timing_hypothesis": "first",
+        "overlap_bits": 14,
+        "truth_bits": 20,
+        "errors_including_missing": 9
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 5,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": [
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "aligned": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1
+      ],
+      "diagnostics": {
+        "shift_bits": -1,
+        "polarity_inverted": false,
+        "overlap_bits": 16,
+        "truth_bits": 21,
+        "errors_including_missing": 10
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 5,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "shift_symbols": 0,
+        "constellation_rotation_quarter_turns": 3,
+        "constellation_reflected": true,
+        "timing_hypothesis": "second",
+        "overlap_bits": 16,
+        "truth_bits": 21,
+        "errors_including_missing": 8
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 6,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": false,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": [
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "aligned": [
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 3,
+        "polarity_inverted": true,
+        "overlap_bits": 14,
+        "truth_bits": 17,
+        "errors_including_missing": 6
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 6,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": false,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "shift_symbols": 0,
+        "constellation_rotation_quarter_turns": 1,
+        "constellation_reflected": false,
+        "timing_hypothesis": "second",
+        "overlap_bits": 16,
+        "truth_bits": 17,
+        "errors_including_missing": 3
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 7,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": false
+      },
+      "candidate": [
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ],
+      "aligned": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 4,
+        "polarity_inverted": false,
+        "overlap_bits": 14,
+        "truth_bits": 18,
+        "errors_including_missing": 4
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 7,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": false
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 2,
+        "shift_symbols": 1,
+        "constellation_rotation_quarter_turns": 3,
+        "constellation_reflected": false,
+        "timing_hypothesis": "first",
+        "overlap_bits": 16,
+        "truth_bits": 18,
+        "errors_including_missing": 2
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 8,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "aligned": [
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "diagnostics": {
+        "shift_bits": 2,
+        "polarity_inverted": false,
+        "overlap_bits": 17,
+        "truth_bits": 19,
+        "errors_including_missing": 6
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 8,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "shift_symbols": 0,
+        "constellation_rotation_quarter_turns": 0,
+        "constellation_reflected": false,
+        "timing_hypothesis": "second",
+        "overlap_bits": 18,
+        "truth_bits": 19,
+        "errors_including_missing": 6
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 0,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": false,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "aligned": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "polarity_inverted": false,
+        "overlap_bits": 11,
+        "truth_bits": 20,
+        "errors_including_missing": 15
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 0,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": false,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "shift_symbols": 0,
+        "constellation_rotation_quarter_turns": 2,
+        "constellation_reflected": false,
+        "timing_hypothesis": "second",
+        "overlap_bits": 10,
+        "truth_bits": 20,
+        "errors_including_missing": 12
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 1,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": [
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0
+      ],
+      "aligned": [
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "polarity_inverted": false,
+        "overlap_bits": 12,
+        "truth_bits": 21,
+        "errors_including_missing": 14
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 1,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "diagnostics": {
+        "shift_bits": 0,
+        "shift_symbols": 0,
+        "constellation_rotation_quarter_turns": 0,
+        "constellation_reflected": false,
+        "timing_hypothesis": "first",
+        "overlap_bits": 12,
+        "truth_bits": 21,
+        "errors_including_missing": 14
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 2,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": false
+      },
+      "candidate": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "aligned": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 2,
+        "polarity_inverted": false,
+        "overlap_bits": 11,
+        "truth_bits": 17,
+        "errors_including_missing": 3
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 2,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": false
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": 2,
+        "shift_symbols": 1,
+        "constellation_rotation_quarter_turns": 1,
+        "constellation_reflected": true,
+        "timing_hypothesis": "first",
+        "overlap_bits": 10,
+        "truth_bits": 17,
+        "errors_including_missing": 1
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 3,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": false,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "aligned": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": -2,
+        "polarity_inverted": false,
+        "overlap_bits": 14,
+        "truth_bits": 18,
+        "errors_including_missing": 9
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 3,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": false,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": -2,
+        "shift_symbols": -1,
+        "constellation_rotation_quarter_turns": 0,
+        "constellation_reflected": false,
+        "timing_hypothesis": "first",
+        "overlap_bits": 14,
+        "truth_bits": 18,
+        "errors_including_missing": 9
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 4,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "aligned": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "diagnostics": {
+        "shift_bits": -1,
+        "polarity_inverted": false,
+        "overlap_bits": 15,
+        "truth_bits": 19,
+        "errors_including_missing": 11
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "policy": {
+        "max_shift_bits": 4,
+        "allow_global_polarity_inversion": false,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "diagnostics": {
+        "shift_bits": -2,
+        "shift_symbols": -1,
+        "constellation_rotation_quarter_turns": 1,
+        "constellation_reflected": false,
+        "timing_hypothesis": "second",
+        "overlap_bits": 14,
+        "truth_bits": 19,
+        "errors_including_missing": 9
+      }
+    },
+    {
+      "qpsk": false,
+      "truth": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 5,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "aligned": [
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": -1,
+        "polarity_inverted": true,
+        "overlap_bits": 16,
+        "truth_bits": 20,
+        "errors_including_missing": 10
+      }
+    },
+    {
+      "qpsk": true,
+      "truth": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "policy": {
+        "max_shift_bits": 5,
+        "allow_global_polarity_inversion": true,
+        "allow_iq_reflection": true,
+        "missing_truth_bits_count_as_errors": true
+      },
+      "candidate": {
+        "bit_variants": [
+          [
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0
+          ]
+        ],
+        "variant_names": [
+          "first",
+          "second"
+        ],
+        "diagnostics": {}
+      },
+      "aligned": [
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "diagnostics": {
+        "shift_bits": -2,
+        "shift_symbols": -1,
+        "constellation_rotation_quarter_turns": 3,
+        "constellation_reflected": false,
+        "timing_hypothesis": "second",
+        "overlap_bits": 16,
+        "truth_bits": 20,
+        "errors_including_missing": 8
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "station-hardware-declarations-v1",
+  "records": [
+    {
+      "station_id": 1234,
+      "configuration_id": "replace-with-stable-local-configuration-id",
+      "antenna_type": "measured-cross-yagi",
+      "frequency_ranges_hz": [[430000000, 440000000]],
+      "effective_from": "2026-09-01T00:00:00Z",
+      "known_at": "2026-09-01T00:00:00Z",
+      "source": "replace-with-calibration-report-reference",
+      "receive_antenna_gain_dbi": 12.0,
+      "system_noise_temperature_k": 300.0,
+      "evidence_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ]
+}

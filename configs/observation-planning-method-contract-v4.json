@@ -1,0 +1,112 @@
+{
+  "claim_boundaries": {
+    "capture_receiver_metadata_is_physical_antenna_evidence": false,
+    "current_station_profile_may_backfill_history": false,
+    "missing_optional_covariates_are_explicit": true,
+    "missing_optional_covariates_may_drop_rows": false
+  },
+  "coverage_thresholds": {
+    "capture_time_location_fraction": 0.85,
+    "capture_time_receiver_configuration_fraction": 0.75,
+    "capture_time_receiver_driver_fraction": 0.75,
+    "capture_time_receiver_rf_gain_fraction": 0.6,
+    "complete_weather_fraction_of_capture_location_eligible_rows": 0.95,
+    "space_weather_fraction_of_normalized_rows": 0.95,
+    "weather_snapshot_fraction_of_capture_location_eligible_rows": 0.95,
+    "weather_value_fraction_of_capture_location_eligible_rows": 0.95
+  },
+  "cohort_requirements": {
+    "both_outcome_classes_required_in_every_validation_split": true,
+    "composed_reception_binary_decision_threshold": 0.5,
+    "composed_reception_endpoint": "packet-mode reviewed observation with a demodulation artifact",
+    "composed_reception_probability": "P(signal) * P(decode artifact | signal)",
+    "composed_reception_scheduler_objective": "maximize expected end-to-end packet receptions",
+    "composed_reception_validation_required": [
+      "temporal",
+      "external_satellite",
+      "external_station"
+    ],
+    "external_satellite_count": 10,
+    "external_station_holdout_fraction": 0.2,
+    "minimum_conditional_decode_satellites": 25,
+    "minimum_external_evaluated_groups_per_task": 5,
+    "minimum_external_test_rows_per_task": 30,
+    "minimum_signal_satellites": 40,
+    "target_count": 50
+  },
+  "decision_boundary": {
+    "before_v4_model_fit": true,
+    "before_v4_performance_evaluation": true,
+    "before_v4_scheduler_replay": true,
+    "forbidden_inputs": [
+      "AUROC",
+      "Brier score",
+      "decode-success labels",
+      "model predictions",
+      "scheduler yield"
+    ],
+    "inspected_inputs": [
+      "collection progress and request metadata",
+      "input-only capture-location coverage",
+      "input-only receiver-field coverage",
+      "row counts by NORAD ID",
+      "transmitter UUID counts"
+    ],
+    "outcome_blind": true
+  },
+  "frozen_at": "2026-09-04T05:45:00Z",
+  "receiver_provenance": {
+    "discarded_fields": [
+      "device identifiers",
+      "device strings except allowlisted driver",
+      "filesystem paths",
+      "unrestricted client metadata"
+    ],
+    "physical_antenna_gain_inference": "forbidden",
+    "receiver_antenna_port_semantics": "receiver port name, not physical antenna type",
+    "receiver_rf_gain_semantics": "SoapySDR receiver gain setting in dB",
+    "retained_fields": [
+      "captured_receiver_antenna_port",
+      "captured_receiver_bandwidth_hz",
+      "captured_receiver_driver",
+      "captured_receiver_gain_mode",
+      "captured_receiver_ppm_error",
+      "captured_receiver_radio_name",
+      "captured_receiver_radio_version",
+      "captured_receiver_rf_gain_db",
+      "captured_receiver_sample_rate_hz"
+    ],
+    "same_observation_prediction_use": "forbidden",
+    "source": "satnogs-client-metadata-capture"
+  },
+  "schema_version": "observation-planning-method-contract-v1",
+  "study_id": "observation-planning-publication-v4",
+  "temporal_rules": {
+    "applies_to": [
+      "covariate ablation",
+      "external satellite holdout",
+      "external station holdout",
+      "leave-one-satellite-out",
+      "leave-one-station-out",
+      "temporal holdout"
+    ],
+    "cutoff_crossing_observations": "excluded from training and test",
+    "forward_validation": "every training observation ends before validation starts",
+    "history_eligibility": "source observation end strictly before target observation start",
+    "predeclared_cutoff": "2026-08-01T00:00:00Z",
+    "test_eligibility": "observation start at or after cutoff",
+    "training_eligibility": "observation end strictly before cutoff"
+  },
+  "weather_provenance": {
+    "current_station_api_fallback": "ineligible",
+    "denominator": "capture-time-location-eligible normalized rows",
+    "eligible_location_source": "satnogs-client-metadata-capture",
+    "required_complete_fields": [
+      "air_temperature_c",
+      "precipitation_corrected",
+      "relative_humidity_percent",
+      "surface_pressure_kpa",
+      "wind_speed_m_s"
+    ]
+  }
+}

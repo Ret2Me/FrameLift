@@ -1,0 +1,416 @@
+{
+  "cases": [
+    {
+      "config": {
+        "analysis_window_seconds": 0.1,
+        "baudrate": 9600.0,
+        "candidate_neighbor_radius": 1,
+        "candidate_window_limit": 3,
+        "constant_radius_factors": [
+          3.0
+        ],
+        "decoder_window_lead_seconds": 0.1,
+        "decoder_window_seconds": 0.5,
+        "deep_least_reliable_symbols": 64,
+        "deep_maximum_attempts": 3000,
+        "deep_maximum_flips": 5,
+        "deep_search_timing_hypotheses": 4,
+        "descramble_modes": [
+          false,
+          true
+        ],
+        "error_unit_penalty": 0.05,
+        "event_cluster_tolerance_symbols": 16,
+        "maximum_frame_detections": 20000,
+        "maximum_map_seed_states": 512,
+        "maximum_receiver_paths_per_window": 20000,
+        "maximum_regions_per_start": 8,
+        "minimum_consecutive_flags": 4,
+        "minimum_frame_body_bits": 128,
+        "phase_bins": 16,
+        "phase_difference_lags": [
+          1,
+          2
+        ],
+        "rate_errors_ppm": [
+          0.0
+        ],
+        "repair_event_maximum_attempts": 6000,
+        "repair_event_maximum_unique_frames": 8,
+        "repair_path_maximum_attempts": 3000,
+        "repair_path_maximum_unique_frames": 8,
+        "repair_region_maximum_attempts": 1000,
+        "repair_window_maximum_attempts": 12000,
+        "repair_window_maximum_events": 2,
+        "repair_window_maximum_unique_frames": 16,
+        "sample_rate_hz": 57600,
+        "short_least_reliable_symbols": 64,
+        "short_maximum_attempts": 20000,
+        "short_maximum_flips": 2,
+        "short_search_timing_hypotheses": 4,
+        "window_nms_seconds": 0.2
+      },
+      "counters": {
+        "analysis_window_bytes": 23040,
+        "analysis_windows_scanned": 6,
+        "degenerate_input": false,
+        "degenerate_reason": null,
+        "maximum_analysis_array_bytes": 368640,
+        "selector_estimated_scratch_bytes": 6144,
+        "selector_peak_scratch_bytes": 12288,
+        "selector_sqlite_cache_bytes": 4194304
+      },
+      "input_bytes": 140736,
+      "input_path": "clipping_fixtures/unclipped_plain.ci16",
+      "input_sha256": "de7584276a2be82de34650debab56812a163f5f8adb4709a338b507f9fd4dc9e",
+      "name": "unclipped_plain",
+      "selected": [
+        {
+          "analysis_index": 2,
+          "analysis_start_seconds": 0.2,
+          "decoder_start_seconds": 0.1,
+          "endpoint_clip_fraction": 0.0,
+          "lag1_phase_coherence": 0.9781117823030013,
+          "mean_power": 143999708.0590278,
+          "score": 0.006973332692023227
+        },
+        {
+          "analysis_index": 5,
+          "analysis_start_seconds": 0.5,
+          "decoder_start_seconds": 0.11083333333333334,
+          "endpoint_clip_fraction": 0.0,
+          "lag1_phase_coherence": 0.9781115464991982,
+          "mean_power": 143999817.83107638,
+          "score": 0.0069730916113657
+        },
+        {
+          "analysis_index": 0,
+          "analysis_start_seconds": 0.0,
+          "decoder_start_seconds": 0.0,
+          "endpoint_clip_fraction": 0.0,
+          "lag1_phase_coherence": 0.978111443014052,
+          "mean_power": 143999976.484375,
+          "score": 0.006972985810394373
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "config": {
+        "analysis_window_seconds": 0.1,
+        "baudrate": 9600.0,
+        "candidate_neighbor_radius": 1,
+        "candidate_window_limit": 3,
+        "constant_radius_factors": [
+          3.0
+        ],
+        "decoder_window_lead_seconds": 0.1,
+        "decoder_window_seconds": 0.5,
+        "deep_least_reliable_symbols": 64,
+        "deep_maximum_attempts": 3000,
+        "deep_maximum_flips": 5,
+        "deep_search_timing_hypotheses": 4,
+        "descramble_modes": [
+          false,
+          true
+        ],
+        "error_unit_penalty": 0.05,
+        "event_cluster_tolerance_symbols": 16,
+        "maximum_frame_detections": 20000,
+        "maximum_map_seed_states": 512,
+        "maximum_receiver_paths_per_window": 20000,
+        "maximum_regions_per_start": 8,
+        "minimum_consecutive_flags": 4,
+        "minimum_frame_body_bits": 128,
+        "phase_bins": 16,
+        "phase_difference_lags": [
+          1,
+          2
+        ],
+        "rate_errors_ppm": [
+          0.0
+        ],
+        "repair_event_maximum_attempts": 6000,
+        "repair_event_maximum_unique_frames": 8,
+        "repair_path_maximum_attempts": 3000,
+        "repair_path_maximum_unique_frames": 8,
+        "repair_region_maximum_attempts": 1000,
+        "repair_window_maximum_attempts": 12000,
+        "repair_window_maximum_events": 2,
+        "repair_window_maximum_unique_frames": 16,
+        "sample_rate_hz": 57600,
+        "short_least_reliable_symbols": 64,
+        "short_maximum_attempts": 20000,
+        "short_maximum_flips": 2,
+        "short_search_timing_hypotheses": 4,
+        "window_nms_seconds": 0.2
+      },
+      "counters": {
+        "analysis_window_bytes": 23040,
+        "analysis_windows_scanned": 6,
+        "degenerate_input": false,
+        "degenerate_reason": null,
+        "maximum_analysis_array_bytes": 368640,
+        "selector_estimated_scratch_bytes": 6144,
+        "selector_peak_scratch_bytes": 12288,
+        "selector_sqlite_cache_bytes": 4194304
+      },
+      "input_bytes": 140736,
+      "input_path": "clipping_fixtures/clipped_g3ruh.ci16",
+      "input_sha256": "3f481f0286b37737b4804c70dce794c5c7da6887a834f34d270d95bbf27ee1b9",
+      "name": "clipped_g3ruh",
+      "selected": [
+        {
+          "analysis_index": 2,
+          "analysis_start_seconds": 0.2,
+          "decoder_start_seconds": 0.1,
+          "endpoint_clip_fraction": 0.7899305555555556,
+          "lag1_phase_coherence": 0.9181582127018852,
+          "mean_power": 1845745362.3118055,
+          "score": 0.010216849882693231
+        },
+        {
+          "analysis_index": 5,
+          "analysis_start_seconds": 0.5,
+          "decoder_start_seconds": 0.11083333333333334,
+          "endpoint_clip_fraction": 0.7894965277777778,
+          "lag1_phase_coherence": 0.9182277593924034,
+          "mean_power": 1847937036.9529514,
+          "score": 0.009667248329974289
+        },
+        {
+          "analysis_index": 0,
+          "analysis_start_seconds": 0.0,
+          "decoder_start_seconds": 0.0,
+          "endpoint_clip_fraction": 0.7880208333333333,
+          "lag1_phase_coherence": 0.9173641217260421,
+          "mean_power": 1848015578.8140626,
+          "score": 0.0077963403941626935
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "config": {
+        "analysis_window_seconds": 0.1,
+        "baudrate": 9600.0,
+        "candidate_neighbor_radius": 1,
+        "candidate_window_limit": 3,
+        "constant_radius_factors": [
+          3.0
+        ],
+        "decoder_window_lead_seconds": 0.1,
+        "decoder_window_seconds": 0.5,
+        "deep_least_reliable_symbols": 64,
+        "deep_maximum_attempts": 3000,
+        "deep_maximum_flips": 5,
+        "deep_search_timing_hypotheses": 4,
+        "descramble_modes": [
+          false,
+          true
+        ],
+        "error_unit_penalty": 0.05,
+        "event_cluster_tolerance_symbols": 16,
+        "maximum_frame_detections": 20000,
+        "maximum_map_seed_states": 512,
+        "maximum_receiver_paths_per_window": 20000,
+        "maximum_regions_per_start": 8,
+        "minimum_consecutive_flags": 4,
+        "minimum_frame_body_bits": 128,
+        "phase_bins": 16,
+        "phase_difference_lags": [
+          1,
+          2
+        ],
+        "rate_errors_ppm": [
+          0.0
+        ],
+        "repair_event_maximum_attempts": 6000,
+        "repair_event_maximum_unique_frames": 8,
+        "repair_path_maximum_attempts": 3000,
+        "repair_path_maximum_unique_frames": 8,
+        "repair_region_maximum_attempts": 1000,
+        "repair_window_maximum_attempts": 12000,
+        "repair_window_maximum_events": 2,
+        "repair_window_maximum_unique_frames": 16,
+        "sample_rate_hz": 57600,
+        "short_least_reliable_symbols": 64,
+        "short_maximum_attempts": 20000,
+        "short_maximum_flips": 2,
+        "short_search_timing_hypotheses": 4,
+        "window_nms_seconds": 0.2
+      },
+      "counters": {
+        "analysis_window_bytes": 23040,
+        "analysis_windows_scanned": 6,
+        "degenerate_input": true,
+        "degenerate_reason": "all_zero_ci16",
+        "maximum_analysis_array_bytes": 368640,
+        "selector_estimated_scratch_bytes": 6144,
+        "selector_peak_scratch_bytes": 8192,
+        "selector_sqlite_cache_bytes": 4194304
+      },
+      "input_bytes": 140736,
+      "input_path": "clipping_file_fixtures/zero.ci16",
+      "input_sha256": "07c902dab8a913fe756bfc98ef01e20f6d700209849eb250ae7acc2449faf935",
+      "name": "zero",
+      "selected": [],
+      "status": "complete"
+    },
+    {
+      "config": {
+        "analysis_window_seconds": 0.1,
+        "baudrate": 9600.0,
+        "candidate_neighbor_radius": 1,
+        "candidate_window_limit": 3,
+        "constant_radius_factors": [
+          3.0
+        ],
+        "decoder_window_lead_seconds": 0.1,
+        "decoder_window_seconds": 0.5,
+        "deep_least_reliable_symbols": 64,
+        "deep_maximum_attempts": 3000,
+        "deep_maximum_flips": 5,
+        "deep_search_timing_hypotheses": 4,
+        "descramble_modes": [
+          false,
+          true
+        ],
+        "error_unit_penalty": 0.05,
+        "event_cluster_tolerance_symbols": 16,
+        "maximum_frame_detections": 20000,
+        "maximum_map_seed_states": 512,
+        "maximum_receiver_paths_per_window": 20000,
+        "maximum_regions_per_start": 8,
+        "minimum_consecutive_flags": 4,
+        "minimum_frame_body_bits": 128,
+        "phase_bins": 16,
+        "phase_difference_lags": [
+          1,
+          2
+        ],
+        "rate_errors_ppm": [
+          0.0
+        ],
+        "repair_event_maximum_attempts": 6000,
+        "repair_event_maximum_unique_frames": 8,
+        "repair_path_maximum_attempts": 3000,
+        "repair_path_maximum_unique_frames": 8,
+        "repair_region_maximum_attempts": 1000,
+        "repair_window_maximum_attempts": 12000,
+        "repair_window_maximum_events": 2,
+        "repair_window_maximum_unique_frames": 16,
+        "sample_rate_hz": 57600,
+        "short_least_reliable_symbols": 64,
+        "short_maximum_attempts": 20000,
+        "short_maximum_flips": 2,
+        "short_search_timing_hypotheses": 4,
+        "window_nms_seconds": 0.2
+      },
+      "counters": {
+        "analysis_window_bytes": 23040,
+        "analysis_windows_scanned": 6,
+        "degenerate_input": false,
+        "degenerate_reason": null,
+        "maximum_analysis_array_bytes": 368640,
+        "selector_estimated_scratch_bytes": 6144,
+        "selector_peak_scratch_bytes": 12288,
+        "selector_sqlite_cache_bytes": 4194304
+      },
+      "input_bytes": 140736,
+      "input_path": "clipping_file_fixtures/tied_constant.ci16",
+      "input_sha256": "baa325782d7f5997b80674ca200a59d83c850e04d7750f2b66e6f235310d72ab",
+      "name": "tied_constant",
+      "selected": [
+        {
+          "analysis_index": 0,
+          "analysis_start_seconds": 0.0,
+          "decoder_start_seconds": 0.0,
+          "endpoint_clip_fraction": 0.0,
+          "lag1_phase_coherence": 1.0,
+          "mean_power": 12500.0,
+          "score": 0.0
+        },
+        {
+          "analysis_index": 2,
+          "analysis_start_seconds": 0.2,
+          "decoder_start_seconds": 0.1,
+          "endpoint_clip_fraction": 0.0,
+          "lag1_phase_coherence": 1.0,
+          "mean_power": 12500.0,
+          "score": 0.0
+        },
+        {
+          "analysis_index": 4,
+          "analysis_start_seconds": 0.4,
+          "decoder_start_seconds": 0.11083333333333334,
+          "endpoint_clip_fraction": 0.0,
+          "lag1_phase_coherence": 1.0,
+          "mean_power": 12500.0,
+          "score": 0.0
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "config": {
+        "analysis_window_seconds": 0.1,
+        "baudrate": 9600.0,
+        "candidate_neighbor_radius": 1,
+        "candidate_window_limit": 3,
+        "constant_radius_factors": [
+          3.0
+        ],
+        "decoder_window_lead_seconds": 0.1,
+        "decoder_window_seconds": 0.5,
+        "deep_least_reliable_symbols": 64,
+        "deep_maximum_attempts": 3000,
+        "deep_maximum_flips": 5,
+        "deep_search_timing_hypotheses": 4,
+        "descramble_modes": [
+          false,
+          true
+        ],
+        "error_unit_penalty": 0.05,
+        "event_cluster_tolerance_symbols": 16,
+        "maximum_frame_detections": 20000,
+        "maximum_map_seed_states": 512,
+        "maximum_receiver_paths_per_window": 20000,
+        "maximum_regions_per_start": 8,
+        "minimum_consecutive_flags": 4,
+        "minimum_frame_body_bits": 128,
+        "phase_bins": 16,
+        "phase_difference_lags": [
+          1,
+          2
+        ],
+        "rate_errors_ppm": [
+          0.0
+        ],
+        "repair_event_maximum_attempts": 6000,
+        "repair_event_maximum_unique_frames": 8,
+        "repair_path_maximum_attempts": 3000,
+        "repair_path_maximum_unique_frames": 8,
+        "repair_region_maximum_attempts": 1000,
+        "repair_window_maximum_attempts": 12000,
+        "repair_window_maximum_events": 2,
+        "repair_window_maximum_unique_frames": 16,
+        "sample_rate_hz": 57600,
+        "short_least_reliable_symbols": 64,
+        "short_maximum_attempts": 20000,
+        "short_maximum_flips": 2,
+        "short_search_timing_hypotheses": 4,
+        "window_nms_seconds": 0.2
+      },
+      "error": "signal statistics have no finite positive baseline",
+      "input_bytes": 140736,
+      "input_path": "clipping_file_fixtures/zero_baseline_nonzero_peak.ci16",
+      "input_sha256": "125952b40ef8b8d76d835d7f8bc0687d6b609e9165eb00ea489b9415815034b5",
+      "name": "zero_baseline_nonzero_peak",
+      "status": "rejected"
+    }
+  ],
+  "runtime_dependency": false,
+  "schema": "clipping-file-sqlite-offline-oracle-v1",
+  "source_sha256": "b85e74262a972d32339e7230218121741e5ef84686563711b3603477711299e6"
+}

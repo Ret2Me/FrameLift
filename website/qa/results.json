@@ -1,0 +1,41 @@
+{
+  "checked_utc": "2026-09-12T23:07:40.529Z",
+  "engine": "Chromium 117 / Playwright 1.38.1",
+  "results": [
+    {
+      "width": 1440,
+      "overflow": false,
+      "mode_click_and_keyboard": "pass",
+      "clipboard_success_and_denial": "pass",
+      "skip_link": "pass",
+      "local_links": "pass"
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "mode_click_and_keyboard": "pass",
+      "clipboard_success_and_denial": "pass",
+      "skip_link": "pass",
+      "local_links": "pass"
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "mode_click_and_keyboard": "pass",
+      "clipboard_success_and_denial": "pass",
+      "skip_link": "pass",
+      "local_links": "pass"
+    },
+    {
+      "width": 320,
+      "overflow": false,
+      "mode_click_and_keyboard": "pass",
+      "clipboard_success_and_denial": "pass",
+      "skip_link": "pass",
+      "local_links": "pass"
+    }
+  ],
+  "no_javascript": "pass",
+  "page_errors": [],
+  "limits": "Not a complete WCAG audit; one browser engine; external reference availability not certified."
+}

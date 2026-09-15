@@ -1,0 +1,22 @@
+{
+  "schema_version": "observation-planning-prospective-config-v1",
+  "campaign_id": "satnogs-network-shadow-2026-09-v4",
+  "registered_at": "2026-09-03T12:29:00Z",
+  "start": "2026-09-04T00:00:00Z",
+  "end": "2026-10-05T00:00:00Z",
+  "mode": "shadow",
+  "planning_interval_hours": 24,
+  "minimum_elapsed_days": 30,
+  "minimum_plan_commit_days": 25,
+  "minimum_reconciled_outcomes": 30,
+  "station_ids": [766, 1710, 1864, 2029, 2968, 4186, 4497],
+  "target_norad_ids": [40071, 44909, 49008, 53106, 53807, 56933, 58468, 60477, 60523, 60535],
+  "protocol_notes": {
+    "primary_scope": "Read-only shadow validation on public SatNOGS observations; no jobs are submitted.",
+    "station_selection": "High-volume stations in the frozen v3 observations that were connected and available at registration, fixed before prospective outcomes.",
+    "target_selection": "The frozen v3 target cohort, fixed before prospective outcomes.",
+    "weather": "Forecast snapshots are captured before passes; finalized NASA POWER data may be used only in a separately labeled retrospective sensitivity analysis.",
+    "hardware": "SatNOGS antenna type/range snapshots are valid only from their capture time. Gain and system noise remain missing unless supplied by a versioned local station record.",
+    "causal_boundary": "A shadow run tests calibration and operational stability, not causal scheduler yield improvement."
+  }
+}

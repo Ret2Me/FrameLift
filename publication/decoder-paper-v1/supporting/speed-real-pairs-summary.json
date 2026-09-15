@@ -1,0 +1,271 @@
+{
+  "after_cpu_seconds": 1669.14,
+  "after_wall_seconds": 1186.9310730099999,
+  "all_deterministic_results_equal": true,
+  "before_cpu_seconds": 3077.6200000000003,
+  "before_wall_seconds": 2199.859497038,
+  "pairs": [
+    {
+      "comparison": {
+        "bytes": 1908,
+        "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r0-i0/strict-session-comparison.json",
+        "sha256": "257f79d51bc17b62412f2d04a36a5f43b2240166048651f740534391237e3417"
+      },
+      "deterministic_equal": true,
+      "input": {
+        "bytes": 131719538,
+        "path": "/home/ubuntu/telemetry-yield/work/innovation-field-20260910-v1/progressive-14967362/prepared-aee5ff72314c69c85ff44d85f2ec1493dbee2bbb07e9b72c25085e36d09f03ad.wav",
+        "sha256": "aee5ff72314c69c85ff44d85f2ec1493dbee2bbb07e9b72c25085e36d09f03ad"
+      },
+      "input_index": 0,
+      "normalization": "only elapsed_seconds and session_sha256; different executable identities explicitly pinned and checked",
+      "order": [
+        "before",
+        "after"
+      ],
+      "repeat": 0,
+      "runs": {
+        "after": {
+          "frames": 4,
+          "gnu_wall_seconds": 301.56,
+          "max_rss_kib": 804812.0,
+          "outer_wall_seconds": 301.571682336,
+          "process_receipt": {
+            "bytes": 696,
+            "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r0-i0/after/process.json",
+            "sha256": "695f77ffd60ee5cbdc4d4ee3f9f44e7247d5c4bd288dd70c144489a023600cb7"
+          },
+          "session": "work/receiver-speed-20260912-v1/real-pairs/r0-i0/after/session",
+          "system_cpu_seconds": 7.54,
+          "tasks": 1596,
+          "usage": {
+            "bytes": 26,
+            "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r0-i0/after/usage.txt",
+            "sha256": "7485505e5dc9d25b649cc2f5d9b5c31c94c8a966a426d2abfd693251a14a7e01"
+          },
+          "user_cpu_seconds": 402.47
+        },
+        "before": {
+          "frames": 4,
+          "gnu_wall_seconds": 489.62,
+          "max_rss_kib": 32512.0,
+          "outer_wall_seconds": 489.630073535,
+          "process_receipt": {
+            "bytes": 705,
+            "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r0-i0/before/process.json",
+            "sha256": "2697500a4bd88f773104bc22d9b677b06e6632f60e974fff56081795a1e97604"
+          },
+          "session": "work/receiver-speed-20260912-v1/real-pairs/r0-i0/before/session",
+          "system_cpu_seconds": 14.26,
+          "tasks": 1596,
+          "usage": {
+            "bytes": 26,
+            "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r0-i0/before/usage.txt",
+            "sha256": "d83709985213ab996b6acf38af2d4a3110100571857d61dc193c4c3f80f29468"
+          },
+          "user_cpu_seconds": 662.72
+        }
+      },
+      "wall_reduction_percent": 38.40825990145336,
+      "wall_speedup": 1.6235943300189317
+    },
+    {
+      "comparison": {
+        "bytes": 1910,
+        "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r0-i1/strict-session-comparison.json",
+        "sha256": "bc60d4bdf9192d19af1b4874ffbeaaddcc7fcad51b827a6493350d40b6c053c6"
+      },
+      "deterministic_equal": true,
+      "input": {
+        "bytes": 112964466,
+        "path": "/home/ubuntu/telemetry-yield/work/innovation-field-20260910-v1/progressive-14967393/prepared-ff24c8dbe3f4c4efb981b3074fe3f3cfa85c8e203fa29acb6402ea2e970ddb21.wav",
+        "sha256": "ff24c8dbe3f4c4efb981b3074fe3f3cfa85c8e203fa29acb6402ea2e970ddb21"
+      },
+      "input_index": 1,
+      "normalization": "only elapsed_seconds and session_sha256; different executable identities explicitly pinned and checked",
+      "order": [
+        "after",
+        "before"
+      ],
+      "repeat": 0,
+      "runs": {
+        "after": {
+          "frames": 20,
+          "gnu_wall_seconds": 300.16,
+          "max_rss_kib": 697900.0,
+          "outer_wall_seconds": 300.164943302,
+          "process_receipt": {
+            "bytes": 696,
+            "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r0-i1/after/process.json",
+            "sha256": "ce84ea203b1b93ba1ceb9c6c94b92775b52f002cac9079718b9e33c2eda7eac7"
+          },
+          "session": "work/receiver-speed-20260912-v1/real-pairs/r0-i1/after/session",
+          "system_cpu_seconds": 8.3,
+          "tasks": 1372,
+          "usage": {
+            "bytes": 26,
+            "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r0-i1/after/usage.txt",
+            "sha256": "08950a7814e44ff6aa3682966cf057b8f07a3963594bd54ee1336cc8535f3497"
+          },
+          "user_cpu_seconds": 416.46
+        },
+        "before": {
+          "frames": 20,
+          "gnu_wall_seconds": 644.97,
+          "max_rss_kib": 37204.0,
+          "outer_wall_seconds": 644.977838976,
+          "process_receipt": {
+            "bytes": 705,
+            "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r0-i1/before/process.json",
+            "sha256": "a1c34b14f2cd9afa024ea29e459175a181d7f7d64bea1c67937caf6250c49010"
+          },
+          "session": "work/receiver-speed-20260912-v1/real-pairs/r0-i1/before/session",
+          "system_cpu_seconds": 20.81,
+          "tasks": 1372,
+          "usage": {
+            "bytes": 26,
+            "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r0-i1/before/usage.txt",
+            "sha256": "02132bb0eb50f6618925012d474a37d99fdd90355a442d0a2d3896d53b7849ae"
+          },
+          "user_cpu_seconds": 839.77
+        }
+      },
+      "wall_reduction_percent": 53.46120049976332,
+      "wall_speedup": 2.148744726418898
+    },
+    {
+      "comparison": {
+        "bytes": 1908,
+        "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r1-i0/strict-session-comparison.json",
+        "sha256": "02e74a95e98d4b0558ee7331e4d1a92a74e098de0880cb25ee0f6010b905510a"
+      },
+      "deterministic_equal": true,
+      "input": {
+        "bytes": 131719538,
+        "path": "/home/ubuntu/telemetry-yield/work/innovation-field-20260910-v1/progressive-14967362/prepared-aee5ff72314c69c85ff44d85f2ec1493dbee2bbb07e9b72c25085e36d09f03ad.wav",
+        "sha256": "aee5ff72314c69c85ff44d85f2ec1493dbee2bbb07e9b72c25085e36d09f03ad"
+      },
+      "input_index": 0,
+      "normalization": "only elapsed_seconds and session_sha256; different executable identities explicitly pinned and checked",
+      "order": [
+        "after",
+        "before"
+      ],
+      "repeat": 1,
+      "runs": {
+        "after": {
+          "frames": 4,
+          "gnu_wall_seconds": 271.03,
+          "max_rss_kib": 800224.0,
+          "outer_wall_seconds": 271.039255805,
+          "process_receipt": {
+            "bytes": 696,
+            "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r1-i0/after/process.json",
+            "sha256": "546953de5e2389179f0084086fdf972b5238f5ad7e2c1abf3d518725932fbb66"
+          },
+          "session": "work/receiver-speed-20260912-v1/real-pairs/r1-i0/after/session",
+          "system_cpu_seconds": 8.13,
+          "tasks": 1596,
+          "usage": {
+            "bytes": 26,
+            "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r1-i0/after/usage.txt",
+            "sha256": "f396c47f515e51e0c5e72f2276427a27dba406bf2ff1ea360f3f48e94b0d7be6"
+          },
+          "user_cpu_seconds": 395.74
+        },
+        "before": {
+          "frames": 4,
+          "gnu_wall_seconds": 469.98,
+          "max_rss_kib": 32496.0,
+          "outer_wall_seconds": 469.985561325,
+          "process_receipt": {
+            "bytes": 705,
+            "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r1-i0/before/process.json",
+            "sha256": "d486ad2e06d42c2580dcf04e6d14d56bd1c76a6a43c399ea1ea5b8da0133ee7f"
+          },
+          "session": "work/receiver-speed-20260912-v1/real-pairs/r1-i0/before/session",
+          "system_cpu_seconds": 14.99,
+          "tasks": 1596,
+          "usage": {
+            "bytes": 26,
+            "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r1-i0/before/usage.txt",
+            "sha256": "167e75f8ffb20471d4a949c306dd9f6386da0ac8aa120b35db305d18e90d8ac6"
+          },
+          "user_cpu_seconds": 665.59
+        }
+      },
+      "wall_reduction_percent": 42.330301586100546,
+      "wall_speedup": 1.7340128828538863
+    },
+    {
+      "comparison": {
+        "bytes": 1910,
+        "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r1-i1/strict-session-comparison.json",
+        "sha256": "ef544453ae0a4e47dc0294f89f6721ec02399231eab9e1dfaa9b0c03672d2112"
+      },
+      "deterministic_equal": true,
+      "input": {
+        "bytes": 112964466,
+        "path": "/home/ubuntu/telemetry-yield/work/innovation-field-20260910-v1/progressive-14967393/prepared-ff24c8dbe3f4c4efb981b3074fe3f3cfa85c8e203fa29acb6402ea2e970ddb21.wav",
+        "sha256": "ff24c8dbe3f4c4efb981b3074fe3f3cfa85c8e203fa29acb6402ea2e970ddb21"
+      },
+      "input_index": 1,
+      "normalization": "only elapsed_seconds and session_sha256; different executable identities explicitly pinned and checked",
+      "order": [
+        "before",
+        "after"
+      ],
+      "repeat": 1,
+      "runs": {
+        "after": {
+          "frames": 20,
+          "gnu_wall_seconds": 314.15,
+          "max_rss_kib": 697232.0,
+          "outer_wall_seconds": 314.155191567,
+          "process_receipt": {
+            "bytes": 696,
+            "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r1-i1/after/process.json",
+            "sha256": "9761cd0f71bbcd709cba10dbcdd0bf82963cc50dd2bca756b2f0b2f433c6295d"
+          },
+          "session": "work/receiver-speed-20260912-v1/real-pairs/r1-i1/after/session",
+          "system_cpu_seconds": 7.02,
+          "tasks": 1372,
+          "usage": {
+            "bytes": 26,
+            "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r1-i1/after/usage.txt",
+            "sha256": "431a464c94a57baa83a4e6b289040cd46b9363cce8178243de3b4269f6d460c3"
+          },
+          "user_cpu_seconds": 423.48
+        },
+        "before": {
+          "frames": 20,
+          "gnu_wall_seconds": 595.26,
+          "max_rss_kib": 33808.0,
+          "outer_wall_seconds": 595.266023202,
+          "process_receipt": {
+            "bytes": 705,
+            "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r1-i1/before/process.json",
+            "sha256": "4efd914ccfb0079317cc40445da9d5e915427582385c2f7f5d7e0afd3cfd9521"
+          },
+          "session": "work/receiver-speed-20260912-v1/real-pairs/r1-i1/before/session",
+          "system_cpu_seconds": 20.47,
+          "tasks": 1372,
+          "usage": {
+            "bytes": 26,
+            "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/r1-i1/before/usage.txt",
+            "sha256": "a53e8582673b43c4d299f040a849486136d5b2e080f8c50b0101a4cb3844197d"
+          },
+          "user_cpu_seconds": 839.01
+        }
+      },
+      "wall_reduction_percent": 47.22440399384373,
+      "wall_speedup": 1.894815171548892
+    }
+  ],
+  "publication_ready": false,
+  "schema": "progressive-speed-summary-v1",
+  "shared_host_load_not_excluded": true,
+  "status": "complete",
+  "wall_reduction_percent": 46.04514176436528,
+  "wall_speedup": 1.853401218538548
+}

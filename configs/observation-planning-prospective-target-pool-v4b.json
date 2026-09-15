@@ -1,0 +1,722 @@
+{
+  "bootstrap_replicates": 2000,
+  "end": "2026-09-01T00:00:00Z",
+  "external_station_holdout_fraction": 0.2,
+  "external_validation_norad_ids": [
+    26931,
+    35933,
+    38760,
+    39464,
+    40931,
+    43013,
+    43080,
+    44909,
+    46479,
+    46984,
+    49008,
+    54035,
+    59112,
+    63240,
+    66673,
+    69015
+  ],
+  "frozen_at": "2026-09-03T12:00:00Z",
+  "geometry_step_seconds": 30,
+  "max_response_bytes": 20000000,
+  "minimum_chunk_hours": 6,
+  "minimum_external_test_rows": 30,
+  "random_seed": 7538,
+  "regularization_grid": [
+    0.01,
+    0.1,
+    1.0,
+    10.0
+  ],
+  "schema_version": "observation-planning-publication-config-v1",
+  "selected_strata": {
+    "L-band/FSK": 1,
+    "L-band/PSK": 2,
+    "L-band/other-packet": 5,
+    "S-band/PSK": 26,
+    "S-band/other-packet": 2,
+    "UHF/AFSK": 3,
+    "UHF/FSK": 25,
+    "UHF/PSK": 6,
+    "UHF/other-packet": 2,
+    "VHF/AFSK": 5,
+    "VHF/FSK": 1,
+    "VHF/PSK": 1,
+    "VHF/other-packet": 1
+  },
+  "selection_exclusion_counts": {
+    "below_volume_threshold": 839,
+    "missing_network_stats": 73,
+    "non_packet_or_missing_mode": 1085,
+    "temporary_satnogs_catalog_number": 593,
+    "unconfirmed": 161
+  },
+  "selection_parameters": {
+    "external_validation_fraction": 0.2,
+    "maximum_targets": 80,
+    "minimum_total_observations": 500,
+    "random_seed": 7538,
+    "strata": "frequency_band_x_mode_family"
+  },
+  "selection_rule": "Active, alive, confirmed packet transmitters with at least the frozen total-volume threshold; one highest-volume transmitter per satellite; round-robin sampling over frequency-band x modulation-family strata. Good/bad counts were not used for eligibility, ranking, stratification or holdout assignment.",
+  "selection_snapshots": [
+    {
+      "path": "work/a1/satnogs-transmitters-active-direct-2026-08-31.json",
+      "sha256": "07059586791612b61e562b27c1fd1a9601fca817b3fb25128100deb43b8ceccd"
+    },
+    {
+      "path": "work/observation-planning-publication-v1/network-transmitter-stats-selection-2026-09-02.json",
+      "sha256": "4b6c2225c4d735a0f76e26b7eddff42e3f4739c5094483afb0bfc7e291705951"
+    }
+  ],
+  "start": "2025-09-01T00:00:00Z",
+  "study_id": "observation-planning-prospective-candidates-v4b",
+  "targets": [
+    {
+      "norad_id": 20442,
+      "selection_bad_count": 2077,
+      "selection_good_count": 62,
+      "selection_mode": "BPSK",
+      "selection_total_count": 2144,
+      "selection_transmitter_uuid": "Z2ViCYEPTmBkKPkMKFgnJg"
+    },
+    {
+      "norad_id": 25338,
+      "selection_bad_count": 283,
+      "selection_good_count": 776,
+      "selection_mode": "HRPT",
+      "selection_total_count": 1917,
+      "selection_transmitter_uuid": "bCF8tHeNaNM5QeEMy8Y8hn"
+    },
+    {
+      "norad_id": 25544,
+      "selection_bad_count": 26027,
+      "selection_good_count": 34729,
+      "selection_mode": "AFSK",
+      "selection_total_count": 64165,
+      "selection_transmitter_uuid": "ZJxCeQmih9zDfYNVrB4wRN"
+    },
+    {
+      "norad_id": 26702,
+      "selection_bad_count": 556,
+      "selection_good_count": 1292,
+      "selection_mode": "QPSK",
+      "selection_total_count": 2113,
+      "selection_transmitter_uuid": "XXioskkLUpe75GsJKcatMD"
+    },
+    {
+      "norad_id": 26857,
+      "selection_bad_count": 584,
+      "selection_good_count": 364,
+      "selection_mode": "LoRa",
+      "selection_total_count": 1557,
+      "selection_transmitter_uuid": "TZLSQnFX2JaxJ3SB7B9Z5S"
+    },
+    {
+      "norad_id": 26931,
+      "selection_bad_count": 928,
+      "selection_good_count": 308,
+      "selection_mode": "AFSK",
+      "selection_total_count": 2055,
+      "selection_transmitter_uuid": "2dCbF2jmsxFpHw8ApevTMd"
+    },
+    {
+      "norad_id": 29107,
+      "selection_bad_count": 442,
+      "selection_good_count": 142,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1144,
+      "selection_transmitter_uuid": "NdqhQEPceLHZg87u8ZmExV"
+    },
+    {
+      "norad_id": 32376,
+      "selection_bad_count": 324,
+      "selection_good_count": 973,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1792,
+      "selection_transmitter_uuid": "LrUjewCyVrdDCd8udxGa9p"
+    },
+    {
+      "norad_id": 32958,
+      "selection_bad_count": 816,
+      "selection_good_count": 14,
+      "selection_mode": "AHRPT",
+      "selection_total_count": 987,
+      "selection_transmitter_uuid": "SEtMDM3FujKpcBeVe6j38L"
+    },
+    {
+      "norad_id": 33321,
+      "selection_bad_count": 921,
+      "selection_good_count": 292,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1358,
+      "selection_transmitter_uuid": "4DUrfnq5RZXFRQ9eTziag3"
+    },
+    {
+      "norad_id": 33591,
+      "selection_bad_count": 276,
+      "selection_good_count": 1406,
+      "selection_mode": "HRPT",
+      "selection_total_count": 2462,
+      "selection_transmitter_uuid": "DbcMgskpnJryLP3NGrR5Xb"
+    },
+    {
+      "norad_id": 35933,
+      "selection_bad_count": 3429,
+      "selection_good_count": 283,
+      "selection_mode": "GMSK",
+      "selection_total_count": 4975,
+      "selection_transmitter_uuid": "dKekeLctU9VrDaYg7QRQ9J"
+    },
+    {
+      "norad_id": 37387,
+      "selection_bad_count": 156,
+      "selection_good_count": 657,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1224,
+      "selection_transmitter_uuid": "5xbQqLnsewGSnX3NaugFU9"
+    },
+    {
+      "norad_id": 38760,
+      "selection_bad_count": 2602,
+      "selection_good_count": 615,
+      "selection_mode": "AFSK",
+      "selection_total_count": 5613,
+      "selection_transmitter_uuid": "V5w2y4795oxP4wjhhHbZHb"
+    },
+    {
+      "norad_id": 38771,
+      "selection_bad_count": 172,
+      "selection_good_count": 613,
+      "selection_mode": "AHRPT",
+      "selection_total_count": 1345,
+      "selection_transmitter_uuid": "9PPph8gNaDCurhNEh9gfvZ"
+    },
+    {
+      "norad_id": 39150,
+      "selection_bad_count": 103,
+      "selection_good_count": 642,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1012,
+      "selection_transmitter_uuid": "gDmgDn4dEtvz4HbAHUE4Pz"
+    },
+    {
+      "norad_id": 39215,
+      "selection_bad_count": 143,
+      "selection_good_count": 403,
+      "selection_mode": "FSK",
+      "selection_total_count": 565,
+      "selection_transmitter_uuid": "5pWVLS5mc3QhN54T8i2hU8"
+    },
+    {
+      "norad_id": 39260,
+      "selection_bad_count": 631,
+      "selection_good_count": 809,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1845,
+      "selection_transmitter_uuid": "JyTPxANWEYhCe7SzBg43kF"
+    },
+    {
+      "norad_id": 39265,
+      "selection_bad_count": 482,
+      "selection_good_count": 217,
+      "selection_mode": "CERTO",
+      "selection_total_count": 1234,
+      "selection_transmitter_uuid": "tPoSJ48gufDgXzK89yhHzU"
+    },
+    {
+      "norad_id": 39464,
+      "selection_bad_count": 1637,
+      "selection_good_count": 195,
+      "selection_mode": "FSK AX.25 G3RUH",
+      "selection_total_count": 3739,
+      "selection_transmitter_uuid": "McBbSKoN6uRrjWTvgG93xV"
+    },
+    {
+      "norad_id": 40071,
+      "selection_bad_count": 12764,
+      "selection_good_count": 11284,
+      "selection_mode": "GFSK",
+      "selection_total_count": 37023,
+      "selection_transmitter_uuid": "g2PQTyQ6gv4kudov7KoSQc"
+    },
+    {
+      "norad_id": 40074,
+      "selection_bad_count": 1183,
+      "selection_good_count": 228,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1421,
+      "selection_transmitter_uuid": "HWdDcVRpjQJCxMbtRkL5em"
+    },
+    {
+      "norad_id": 40717,
+      "selection_bad_count": 369,
+      "selection_good_count": 496,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1083,
+      "selection_transmitter_uuid": "KDTzXWngAv9u6stUK5P8AD"
+    },
+    {
+      "norad_id": 40908,
+      "selection_bad_count": 3001,
+      "selection_good_count": 1849,
+      "selection_mode": "AFSK",
+      "selection_total_count": 6858,
+      "selection_transmitter_uuid": "xHDr7c3A7TuTPFcVvHKQuN"
+    },
+    {
+      "norad_id": 40931,
+      "selection_bad_count": 3800,
+      "selection_good_count": 8062,
+      "selection_mode": "AFSK",
+      "selection_total_count": 13820,
+      "selection_transmitter_uuid": "x4TAmrVLwZo3hx946fHi44"
+    },
+    {
+      "norad_id": 40960,
+      "selection_bad_count": 920,
+      "selection_good_count": 193,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1256,
+      "selection_transmitter_uuid": "HEKTWGaHjy4yUfiaLRYLS9"
+    },
+    {
+      "norad_id": 40961,
+      "selection_bad_count": 375,
+      "selection_good_count": 1119,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1953,
+      "selection_transmitter_uuid": "bfLYoXesym9KCMgtds2uaP"
+    },
+    {
+      "norad_id": 41914,
+      "selection_bad_count": 836,
+      "selection_good_count": 270,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1237,
+      "selection_transmitter_uuid": "4o2JS2YtdoaHXT9XxPR7t2"
+    },
+    {
+      "norad_id": 42828,
+      "selection_bad_count": 206,
+      "selection_good_count": 58,
+      "selection_mode": "GMSK",
+      "selection_total_count": 847,
+      "selection_transmitter_uuid": "c6wFnUVdAe4tvWojA2pzce"
+    },
+    {
+      "norad_id": 42831,
+      "selection_bad_count": 471,
+      "selection_good_count": 330,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1056,
+      "selection_transmitter_uuid": "uNZPQkj3hCMLiWUGVb6yRH"
+    },
+    {
+      "norad_id": 43010,
+      "selection_bad_count": 689,
+      "selection_good_count": 537,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1646,
+      "selection_transmitter_uuid": "PTviTJH2QjMTboiZ6xm3fz"
+    },
+    {
+      "norad_id": 43013,
+      "selection_bad_count": 364,
+      "selection_good_count": 777,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1420,
+      "selection_transmitter_uuid": "E8whsknqrMasywgn2pEPKA"
+    },
+    {
+      "norad_id": 43023,
+      "selection_bad_count": 689,
+      "selection_good_count": 175,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1019,
+      "selection_transmitter_uuid": "5ErS5wn7NgjWgGqjUxtghY"
+    },
+    {
+      "norad_id": 43080,
+      "selection_bad_count": 61,
+      "selection_good_count": 440,
+      "selection_mode": "FMN",
+      "selection_total_count": 795,
+      "selection_transmitter_uuid": "aC3etqJy63uaR7kkqY3tH6"
+    },
+    {
+      "norad_id": 43184,
+      "selection_bad_count": 216,
+      "selection_good_count": 13,
+      "selection_mode": "BPSK",
+      "selection_total_count": 558,
+      "selection_transmitter_uuid": "YDqNLqFb6n9efGWPkQWmto"
+    },
+    {
+      "norad_id": 43440,
+      "selection_bad_count": 126,
+      "selection_good_count": 558,
+      "selection_mode": "BPSK",
+      "selection_total_count": 980,
+      "selection_transmitter_uuid": "CryL6veqoDkrLY936QTYm6"
+    },
+    {
+      "norad_id": 43441,
+      "selection_bad_count": 349,
+      "selection_good_count": 861,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1604,
+      "selection_transmitter_uuid": "cUEejBWwzqX4ZH7vzTRQt5"
+    },
+    {
+      "norad_id": 43485,
+      "selection_bad_count": 2602,
+      "selection_good_count": 1800,
+      "selection_mode": "GMSK",
+      "selection_total_count": 6857,
+      "selection_transmitter_uuid": "srRymFH6KNvisXgchfnf77"
+    },
+    {
+      "norad_id": 43772,
+      "selection_bad_count": 1497,
+      "selection_good_count": 249,
+      "selection_mode": "FSK",
+      "selection_total_count": 3019,
+      "selection_transmitter_uuid": "oYUaYcoHMrzKPVW2FhaXNh"
+    },
+    {
+      "norad_id": 44703,
+      "selection_bad_count": 201,
+      "selection_good_count": 522,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1338,
+      "selection_transmitter_uuid": "E8wiKETMnMQvdunxK2zWzK"
+    },
+    {
+      "norad_id": 44885,
+      "selection_bad_count": 3998,
+      "selection_good_count": 262,
+      "selection_mode": "GFSK",
+      "selection_total_count": 6799,
+      "selection_transmitter_uuid": "BHaYnEhzEEZ4upTvGdzQ4e"
+    },
+    {
+      "norad_id": 44909,
+      "selection_bad_count": 516,
+      "selection_good_count": 2090,
+      "selection_mode": "BPSK",
+      "selection_total_count": 2773,
+      "selection_transmitter_uuid": "ZiJbdMEwj92mqojjtjTN87"
+    },
+    {
+      "norad_id": 46469,
+      "selection_bad_count": 226,
+      "selection_good_count": 954,
+      "selection_mode": "BPSK",
+      "selection_total_count": 3004,
+      "selection_transmitter_uuid": "b2chR59rr6Hv2unpDV3uTH"
+    },
+    {
+      "norad_id": 46479,
+      "selection_bad_count": 128,
+      "selection_good_count": 952,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1531,
+      "selection_transmitter_uuid": "oTcpBDg23uVkkkWTYYJpfB"
+    },
+    {
+      "norad_id": 46984,
+      "selection_bad_count": 781,
+      "selection_good_count": 296,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1382,
+      "selection_transmitter_uuid": "n4K6PQGYbjChqPQXYdXuQL"
+    },
+    {
+      "norad_id": 48256,
+      "selection_bad_count": 90,
+      "selection_good_count": 496,
+      "selection_mode": "BPSK",
+      "selection_total_count": 899,
+      "selection_transmitter_uuid": "moemSFfnf9sKYTgZ7jmXwQ"
+    },
+    {
+      "norad_id": 48274,
+      "selection_bad_count": 969,
+      "selection_good_count": 247,
+      "selection_mode": "SSTV",
+      "selection_total_count": 2179,
+      "selection_transmitter_uuid": "63EenHAYSzVfqrqshAroCP"
+    },
+    {
+      "norad_id": 49008,
+      "selection_bad_count": 728,
+      "selection_good_count": 1329,
+      "selection_mode": "BPSK",
+      "selection_total_count": 2656,
+      "selection_transmitter_uuid": "eueXbMpruNuH7k34ePxgaA"
+    },
+    {
+      "norad_id": 53106,
+      "selection_bad_count": 8500,
+      "selection_good_count": 14382,
+      "selection_mode": "FSK AX.100 Mode 5",
+      "selection_total_count": 37686,
+      "selection_transmitter_uuid": "b6RKUFf8YvJGGrFv4AoJUy"
+    },
+    {
+      "norad_id": 53107,
+      "selection_bad_count": 1031,
+      "selection_good_count": 993,
+      "selection_mode": "FSK",
+      "selection_total_count": 3368,
+      "selection_transmitter_uuid": "ChyJXQ4cqB32Rqzsi7cjRa"
+    },
+    {
+      "norad_id": 53451,
+      "selection_bad_count": 280,
+      "selection_good_count": 56,
+      "selection_mode": "BPSK",
+      "selection_total_count": 573,
+      "selection_transmitter_uuid": "iTVy5nHzT2bGAngEwUJdFN"
+    },
+    {
+      "norad_id": 53807,
+      "selection_bad_count": 1997,
+      "selection_good_count": 3138,
+      "selection_mode": "GFSK",
+      "selection_total_count": 7608,
+      "selection_transmitter_uuid": "YT4thHBcgY73CfCMH3sGKB"
+    },
+    {
+      "norad_id": 54029,
+      "selection_bad_count": 119,
+      "selection_good_count": 775,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1298,
+      "selection_transmitter_uuid": "TECB6qygDohZxsD3Hkums3"
+    },
+    {
+      "norad_id": 54035,
+      "selection_bad_count": 181,
+      "selection_good_count": 703,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1163,
+      "selection_transmitter_uuid": "R2wN7Xj2yfunhMFFkY8txp"
+    },
+    {
+      "norad_id": 54361,
+      "selection_bad_count": 255,
+      "selection_good_count": 725,
+      "selection_mode": "BPSK",
+      "selection_total_count": 2159,
+      "selection_transmitter_uuid": "FxaRf7RmWNACpMfTid8ZQb"
+    },
+    {
+      "norad_id": 56745,
+      "selection_bad_count": 217,
+      "selection_good_count": 1635,
+      "selection_mode": "MSK AX.100 Mode 5",
+      "selection_total_count": 2013,
+      "selection_transmitter_uuid": "fDywUVLPJc2FMkFoYv7EeV"
+    },
+    {
+      "norad_id": 56933,
+      "selection_bad_count": 778,
+      "selection_good_count": 1199,
+      "selection_mode": "GFSK",
+      "selection_total_count": 4686,
+      "selection_transmitter_uuid": "MMDemm2pQWzcGpjFyaD9Zv"
+    },
+    {
+      "norad_id": 57519,
+      "selection_bad_count": 130,
+      "selection_good_count": 727,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1143,
+      "selection_transmitter_uuid": "i8oUZLTfXxsH3Ty3PQX9Ge"
+    },
+    {
+      "norad_id": 58468,
+      "selection_bad_count": 919,
+      "selection_good_count": 1023,
+      "selection_mode": "FSK",
+      "selection_total_count": 4355,
+      "selection_transmitter_uuid": "KssvhYC4X8LeY4Rye8UQTT"
+    },
+    {
+      "norad_id": 59051,
+      "selection_bad_count": 121,
+      "selection_good_count": 242,
+      "selection_mode": "BPSK",
+      "selection_total_count": 552,
+      "selection_transmitter_uuid": "hjNrZqUviufHLSEq4gPQAb"
+    },
+    {
+      "norad_id": 59112,
+      "selection_bad_count": 1818,
+      "selection_good_count": 4129,
+      "selection_mode": "AFSK",
+      "selection_total_count": 7899,
+      "selection_transmitter_uuid": "HaaJeCRRdYWsknWChvL8tZ"
+    },
+    {
+      "norad_id": 60477,
+      "selection_bad_count": 612,
+      "selection_good_count": 783,
+      "selection_mode": "BPSK",
+      "selection_total_count": 2472,
+      "selection_transmitter_uuid": "UgLfHsfKxc7bgXVVRw9jYC"
+    },
+    {
+      "norad_id": 60523,
+      "selection_bad_count": 1389,
+      "selection_good_count": 1262,
+      "selection_mode": "FSK",
+      "selection_total_count": 3484,
+      "selection_transmitter_uuid": "PUDih7ogjbDhCJskydF5Y5"
+    },
+    {
+      "norad_id": 61045,
+      "selection_bad_count": 9634,
+      "selection_good_count": 724,
+      "selection_mode": "GFSK",
+      "selection_total_count": 11612,
+      "selection_transmitter_uuid": "g5azH7rxcaddYoERDazW6B"
+    },
+    {
+      "norad_id": 61046,
+      "selection_bad_count": 8926,
+      "selection_good_count": 553,
+      "selection_mode": "GFSK",
+      "selection_total_count": 10755,
+      "selection_transmitter_uuid": "nvkt5NVERVjQrVkod8dbpN"
+    },
+    {
+      "norad_id": 61047,
+      "selection_bad_count": 8664,
+      "selection_good_count": 621,
+      "selection_mode": "GFSK",
+      "selection_total_count": 9753,
+      "selection_transmitter_uuid": "3ARCBrYe4r5YTM3zoRif5Q"
+    },
+    {
+      "norad_id": 61048,
+      "selection_bad_count": 8307,
+      "selection_good_count": 574,
+      "selection_mode": "GFSK",
+      "selection_total_count": 9686,
+      "selection_transmitter_uuid": "AxPXoqDSfyZkM6DQ9MSdXs"
+    },
+    {
+      "norad_id": 61049,
+      "selection_bad_count": 9949,
+      "selection_good_count": 845,
+      "selection_mode": "GFSK",
+      "selection_total_count": 11784,
+      "selection_transmitter_uuid": "cnREKsnMgxaRV8Tsh8DEdi"
+    },
+    {
+      "norad_id": 61779,
+      "selection_bad_count": 121,
+      "selection_good_count": 252,
+      "selection_mode": "AFSK",
+      "selection_total_count": 1141,
+      "selection_transmitter_uuid": "Bv36U7yktTwkwnTxdDWWsH"
+    },
+    {
+      "norad_id": 62394,
+      "selection_bad_count": 3897,
+      "selection_good_count": 13294,
+      "selection_mode": "GFSK",
+      "selection_total_count": 24619,
+      "selection_transmitter_uuid": "Uuo2RJjpxDmrpshXqrtXnK"
+    },
+    {
+      "norad_id": 63240,
+      "selection_bad_count": 204,
+      "selection_good_count": 991,
+      "selection_mode": "BPSK",
+      "selection_total_count": 1960,
+      "selection_transmitter_uuid": "8PFPefTgjRPRSZydkoLCFC"
+    },
+    {
+      "norad_id": 63834,
+      "selection_bad_count": 1088,
+      "selection_good_count": 1387,
+      "selection_mode": "GFSK",
+      "selection_total_count": 6963,
+      "selection_transmitter_uuid": "6cuoMVrEeUdtUQ2fWx4dqB"
+    },
+    {
+      "norad_id": 64536,
+      "selection_bad_count": 178,
+      "selection_good_count": 31,
+      "selection_mode": "LoRa",
+      "selection_total_count": 502,
+      "selection_transmitter_uuid": "k7xjKfuJ4yBVN2RLXRaM37"
+    },
+    {
+      "norad_id": 66673,
+      "selection_bad_count": 1772,
+      "selection_good_count": 188,
+      "selection_mode": "FSK",
+      "selection_total_count": 3007,
+      "selection_transmitter_uuid": "9JtP2wKaptSZUDMWNnYbA2"
+    },
+    {
+      "norad_id": 66681,
+      "selection_bad_count": 1487,
+      "selection_good_count": 637,
+      "selection_mode": "FSK",
+      "selection_total_count": 3494,
+      "selection_transmitter_uuid": "4WnHaC56evx3NKFiYDwb9q"
+    },
+    {
+      "norad_id": 67279,
+      "selection_bad_count": 95,
+      "selection_good_count": 142,
+      "selection_mode": "AFSK",
+      "selection_total_count": 990,
+      "selection_transmitter_uuid": "4Qhn53gBfoXBKDanf6SYmG"
+    },
+    {
+      "norad_id": 67683,
+      "selection_bad_count": 166,
+      "selection_good_count": 694,
+      "selection_mode": "FSK",
+      "selection_total_count": 2711,
+      "selection_transmitter_uuid": "UatCXtfDnoBPeVBGHgj4Bc"
+    },
+    {
+      "norad_id": 68446,
+      "selection_bad_count": 217,
+      "selection_good_count": 1176,
+      "selection_mode": "FSK",
+      "selection_total_count": 3290,
+      "selection_transmitter_uuid": "ks3KCobshLHvwdSgFhJUpb"
+    },
+    {
+      "norad_id": 68635,
+      "selection_bad_count": 1605,
+      "selection_good_count": 12518,
+      "selection_mode": "GMSK",
+      "selection_total_count": 21523,
+      "selection_transmitter_uuid": "GCmN6RULea8dAT7Qoat8z2"
+    },
+    {
+      "norad_id": 69015,
+      "selection_bad_count": 85,
+      "selection_good_count": 531,
+      "selection_mode": "FSK AX.100 Mode 5",
+      "selection_total_count": 3069,
+      "selection_transmitter_uuid": "JqdpyL9Ft5jMvQ8VXy57wx"
+    }
+  ],
+  "temporal_test_fraction": 0.2,
+  "user_agent": "telemetry-yield-research/0.2 contact=research@example.invalid"
+}

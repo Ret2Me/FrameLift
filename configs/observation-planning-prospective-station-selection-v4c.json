@@ -1,0 +1,375 @@
+{
+  "baseline_station_ids": [
+    766,
+    1710,
+    1864,
+    2029,
+    2968,
+    4186,
+    4497
+  ],
+  "final_covered_target_count": 50,
+  "final_station_ids": [
+    766,
+    1710,
+    1864,
+    2029,
+    2968,
+    4186,
+    4497,
+    2830,
+    1433,
+    657
+  ],
+  "frozen_at": "2026-09-03T18:18:34Z",
+  "initially_covered_norad_ids": [
+    20442,
+    25544,
+    26931,
+    35933,
+    40071,
+    40074,
+    40908,
+    44909,
+    48274,
+    53807,
+    56745,
+    59112,
+    61045,
+    61046,
+    61047,
+    61048,
+    61049,
+    61779,
+    62394,
+    63240,
+    64536,
+    67279,
+    68635
+  ],
+  "initially_covered_target_count": 23,
+  "registered_target_count": 50,
+  "schema_version": "observation-planning-station-expansion-v1",
+  "screening_used_success_outcomes": false,
+  "selected_stations": [
+    {
+      "frequency_ranges_hz": [
+        [
+          1050000000.0,
+          1750000000.0
+        ],
+        [
+          2200000000.0,
+          2450000000.0
+        ]
+      ],
+      "newly_covered_norad_ids": [
+        25338,
+        29107,
+        32376,
+        32958,
+        33321,
+        33591,
+        37387,
+        38771,
+        39150,
+        39215,
+        39260,
+        39265,
+        40717,
+        40960,
+        40961,
+        41914,
+        43010,
+        43013,
+        43080,
+        43441,
+        46469,
+        46479,
+        49008,
+        54361,
+        59051
+      ],
+      "selection_observation_count": 10575,
+      "station_id": 2830,
+      "station_name": "SM0TGU - L and S-Band"
+    },
+    {
+      "frequency_ranges_hz": [
+        [
+          2170000000.0,
+          2340000000.0
+        ]
+      ],
+      "newly_covered_norad_ids": [
+        26857
+      ],
+      "selection_observation_count": 54467,
+      "station_id": 1433,
+      "station_name": "PE2BZ-Odroid-L-band and  / or S-band"
+    },
+    {
+      "frequency_ranges_hz": [
+        [
+          25000000.0,
+          1300000000.0
+        ]
+      ],
+      "newly_covered_norad_ids": [
+        42828
+      ],
+      "selection_observation_count": 43714,
+      "station_id": 657,
+      "station_name": "ZL2MST"
+    }
+  ],
+  "selection_parameters": {
+    "ignored_outcome_fields": [
+      "success_rate"
+    ],
+    "minimum_observations": 10000,
+    "rank": [
+      "newly_covered_target_count_desc",
+      "observation_count_desc",
+      "station_id_asc"
+    ],
+    "required_status": {
+      "is_available": true,
+      "is_connected": true,
+      "testing": false
+    }
+  },
+  "selection_rule": "Starting from the frozen campaign stations, repeatedly select the connected, available, non-testing station above the volume threshold that covers the most still-uncovered registered target frequencies; break ties by observation count descending and station ID ascending. Success rates and reception labels are not read.",
+  "selection_snapshots": [
+    {
+      "path": "configs/observation-planning-prospective-target-pool-v4b.json",
+      "sha256": "51e96f281aa4c635e21a9826f797c2fa58d437451902aa49887c70f59589f70a"
+    },
+    {
+      "path": "configs/prospective/observation-planning-shadow-v4b.json",
+      "sha256": "b5e6ddf1aae615b85636454e6d76992c3efad0b7cdf049fd3db01be3b81c35ad"
+    },
+    {
+      "path": "work/a1/satnogs-transmitters-active-direct-2026-08-31.json",
+      "sha256": "07059586791612b61e562b27c1fd1a9601fca817b3fb25128100deb43b8ceccd"
+    },
+    {
+      "path": "work/prospective-v4b/forecasts/forecast-20260903T175315Z.json",
+      "sha256": "19d875d438abe0214e5bda45c64d2f80b4a0a9209d279ae3587023f76c6edfbd"
+    },
+    {
+      "path": "work/prospective-v4c/station-selection/satnogs-stations-20260903T180500Z.json",
+      "sha256": "7b1732b77a30b40dd7df76c187298e062456af78430814103abe31387e38283a"
+    },
+    {
+      "path": "work/prospective-v4c/station-selection/antenna-snapshot-20260903T180500Z.json",
+      "sha256": "969c42ed4348cce354836902289183acbc566fa2c43ac1dca9aae6872bc9fa8e"
+    },
+    {
+      "path": "work/prospective-v4c/station-selection/antenna-evidence-20260903T180500Z.json",
+      "sha256": "a6d65ae0f692d2823d19b3094c50b00fba425fd1d24c1ddc4a4dca3d4939bef7"
+    }
+  ],
+  "target_frequencies": [
+    {
+      "frequency_hz": 437150000.0,
+      "norad_id": 20442
+    },
+    {
+      "frequency_hz": 1702500000.0,
+      "norad_id": 25338
+    },
+    {
+      "frequency_hz": 145825000.0,
+      "norad_id": 25544
+    },
+    {
+      "frequency_hz": 2198730000.0,
+      "norad_id": 26857
+    },
+    {
+      "frequency_hz": 145825000.0,
+      "norad_id": 26931
+    },
+    {
+      "frequency_hz": 2217500000.0,
+      "norad_id": 29107
+    },
+    {
+      "frequency_hz": 2230019000.0,
+      "norad_id": 32376
+    },
+    {
+      "frequency_hz": 1704500000.0,
+      "norad_id": 32958
+    },
+    {
+      "frequency_hz": 2209794165.0,
+      "norad_id": 33321
+    },
+    {
+      "frequency_hz": 1698000000.0,
+      "norad_id": 33591
+    },
+    {
+      "frequency_hz": 435950000.0,
+      "norad_id": 35933
+    },
+    {
+      "frequency_hz": 2250000000.0,
+      "norad_id": 37387
+    },
+    {
+      "frequency_hz": 1701300000.0,
+      "norad_id": 38771
+    },
+    {
+      "frequency_hz": 2235128000.0,
+      "norad_id": 39150
+    },
+    {
+      "frequency_hz": 1552650000.0,
+      "norad_id": 39215
+    },
+    {
+      "frequency_hz": 2218565669.0,
+      "norad_id": 39260
+    },
+    {
+      "frequency_hz": 1066752000.0,
+      "norad_id": 39265
+    },
+    {
+      "frequency_hz": 438226000.0,
+      "norad_id": 40071
+    },
+    {
+      "frequency_hz": 145840000.0,
+      "norad_id": 40074
+    },
+    {
+      "frequency_hz": 2236667000.0,
+      "norad_id": 40717
+    },
+    {
+      "frequency_hz": 144390000.0,
+      "norad_id": 40908
+    },
+    {
+      "frequency_hz": 2274350000.0,
+      "norad_id": 40960
+    },
+    {
+      "frequency_hz": 2231275000.0,
+      "norad_id": 40961
+    },
+    {
+      "frequency_hz": 2266700000.0,
+      "norad_id": 41914
+    },
+    {
+      "frequency_hz": 161787500.0,
+      "norad_id": 42828
+    },
+    {
+      "frequency_hz": 2246403000.0,
+      "norad_id": 43010
+    },
+    {
+      "frequency_hz": 2247500000.0,
+      "norad_id": 43013
+    },
+    {
+      "frequency_hz": 2213278000.0,
+      "norad_id": 43080
+    },
+    {
+      "frequency_hz": 2253500000.0,
+      "norad_id": 43441
+    },
+    {
+      "frequency_hz": 435660000.0,
+      "norad_id": 44909
+    },
+    {
+      "frequency_hz": 2202720000.0,
+      "norad_id": 46469
+    },
+    {
+      "frequency_hz": 2243278000.0,
+      "norad_id": 46479
+    },
+    {
+      "frequency_hz": 145985000.0,
+      "norad_id": 48274
+    },
+    {
+      "frequency_hz": 2252881349.0,
+      "norad_id": 49008
+    },
+    {
+      "frequency_hz": 437500000.0,
+      "norad_id": 53807
+    },
+    {
+      "frequency_hz": 2250000000.0,
+      "norad_id": 54361
+    },
+    {
+      "frequency_hz": 436000000.0,
+      "norad_id": 56745
+    },
+    {
+      "frequency_hz": 1544500000.0,
+      "norad_id": 59051
+    },
+    {
+      "frequency_hz": 145825000.0,
+      "norad_id": 59112
+    },
+    {
+      "frequency_hz": 434100000.0,
+      "norad_id": 61045
+    },
+    {
+      "frequency_hz": 430500000.0,
+      "norad_id": 61046
+    },
+    {
+      "frequency_hz": 439500000.0,
+      "norad_id": 61047
+    },
+    {
+      "frequency_hz": 435900000.0,
+      "norad_id": 61048
+    },
+    {
+      "frequency_hz": 432300000.0,
+      "norad_id": 61049
+    },
+    {
+      "frequency_hz": 435215000.0,
+      "norad_id": 61779
+    },
+    {
+      "frequency_hz": 436775000.0,
+      "norad_id": 62394
+    },
+    {
+      "frequency_hz": 401175000.0,
+      "norad_id": 63240
+    },
+    {
+      "frequency_hz": 401700000.0,
+      "norad_id": 64536
+    },
+    {
+      "frequency_hz": 437050000.0,
+      "norad_id": 67279
+    },
+    {
+      "frequency_hz": 437250000.0,
+      "norad_id": 68635
+    }
+  ]
+}

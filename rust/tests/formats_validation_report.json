@@ -1,0 +1,45 @@
+{
+  "schema": "rust-formats-migration-validation-v1",
+  "generated_utc": "2026-09-08T11:38:58Z",
+  "command": "CARGO_BUILD_JOBS=2 cargo test --lib formats:: -- --test-threads=2",
+  "rust_tests_passed": 11,
+  "rust_tests_failed": 0,
+  "python_frozen_oracles": {
+    "kiss_full_results": 258,
+    "raw_manifest_acceptance_and_clipping": 48,
+    "sigmf_core_summaries": 6
+  },
+  "additional_native_checks": [
+    "All 256 KISS port/command combinations and all 256 payload byte values",
+    "Explicit ci16/cf32/cf64 little/big endian scalar interpretation and shape bounds",
+    "SigMF core:offset is an absolute sample index origin, not a byte offset",
+    "Missing required datatype, sample rate, integrity hash and version fail closed",
+    "Clipping, nonfinite raw values, manifest evidence and frozen A/B contracts",
+    "SatYAML original fixtures, Unicode casefold, duplicate name/NORAD ambiguity, malformed YAML isolation",
+    "Duplicate YAML keys and nested unsupported object tags fail closed",
+    "Metadata and raw FIFO inputs fail without blocking",
+    "Catalogue routing requires matching satellite UUID, bounded frequency and unique NORAD/SatYAML identity"
+  ],
+  "source_sha256": {
+    "rust/formats.rs": "b9a49ce6f795f956872f5488fb8ffd0e74fdc1ada250da720e9eb308b838262b",
+    "rust/tests/formats_tests.rs": "301a87b48b8b2fca496a4364f0c0c85c6b1aee207251d20758849ee28f0e6d67",
+    "rust/tests/formats_kiss_oracle.json": "5b3ed80164eb2a1f17570623f46e76083a22016316e8d6faa607ff1d70c51d8a",
+    "rust/tests/formats_raw_oracle.json": "d93626900f2250bd38074060474805d0d1ab74eb7ecdde63cd9476e13e74af6a",
+    "rust/tests/formats_sigmf_oracle.json": "a67bc87bfac3aa8a96c58464ae93a29d8fd64a1519399a15ee0f8b39bc10d8f0",
+    "src/telemetry_yield/raw_iq_manifest.py": "5e14a1c658522e8ef6cdc9f3ae7000586080c6266fca82dc5e839b2c94c2bb9e",
+    "src/telemetry_yield/sigmf_validation.py": "81a6927f70a57c29ff4596bee426609444793477a195331a9e54efa6778b2e88",
+    "src/telemetry_yield/satyaml_registry.py": "7917df16c18aa2a032134f10d8b70fe2c77089d4a228c9f13aec2acf2ba26802",
+    "src/telemetry_yield/catalog_satyaml_routing.py": "8ae91cf9e8b9e9494bb0610b7160a6c0ec49c9cde13c50fd4e803e6e58aebdda",
+    "src/telemetry_yield/gr_satellites_backend.py": "13b96144107d6ab553b7876983f84a5d136afe5033986f9ab051de14746aa11e"
+  },
+  "scope_boundaries": [
+    "Standalone Rust runtime; Python used only as development oracle",
+    "SigMF implements explicit core complex-IQ input contracts, not an arbitrary extension JSON-schema engine or non-contiguous dataset reader",
+    "Raw manifest decode-readiness validation is ported; blind-manifest creation/freezing and research qualification reporting are separate workflows",
+    "SatYAML catalogue metadata advertises profile declarations, not verified runtime implementation of every advertised modulation/FEC",
+    "Catalogue routing core is ported; legacy file loaders and aggregate report rendering are not this module",
+    "Catalogue baud disagreements are typed JSON numbers rather than legacy display strings",
+    "waveform_routing.py PSD classification is separate DSP functionality, not implemented here",
+    "KISS malformed records are counted and excluded as in the original; successful parsing never asserts telemetry integrity or transmitter attribution"
+  ]
+}

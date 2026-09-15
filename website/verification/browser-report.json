@@ -1,0 +1,147 @@
+{
+  "checked_utc": "2026-09-12T23:15:14.014Z",
+  "tests": [
+    {
+      "test": "Document semantics",
+      "status": "pass",
+      "detail": "Polish language, descriptive title, one h1, native form controls."
+    },
+    {
+      "test": "All local links",
+      "status": "pass",
+      "detail": "Anchors resolve; PDF, source ZIP and JSON assets return HTTP 200. External research links are not loaded automatically."
+    },
+    {
+      "test": "Frozen assets",
+      "status": "pass",
+      "detail": "Exact PDF and JSON match the paper snapshot; 189/266, 4541 vs 2998, +1547/-4."
+    },
+    {
+      "test": "Reflow 1440px",
+      "status": "pass",
+      "detail": {
+        "client": 1440,
+        "scroll": 1428
+      }
+    },
+    {
+      "test": "Reflow 1024px",
+      "status": "pass",
+      "detail": {
+        "client": 1024,
+        "scroll": 1012
+      }
+    },
+    {
+      "test": "Reflow 768px",
+      "status": "pass",
+      "detail": {
+        "client": 768,
+        "scroll": 756
+      }
+    },
+    {
+      "test": "Reflow 375px",
+      "status": "pass",
+      "detail": {
+        "client": 375,
+        "scroll": 363
+      }
+    },
+    {
+      "test": "Reflow 320px",
+      "status": "pass",
+      "detail": {
+        "client": 320,
+        "scroll": 308
+      }
+    },
+    {
+      "test": "Keyboard entry",
+      "status": "pass",
+      "detail": "Skip link is first tab stop, visible 3px focus, targets the main content."
+    },
+    {
+      "test": "Native radio keyboard",
+      "status": "pass",
+      "detail": "Arrow keys select deep/full/quick, update CLI and explanatory text, preserve correct resume flags."
+    },
+    {
+      "test": "Clipboard success",
+      "status": "pass",
+      "detail": "Actual Chromium clipboard write/read on localhost; status announces success."
+    },
+    {
+      "test": "Clipboard denial",
+      "status": "pass",
+      "detail": "Injected permission denial selects the command and gives Ctrl+C/⌘C recovery; no native alert."
+    },
+    {
+      "test": "Disclosure keyboard",
+      "status": "pass",
+      "detail": "Enter opens and closes setup guide without hiding the trigger."
+    },
+    {
+      "test": "Reduced motion",
+      "status": "pass",
+      "detail": "Smooth scrolling and component transitions disabled."
+    },
+    {
+      "test": "Offline after load",
+      "status": "pass",
+      "detail": "Radio controls and CLI remain usable without a network."
+    },
+    {
+      "test": "Mobile feedback stability",
+      "status": "pass",
+      "detail": "Clipboard failure text uses reserved space without changing console height at 375px."
+    },
+    {
+      "test": "Offline file and no JavaScript",
+      "status": "pass",
+      "detail": "Direct file URL renders the site, hides copy enhancement, retains quick example and explicit resume instructions."
+    },
+    {
+      "test": "Network and console",
+      "status": "pass",
+      "detail": "No external runtime requests, console errors or uncaught page errors."
+    },
+    {
+      "test": "Text color token contrast",
+      "status": "pass",
+      "detail": [
+        {
+          "fg": "#172b3a",
+          "bg": "#ffffff",
+          "ratio": 14.552206551498765
+        },
+        {
+          "fg": "#506474",
+          "bg": "#edf3f7",
+          "ratio": 5.492791395931393
+        },
+        {
+          "fg": "#164bcb",
+          "bg": "#ffffff",
+          "ratio": 7.234133183927879
+        },
+        {
+          "fg": "#ffffff",
+          "bg": "#506474",
+          "ratio": 6.147263658863213
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    "desktop-1440.png",
+    "desktop-hero-1440.png",
+    "desktop-results-1440.png",
+    "mobile-375.png",
+    "mobile-hero-375.png"
+  ],
+  "console_errors": [],
+  "page_errors": [],
+  "browser": "117.0.5938.62",
+  "status": "pass"
+}

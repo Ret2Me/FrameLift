@@ -1,0 +1,15 @@
+{
+  "sample_rate_hz": 57600.0,
+  "window_seconds": 1.0,
+  "preview_fft_size": 8192,
+  "preview_slices_per_window": 4,
+  "carrier_track_candidates": 12,
+  "carrier_track_transition_scale_hz": 200.0,
+  "carrier_half_bandwidth_hz": 250.0,
+  "envelope_bin_seconds": 0.01,
+  "padding_windows": 1,
+  "active_power_ratio": 1.5,
+  "active_peak_ratio": 20.0,
+  "wpm_min": 5,
+  "wpm_max": 40
+}

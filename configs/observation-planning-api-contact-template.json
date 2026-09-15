@@ -1,0 +1,9 @@
+{
+  "contact": "REPLACE_WITH_EMAIL_OR_HTTPS_PROJECT_URL",
+  "open_meteo_free_api_usage": {
+    "attested": false,
+    "terms_url": "https://open-meteo.com/en/terms",
+    "use_category": "non-commercial-research"
+  },
+  "schema_version": "observation-planning-api-contact-v2"
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="440" viewBox="0 0 1040 440" role="img" aria-labelledby="title desc">
+<title id="title">CANVAS historical replay: unique packets within observations</title>
+<desc id="desc">266 exposed development recordings. Progressive: 6220 packets; reference union: 4066. 2158 added, four missed. Not an independent holdout or equal-compute comparison.</desc>
+<rect width="1040" height="440" fill="#f4f7fb"/>
+<g font-family="Arial, Helvetica, sans-serif" fill="#14253c">
+<text x="36" y="45" font-size="15" letter-spacing="2">MEASURED RECOVERY / CANVAS</text>
+<text x="36" y="84" font-size="28" font-weight="700">Same recordings. Additional validated packets.</text>
+<text x="36" y="114" font-size="16">266 historical observations · unique PDUs counted within each observation</text>
+<text x="36" y="200" font-size="17">Reference union</text><rect x="234" y="177" width="342.706" height="34" fill="#73839a"/><text x="590.7057142857143" y="201" font-size="20" font-weight="700">4066</text>
+<text x="36" y="270" font-size="17">Progressive receiver</text><rect x="234" y="247" width="524.257" height="34" fill="#175f9e"/><text x="772.2571428571429" y="271" font-size="20" font-weight="700">6220</text>
+<text x="36" y="336" font-size="22" font-weight="700">+2158 added  /  4 missed  /  +52.98% net</text>
+<text x="36" y="374" font-size="15">Reference = tested Dire Wolf + gr-satellites union. Previously exposed single-mission cohort.</text>
+<text x="36" y="401" font-size="15">Additional recovery uses substantially more computation; no equal-compute superiority claimed.</text>
+</g></svg>

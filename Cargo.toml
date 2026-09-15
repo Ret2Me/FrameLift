@@ -1,0 +1,64 @@
+[package]
+name = "telemetry-yield-rs"
+version = "0.1.0"
+edition = "2024"
+description = "Deterministic parallel satellite telemetry receiver"
+publish = false
+rust-version = "1.98"
+
+[workspace]
+members = ["tools/xtask"]
+default-members = ["."]
+# Retained tools and frozen experiment snapshots own their independent lockfiles.
+exclude = ["tools/meteor-image-audit", "work"]
+resolver = "3"
+
+[lib]
+path = "rust/lib.rs"
+
+[[bin]]
+name = "telemetry-yield-rs"
+path = "rust/main.rs"
+
+[[test]]
+name = "cli_integration"
+path = "rust/tests/cli_integration.rs"
+
+[[bin]]
+name = "telemetry-sstv"
+path = "rust/sstv_cli.rs"
+
+[[bin]]
+name = "telemetry-meteor"
+path = "rust/meteor_cli.rs"
+
+[dependencies]
+cudarc = { version = "=0.19.9", optional = true, default-features = false, features = ["std", "driver", "nvrtc", "dynamic-loading", "cuda-12000"] }
+clap = { version = "4", features = ["derive"] }
+hex = "0.4"
+hound = "3.5"
+libc = "0.2"
+num-complex = "0.4"
+rayon = "1.12"
+rustfft = "6"
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["float_roundtrip"] }
+sha2 = "0.10"
+tempfile = "3"
+chrono = { version = "0.4", default-features = false, features = ["std"] }
+caseless = "0.2"
+serde-saphyr = { version = "1.2", default-features = false, features = ["deserialize"] }
+
+[features]
+default = []
+# CPU builds need neither a CUDA toolkit nor NVIDIA driver libraries.
+cuda = ["dep:cudarc"]
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+debug = 1
+
+[profile.dev]
+debug = 1
+incremental = false

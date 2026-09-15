@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "telemetry-yield"
+version = "0.1.0"
+description = "Reproducible foundations for satellite telemetry decoding experiments"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.0,<3",
+    "scipy>=1.14,<2",
+]
+
+[project.optional-dependencies]
+planning = [
+    "scipy>=1.14,<2",
+    "sgp4>=2.24,<3",
+]
+analysis = [
+    "h5py>=3.11,<4",
+    "httpx>=0.28,<1",
+    "numpy>=2.0,<3",
+    "pyarrow>=20,<26",
+    "pyyaml>=6,<7",
+    "scipy>=1.14,<2",
+    "sgp4>=2.24,<3",
+    "sigmf>=1.2,<2",
+    "skyfield>=1.49,<2",
+    "soundfile>=0.12,<1",
+    "tenacity>=9,<10",
+]
+test = [
+    "hypothesis>=6,<7",
+    "jsonschema>=4,<5",
+    "pytest>=8,<10",
+]
+
+[project.scripts]
+telemetry-yield = "telemetry_yield.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.data-files]
+"share/telemetry-yield/schemas" = [
+    "schemas/afsk1200-file-result-v1.schema.json",
+    "schemas/blind-phase-fsk-file-result-v1.schema.json",
+    "schemas/blind-phase-fsk-file-result-v2.schema.json",
+    "schemas/fsk-ax25-file-result-v1.schema.json",
+    "schemas/gr-satellites-component-baseline-v1.schema.json",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "--strict-config --strict-markers"

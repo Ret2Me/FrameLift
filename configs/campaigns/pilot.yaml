@@ -1,0 +1,9 @@
+campaign_id: camras-a05-pilot
+max_workers: 1
+max_observations: 10
+max_concurrency: 2
+download_iq: false
+require_explicit_user_agent: true
+internal_research_authorized_by_user: true
+require_license_review_for_publication: true
+levels: [L0, L1]

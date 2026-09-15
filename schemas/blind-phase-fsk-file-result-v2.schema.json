@@ -1,0 +1,359 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://telemetry-yield.invalid/schemas/blind-phase-fsk-file-result-v2.schema.json",
+  "title": "telemetry-yield blind phase FSK file result v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "api_version",
+    "schema_version",
+    "status",
+    "degenerate_input",
+    "degenerate_reason",
+    "result_payload_sha256",
+    "attempt_fingerprint",
+    "source",
+    "route",
+    "effective_config",
+    "config_sha256",
+    "implementation",
+    "selection",
+    "resource_counters",
+    "candidates",
+    "claim_guard"
+  ],
+  "properties": {
+    "api_version": {"const": "telemetry-yield-blind-phase-fsk-file-api-v2"},
+    "schema_version": {"const": "blind-phase-fsk-file-result-v2"},
+    "status": {"const": "completed"},
+    "degenerate_input": {"type": "boolean"},
+    "degenerate_reason": {"enum": ["all_zero_ci16", null]},
+    "result_payload_sha256": {"$ref": "#/$defs/sha256"},
+    "attempt_fingerprint": {"$ref": "#/$defs/sha256"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sample_format", "sample_rate_hz", "size_bytes", "sha256", "complex_samples", "duration_seconds"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sample_format": {"const": "ci16_le"},
+        "sample_rate_hz": {"type": "integer", "minimum": 1},
+        "size_bytes": {"type": "integer", "minimum": 4, "multipleOf": 4},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "complex_samples": {"type": "integer", "minimum": 1},
+        "duration_seconds": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "route": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["modulation_family", "compatible_selection_modulations", "demodulator_id", "demodulator_version", "protocol_adapter_id", "protocol_id", "qualification"],
+      "properties": {
+        "modulation_family": {"const": "binary_phase_fsk_gfsk_gmsk"},
+        "compatible_selection_modulations": {"const": ["FSK", "FSK AX25 G3RUH", "GFSK", "GMSK"]},
+        "demodulator_id": {"const": "blind-clipping-robust-phase-fsk"},
+        "demodulator_version": {"const": "1.1.0"},
+        "protocol_adapter_id": {"const": "hdlc-crc16-x25-ax25-ui-plain-and-g3ruh"},
+        "protocol_id": {"const": "ax25"},
+        "qualification": {"const": "blind_receiver_candidate_holdout_validation_pending"}
+      }
+    },
+    "effective_config": {"$ref": "#/$defs/effectiveConfig"},
+    "config_sha256": {"$ref": "#/$defs/sha256"},
+    "implementation": {"$ref": "#/$defs/implementation"},
+    "selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reference_free", "selector_version", "selected_windows"],
+      "properties": {
+        "reference_free": {"const": true},
+        "selector_version": {"const": "sqlite-exact-statistics-v1"},
+        "selected_windows": {"type": "array", "items": {"$ref": "#/$defs/window"}}
+      }
+    },
+    "resource_counters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "analysis_windows_scanned",
+        "analysis_window_bytes",
+        "maximum_analysis_array_bytes",
+        "selector_sqlite_cache_bytes",
+        "selector_peak_scratch_bytes",
+        "selector_estimated_scratch_bytes",
+        "selected_windows",
+        "decoded_windows",
+        "decoder_window_complex_samples",
+        "maximum_decoder_iq_array_bytes",
+        "decoder_working_set_model_bytes",
+        "timing_hypotheses_examined",
+        "protocol_candidates_attempted",
+        "native_protocol_candidates_attempted",
+        "repair_protocol_candidates_attempted",
+        "frame_detections",
+        "consensus_groups",
+        "native_trusted_groups"
+      ],
+      "properties": {
+        "analysis_windows_scanned": {"type": "integer", "minimum": 2},
+        "analysis_window_bytes": {"type": "integer", "minimum": 8},
+        "maximum_analysis_array_bytes": {"type": "integer", "minimum": 1},
+        "selector_sqlite_cache_bytes": {"type": "integer", "minimum": 1},
+        "selector_peak_scratch_bytes": {"type": "integer", "minimum": 0},
+        "selector_estimated_scratch_bytes": {"type": "integer", "minimum": 1},
+        "selected_windows": {"type": "integer", "minimum": 0},
+        "decoded_windows": {"type": "integer", "minimum": 0},
+        "decoder_window_complex_samples": {"type": "integer", "minimum": 1},
+        "maximum_decoder_iq_array_bytes": {"type": "integer", "minimum": 1},
+        "decoder_working_set_model_bytes": {"type": "integer", "minimum": 1, "maximum": 536870912},
+        "timing_hypotheses_examined": {"type": "integer", "minimum": 0},
+        "protocol_candidates_attempted": {"type": "integer", "minimum": 0},
+        "native_protocol_candidates_attempted": {"type": "integer", "minimum": 0},
+        "repair_protocol_candidates_attempted": {"type": "integer", "minimum": 0},
+        "frame_detections": {"type": "integer", "minimum": 0},
+        "consensus_groups": {"type": "integer", "minimum": 0},
+        "native_trusted_groups": {"type": "integer", "minimum": 0}
+      }
+    },
+    "candidates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["detections", "consensus_groups", "trusted", "repaired_untrusted"],
+      "properties": {
+        "detections": {"type": "array", "items": {"$ref": "#/$defs/detection"}},
+        "consensus_groups": {"type": "array", "items": {"$ref": "#/$defs/consensus"}},
+        "trusted": {"type": "array", "items": {"$ref": "#/$defs/consensus"}},
+        "repaired_untrusted": {"type": "array", "items": {"$ref": "#/$defs/consensus"}}
+      }
+    },
+    "claim_guard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["publication_superiority_established", "deployment_qualification_established", "file_api_contract_versioned", "repaired_frame_authentication"],
+      "properties": {
+        "publication_superiority_established": {"const": false},
+        "deployment_qualification_established": {"const": false},
+        "file_api_contract_versioned": {"const": true},
+        "repaired_frame_authentication": {"type": "string", "minLength": 1}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"degenerate_input": {"const": true}},
+        "required": ["degenerate_input"]
+      },
+      "then": {
+        "properties": {"degenerate_reason": {"const": "all_zero_ci16"}}
+      },
+      "else": {
+        "properties": {"degenerate_reason": {"type": "null"}}
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "effectiveConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["receiver", "expected_input_size_bytes", "expected_input_sha256", "maximum_scratch_bytes"],
+      "properties": {
+        "receiver": {"$ref": "#/$defs/receiverConfig"},
+        "expected_input_size_bytes": {"type": "integer", "minimum": 4, "multipleOf": 4},
+        "expected_input_sha256": {"$ref": "#/$defs/sha256"},
+        "maximum_scratch_bytes": {"type": "integer", "minimum": 1048576}
+      }
+    },
+    "receiverConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sample_rate_hz", "baudrate", "analysis_window_seconds", "decoder_window_seconds",
+        "decoder_window_lead_seconds", "candidate_window_limit", "window_nms_seconds",
+        "constant_radius_factors", "phase_difference_lags", "descramble_modes", "rate_errors_ppm",
+        "phase_bins", "short_search_timing_hypotheses", "deep_search_timing_hypotheses",
+        "minimum_consecutive_flags", "minimum_frame_body_bits", "short_least_reliable_symbols",
+        "short_maximum_flips", "short_maximum_attempts", "deep_least_reliable_symbols",
+        "deep_maximum_flips", "deep_maximum_attempts", "maximum_regions_per_start",
+        "repair_path_maximum_attempts", "repair_path_maximum_unique_frames",
+        "repair_region_maximum_attempts",
+        "repair_event_maximum_attempts", "repair_event_maximum_unique_frames",
+        "repair_window_maximum_events", "repair_window_maximum_attempts",
+        "repair_window_maximum_unique_frames", "event_cluster_tolerance_symbols",
+        "candidate_neighbor_radius", "error_unit_penalty", "maximum_map_seed_states",
+        "maximum_receiver_paths_per_window", "maximum_frame_detections"
+      ],
+      "properties": {
+        "sample_rate_hz": {"type": "integer", "minimum": 1},
+        "baudrate": {"type": "number", "exclusiveMinimum": 0},
+        "analysis_window_seconds": {"type": "number", "exclusiveMinimum": 0},
+        "decoder_window_seconds": {"type": "number", "exclusiveMinimum": 0},
+        "decoder_window_lead_seconds": {"type": "number", "minimum": 0},
+        "candidate_window_limit": {"type": "integer", "minimum": 1},
+        "window_nms_seconds": {"type": "number", "minimum": 0},
+        "constant_radius_factors": {"type": "array", "minItems": 1, "maxItems": 64, "items": {"type": "number", "minimum": 1, "maximum": 100}},
+        "phase_difference_lags": {"type": "array", "minItems": 1, "maxItems": 64, "items": {"type": "integer", "minimum": 1}},
+        "descramble_modes": {"type": "array", "minItems": 1, "maxItems": 2, "uniqueItems": true, "items": {"type": "boolean"}},
+        "rate_errors_ppm": {"type": "array", "minItems": 1, "maxItems": 64, "items": {"type": "number", "minimum": -500000, "maximum": 500000}},
+        "phase_bins": {"type": "integer", "minimum": 4},
+        "short_search_timing_hypotheses": {"type": "integer", "minimum": 1},
+        "deep_search_timing_hypotheses": {"type": "integer", "minimum": 1},
+        "minimum_consecutive_flags": {"type": "integer", "minimum": 2},
+        "minimum_frame_body_bits": {"type": "integer", "minimum": 1},
+        "short_least_reliable_symbols": {"const": 64},
+        "short_maximum_flips": {"const": 2},
+        "short_maximum_attempts": {"const": 20000},
+        "deep_least_reliable_symbols": {"type": "integer", "minimum": 1, "maximum": 512},
+        "deep_maximum_flips": {"type": "integer", "minimum": 0, "maximum": 16},
+        "deep_maximum_attempts": {"type": "integer", "minimum": 1, "maximum": 2000000},
+        "maximum_regions_per_start": {"type": "integer", "minimum": 1, "maximum": 64},
+        "repair_path_maximum_attempts": {"type": "integer", "minimum": 1, "maximum": 100000},
+        "repair_path_maximum_unique_frames": {"type": "integer", "minimum": 1, "maximum": 8},
+        "repair_region_maximum_attempts": {"type": "integer", "minimum": 1, "maximum": 50000},
+        "repair_event_maximum_attempts": {"type": "integer", "minimum": 1, "maximum": 400000},
+        "repair_event_maximum_unique_frames": {"type": "integer", "minimum": 1, "maximum": 8},
+        "repair_window_maximum_events": {"type": "integer", "minimum": 1, "maximum": 16},
+        "repair_window_maximum_attempts": {"type": "integer", "minimum": 1, "maximum": 1600000},
+        "repair_window_maximum_unique_frames": {"type": "integer", "minimum": 1, "maximum": 16},
+        "event_cluster_tolerance_symbols": {"type": "integer", "minimum": 1, "maximum": 16},
+        "candidate_neighbor_radius": {"type": "integer", "minimum": 0, "maximum": 2},
+        "error_unit_penalty": {"type": "number", "minimum": 0},
+        "maximum_map_seed_states": {"type": "integer", "minimum": 1, "maximum": 4096},
+        "maximum_receiver_paths_per_window": {"type": "integer", "minimum": 1, "maximum": 20000},
+        "maximum_frame_detections": {"type": "integer", "minimum": 1, "maximum": 20000}
+      }
+    },
+    "implementation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["demodulator_id", "demodulator_version", "selector_version", "source_files", "runtime"],
+      "properties": {
+        "demodulator_id": {"const": "blind-clipping-robust-phase-fsk"},
+        "demodulator_version": {"const": "1.1.0"},
+        "selector_version": {"const": "sqlite-exact-statistics-v1"},
+        "source_files": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["ax25_validation.py", "blind_phase_fsk_file.py", "camras_replay.py", "canonical.py", "clipping_robust_fsk.py", "clock_recovery.py", "crc.py", "soft_sync.py", "symbol_boundary.py"],
+          "properties": {
+            "ax25_validation.py": {"$ref": "#/$defs/sourceFile"},
+            "blind_phase_fsk_file.py": {"$ref": "#/$defs/sourceFile"},
+            "camras_replay.py": {"$ref": "#/$defs/sourceFile"},
+            "canonical.py": {"$ref": "#/$defs/sourceFile"},
+            "clipping_robust_fsk.py": {"$ref": "#/$defs/sourceFile"},
+            "clock_recovery.py": {"$ref": "#/$defs/sourceFile"},
+            "crc.py": {"$ref": "#/$defs/sourceFile"},
+            "soft_sync.py": {"$ref": "#/$defs/sourceFile"},
+            "symbol_boundary.py": {"$ref": "#/$defs/sourceFile"}
+          }
+        },
+        "runtime": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["python", "numpy", "scipy"],
+          "properties": {
+            "python": {"type": "string", "minLength": 1},
+            "numpy": {"type": "string", "minLength": 1},
+            "scipy": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    "sourceFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sha256", "size_bytes"],
+      "properties": {
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "size_bytes": {"type": "integer", "minimum": 1}
+      }
+    },
+    "window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["analysis_index", "analysis_start_seconds", "decoder_start_seconds", "mean_power", "endpoint_clip_fraction", "lag1_phase_coherence", "score"],
+      "properties": {
+        "analysis_index": {"type": "integer", "minimum": 0},
+        "analysis_start_seconds": {"type": "number", "minimum": 0},
+        "decoder_start_seconds": {"type": "number", "minimum": 0},
+        "mean_power": {"type": "number", "minimum": 0},
+        "endpoint_clip_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+        "lag1_phase_coherence": {"type": "number", "minimum": 0, "maximum": 1},
+        "score": {"type": "number", "minimum": 0}
+      }
+    },
+    "timing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rate_error_ppm", "phase_samples", "step_samples", "threshold", "score", "symbol_count"],
+      "properties": {
+        "rate_error_ppm": {"type": "number"},
+        "phase_samples": {"type": "number"},
+        "step_samples": {"type": "number"},
+        "threshold": {"type": "number"},
+        "score": {"type": "number"},
+        "symbol_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "detection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["classification", "native_trusted", "payload_hex", "payload_sha256", "fcs_hex", "frame_sha256", "validation_layers", "provenance"],
+      "properties": {
+        "classification": {"enum": ["native_trusted_uncorrected", "crc_valid_list_repaired_candidate_not_authenticated"]},
+        "native_trusted": {"type": "boolean"},
+        "payload_hex": {"type": "string", "pattern": "^(?:[0-9a-f]{2})+$"},
+        "payload_sha256": {"$ref": "#/$defs/sha256"},
+        "fcs_hex": {"type": "string", "pattern": "^[0-9a-f]{4}$"},
+        "frame_sha256": {"$ref": "#/$defs/sha256"},
+        "validation_layers": {"type": "array", "minItems": 4, "items": {"type": "string"}},
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["decoder_start_seconds", "estimated_frame_start_seconds", "constant_radius_factor", "phase_difference_lag", "g3ruh_descramble", "timing", "frame_start_symbol", "frame_stop_symbol", "flipped_symbol_indices", "flipped_symbol_reliabilities", "search_stage", "attempted_candidates"],
+          "properties": {
+            "decoder_start_seconds": {"type": "number", "minimum": 0},
+            "estimated_frame_start_seconds": {"type": "number", "minimum": 0},
+            "constant_radius_factor": {"type": "number", "minimum": 1},
+            "phase_difference_lag": {"type": "integer", "minimum": 1},
+            "g3ruh_descramble": {"type": "boolean"},
+            "timing": {"$ref": "#/$defs/timing"},
+            "frame_start_symbol": {"type": "integer", "minimum": 0},
+            "frame_stop_symbol": {"type": "integer", "minimum": 0},
+            "flipped_symbol_indices": {"type": "array", "items": {"type": "integer", "minimum": 0}},
+            "flipped_symbol_reliabilities": {"type": "array", "items": {"type": "number", "minimum": 0}},
+            "search_stage": {"type": "string", "minLength": 1},
+            "attempted_candidates": {"type": "integer", "minimum": 0}
+          }
+        }
+      }
+    },
+    "consensus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["payload_hex", "payload_sha256", "fcs_hex", "estimated_frame_start_seconds", "detection_count", "frontend_variants", "g3ruh_descramble_modes", "has_uncorrected_detection", "has_correction_consensus", "native_trusted"],
+      "properties": {
+        "payload_hex": {"type": "string", "pattern": "^(?:[0-9a-f]{2})+$"},
+        "payload_sha256": {"$ref": "#/$defs/sha256"},
+        "fcs_hex": {"type": "string", "pattern": "^[0-9a-f]{4}$"},
+        "estimated_frame_start_seconds": {"type": "number", "minimum": 0},
+        "detection_count": {"type": "integer", "minimum": 1},
+        "frontend_variants": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "prefixItems": [{"type": "number", "minimum": 1}, {"type": "integer", "minimum": 1}],
+            "items": false,
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "g3ruh_descramble_modes": {"type": "array", "minItems": 1, "maxItems": 2, "uniqueItems": true, "items": {"type": "boolean"}},
+        "has_uncorrected_detection": {"type": "boolean"},
+        "has_correction_consensus": {"type": "boolean"},
+        "native_trusted": {"type": "boolean"}
+      }
+    }
+  }
+}

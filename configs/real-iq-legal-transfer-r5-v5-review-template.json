@@ -1,0 +1,37 @@
+{
+  "schema_version": "real-iq-legal-transfer-r5-v5-review-v1",
+  "decision": "pending",
+  "reviewed_at_utc": null,
+  "reviewer": {
+    "name": "",
+    "affiliation": "",
+    "independence_statement": ""
+  },
+  "protocol": {
+    "path": "configs/real-iq-legal-transfer-r5-v5-preregistration-draft.json",
+    "sha256": "REPLACE_WITH_REVIEWED_SHA256"
+  },
+  "review_scope": [
+    "scientific_transform_contract",
+    "outcome_blindness_and_seed_provenance",
+    "bounded_memory_and_atomic_output",
+    "separate_and_combined_exposure_far",
+    "no_natural_hours_claim",
+    "no_prospective_iq_access_before_freeze",
+    "exact_runtime_and_dynamic_script_closure",
+    "bounded_process_and_parser_limits",
+    "post_81_null_validity"
+  ],
+  "attestations": {
+    "exactly_three_transforms": false,
+    "all_transforms_run_regardless_of_results": false,
+    "seed_uses_only_observation_id_and_transform": false,
+    "core_decoder_unchanged": false,
+    "prospective_iq_not_opened_during_review": false,
+    "approve_runtime_build_and_plan_freeze": false,
+    "runtime_path_mode_symlink_external_elf_closure": false,
+    "subprocess_and_parser_bounds": false,
+    "q_delay_excluded_from_far": false
+  },
+  "implementation_sha256": {}
+}

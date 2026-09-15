@@ -1,0 +1,140 @@
+{
+  "schema_version": "real-iq-legal-transfer-r5-v5-preregistration-draft-v1",
+  "status": "draft_pending_independent_review_not_frozen",
+  "classification": "informational_synthetic_negative_followup_not_identity_reanalysis",
+  "motivation": {
+    "trigger": "investigator-reported marginal R5-v4 sensitivity failure",
+    "timing": "specified before any R5-v5 transform generation or decoder exposure",
+    "interpretation": "R5-v5 is an explicitly labelled follow-up; it does not change or replace the frozen R5-v4 endpoint",
+    "outcome_independence": "all three transforms run in frozen order regardless of all R5-v5 decoder results"
+  },
+  "predecessor_metadata_only": {
+    "r5_v4_plan_path": "reports/real-iq-legal-transfer-r5-plan-v4.json",
+    "r5_v4_plan_sha256": "3b00af14c5f62801c69f5041ec668a6590bcf2e825edfe3c2632b83bf54fe435",
+    "r5_v4_independent_audit_path": "reports/real-iq-legal-transfer-r5-v4-independent-audit.json",
+    "r5_v4_independent_audit_sha256": "aaf2db345828250197aa3469b2d8f4a9d21a13889a5d77685fa4eaf178cdf4fc",
+    "cohort_rows": 27,
+    "prospective_iq_opened_to_prepare_this_draft": false
+  },
+  "transforms": [
+    "block-fft-random-phase",
+    "circular-q-delay",
+    "block-phase-increment-permutation"
+  ],
+  "transform_contract": {
+    "implementation_version": "real-iq-legal-transfer-r5-v5-null-v1",
+    "input_format": "little-endian interleaved signed-int16 I,Q",
+    "output_format": "little-endian interleaved signed-int16 I,Q with identical byte length",
+    "block_complex_samples": 65536,
+    "maximum_block_complex_samples": 262144,
+    "seed_domain": "real-iq-legal-transfer-r5-v5-seed-v1",
+    "seed_fields_exact": ["observation_id", "transform"],
+    "seed_forbidden_fields": ["decoder_output", "result", "ground_truth", "input_sha256"],
+    "block-fft-random-phase": {
+      "operation": "independent uniform FFT-bin phases per block with original bin magnitudes",
+      "preservation": "local block FFT magnitude and Parseval power before one deterministic anti-clipping gain and CI16 rounding",
+      "telemetry_destruction_target": "ordered time-domain symbol structure encoded by cross-bin phase",
+      "anti_clipping_target_component_magnitude": 32766
+    },
+    "circular-q-delay": {
+      "operation": "global positive circular delay of Q relative to unchanged I",
+      "delay_formula": "ceil(N/8) + seed mod (N - 2*ceil(N/8) + 1)",
+      "preservation": "exact ordered I values and exact Q marginal multiset in CI16",
+      "telemetry_destruction_target": "simultaneous I/Q trajectory while retaining realistic component marginals"
+    },
+    "block-phase-increment-permutation": {
+      "operation": "PCG64 permutation of wrapped adjacent phase increments within each block, retaining first phase",
+      "preservation": "sample-index amplitude-envelope shape and exact within-block increment multiset before deterministic anti-clipping gain and CI16 rounding",
+      "telemetry_destruction_target": "ordered differential-phase trajectory while retaining envelope and increment distribution"
+    }
+  },
+  "execution_policy": {
+    "complete_cohort_for_each_transform": true,
+    "all_transforms_run_regardless_of_results": true,
+    "decoder_outputs_not_parsed_by_runner": true,
+    "permitted_early_stop": "operational integrity failure only; resume must complete the frozen schedule",
+    "single_ephemeral_null_at_a_time": true,
+    "core_decoder_changes_permitted": false,
+    "prospective_iq_access_before_review_and_freeze_permitted": false
+  },
+  "process_bounds": {
+    "generator_timeout_seconds": 1800.0,
+    "receiver_timeout_seconds": 3600.0,
+    "stdout_limit_bytes_per_process": 1048576,
+    "stderr_limit_bytes_per_process": 4194304,
+    "baseline_artifact_limit_bytes": 67108864,
+    "native_artifact_limit_bytes": 67108864,
+    "strict_parser_max_records_per_artifact": 100000,
+    "strict_parser_max_frame_bytes": 65536,
+    "audit_read_chunk_bytes": 65536,
+    "maximum_failure_receipts_per_pair": 8,
+    "failure_receipt_artifact_hash_prefix_limit_bytes": 1048576,
+    "process_group_killed_on_any_limit": true,
+    "partial_artifacts_removed_after_hash_bound_failure_receipt": true
+  },
+  "post_81_null_validity": {
+    "timing": "evaluated independently only after all 81 frozen pairs complete",
+    "all_attempted_exposure_and_events_always_reported": true,
+    "positive_classification": "LEAKAGE_OR_FALSE_ACCEPT",
+    "failed_transform_excluded_from_qualified_far": true,
+    "exclusion_granularity": "entire transform across both receivers; never individual result-selected pairs",
+    "block-fft-random-phase": {
+      "far_eligible_in_principle": true,
+      "maximum_each_pair_normalized_complex_correlation": 0.1,
+      "maximum_fft_magnitude_relative_error_before_gain": 1e-12,
+      "maximum_parseval_power_relative_error_before_gain": 1e-12
+    },
+    "block-phase-increment-permutation": {
+      "far_eligible_in_principle": true,
+      "maximum_each_pair_normalized_complex_correlation": 0.1,
+      "maximum_aggregate_fixed_increment_index_fraction": 0.02,
+      "minimum_aggregate_mean_absolute_increment_displacement_fraction": 0.2
+    },
+    "circular-q-delay": {
+      "far_eligible_in_principle": false,
+      "classification": "DIAGNOSTIC_IQ_COUPLING_ONLY_I_CHANNEL_EXACTLY_PRESERVED",
+      "reason": "an I-only decoder can retain telemetry because I is byte-exact",
+      "maximum_each_pair_centered_q_correlation": 0.1,
+      "minimum_circular_distance_fraction": 0.125,
+      "far": "not_applicable_even_if_no_positive_is_observed"
+    },
+    "qualified_combined_far_rule": "combine only whole transforms eligible in principle and passing every independent destruction threshold",
+    "no_optional_stopping": "qualification occurs after the complete fixed schedule and never changes which pairs run"
+  },
+  "reporting": {
+    "strict_positive_definition": "CRC-X25-valid and strict AX.25-valid frame",
+    "strict_positive_classification_before_null_qualification": "LEAKAGE_OR_FALSE_ACCEPT",
+    "attempted_descriptive_dimensions": [
+      "each transform x baseline receiver",
+      "each transform x native receiver",
+      "each transform x both receivers combined",
+      "all transforms x each receiver",
+      "all transforms x both receivers combined"
+    ],
+    "qualified_far_dimensions": [
+      "each eligible passing whole transform x baseline receiver",
+      "each eligible passing whole transform x native receiver",
+      "each eligible passing whole transform x both receivers combined",
+      "all eligible passing whole transforms x each receiver",
+      "all eligible passing whole transforms x both receivers combined"
+    ],
+    "exposure_units": "decoder-exposure system-hours",
+    "far_outputs": ["events", "events_per_decoder_hour", "one_sided_exact_poisson_upper95_per_decoder_hour"],
+    "natural_negative_signal_hours_claimed": false,
+    "unique_signal_hours_claimed": false
+  },
+  "expected_exposure_from_frozen_r5_v4_cohort": {
+    "seconds_per_transform_per_receiver": 15380.62290625,
+    "hours_per_transform_per_receiver": 4.2723952517361115,
+    "hours_per_transform_both_receivers": 8.544790503472223,
+    "hours_all_three_per_receiver": 12.817185755208335,
+    "hours_all_three_both_receivers": 25.63437151041667,
+    "natural_negative_signal_hours_claimed": false
+  },
+  "review_gate": {
+    "required_before_runtime_build": true,
+    "required_before_plan_freeze": true,
+    "required_before_campaign_run": true,
+    "template_path": "configs/real-iq-legal-transfer-r5-v5-review-template.json"
+  }
+}

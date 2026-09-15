@@ -1,0 +1,212 @@
+schema_version: a05-clock-recovery-v1
+campaign_id: a05-clock-recovery-calibration-12511021
+status: preregistered_not_executed
+observation_id: 12511021
+offline: true
+external_contact: false
+download_iq: false
+
+input:
+  path: work/camras/12511021/iq_12511021.raw
+  sha256: a05d8d07e04b240ca7856bb747f8de8b7d21ac5c82a17e78acc91a5014021750
+  sample_rate_hz: 57600
+  sample_format: ci16_native_endian_iq
+  iq_scale: 16768
+  time_basis: seconds_and_half_open_sample_indices_from_iq_file_start
+
+fixed_receiver_contract:
+  baud: 9600
+  satnogs_decimation: 6
+  channel_decimation: 3
+  clock_input_rate_hz: 19200
+  samples_per_symbol_nominal: 2.0
+  component_order: iq
+  symbol_inversion: false
+  framing: ax25
+  nrzi: true
+  descrambler: g3ruh
+  g3ruh_mask_hex: '0x21'
+  g3ruh_seed: 0
+  g3ruh_order: 16
+  crc: crc16_ax25
+  decoder_source_version: gr-satnogs-2.3.4.0
+  max_frame_length_bytes: 1024
+  one_bit_error_correction: false
+  scheduler: TPB
+  max_noutput_items: 8192
+
+data_split:
+  leakage_rule: validation samples and acceptance metrics remain unread in this campaign until candidate hashes are frozen; P-POS window locations were derived earlier from reference correlation and are not position-blind
+  p_pos_positioning_provenance:
+    status: derived_from_prior_reference_correlation
+    position_blind: false
+    leakage_for_window_location: true
+    source: reports/symbol-boundary-followup.json
+    source_sha256: 6434d1a827ee3bfe642709b3d6ba47a6528370acfa29599be4a0d027843b7925
+    observed_calibration_event_seconds_range: [96.77208333333333, 97.09697916666667]
+    observed_validation_event_seconds_range: [335.393125, 335.394375]
+    claim_limit: window placement is a preregistered engineering aid and cannot count as blind positive evidence
+  calibration:
+    interval_semantics: half_open
+    p_pos_timing_window: true
+    read_seconds: [91.0, 103.0]
+    read_samples: [5241600, 5932800]
+    score_seconds: [91.0, 103.0]
+    score_samples: [5241600, 5932800]
+    references:
+      - path: work/camras/12511021/demoddata-09-09-36.bin
+        sha256: 666cfbf0d38ebd7aae3639bf81907b8f46bbcf0653df8d48f7e49122e200db4e
+      - path: work/camras/12511021/demoddata-09-09-37.bin
+        sha256: 9286c52d57a6a3a3c9bc4716348639c6f306c8466ecf7712859b57fd02e09680
+      - path: work/camras/12511021/demoddata-09-09-37-1.bin
+        sha256: dba6a7c96660f16e458891120c1101480801f7020d12c420064faf90edc1921c
+  validation_holdout:
+    interval_semantics: half_open
+    p_pos_timing_window: true
+    outcome_blind_until_freeze: true
+    position_blind: false
+    read_seconds: [329.0, 341.0]
+    read_samples: [18950400, 19641600]
+    score_seconds: [329.0, 341.0]
+    score_samples: [18950400, 19641600]
+    references:
+      - path: work/camras/12511021/demoddata-09-13-35.bin
+        sha256: 09752c51baaae3c432b131d7a6acb82c911c3e2f7404c9e9f0682277175131f2
+  event_free_negative_windows:
+    - id: negative_early
+      read_seconds: [58.0, 80.0]
+      read_samples: [3340800, 4608000]
+      score_seconds: [64.0, 75.0]
+      score_samples: [3686400, 4320000]
+    - id: negative_late
+      read_seconds: [458.0, 480.0]
+      read_samples: [26380800, 27648000]
+      score_seconds: [464.0, 475.0]
+      score_samples: [26726400, 27360000]
+
+clock_recovery:
+  implementation_family: mueller_and_muller
+  baseline:
+    omega: 2.0
+    mu: 0.5
+    gain_mu: 0.0625
+    gain_omega: 0.06283185307179587
+    omega_relative_limit: 0.01
+  design: one_axis_at_a_time_around_official_baseline
+  axes:
+    omega: [1.98, 1.99, 1.995, 2.0, 2.005, 2.01, 2.02]
+    mu: [0.0, 0.25, 0.5, 0.75]
+    gain_mu: [0.03125, 0.0625, 0.125]
+    gain_omega: [0.031415926535897934, 0.06283185307179587, 0.12566370614359174]
+    omega_relative_limit: [0.005, 0.01, 0.02]
+  unique_candidate_count: 16
+  prohibit_cartesian_expansion: true
+  prohibit_post_validation_axis_changes: true
+
+candidate_selection:
+  calibration_only: true
+  calibration_repeats: 2
+  promote_count: 4
+  always_include_baseline_in_validation: true
+  maximum_validation_candidates_including_baseline: 5
+  rank_lexicographically:
+    - exact_crc_valid_reference_matches_desc
+    - complete_crc_valid_frame_count_desc
+    - median_lsb_first_reference_correlation_desc
+    - lsb_over_msb_correlation_advantage_desc
+    - canonical_config_sha256_asc
+  correlation_is_diagnostic_only: true
+  freeze_artifact_required:
+    fields: [ordered_candidate_hashes, source_hashes, axis_definition_hash, calibration_metrics_hash]
+    written_before_validation: true
+
+acceptance_contract:
+  comparison_unit: complete_ax25_frame_after_validated_fcs_removal
+  require_crc_valid_before_removing_exactly_two_fcs_bytes: true
+  require_equal_length: true
+  require_byte_identical: true
+  require_match_to_reference_assigned_to_same_split: true
+  partial_matches_accepted: 0
+  prefix_matches_accepted: false
+  suffix_matches_accepted: false
+  substring_matches_accepted: false
+  truncated_frames_accepted: false
+  unconditional_fcs_removal: false
+  manual_bit_correction: forbidden
+  manual_alignment_after_freeze: forbidden
+  correlation_can_establish_success: false
+
+controls:
+  positive_synthetic:
+    repeats: 2
+    expected: exactly_one_crc_valid_byte_identical_frame_each_repeat
+  negative_synthetic:
+    repeats_per_control: 2
+    controls: [descrambler_disabled, msb_first_byte_order, single_bit_corruption_without_fcs_recalculation]
+    expected_exact_matches: 0
+  validation_negatives:
+    repeats_per_control: 2
+    controls: [descrambler_disabled, msb_first_byte_order, event_free_time_window]
+    expected_exact_matches: 0
+
+repeatability_gate:
+  validation_repeats: 3
+  require_each_repeat_has_validation_match: true
+  require_ordered_complete_frame_sequence_equal: true
+  require_exact_match_count_equal: true
+  require_accepted_frame_sha256_sequence_equal: true
+  sliced_stream_sha256_required_equal: false
+  sliced_stream_reason: TPB scheduling already produced nondeterministic intermediate M-and-M streams
+  final_full_record_repeats: 3
+  require_full_record_ordered_frame_sequence_equal: true
+
+stages:
+  - id: control_gate
+    maximum_attempts: 8
+  - id: calibration_oat
+    maximum_attempts: 32
+  - id: locked_validation
+    maximum_attempts: 15
+  - id: validation_negative_controls
+    maximum_attempts: 6
+  - id: winner_full_record_confirmation
+    maximum_attempts: 3
+
+stop_rules:
+  - stop_invalid_harness_if_positive_control_fails_or_any_synthetic_negative_exactly_matches
+  - stop_after_calibration_and_freeze_exactly_four_promoted_hashes_plus_baseline
+  - stop_fail_if_no_locked_candidate_passes_all_three_validation_repeats
+  - stop_fail_if_any_validation_negative_control_exactly_matches
+  - stop_success_after_one_candidate_passes_validation_and_three_full_record_repeats
+  - stop_at_64_attempts_with_no_axis_expansion_or_rescue_grid
+  - stop_resource_if_projected_total_exceeds_4800_cpu_seconds_or_268435456_disk_bytes_or_1800_wall_seconds
+  - validation_failure_must_not_trigger_retuning
+
+resource_budget:
+  available_vcpu: 4
+  max_parallel_workers: 3
+  max_attempts: 64
+  assumed_cpu_seconds_per_attempt: 60
+  assumed_disk_bytes_per_attempt: 2097152
+  estimated_cpu_seconds: 3840
+  estimated_cpu_hours: 1.0666666666666667
+  estimated_disk_bytes: 134217728
+  ideal_wall_seconds_at_3_workers: 1280
+  wall_budget_seconds: 1800
+  max_cpu_seconds: 4800
+  max_disk_bytes: 268435456
+  fits_4_vcpu: true
+
+evidence_reports:
+  - path: reports/camras-replay-followup.json
+    sha256: 47deb9f31d229ab3336f10c50a6e4d42e1a3a9c1845740cacf72988f213a7880
+  - path: reports/historical-c0-reconstruction-followup.json
+    sha256: 2617093806146a9f51a4a1e70a8c541311e86036607c1cef561a66c8b0ac459f
+  - path: reports/iq-scale-16768-followup.json
+    sha256: 7ceaf97c93dd812078fd083b8ce08ef36395147318e9f3c3ec68cf3f496b1a1c
+  - path: reports/symbol-boundary-followup.json
+    sha256: 6434d1a827ee3bfe642709b3d6ba47a6528370acfa29599be4a0d027843b7925
+  - path: reports/exact-gr-satnogs-runtime.json
+    sha256: f2565026befe8b49095d44b7f1b304d7f3047208e446a2137a12040c0b45275a
+  - path: reports/a4-sweep-plan.json
+    sha256: 6cdfe8bc94936c3d8219d4b2481febcd1a01b17b96e6ab09ced23141fedb4698

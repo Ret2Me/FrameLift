@@ -1,0 +1,220 @@
+              WA8LMF TNC Test CD Results
+                a.k.a. Battle of the TNCs
+                                 Compiled by WB2OSZ, September 2015
+
+                                          Last update, January 2019
+
+
+
+
+It’s not that hard to build something that receives perfect APRS / AX.25 Packet Radio signals. Building
+something that works well, with all of the less-than-ideal signals out there, takes some effort.
+
+How can we compare how well different TNCs perform under real world conditions?
+
+The de facto standard of measurement is the number of packets decoded from WA8LMF’s TNC Test CD
+obtained from http://wa8lmf.net/TNCtest/index.htm.
+
+Many have published the number of packets they have been able to decode from this test. Here they
+are, all gathered in one place, for your reading pleasure.
+
+
+
+WARNING: Do not take these numbers too seriously.
+
+
+
+There are a few things to keep in mind:
+
+    1. These tests were performed by different people, different times, different places, under
+       different conditions.
+
+    2. Most don’t mention which track was used. Track 1 is easier. Track 2 is more difficult but
+       closer to typical real world conditions. Most people are probably using the speaker output.
+       For an explanation, see https://github.com/wb2osz/direwolf/raw/master/doc/A-Better-APRS-
+       Packet-Demodulator-Part-1-1200-baud.pdf
+
+    3. Some information might be outdated. Newer versions of the same thing might be better.
+
+    4. Small differences are not significant. It all depends on the mix of frames in the test. If you took
+       another similar collection another place, another time, the rankings might be a little different.
+       Even under scientifically controlled, repeatable conditions, another 10 packets is only a 1%
+       increase.
+Reference                           TNC                          Unknown     Track   Track
+                                                                  Track        1       2
+KI4MCW                              Arduino Duemilanove (328p)     871
+https://sites.google.com/site/ki4   TNC-X                          818
+mcw/Home/arduino-tnc                Argent Data OpenTracker 1+     729
+                                    AGWPE 2005.127                 500
+                                    Linux PC soundmodem            412
+                                    Linux PC multimon              130
+http://www.trinityos.com/HAM/       Soundmodem for Linux                             450
+CentosDigitalModes/hampacketiz
+ing-centos.html#6.softtnc
+N4MSJ                            KPC-3                             986
+http://groups.yahoo.com/group/t MFJ-1274                           883
+nc-x/message/542                 AEA PK90                          728
+                                 Early Beta TT4                    920
+4X6IZ                            AX25 Java Soundcard Modem                   966     964
+http://www.tau.ac.il/~stoledo/Bi
+b/Pubs/QEX-JulAug-2012.pdf
+N1VG                             Tracker 2                         910
+http://www.tapr.org/pipermail/a KPC-3 (non-plus)                   967
+prssig/2007-May/019449.html      uTNT                              970
+                                 Tracker 2 with TCM3105            991
+                                 AEA PK-90                         728
+                                 MFJ-1274                          883
+Microsat                         WX3in1 Plus 2.0                             960     981
+http://microsat.com.pl/product_i
+nfo.php?products_id=100
+http://www.rpc-
+electronics.com/microsat-
+wx3in1p2.php
+UZ7HO                            UZ7HO Sound-Modem 0.83b           1021
+http://www.pe0sat.vgnet.nl/tag/
+uz7ho/
+OZ7HVO & OZ1EKD                  ARM32M4F TNC platform           994 - 998
+http://www.kissoz.dk/
+WB2OSZ                           Dire Wolf version 1.2                       1011    1004
+https://github.com/wb2osz/dire   Dire Wolf version 1.5                       1012    1008
+wolf/blob/master/doc/A-Better-
+APRS-Packet-Demodulator-Part-
+1-1200-baud.pdf
+CT1EIZ                           APRSpro v2.1 (Note 1)                       1012    958
+https://www.facebook.com/aprs PocketPacket v2.2                              964      1
+pro/posts/601800476638754        KPC3 (Flawed methodology)                   1043    942
+http://vapn.org/design/scs-      Dire Wolf 1.2                               1010    999
+tracker-dsp-tnc-1200-baud.html   SCS Tracker DSP TNC 1.5s                    988     943
+DrYerzinia                       BluetoothLE APRS TNC                        958     641
+https://hackaday.io/project/2865
+/logs
+markqvist                            MicroModem                                      905
+ http://unsigned.io/the-new-
+micromodem/
+WB2OSZ                               KPC-3 plus (notes below)                       989        925
+                                     SoundModem by UZ7HO, 0.97b                     1027       1022
+                                     AGWPE 415.2013                                 956        513
+http://tarpn.net/t/nino-             NinoTNC A2                              940
+tnc/n9600a/n9600a_info.html
+
+
+Note 1: APRSpro uses demodulator from Dire Wolf.
+
+
+
+
+My Test Conditions for Dire Wolf
+
+Using the default demodulator, currently “E+”. “Fix bits” option is turned off.
+
+
+
+
+My Test Conditions for KPC-3 plus
+
+Using audio out from headphone jack:
+
+       Track 1 has consistent results across a range of volume settings.
+       Track 2 needs much higher volume for good results.
+
+                Volume             Track 1      Track 2
+                20                 989          261
+                40                 986          544
+                60                              871
+                70                 987          915
+                80                              913
+                90                              925
+                100                982          921
+
+
+Unfortunately, there is not a simple way to know if your radio volume is anywhere near the optimum
+level.
+
+There was a reported number of 1043 by someone else. That number is mighty suspicious. What could
+explain this? Monitor mode looks like this:
+        KD6UZM-15>S3UWTS,WB6JAR-10,N6EX-1*: <UI>:
+        `-)l v\":r}
+        N6QFD-9>GPSLJ,N6EX-5*: <UI>:
+        $GPRMC,013714,A,3408.6360,N,11812.0716,W,0.0,88.1,231105,13.5,E,D*09
+        N6EX-3>APJI23,N6EX-4,SOCAL1-1: <UI>:
+        }W6AHM>APRS,TCPIP,N6EX-
+        3*:@230135z3350.28N/11818.85W_269/010g010t065r000P000p000h64b10155v6
+        N6EX-3>APJI23,N6EX-4*,SOCAL1-1: <UI>:
+        }W6AHM>APRS,TCPIP,N6EX-
+        3*:@230135z3350.28N/11818.85W_269/010g010t065r000P000p000h64b10155v6
+
+
+Notice how there are two lines per frame. I just counted the lines contaiing "<UI>".
+
+When using matching for something looking like source>destination, for the first test case, I ended up
+with 1041. This is wrong. Some information parts, including third party traffic, match this pattern. My
+1041 is essentially the same as 1043 reported by someone else.
+
+I believe that person's counting methodology was flawed.
+
+
+
+
+My Test Conditions for SoundModem by UZ7HO
+
+Version 0.97b
+
+All default settings for “AFSK AX.25 1200bd”. Bits Recovery = NONE.
+
+Used a virtual audio cable, skipping the analog audio step. This avoids adding any additional distortion.
+
+
+
+
+My Test Conditions for AGWPE,
+
+Norton anti-virus insisted on removing it.
+
+        “Threat type: Insight Network Threat. There are many indications that this file is untrustworthy
+        and therefore not safe.”
+
+After configuring Norton to exclude that directory, I was able to start it up. After picking Properties,
+then New Port, to configure a TNC, I got
+The second attempt was successful. Picked soundcard and SinglePort.
+
+Used a virtual audio cable, skipping the analog audio step. Exactly the same way as with UZ7HO.
+
+The logging feature of APRSISCE/32 was used to count number of packets received.
+
+956 for Track 1 is respectable.
+
+Track 2 is a disaster at 513. The earlier report of 500 is close.
+Conclusions
+
+If we separate the numbers into 3 groups a very interesting pattern emerges.
+
+
+
+
+      Traditional TNCs with hardware modems.
+
+               700’s to high 900’s
+
+      First generation soundcard modems.
+
+               500 and below.
+
+               These gave the software approach
+               a bad reputation. You will still find
+               outdated articles that insist you
+               NEED to buy a hardware TNC for
+               best results.
+
+      Second generation soundcard modems.
+
+               Upper part of 900 and over 1000.
+
+
+
+
+A couple decades ago, you needed specialized hardware for the best results.
+
+Those days are gone.
+
+Some of the software TNCs are now leading the pack, leaving the modem chips behind.
+

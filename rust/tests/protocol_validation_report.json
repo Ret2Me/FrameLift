@@ -1,0 +1,44 @@
+{
+  "schema": "rust-protocol-migration-validation-v1",
+  "recorded_utc": "2026-09-08T10:53:43Z",
+  "test_command": "cargo test --lib protocol",
+  "rust_unit_tests_passed": 16,
+  "rust_unit_tests_failed": 0,
+  "ax25_python_differential": {
+    "independent_python_adapters_agreed_before_fixture_recording": [
+      "FastAx25ProtocolDecoder", "Ax25ProtocolDecoder"
+    ],
+    "streams": 103,
+    "g3ruh_mode_orders_per_stream": 5,
+    "ordered_full_fcs_frame_comparisons": 515,
+    "mismatches": 0,
+    "fixture_sha256": "d7a1230a9213b32e7de326ae40d8ec2218bedd73b04c26b03a919dcb82a5daa3",
+    "seed": 20260908031
+  },
+  "ccsds_python_differential": {
+    "tm_cases": 384,
+    "space_packet_cases": 320,
+    "compared": "Complete serialized parsed fields, acceptance, rejection reasons and validation layers",
+    "mismatches": 0,
+    "fixture_sha256": "0fbf4a19d9e5900d354b3741d55c12324ce7cbaa124e88923d7f5fd6feb462ad",
+    "seed": 20260908032
+  },
+  "python_source_sha256": {
+    "src/telemetry_yield/fast_ax25.py": "bf8de20ce21b4d03b5030fbe2f4582fd45a070ddc41777356988d6e4fba1608b",
+    "src/telemetry_yield/generic_receiver.py": "f7e37a2191cb576f1963c4f8b2ccc9f353c82cbc4a0e28b3b6798de4f5b074ae",
+    "src/telemetry_yield/ccsds_tm_validation.py": "8237a73323d9765e9e96feee319110c5a0fea0d014c5a0b37e27efe9448ed0eb",
+    "src/telemetry_yield/ccsds_validation.py": "17149cc6bd5b209fe64660da5eb1e41c64d055e378a19541e46d5422d2c07384"
+  },
+  "rust_source_sha256": {
+    "rust/protocol.rs": "6eab9ffb68d94d4ea4f3aec518816ec1cad5d038350c3d1bf26a81694cd8a100",
+    "rust/tests/protocol_tests.rs": "f4a74c70d499e7ccc8796d8f861f1ecf5ef156399e26246f300473d94c487026"
+  },
+  "python_required_to_run_rust_or_replay_fixtures": false,
+  "limitations": [
+    "Protocol-only tests do not establish end-to-end DSP or campaign equivalence.",
+    "Structural headers and syncword similarity never replace an explicit integrity layer.",
+    "TM without FECF requires a named caller integrity validator; a bad configured FECF cannot be overridden.",
+    "This module supplies transform hooks, not automatic mission FEC or derandomization.",
+    "AOS and USLP are not supported; neither was supplied by the migrated Python adapters."
+  ]
+}

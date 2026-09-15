@@ -1,0 +1,15 @@
+[Unit]
+Description=Resume telemetry-yield publication v4 after API contact is supplied
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/ubuntu/telemetry-yield
+# Missing contact is an intentional no-op. Once the dated prospective
+# configuration exists, the builder has crossed the one-way campaign
+# registration boundary and polling must stop.
+ExecCondition=/usr/bin/test -s /home/ubuntu/telemetry-yield/work/operations/publication-api-contact.json
+ExecCondition=/usr/bin/test ! -s /home/ubuntu/telemetry-yield/work/prospective-v4g/config.json
+ExecStart=/usr/bin/systemctl --user start telemetry-yield-publication-v4.service
+

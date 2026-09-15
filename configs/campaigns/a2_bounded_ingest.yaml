@@ -1,0 +1,34 @@
+campaign_id: a2-bounded-ingest
+offline: true
+cached_metadata_only: true
+download_iq: false
+max_download_bytes: 0
+max_recordings: 2
+max_concurrency: 2
+publication: false
+external_contact: false
+require_local_content_sha256: true
+require_metadata_sha256: true
+conversion_contract:
+  required_fields:
+    - sample_rate_hz
+    - doppler_state
+    - spectral_sign
+    - time_basis
+  allowed_doppler_states: [pre_correction, post_correction]
+  allowed_spectral_signs: [-1, 1]
+storage_preflight:
+  required: true
+  reserve_bytes: 10000000000
+event_grouping:
+  time_tolerance_seconds: 30
+  require_norad_id: true
+  require_transmitter_uuid: true
+  require_doppler_or_geometric_evidence: true
+  payload_hash_agreement: optional_but_must_not_conflict_when_present
+  reject_time_overlap_only: true
+source_snapshots:
+  - reports/camras-real-iq-pilot.json
+  - reports/camras-satnogs-join-pilot.json
+  - reports/camras-index-summary.json
+  - manifests/camras-index-2026-08-31.html

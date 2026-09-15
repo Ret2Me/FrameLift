@@ -1,0 +1,2918 @@
+{
+  "schema": "python-raw-manifest-oracle-v1",
+  "cases": [
+    {
+      "name": "base",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": true,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_source_sha256",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_source_size_bytes",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa"
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": null
+    },
+    {
+      "name": "missing_encoding_dtype",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": null
+    },
+    {
+      "name": "missing_encoding_interleaving",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_encoding_q_sign",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_encoding_scalar_zero",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_encoding_iq_scale",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_encoding_byte_offset",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": null
+    },
+    {
+      "name": "missing_encoding_complex_sample_count",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": null
+    },
+    {
+      "name": "missing_encoding_evidence",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_capture_sample_rate_hz",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_capture_center_frequency_hz",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_capture_start_utc",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_capture_clock_reference",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_capture_evidence",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_doppler_state",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_doppler_evidence",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_satellite_norad_id",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_satellite_evidence",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_signal_modulation",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_signal_baud",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_signal_evidence",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_clipping_lower_endpoint",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": null
+    },
+    {
+      "name": "missing_clipping_upper_endpoint",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": null
+    },
+    {
+      "name": "missing_clipping_endpoint_source",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_clipping_max_endpoint_fraction_for_unclipped_claim",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_clipping_if_exceeded",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "missing_clipping_ab",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab"
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "int8",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "8b85b6664d207e7e0b0a66673be449b7a91052f1dca43db799139795450ca95f",
+          "size_bytes": 7
+        },
+        "encoding": {
+          "dtype": "int8",
+          "interleaving": "qi",
+          "q_sign": -1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 3,
+          "complex_sample_count": 2,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -128,
+          "upper_endpoint": 127,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "68647202030405",
+      "ready_for_decode": true,
+      "clipping": {
+        "scalar_count": 4,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "uint8",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "8b85b6664d207e7e0b0a66673be449b7a91052f1dca43db799139795450ca95f",
+          "size_bytes": 7
+        },
+        "encoding": {
+          "dtype": "uint8",
+          "interleaving": "qi",
+          "q_sign": -1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 3,
+          "complex_sample_count": 2,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": 0,
+          "upper_endpoint": 255,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "68647202030405",
+      "ready_for_decode": true,
+      "clipping": {
+        "scalar_count": 4,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "int16_le",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "292491494b8251390ee43ead50408558a62b80101e9e63accf05f3d80d3ba3f6",
+          "size_bytes": 11
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "qi",
+          "q_sign": -1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 3,
+          "complex_sample_count": 2,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "6864720200030004000500",
+      "ready_for_decode": true,
+      "clipping": {
+        "scalar_count": 4,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "int16_be",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "356d22c8cedf9c70629ae5088a099b789a9937df141fcfdde5c8e8ee55c2b123",
+          "size_bytes": 11
+        },
+        "encoding": {
+          "dtype": "int16_be",
+          "interleaving": "qi",
+          "q_sign": -1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 3,
+          "complex_sample_count": 2,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "6864720002000300040005",
+      "ready_for_decode": true,
+      "clipping": {
+        "scalar_count": 4,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "float32_le",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "edb0b7e6ee925dc95d5135219d1e9b64d43e95bd5c656e6a0f32034245b0ee32",
+          "size_bytes": 19
+        },
+        "encoding": {
+          "dtype": "float32_le",
+          "interleaving": "qi",
+          "q_sign": -1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 3,
+          "complex_sample_count": 2,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -1,
+          "upper_endpoint": 1,
+          "endpoint_source": "operator endpoints",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "6864720000004000004040000080400000a040",
+      "ready_for_decode": true,
+      "clipping": {
+        "scalar_count": 4,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "float32_be",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "91e33b9eae4bf96ba8bca5190b294a110c296f3f8dfd63c37f84a2357a01ba4c",
+          "size_bytes": 19
+        },
+        "encoding": {
+          "dtype": "float32_be",
+          "interleaving": "qi",
+          "q_sign": -1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 3,
+          "complex_sample_count": 2,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -1,
+          "upper_endpoint": 1,
+          "endpoint_source": "operator endpoints",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "68647240000000404000004080000040a00000",
+      "ready_for_decode": true,
+      "clipping": {
+        "scalar_count": 4,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "complex64_le",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "edb0b7e6ee925dc95d5135219d1e9b64d43e95bd5c656e6a0f32034245b0ee32",
+          "size_bytes": 19
+        },
+        "encoding": {
+          "dtype": "complex64_le",
+          "interleaving": "native_complex",
+          "q_sign": -1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 3,
+          "complex_sample_count": 2,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -1,
+          "upper_endpoint": 1,
+          "endpoint_source": "operator endpoints",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "6864720000004000004040000080400000a040",
+      "ready_for_decode": true,
+      "clipping": {
+        "scalar_count": 4,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "complex64_be",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "91e33b9eae4bf96ba8bca5190b294a110c296f3f8dfd63c37f84a2357a01ba4c",
+          "size_bytes": 19
+        },
+        "encoding": {
+          "dtype": "complex64_be",
+          "interleaving": "native_complex",
+          "q_sign": -1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 3,
+          "complex_sample_count": 2,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -1,
+          "upper_endpoint": 1,
+          "endpoint_source": "operator endpoints",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "68647240000000404000004080000040a00000",
+      "ready_for_decode": true,
+      "clipping": {
+        "scalar_count": 4,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "sha",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "shape",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 5,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": null
+    },
+    {
+      "name": "unknown_doppler",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "unknown",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "unknown_modulation",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "unknown",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "zero_scale",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 0,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "interleaving",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "native_complex",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "extra",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17",
+          "unexpected": 1
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "no_timezone",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "19f0f1cccceeb071f374a0c311707f8ca5577e52b75550aebaf8ea56060b84aa",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "0a00f6ff1400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 0,
+        "upper_endpoint_count": 0,
+        "endpoint_fraction": 0.0,
+        "nonfinite_scalar_count": 0,
+        "status": "within_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "clipped_without_ab",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "e5f97621804f67877353fa53f01a420512a3757e5b94f73d2df302879ca5e422",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": false
+          }
+        }
+      },
+      "data_hex": "ff7f00801400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 1,
+        "upper_endpoint_count": 1,
+        "endpoint_fraction": 0.25,
+        "nonfinite_scalar_count": 0,
+        "status": "exceeds_declared_limit",
+        "ab_window_sha256": null
+      }
+    },
+    {
+      "name": "clipped_with_identical_ab",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "e5f97621804f67877353fa53f01a420512a3757e5b94f73d2df302879ca5e422",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": true,
+            "input_sha256_a": "e5f97621804f67877353fa53f01a420512a3757e5b94f73d2df302879ca5e422",
+            "input_sha256_b": "e5f97621804f67877353fa53f01a420512a3757e5b94f73d2df302879ca5e422",
+            "window_start_complex_sample": 0,
+            "window_complex_samples": 4,
+            "window_sha256_a": "e5f97621804f67877353fa53f01a420512a3757e5b94f73d2df302879ca5e422",
+            "window_sha256_b": "e5f97621804f67877353fa53f01a420512a3757e5b94f73d2df302879ca5e422",
+            "branch_a": "identity",
+            "branch_b": "fixture_preprocess",
+            "branch_b_config_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "shared_downstream_config_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "acceptance_rule": "frozen fixture comparison"
+          }
+        }
+      },
+      "data_hex": "ff7f00801400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": true,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 1,
+        "upper_endpoint_count": 1,
+        "endpoint_fraction": 0.25,
+        "nonfinite_scalar_count": 0,
+        "status": "exceeds_declared_limit",
+        "ab_window_sha256": "e5f97621804f67877353fa53f01a420512a3757e5b94f73d2df302879ca5e422"
+      }
+    },
+    {
+      "name": "ab_wrong_window_hash",
+      "manifest": {
+        "schema_version": "raw-iq-input-v1",
+        "source": {
+          "path": "capture.raw",
+          "sha256": "e5f97621804f67877353fa53f01a420512a3757e5b94f73d2df302879ca5e422",
+          "size_bytes": 16
+        },
+        "encoding": {
+          "dtype": "int16_le",
+          "interleaving": "iq",
+          "q_sign": 1,
+          "scalar_zero": 0,
+          "iq_scale": 32768,
+          "byte_offset": 0,
+          "complex_sample_count": 4,
+          "evidence": "recorder format declaration and byte-level probe"
+        },
+        "capture": {
+          "sample_rate_hz": 57600,
+          "center_frequency_hz": 437500000,
+          "start_utc": "2026-09-01T12:00:00Z",
+          "clock_reference": "GPS-disciplined station clock",
+          "evidence": "operator capture log row 17"
+        },
+        "doppler": {
+          "state": "pre_correction",
+          "evidence": "recorder tap before Doppler rotator"
+        },
+        "satellite": {
+          "norad_id": 99999,
+          "evidence": "scheduled pass plus TLE ridge"
+        },
+        "signal": {
+          "modulation": "GFSK/G3RUH",
+          "baud": 9600,
+          "evidence": "licensed transmitter specification"
+        },
+        "clipping": {
+          "lower_endpoint": -32768,
+          "upper_endpoint": 32767,
+          "endpoint_source": "dtype_limits",
+          "max_endpoint_fraction_for_unclipped_claim": 0.001,
+          "if_exceeded": "require_frozen_ab",
+          "ab": {
+            "enabled": true,
+            "input_sha256_a": "e5f97621804f67877353fa53f01a420512a3757e5b94f73d2df302879ca5e422",
+            "input_sha256_b": "e5f97621804f67877353fa53f01a420512a3757e5b94f73d2df302879ca5e422",
+            "window_start_complex_sample": 0,
+            "window_complex_samples": 4,
+            "window_sha256_a": "e5f97621804f67877353fa53f01a420512a3757e5b94f73d2df302879ca5e422",
+            "window_sha256_b": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+            "branch_a": "identity",
+            "branch_b": "fixture_preprocess",
+            "branch_b_config_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "shared_downstream_config_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "acceptance_rule": "frozen fixture comparison"
+          }
+        }
+      },
+      "data_hex": "ff7f00801400ecff1e00e2ff2800d8ff",
+      "ready_for_decode": false,
+      "clipping": {
+        "scalar_count": 8,
+        "lower_endpoint_count": 1,
+        "upper_endpoint_count": 1,
+        "endpoint_fraction": 0.25,
+        "nonfinite_scalar_count": 0,
+        "status": "exceeds_declared_limit",
+        "ab_window_sha256": "e5f97621804f67877353fa53f01a420512a3757e5b94f73d2df302879ca5e422"
+      }
+    }
+  ]
+}

@@ -1,0 +1,478 @@
+{
+  "complete": 47,
+  "fresh_unseen_holdout": false,
+  "observations": [
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14757038",
+      "result": {
+        "bytes": 507931,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14757038/result.json",
+        "sha256": "7bf43139b83f29a975c14c4820724f6a566c3a102b3179cf7d830ab9bb09e0b1"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14757056",
+      "result": {
+        "bytes": 514254,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14757056/result.json",
+        "sha256": "92d1e2af46e3be672779446d19cb184a76688a400aa40ce28a300e8c986e0050"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14757149",
+      "result": {
+        "bytes": 370701,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14757149/result.json",
+        "sha256": "5227de0d0fa155a8637563acfb995fded1e507fdb3c5f48e0b5add709ddb714e"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14764409",
+      "result": {
+        "bytes": 751532,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14764409/result.json",
+        "sha256": "fb627dbc0e2c45437ccd5d7806564734d5494b4fc82a1a0e5bfb2752495c1175"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14764420",
+      "result": {
+        "bytes": 574613,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14764420/result.json",
+        "sha256": "dba0c877463c5fea2e92ab644998be02f503ecc02d70850d42ea684146b5cce5"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14764510",
+      "result": {
+        "bytes": 519824,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14764510/result.json",
+        "sha256": "8fd317e27eb0ee689e5fed3475f838c76abbe79981f31f846e97943d53d33265"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14764578",
+      "result": {
+        "bytes": 356550,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14764578/result.json",
+        "sha256": "e339b6b5158ef8a5be75fcec6617c39ab8368f32b12bb10245d151485b94ccdb"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14773563",
+      "result": {
+        "bytes": 790857,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14773563/result.json",
+        "sha256": "2dc3186dd2e5cda978075c83475d893a68ef4e8cb553694370311c2ef2eae1a2"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14773597",
+      "result": {
+        "bytes": 626699,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14773597/result.json",
+        "sha256": "c3d9c76a4a547d30fceef7fe7abf56585e60f51ece64c3df8464a38aa576095f"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14773606",
+      "result": null,
+      "status": "interrupted_before_final_result"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14773617",
+      "result": {
+        "bytes": 473691,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14773617/result.json",
+        "sha256": "3cb8b44366ca8f1dd696b9caa88282c9072970d7742d51800d6c07d55f04b147"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14773636",
+      "result": {
+        "bytes": 349618,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14773636/result.json",
+        "sha256": "f5bbb9586739d899a61a2cd0e0787e8b28732018eb48350bcb0c60d7781f5efd"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14780421",
+      "result": {
+        "bytes": 543275,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14780421/result.json",
+        "sha256": "7459771b613858c6dcb902a86d0c7ccff705886224f11fc04963b4a540134a37"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14780441",
+      "result": {
+        "bytes": 490050,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14780441/result.json",
+        "sha256": "3b533063c2c66f23e22f9f0b2efb266a20a328630fe600f094ce12d01fe31cb3"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14780554",
+      "result": {
+        "bytes": 953433,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14780554/result.json",
+        "sha256": "8ea979c57fd37126f63a153d103484d700f687063a989a514a745323bc321b04"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14790247",
+      "result": {
+        "bytes": 439132,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14790247/result.json",
+        "sha256": "0d3a22a60888710e2445ce6e633cb9785edfbdce4de169121768845145693cb0"
+      },
+      "status": "incomplete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14790285",
+      "result": {
+        "bytes": 370149,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14790285/result.json",
+        "sha256": "18a9acbe32fd0b10b27583414e75b0b30d725cde3212a2fa7469300b8d178b78"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14790301",
+      "result": {
+        "bytes": 447041,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14790301/result.json",
+        "sha256": "36a6ac6d0db4610fd58b7475b4c66e77c3ecb89b78609f3608062b105a3b5c52"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14790335",
+      "result": {
+        "bytes": 368298,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14790335/result.json",
+        "sha256": "0e7ddb378760c8ec8a1b4d2405849dd19d2bbde506d996c5d9f57fc37abc90b1"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14790402",
+      "result": null,
+      "status": "interrupted_before_final_result"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14812720",
+      "result": {
+        "bytes": 748244,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14812720/result.json",
+        "sha256": "a478588cf9a2e4118fc400b42f9cf2749ddf76ad3c6758c947c4efb508987d86"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14812766",
+      "result": {
+        "bytes": 553552,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14812766/result.json",
+        "sha256": "3f3e681a40ac7a94e21a3de911dbf16583c77e4a96a2791f060361bcb1131e10"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14812781",
+      "result": {
+        "bytes": 368300,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14812781/result.json",
+        "sha256": "1a884a339b4377764a03524b37f00d5f90447551571ede7cce857a9debb31291"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14812850",
+      "result": {
+        "bytes": 554215,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14812850/result.json",
+        "sha256": "b25bf75ae672408e3cb97d7b7737c308db7be324fc2fa73ef4c52cb45751feac"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14819924",
+      "result": {
+        "bytes": 414468,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14819924/result.json",
+        "sha256": "3fecab3a65b787de6dad37a65a038327a6d87b8b4bea5f0e71d4bbfac2b9ca36"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14820535",
+      "result": null,
+      "status": "interrupted_before_final_result"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14820571",
+      "result": {
+        "bytes": 572948,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14820571/result.json",
+        "sha256": "3858c70bdfb43acc195f589ac2a578ddd816078bc486654d7b058e1945b2c0d6"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14820628",
+      "result": {
+        "bytes": 558530,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14820628/result.json",
+        "sha256": "3b65ba9b50916f4751f4c21c6c6b50731dc76bcd6d271a4d83b035d9caf9087a"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14820632",
+      "result": {
+        "bytes": 370866,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14820632/result.json",
+        "sha256": "9f9560d7faa18e37a5a9125fd3d8f1a81e14cbe4a6cc63d2f2b74103c3d0a470"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14826387",
+      "result": {
+        "bytes": 275585,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14826387/result.json",
+        "sha256": "b96fe23ba3b77da229c05407ce2e81e92b11ab3dd86356fa51106c3ae9e3bcfe"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14829464",
+      "result": {
+        "bytes": 198443,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14829464/result.json",
+        "sha256": "7bcf5266b34585b99535c5c2f8eb8c2dbb8feab5f91392119488b77d6cc3f2ad"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14829500",
+      "result": {
+        "bytes": 335755,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14829500/result.json",
+        "sha256": "e61c4e174e7d678b56a2bcb945f7739afea3770d8ace0d75b2a72e3a7415f287"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14829518",
+      "result": {
+        "bytes": 495471,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14829518/result.json",
+        "sha256": "bb12a1cd1f9f8aa4ed6da90f21ba8d307a0534b50a092159be505a5691dfc3e0"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14829610",
+      "result": {
+        "bytes": 794070,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14829610/result.json",
+        "sha256": "ac65071f4c06be807f1696008c53c21c4d47d10b7edb9722582401f15e10cd3f"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14829620",
+      "result": {
+        "bytes": 588449,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14829620/result.json",
+        "sha256": "51b365ffdaa4de7f2ac12c1edd78ddc6e573d4e904a0b1ee835ed5247486c36d"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14834989",
+      "result": {
+        "bytes": 360111,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14834989/result.json",
+        "sha256": "aba3d29881e5e25224c8611871b0bf4fd2b8f22e2c6c11ae3eaf2ba7fb5f8a1b"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14835045",
+      "result": {
+        "bytes": 391241,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14835045/result.json",
+        "sha256": "f318a99dcb93dd4a8e7a22cb43ec8c59637d8c29ee5e001b3d36e4ab4cafbaea"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14835070",
+      "result": {
+        "bytes": 291760,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14835070/result.json",
+        "sha256": "888f3dbcf0aa105a98ce228a6a14e6aa72576365c150729cba949df471236ca1"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14835148",
+      "result": {
+        "bytes": 577651,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14835148/result.json",
+        "sha256": "72323c4fef356d86c6eb65a82017c556b0e8c08c30409b97e900fc82786eaee5"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14835172",
+      "result": {
+        "bytes": 534781,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14835172/result.json",
+        "sha256": "4d74994cdfd9a7e6b94d8bb1d65c883958ffbce2ca1bb2f23eda607624cbb76d"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14845017",
+      "result": null,
+      "status": "interrupted_before_final_result"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14845022",
+      "result": {
+        "bytes": 568271,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14845022/result.json",
+        "sha256": "3e6f496d8db127125b70425fcf8ef3f61bc2c618a02461158c4db7df0423e50a"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14845061",
+      "result": {
+        "bytes": 213225,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14845061/result.json",
+        "sha256": "f23e2e90cd32d2ee94b1b2755b637bad3cdfbf5cba22fa608f4a98d4c23d7b66"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14845067",
+      "result": {
+        "bytes": 536254,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14845067/result.json",
+        "sha256": "85584f6e82b9e74656ed29bc6ba7b5ff807957cd26aa1406e329e1d02da13633"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14845068",
+      "result": {
+        "bytes": 738847,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14845068/result.json",
+        "sha256": "0ed661120f52e6f375474cecbbcda5bdfccf48eb19eafa7a7908c455765d4651"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14845083",
+      "result": {
+        "bytes": 280235,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14845083/result.json",
+        "sha256": "bb3b8c784ab7ef837cd9962a658b805bf4ffee6a8976108e41943915214dcc0a"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14845142",
+      "result": {
+        "bytes": 347438,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14845142/result.json",
+        "sha256": "71b88719f86fcd9b61387b458a7d9b06c852383216a2a44076d954917966272d"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14845177",
+      "result": {
+        "bytes": 344956,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14845177/result.json",
+        "sha256": "822fd160d323a991e47b1fb75a57604a1cf0e3402fdc2b0e0c899a9610c1b110"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14848596",
+      "result": {
+        "bytes": 924485,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14848596/result.json",
+        "sha256": "97d0f4cc498b248912e613198845bda5a847af4665654ccfe88bd6d26d4d325e"
+      },
+      "status": "incomplete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14936235",
+      "result": {
+        "bytes": 319562,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14936235/result.json",
+        "sha256": "ec9b139b1593fc74c2c73e236a49ee5306397aa7aa11f3035628f238cd994c54"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14936316",
+      "result": {
+        "bytes": 234693,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14936316/result.json",
+        "sha256": "b49e44457406124cbf9844c5d933fb3b6c2fcefcde3deb7a0ce412ea4765649a"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14936323",
+      "result": {
+        "bytes": 365930,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14936323/result.json",
+        "sha256": "f3ee9a7000bb2cafc79aeeb741dd43e61d819641509b556e63db875ead9c4abb"
+      },
+      "status": "complete"
+    },
+    {
+      "directory": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14957522",
+      "result": {
+        "bytes": 183013,
+        "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/obs-14957522/result.json",
+        "sha256": "6ecf8ec57402e7f774cafa7e9fc4275215a4e3d5112376eb3dd8b1100f51066e"
+      },
+      "status": "complete"
+    }
+  ],
+  "old_jobs_terminated_by_user_request": true,
+  "old_manifest": {
+    "bytes": 63179,
+    "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-comparison-v1/manifest.json",
+    "sha256": "a0628d47f400ff74a8dc8a70fcaa24760e8ab5ff28b54faf8b85efdae6f98dd4"
+  },
+  "old_results_inspected": true,
+  "old_results_reused": false,
+  "other_started": 6,
+  "recorded_utc": "2026-09-12T15:25:44Z",
+  "schema": "disclosed-restart-exposure-v1"
+}

@@ -1,0 +1,22 @@
+[Unit]
+Description=Build the expanded telemetry-yield SatNOGS publication v4 cohort
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+WorkingDirectory=/home/ubuntu/telemetry-yield
+# The authenticated observation quota is 240/hour. Retain a small restart
+# guard in addition to the shared 15.25-second rate-state file.
+ExecStartPre=/bin/sleep 16
+ExecStart=/bin/bash /home/ubuntu/telemetry-yield/scripts/build-publication-v4.sh
+Restart=on-failure
+RestartSec=300
+TimeoutStartSec=infinity
+Nice=15
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,12 @@
+name: Frozen benchmark FSK9600
+norad: 0
+data:
+  &raw Raw: unknown
+transmitters:
+  selected:
+    frequency: 437000000
+    modulation: FSK
+    baudrate: 9600
+    framing: AX.25 G3RUH
+    data:
+    - *raw

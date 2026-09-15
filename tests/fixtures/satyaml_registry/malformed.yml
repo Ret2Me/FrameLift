@@ -1,0 +1,7 @@
+name: BROKEN PROFILE
+norad: 90004
+transmitters:
+  Missing framing:
+    frequency: 437500000
+    modulation: FSK
+    baudrate: 9600

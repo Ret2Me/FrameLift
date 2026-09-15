@@ -1,0 +1,45 @@
+{
+  "change": "Native result reader only: 64 to 256 MiB streaming. Statistical estimands, validation and missingness unchanged. Supersedes legacy automatic postprocessor, which still has the 64 MiB limit; its failure is not a decoder failure.",
+  "cohort": {
+    "bytes": 1653086,
+    "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-acquisition-v1/cohort.json",
+    "sha256": "291d773cca67ba4a108b43338e6592974fe2c915717f92ef0bd352109b2ac1a9"
+  },
+  "cost_analyzer": {
+    "bytes": 8528472,
+    "path": "/home/ubuntu/telemetry-yield/work/decoder-readiness-20260911/paired_costs_analyze_v1",
+    "sha256": "89378ad3c5f91169926894ce24e240825311f2c54fbffe9ebab7dd5ab8158149"
+  },
+  "decoder_reruns": 0,
+  "launcher": {
+    "bytes": 5014520,
+    "path": "/home/ubuntu/telemetry-yield/work/publication-speed-restart-20260912-v1/bin/finalize",
+    "sha256": "6c386d47cc9706ab5bf923a73065350c9d936b77620982eca36f81e2b162eb0c"
+  },
+  "manifest": {
+    "bytes": 63111,
+    "path": "/home/ubuntu/telemetry-yield/work/publication-speed-restart-20260912-v1/comparison/manifest.json",
+    "sha256": "8bc054ef8b1e8393f5c969b3c495e7029fc3b948f100dc44141045429b9da4c3"
+  },
+  "schema": "native-large-report-analysis-repair-v1",
+  "source": {
+    "bytes": 5311,
+    "path": "/home/ubuntu/telemetry-yield/work/publication-speed-restart-20260912-v1/finalize.rs",
+    "sha256": "cb17278194805ef4184b203a290091093649c515a303cf2c9ca2bbef1e733664"
+  },
+  "source_archive": {
+    "bytes": 20051,
+    "path": "/home/ubuntu/telemetry-yield/work/publication-speed-restart-20260912-v1/analyzer-source.tar.gz",
+    "sha256": "5c9c16484a4808066b2c3d1a12402cf92ed906678b43fdeefccbb202c6a3dbf6"
+  },
+  "tests": {
+    "bytes": 1896,
+    "path": "/home/ubuntu/telemetry-yield/work/publication-speed-restart-20260912-v1/analyzer-tests.log",
+    "sha256": "8d4620ce28918978f2540466fd0045f559ed136fb8742a40dfcfe8c54e9f4ccd"
+  },
+  "yield_analyzer": {
+    "bytes": 9107488,
+    "path": "/home/ubuntu/telemetry-yield/work/publication-speed-restart-20260912-v1/bin/paired_yield_analyze_large_reports",
+    "sha256": "a8d2e3bb09ef0d5439c39277e9c46f19b6dd367a4ea0cb5a04a969b245974bb1"
+  }
+}

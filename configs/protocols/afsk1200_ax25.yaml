@@ -1,0 +1,17 @@
+protocol_id: afsk1200_ax25
+nominal:
+  baud: 1200
+  mark_hz: 1200
+  space_hz: 2200
+  framing: ax25
+  crc: fcs_ccitt_x25
+sweep:
+  baud_rel_error: [-0.02, -0.01, -0.005, -0.002, -0.001, 0, 0.001, 0.002, 0.005, 0.01, 0.02]
+  tone_swap: [false, true]
+  bit_polarity: [normal, inverted]
+  deemphasis: [none, 6db_per_octave]
+  audio_bandpass_hz: [null, [900, 2500], [1000, 2400]]
+  timing_recovery: [gardner, mueller_muller, zero_crossing]
+  timing_loop_bw_rel: [0.01, 0.03, 0.10]
+  agc: [off, slow, fast]
+  decoder: [satnogs_fg, direwolf_A, direwolf_B, direwolf_C, direwolf_E, gr_sat]

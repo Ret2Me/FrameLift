@@ -1,0 +1,12 @@
+protocol_id: bpsk1200
+nominal:
+  baud: 1200
+  rrc_rolloff: 0.35
+sweep:
+  baud_rel_error: [-0.005, -0.002, -0.001, 0, 0.001, 0.002, 0.005]
+  cfo_hz: {range: [-20000, 20000], coarse_step: 200, fine_step: 20}
+  detection: [differential, coherent_costas]
+  costas_loop_bw_rel: [0.005, 0.02, 0.05]
+  rrc_rolloff: [0.35, 0.5]
+  bit_polarity: [normal, inverted]
+  decoder: [gr_sat, satdump]

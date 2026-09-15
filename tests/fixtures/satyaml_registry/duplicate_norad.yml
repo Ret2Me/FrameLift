@@ -1,0 +1,8 @@
+name: DUPLICATE NORAD
+norad: 90002
+transmitters:
+  UHF telemetry:
+    frequency: 437100000
+    modulation: FSK
+    baudrate: 4800
+    framing: Custom frame

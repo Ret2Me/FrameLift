@@ -1,0 +1,17 @@
+name: TEST CCSDS
+norad: 90002
+data:
+  Telemetry:
+    unknown: true
+transmitters:
+  S-band telemetry:
+    frequency: 2200000000
+    modulation: BPSK
+    baudrate: 19200
+    framing: CCSDS Concatenated
+    fec:
+      - convolutional-r1/2
+      - reed-solomon
+    scrambler: CCSDS
+    data:
+      - Telemetry

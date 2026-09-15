@@ -1,0 +1,14 @@
+protocol_id: fsk9600_g3ruh
+nominal:
+  baud: 9600
+  deviation_hz: 3000
+  scrambler: g3ruh
+  framing: ax25
+sweep:
+  baud_rel_error: [-0.01, -0.005, -0.002, -0.001, -0.0005, 0, 0.0005, 0.001, 0.002, 0.005, 0.01]
+  cfo_hz: {range: [-20000, 20000], coarse_step: 500, fine_step: 50}
+  deviation_hz: [2000, 2500, 3000, 3500, 4000, 5000]
+  gmsk_bt: [0.3, 0.5, 1.0]
+  descrambler: [g3ruh, none]
+  bit_polarity: [normal, inverted]
+  decoder: [satnogs_fg, gr_sat, satdump]

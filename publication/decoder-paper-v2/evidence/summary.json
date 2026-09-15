@@ -1,0 +1,379 @@
+{
+  "all": {
+    "added": 2158,
+    "added_pdu_bytes": 402192,
+    "arms": {
+      "direwolf": {
+        "frames": 4029,
+        "wall_seconds": 982.3773020270005
+      },
+      "gr_satellites": {
+        "frames": 2514,
+        "wall_seconds": 1047.2675241589995
+      },
+      "innovation_v1_no_codec": {
+        "frames": 6420,
+        "wall_seconds": 38350.81772402499
+      },
+      "innovation_v2": {
+        "frames": 6420,
+        "wall_seconds": 39130.707272783984
+      },
+      "progressive_v3": {
+        "frames": 6220,
+        "wall_seconds": 51175.16659874104
+      }
+    },
+    "audio_seconds": 122795.67127083337,
+    "baseline": 4066,
+    "lost": 4,
+    "lost_pdu_bytes": 1056,
+    "net": 2154,
+    "net_percent": 52.9758976881456,
+    "observations": 266,
+    "observations_with_gain": 141,
+    "observations_with_loss": 4,
+    "ours": 6220
+  },
+  "analysis": {
+    "codec": {
+      "baseline_pairs": 6420,
+      "complete_case_scope_not_entire_intended_cohort": true,
+      "gained_pair_pdu_bytes": 0,
+      "gained_pairs": 0,
+      "globally_absent_from_comparator_everywhere_in_complete_cases": 0,
+      "globally_absent_pdu_bytes_in_complete_cases": 0,
+      "globally_distinct_gained_somewhere": 0,
+      "globally_distinct_lost_somewhere": 0,
+      "lost_pair_pdu_bytes": 0,
+      "lost_pairs": 0,
+      "mean_net_pdus_per_observation": 0.0,
+      "net_pairs": 0,
+      "not_global_archive_novelty": true,
+      "observations_with_gain": 0,
+      "observations_with_loss": 0,
+      "prospective_day_summary_applicable": false,
+      "prospective_leave_one_day_out_descriptive": [],
+      "prospective_utc_day_strata": [],
+      "recovery_occurrence_categories": {
+        "denominator_complete_observations": 266,
+        "with_both": {
+          "count": 0,
+          "fraction": 0.0
+        },
+        "with_either": {
+          "count": 0,
+          "fraction": 0.0
+        },
+        "with_gain": {
+          "count": 0,
+          "fraction": 0.0
+        },
+        "with_loss": {
+          "count": 0,
+          "fraction": 0.0
+        },
+        "with_neither": {
+          "count": 266,
+          "fraction": 1.0
+        }
+      },
+      "relative_gain_percent": 0.0,
+      "uncertainty": [
+        {
+          "available": true,
+          "contributing_components": 155,
+          "gap_seconds": 0,
+          "net_pdus_per_observation_percentile95": [
+            0.0,
+            0.0
+          ],
+          "qualification": "descriptive paired component bootstrap; independence unverified; no significance gate",
+          "relative_gain_percent_percentile95": [
+            0.0,
+            0.0
+          ],
+          "relative_undefined_draws": 0,
+          "resamples": 10000,
+          "seed_hex": "d4514bca7f922026"
+        },
+        {
+          "available": true,
+          "contributing_components": 125,
+          "gap_seconds": 1800,
+          "net_pdus_per_observation_percentile95": [
+            0.0,
+            0.0
+          ],
+          "qualification": "descriptive paired component bootstrap; independence unverified; no significance gate",
+          "relative_gain_percent_percentile95": [
+            0.0,
+            0.0
+          ],
+          "relative_undefined_draws": 0,
+          "resamples": 10000,
+          "seed_hex": "d4514bca7f922026"
+        },
+        {
+          "available": true,
+          "contributing_components": 44,
+          "gap_seconds": 7200,
+          "net_pdus_per_observation_percentile95": [
+            0.0,
+            0.0
+          ],
+          "qualification": "descriptive paired component bootstrap; independence unverified; no significance gate",
+          "relative_gain_percent_percentile95": [
+            0.0,
+            0.0
+          ],
+          "relative_undefined_draws": 0,
+          "resamples": 10000,
+          "seed_hex": "d4514bca7f922026"
+        }
+      ]
+    },
+    "innovation": {
+      "baseline_pairs": 4066,
+      "complete_case_scope_not_entire_intended_cohort": true,
+      "gained_pair_pdu_bytes": 447694,
+      "gained_pairs": 2359,
+      "globally_absent_from_comparator_everywhere_in_complete_cases": 1586,
+      "globally_absent_pdu_bytes_in_complete_cases": 307962,
+      "globally_distinct_gained_somewhere": 2166,
+      "globally_distinct_lost_somewhere": 5,
+      "lost_pair_pdu_bytes": 1320,
+      "lost_pairs": 5,
+      "mean_net_pdus_per_observation": 8.849624060150376,
+      "net_pairs": 2354,
+      "not_global_archive_novelty": true,
+      "observations_with_gain": 132,
+      "observations_with_loss": 5,
+      "prospective_day_summary_applicable": false,
+      "prospective_leave_one_day_out_descriptive": [],
+      "prospective_utc_day_strata": [],
+      "recovery_occurrence_categories": {
+        "denominator_complete_observations": 266,
+        "with_both": {
+          "count": 3,
+          "fraction": 0.011278195488721804
+        },
+        "with_either": {
+          "count": 134,
+          "fraction": 0.5037593984962406
+        },
+        "with_gain": {
+          "count": 132,
+          "fraction": 0.49624060150375937
+        },
+        "with_loss": {
+          "count": 5,
+          "fraction": 0.018796992481203006
+        },
+        "with_neither": {
+          "count": 132,
+          "fraction": 0.49624060150375937
+        }
+      },
+      "relative_gain_percent": 57.89473684210526,
+      "uncertainty": [
+        {
+          "available": true,
+          "contributing_components": 155,
+          "gap_seconds": 0,
+          "net_pdus_per_observation_percentile95": [
+            6.795539033457249,
+            11.035211267605634
+          ],
+          "qualification": "descriptive paired component bootstrap; independence unverified; no significance gate",
+          "relative_gain_percent_percentile95": [
+            47.67687434002112,
+            70.03902731912339
+          ],
+          "relative_undefined_draws": 0,
+          "resamples": 10000,
+          "seed_hex": "d4514bca7f922026"
+        },
+        {
+          "available": true,
+          "contributing_components": 125,
+          "gap_seconds": 1800,
+          "net_pdus_per_observation_percentile95": [
+            6.733333333333333,
+            11.148148148148149
+          ],
+          "qualification": "descriptive paired component bootstrap; independence unverified; no significance gate",
+          "relative_gain_percent_percentile95": [
+            47.411191084281405,
+            70.02866823038832
+          ],
+          "relative_undefined_draws": 0,
+          "resamples": 10000,
+          "seed_hex": "d4514bca7f922026"
+        },
+        {
+          "available": true,
+          "contributing_components": 44,
+          "gap_seconds": 7200,
+          "net_pdus_per_observation_percentile95": [
+            5.7957446808510635,
+            11.77878787878788
+          ],
+          "qualification": "descriptive paired component bootstrap; independence unverified; no significance gate",
+          "relative_gain_percent_percentile95": [
+            47.30198800883559,
+            69.622591712853
+          ],
+          "relative_undefined_draws": 0,
+          "resamples": 10000,
+          "seed_hex": "d4514bca7f922026"
+        }
+      ]
+    },
+    "primary": {
+      "baseline_pairs": 4066,
+      "complete_case_scope_not_entire_intended_cohort": true,
+      "gained_pair_pdu_bytes": 402192,
+      "gained_pairs": 2158,
+      "globally_absent_from_comparator_everywhere_in_complete_cases": 1463,
+      "globally_absent_pdu_bytes_in_complete_cases": 279734,
+      "globally_distinct_gained_somewhere": 2001,
+      "globally_distinct_lost_somewhere": 4,
+      "lost_pair_pdu_bytes": 1056,
+      "lost_pairs": 4,
+      "mean_net_pdus_per_observation": 8.097744360902256,
+      "net_pairs": 2154,
+      "not_global_archive_novelty": true,
+      "observations_with_gain": 141,
+      "observations_with_loss": 4,
+      "prospective_day_summary_applicable": false,
+      "prospective_leave_one_day_out_descriptive": [],
+      "prospective_utc_day_strata": [],
+      "recovery_occurrence_categories": {
+        "denominator_complete_observations": 266,
+        "with_both": {
+          "count": 3,
+          "fraction": 0.011278195488721804
+        },
+        "with_either": {
+          "count": 142,
+          "fraction": 0.5338345864661654
+        },
+        "with_gain": {
+          "count": 141,
+          "fraction": 0.5300751879699248
+        },
+        "with_loss": {
+          "count": 4,
+          "fraction": 0.015037593984962405
+        },
+        "with_neither": {
+          "count": 124,
+          "fraction": 0.46616541353383456
+        }
+      },
+      "relative_gain_percent": 52.9758976881456,
+      "uncertainty": [
+        {
+          "available": true,
+          "contributing_components": 155,
+          "gap_seconds": 0,
+          "net_pdus_per_observation_percentile95": [
+            6.226666666666667,
+            10.08843537414966
+          ],
+          "qualification": "descriptive paired component bootstrap; independence unverified; no significance gate",
+          "relative_gain_percent_percentile95": [
+            43.78517823639775,
+            63.903743315508024
+          ],
+          "relative_undefined_draws": 0,
+          "resamples": 10000,
+          "seed_hex": "d4514bca7f922026"
+        },
+        {
+          "available": true,
+          "contributing_components": 125,
+          "gap_seconds": 1800,
+          "net_pdus_per_observation_percentile95": [
+            6.180076628352491,
+            10.186046511627907
+          ],
+          "qualification": "descriptive paired component bootstrap; independence unverified; no significance gate",
+          "relative_gain_percent_percentile95": [
+            43.455993930197266,
+            63.95971041863393
+          ],
+          "relative_undefined_draws": 0,
+          "resamples": 10000,
+          "seed_hex": "d4514bca7f922026"
+        },
+        {
+          "available": true,
+          "contributing_components": 44,
+          "gap_seconds": 7200,
+          "net_pdus_per_observation_percentile95": [
+            5.255144032921811,
+            10.80859375
+          ],
+          "qualification": "descriptive paired component bootstrap; independence unverified; no significance gate",
+          "relative_gain_percent_percentile95": [
+            43.1448030796565,
+            63.389551624845744
+          ],
+          "relative_undefined_draws": 0,
+          "resamples": 10000,
+          "seed_hex": "d4514bca7f922026"
+        }
+      ]
+    },
+    "verification_scope": "hashes/source/shared-input/external process success; native received CRC and exact frame sets; relies on separate runner/control audits for complete task policy and original process provenance"
+  },
+  "day_count": 15,
+  "independent_holdout": false,
+  "publication_ready": false,
+  "raw_artifact_audit_reperformed_by_exporter": false,
+  "schema": "paper-evidence-v2",
+  "source_reports": {
+    "costs_sha256": "6164cff77d083ed7448cf45c40e47594413e3283c7993b61e4fbdd88413c450b",
+    "yield_sha256": "e640ac0323c1e98231e35c81e4a1381b86964816d72b904301ac9965785d2ac2"
+  },
+  "station_count": 161,
+  "study": "CANVAS historical disclosed repeat",
+  "with_signal": {
+    "added": 63,
+    "added_pdu_bytes": 16632,
+    "arms": {
+      "direwolf": {
+        "frames": 110,
+        "wall_seconds": 86.140267467
+      },
+      "gr_satellites": {
+        "frames": 60,
+        "wall_seconds": 101.33361845000002
+      },
+      "innovation_v1_no_codec": {
+        "frames": 178,
+        "wall_seconds": 2879.871854357
+      },
+      "innovation_v2": {
+        "frames": 178,
+        "wall_seconds": 2940.586705269
+      },
+      "progressive_v3": {
+        "frames": 174,
+        "wall_seconds": 4110.5831212680005
+      }
+    },
+    "audio_seconds": 10383.253166666665,
+    "baseline": 111,
+    "lost": 0,
+    "lost_pdu_bytes": 0,
+    "net": 63,
+    "net_percent": 56.75675675675676,
+    "observations": 24,
+    "observations_with_gain": 6,
+    "observations_with_loss": 0,
+    "ours": 174
+  }
+}

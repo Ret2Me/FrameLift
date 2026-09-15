@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Telemetry Yield — eksperymentalny dekoder w Rust do odzyskiwania dodatkowej telemetrii z archiwalnych nagrań. Metoda, jawne wyniki i szkic publikacji.">
+  <meta name="theme-color" content="#164bcb">
+  <title>Telemetry Yield — druga szansa dla zapisanej telemetrii</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Przejdź do treści</a>
+<header class="header wrap">
+  <a class="brand" href="#main" aria-label="Telemetry Yield — początek">
+    <svg width="30" height="34" viewBox="0 0 30 34" aria-hidden="true"><path d="M3 25V9m11 22V3m11 22V9" fill="none" stroke="currentColor" stroke-width="4"/></svg>
+    <span>Telemetry <strong>Yield</strong></span>
+  </a>
+  <nav aria-label="Nawigacja główna"><a href="#metoda">Metoda</a><a href="#wyniki">Wyniki</a><a href="#uruchom">Uruchamianie</a><a href="assets/paper.pdf">Artykuł <span aria-hidden="true">↗</span></a></nav>
+</header>
+<main id="main">
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div>
+      <p class="eyebrow"><span class="status-mark" aria-hidden="true"></span> Wersja badawcza · Rust · przetwarzanie offline</p>
+      <h1 id="hero-title">Twoje nagrania.<br>Jeszcze nie wszystkie<br><em>ich ramki.</em></h1>
+      <p class="lead">Daj zapisanej telemetrii drugą szansę. Telemetry Yield próbuje wielu sposobów odczytu tego samego sygnału — i pozwala wrócić do analizy tam, gdzie ją przerwano.</p>
+      <div class="actions"><a class="button primary" href="assets/paper.pdf">Pobierz szkic artykułu <span aria-hidden="true">↓</span></a><a class="button" href="#uruchom">Zobacz, jak uruchomić</a></div>
+      <p class="fine">Angielski szkic w szablonie IEEE Access. Nie został zgłoszony ani zrecenzowany.</p>
+    </div>
+    <aside class="specimen" aria-label="Zakres badanego odbiornika">
+      <p class="eyebrow">Profil badanego toru</p>
+      <div class="frequency">9<span>600</span><small>baud</small></div>
+      <dl class="spec-list"><div><dt>Wejście</dt><dd>OGG / WAV mono po FM</dd></div><div><dt>Modulacja</dt><dd>FSK / GMSK</dd></div><div><dt>Ramki</dt><dd>AX.25 UI · NRZI / G3RUH</dd></div><div><dt>Praca</dt><dd>Lokalnie, z wznawianiem</dd></div></dl>
+      <p class="spec-note">Nie wymaga nowej obserwacji.<br>Ten tor nie przyjmuje surowego IQ.</p>
+    </aside>
+  </section>
+
+  <section id="wyniki" class="evidence" aria-labelledby="results-title">
+    <div class="wrap">
+      <div class="section-heading"><div><p class="eyebrow">Archiwum SatNOGS / CANVAS / 9600 baud</p><h2 id="results-title">Więcej danych.<br>W policzalnym zakresie.</h2></div><p class="snapshot">Zamrożony wynik wstępny<br><time datetime="2026-09-12T22:52:19Z">12.09.2026 · 22:52:19 UTC</time><br><strong>189 z 266</strong> obserwacji ukończonych</p></div>
+      <figure class="packet-figure">
+        <figcaption>Unikalne ramki AX.25 UI, liczone osobno w każdej obserwacji</figcaption>
+        <div class="plot-row"><div class="plot-label">Referencja <small>unia Dire Wolf + gr-satellites</small></div><div class="track"><div class="bar reference" style="--length:66.02%"><span>2 998</span></div></div></div>
+        <div class="plot-row"><div class="plot-label">Telemetry Yield <small>progresywny tor audio</small></div><div class="track"><div class="bar native" style="--length:100%"><span>4 541</span></div></div></div>
+        <div class="accounting"><div><span class="swatch common" aria-hidden="true"></span><strong>2 994</strong><span>wspólne ramki</span></div><div><span class="swatch added" aria-hidden="true"></span><strong>1 547</strong><span>dodatkowych ramek</span></div><div><span class="swatch missed" aria-hidden="true"></span><strong>4</strong><span>pominięte ramki referencji</span></div><div class="net"><strong>+51,47%</strong><span>zysku netto względem unii</span></div></div>
+      </figure>
+      <div class="evidence-notes"><p><strong>Dodatkowe ramki w 107 ze 189 obserwacji.</strong> Te same próbki audio dla wszystkich odbiorników i deduplikacja bajtów ramki w obrębie obserwacji. Własny tor zachowuje odebrany FCS do niezależnej kontroli; zewnętrzne dekodery usuwają FCS, więc polegamy na ich wewnętrznej kontroli. Dla wszystkich sprawdzamy strukturę AX.25 UI.</p><p><strong>To nie jest wynik dla całego SatNOGS.</strong> Jeden satelita, nieukończony zbiór i kontrolowane odtworzenia w dwóch zewnętrznych dekoderach — nie porównanie z pełnym natywnym torem stacji. Zbiór był już częściowo analizowany przed restartem testu.</p></div>
+      <details class="details"><summary>Osobna metryka: nagrania oznaczone jako zawierające sygnał</summary><p>Ukończono 16 z 24 obserwacji z etykietą waterfall „with-signal”. Telemetry Yield: <strong>136 ramek</strong>; unia referencyjna: <strong>87</strong>; dodatkowe: <strong>49</strong>; pominięte: <strong>0</strong>. Etykieta archiwum nie jest niezależnym dowodem pochodzenia sygnału. To analiza podgrupy, a nie odrębny test potwierdzający.</p></details>
+      <p class="data-link"><a href="assets/summary.json" download>Pobierz zamrożone dane wyniku (JSON) <span aria-hidden="true">↓</span></a></p>
+    </div>
+  </section>
+
+  <section id="metoda" class="wrap section" aria-labelledby="method-title">
+    <div class="section-heading"><div><p class="eyebrow">Nie jeden odczyt. Uzupełniające się próby.</p><h2 id="method-title">Odbiornik, który<br>sprawdza więcej możliwości.</h2></div><p class="section-intro">Trudnego fragmentu nie trzeba od razu uznać za stracony. Można zmienić sposób próbkowania, oszacować zniekształcenia i ponownie odczytać ciąg symboli.</p></div>
+    <ol class="method-flow"><li><span class="step">01 / PRÓBKI</span><h3>Dwa tory przygotowania</h3><p>Nakładające się okna po 6 sekund i różne filtry. Ten sam zapis dostarcza kilku uzupełniających się reprezentacji sygnału.</p></li><li><span class="step">02 / ZEGAR</span><h3>Wiele hipotez czasu</h3><p>Bank faz i błędów zegara oraz synchronizacja Gardnera. Łącznie 352 bazowe próby na okno, przed dodatkowymi metodami.</p></li><li><span class="step">03 / SEKWENCJA</span><h3>Model kanału i MLSE</h3><p>Oddzielnie odebrane poprawne ramki pomagają oszacować kanał. Dodatkowe ścieżki wykorzystują wiele kotwic lub start bez poprawnej ramki.</p></li><li><span class="step">04 / WYNIK</span><h3>Sprawdzenie i zapis</h3><p>Odebrany FCS, kontrola struktury i unia ramek. Ukończone zadania zostają w sesji; dalsza analiza nie zaczyna od zera.</p></li></ol>
+    <div class="method-footnote"><p><strong>Nie zgadujemy treści pod CRC.</strong> Referencyjne payloady nie są wejściem treningowym. Fragmenty używane jako kotwice i cele są rozłączne.</p><p><strong>Nowość wymaga dowodu.</strong> MLSE, estymacja kanału i synchronizacja to znane rodziny metod. Badamy wartość ich połączenia i powtarzalnego sposobu wykonania.</p></div>
+  </section>
+
+  <section id="uruchom" class="run-section" aria-labelledby="run-title"><div class="wrap run-grid">
+    <div><p class="eyebrow">Od szybkiej próby do pełnego przebiegu</p><h2 id="run-title">Zacznij krótko.<br>Kontynuuj głębiej.</h2><p>Wybierasz budżet pracy, a nie osobny dekoder. Zachowaj wejście, ten sam plik wykonywalny i katalog sesji — kolejne uruchomienie podejmie nieukończone zadania.</p><p class="fine">3 s i 60 s to budżety planowania, nie twarda gwarancja czasu całego procesu ani ukończenia wszystkich technik. Długi plik może wymagać pełnego przebiegu.</p></div>
+    <div class="console">
+      <fieldset class="mode-picker" disabled><legend>Przykład polecenia dla trybu</legend><label><input type="radio" name="mode" value="quick" checked><span>quick <small>~3 s</small></span></label><label><input type="radio" name="mode" value="deep"><span>deep <small>~60 s</small></span></label><label><input type="radio" name="mode" value="full"><span>full <small>pełny bank</small></span></label></fieldset>
+      <p id="mode-description">Pierwsze uruchomienie. Użyj nowej nazwy katalogu sesji.</p>
+      <pre tabindex="0" aria-label="Polecenie uruchomienia"><code id="command">./target/release/telemetry-yield-rs decode-progressive \
+  --input /absolute/capture.ogg \
+  --output /absolute/session \
+  --mode quick --threads 4</code></pre>
+      <div class="copy-row"><button class="button" id="copy-command" type="button" hidden disabled>Kopiuj polecenie</button><span id="copy-status" role="status" aria-live="polite"></span></div>
+      <noscript><p>Kontynuacja: zmień <code>--mode quick</code> na <code>--mode deep</code> lub <code>--mode full</code> i dodaj <code>--resume</code>.</p></noscript>
+    </div>
+    <details class="details guide"><summary>Wymagania i uruchomienie z posiadanej kopii źródeł</summary><div class="guide-body"><p>Potrzebujesz lokalnego repozytorium projektu, aktualnego narzędziownika Rust obsługującego edycję 2024 oraz FFmpeg do wejścia OGG. Ta strona nie udostępnia jeszcze publicznego wydania binarnego ani usługi dekodowania.</p><pre tabindex="0" aria-label="Budowanie programu"><code>cargo build --release --bin telemetry-yield-rs
+./target/release/telemetry-yield-rs decode-progressive --help</code></pre><p>Polecenia uruchamiaj w katalogu projektu. Zastąp przykładowe ścieżki bezwzględnymi ścieżkami nagrania i sesji; katalog nadrzędny sesji musi istnieć. Domyślny cache może zarezerwować do 2 GiB na proces, poza pozostałą pamięcią roboczą; mniejszy budżet ustawisz przez <code>--cache-mib 512</code>.</p><p>Przy wznawianiu nie zmieniaj wejścia, wersji programu ani polityki metod. Zachowaj katalog sesji wraz z przygotowanym audio, manifestem i zadaniami. Wynik częściowy nie oznacza, że cały plik został zbadany.</p></div></details>
+  </div></section>
+
+  <section class="wrap section scope" aria-labelledby="scope-title"><div><p class="eyebrow">Co jest gotowe do oceny, a co nadal badamy</p><h2 id="scope-title">Zakres bez drobnego druku.</h2></div><div class="scope-list"><article><h3>Badany tor progresywny</h3><p>Mono OGG/WAV po demodulacji FM, FSK/GMSK, AX.25 UI. Wyniki na tej stronie dotyczą CANVAS 9600 baud, nie wszystkich obsługiwanych konfiguracji.</p></article><article><h3>Oddzielne ścieżki eksperymentalne</h3><p>BPSK, QPSK i OQPSK na IQ; CSP, CCSDS AOS/USLP i korekcja RS/LDPC są osobnymi ścieżkami ogólnego dekodera. Nie należą do badanego banku progresywnego i nie mają tutaj równoważnej walidacji terenowej.</p></article><article><h3>Koszt jest realny</h3><p>Średnio 179,3 s na obserwację dla pełnego toru progresywnego wobec 3,5 s dla Dire Wolf i 3,8 s dla gr-satellites. Pomiary pochodzą ze współbieżnego testu, nie z izolowanego pomiaru szybkości.</p></article><article><h3>Bez obietnic dla kodeka</h3><p>Eksperymentalne tory z informacją o kodeku i bez niej uzyskały identyczne zbiory 4 703 ramek. W tej migawce nie wykazaliśmy dodatkowego zysku z samego ważenia kodekiem.</p></article></div></section>
+
+  <section class="paper-section wrap" aria-labelledby="paper-title"><div><p class="eyebrow">Metody, wyniki, ograniczenia</p><h2 id="paper-title">Najpierw sprawdź dowody.</h2><p>Szkic artykułu opisuje architekturę, konfigurację porównania i to, czego obecny eksperyment jeszcze nie potwierdza. Nie deklarujemy uniwersalnej przewagi, gotowości produkcyjnej ani akceptacji przez IEEE.</p><div class="actions"><a class="button primary" href="assets/paper.pdf">Czytaj artykuł PDF <span aria-hidden="true">↗</span></a><a class="button" href="assets/paper-source.zip" download>Pobierz źródła artykułu</a></div></div><aside><h3>Dobry benchmark potrzebuje kontekstu</h3><p>Test WA8LMF i zestawienie Dire Wolfa są ważnym punktem odniesienia metodologicznego. Dotyczą jednak 1200-baud AFSK, a nie naszych nagrań 9600-baud GMSK. Nie zestawiamy tych liczb jako wspólnego rankingu.</p><a href="https://github.com/wb2osz/direwolf/blob/dev/doc/WA8LMF-TNC-Test-CD-Results.pdf">Wyniki w repozytorium Dire Wolf <span aria-hidden="true">↗</span></a><br><a href="http://wa8lmf.net/TNCtest/index.htm">Opis testu WA8LMF <span aria-hidden="true">↗</span></a></aside></section>
+</main>
+<footer class="footer wrap"><a class="brand" href="#main">Telemetry <strong>Yield</strong></a><p>Narzędzie badawcze. Twoje dane pozostają w lokalnym procesie.<br>Ta strona nie przesyła nagrań i nie prowadzi dekodowania w przeglądarce.</p><a href="#wyniki">Wyniki z 12.09.2026</a></footer>
+</body>
+</html>

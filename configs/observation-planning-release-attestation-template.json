@@ -1,0 +1,49 @@
+{
+  "attested_at": "REPLACE_WITH_UTC_TIMESTAMP",
+  "attestor": "REPLACE_WITH_REVIEWER_NAME_OR_IDENTIFIER",
+  "dataset_config_sha256": "REPLACE_WITH_DATASET_CONFIG_SHA256",
+  "external_data_attribution_review": {
+    "attested": false,
+    "sources": {
+      "celestrak": {
+        "source": "https://celestrak.org/",
+        "usage_policy_url": "https://celestrak.org/usage-policy.php"
+      },
+      "gfz_kp": {
+        "citation": "https://doi.org/10.5880/Kp.0001",
+        "license": "CC-BY-4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "source": "https://kp.gfz.de/"
+      },
+      "noaa_swpc": {
+        "license": "US-PUBLIC-DOMAIN",
+        "source": "https://services.swpc.noaa.gov/",
+        "terms_url": "https://www.weather.gov/disclaimer/"
+      },
+      "open_meteo": {
+        "citation": "https://doi.org/10.5281/zenodo.7970649",
+        "license": "CC-BY-4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "source": "https://open-meteo.com/",
+        "terms_url": "https://open-meteo.com/en/terms"
+      }
+    }
+  },
+  "project_code_license": {
+    "attested": false,
+    "spdx_identifier": "REPLACE_WITH_SPDX_IDENTIFIER"
+  },
+  "reachable_api_contact": {
+    "attested": false,
+    "contact": "REPLACE_WITH_EMAIL_OR_HTTPS_PROJECT_URL"
+  },
+  "satnogs_attribution_review": {
+    "attested": false,
+    "license": "CC-BY-SA-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "source": "https://network.satnogs.org/api/"
+  },
+  "schema_version": "observation-planning-release-attestation-v2",
+  "source_identity_sha256": "REPLACE_WITH_FROZEN_SOURCE_IDENTITY_SHA256",
+  "study_id": "observation-planning-publication-v4"
+}

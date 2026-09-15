@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily telemetry-yield v4-trained 50-target prospective planner refresh
+
+[Timer]
+OnCalendar=*-*-* 01:15:00 UTC
+Persistent=true
+RandomizedDelaySec=300
+Unit=telemetry-yield-prospective-v4g.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,15 @@
+* text=auto eol=lf
+
+# Golden sample bytes must survive checkout unchanged.
+*.ci16 binary
+*.cf32 binary
+*.cf64 binary
+*.wav binary
+*.ogg binary
+*.png binary
+*.jpg binary
+*.pdf binary
+
+# Hash-bound research snapshots must not undergo newline normalization.
+publication/** -text
+research/** -text

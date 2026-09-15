@@ -1,0 +1,61 @@
+{
+  "schema": "polyitan-supplemental-profiles-v1",
+  "profiles": [
+    {
+      "document": {"name":"PCSAT APRS", "norad":26931, "data":{"Raw":"unknown"}, "transmitters":{"APRS VHF":{"frequency":145825000,"modulation":"AFSK","baudrate":1200,"af_carrier":1700,"deviation":500,"framing":"AX.25","data":["Raw"]}}},
+      "evidence": {"urls":["https://www.aprs.org/pcsat.html","https://db.satnogs.org/satellite/26931/"],"basis":"documented APRS AX.25 1200; Bell202 tones","limitations":"Only the 145.825MHz APRS channel. This is frame extraction, not a complete satellite payload parser."}
+    },
+    {
+      "document": {"name":"CUTE-1 AX25 branch", "norad":27844, "data":{"Raw":"unknown"}, "transmitters":{"AFSK AX25":{"frequency":437470000,"modulation":"AFSK","baudrate":1200,"af_carrier":1700,"deviation":500,"framing":"AX.25","data":["Raw"]}}},
+      "evidence": {"urls":["https://www.gov.br/inpe/pt-br/area-conhecimento/unidade-nordeste/conasat/documentacao/nano-satelites-pelo-mundo/cute-i-tokyo-institute-of-technology-japan/cute-i-sys-description.pdf","https://db.satnogs.org/satellite/27844/"],"basis":"operator-authored design paper documents AX.25 or SRLL; DB AFSK1200 channel","limitations":"Tests AX.25 with standard Bell202 receive tones only. Alternative SRLL and CW are not implemented by this profile; no exhaustive no-telemetry conclusion from zero AX.25 frames."}
+    },
+    {
+      "document": {"name":"FrontierSat AX100 mode5", "norad":69015, "data":{"Raw":"unknown"}, "transmitters":{"AX100 downlink":{"frequency":436150000,"modulation":"FSK","baudrate":9600,"framing":"AX100 ASM+Golay","scrambler":"CCSDS","data":["Raw"]}}},
+      "evidence": {"urls":["https://raw.githubusercontent.com/CalgaryToSpace/CTS-SAT-1-Ground-Station/main/docs/AX100_Config_Dump.txt","https://db.satnogs.org/satellite/69015/"],"basis":"operator AX100 transmitter config: mode5, RS true, CRC true, randomization true","limitations":"gr-satellites deframer output is candidate CSP data pending separate payload CRC/structure validation; never count as AX.25 UI."}
+    },
+    {
+      "document": {"name":"AEPEX current NORAD", "norad":68506, "data":{"Raw":"unknown"}, "transmitters":{"UHF9600":{"frequency":437325000,"modulation":"FSK","baudrate":9600,"framing":"AX.25 G3RUH","data":["Raw"]},"UHF19200":{"frequency":437325000,"modulation":"FSK","baudrate":19200,"framing":"AX.25 G3RUH","data":["Raw"]}}},
+      "evidence": {"urls":["https://raw.githubusercontent.com/daniestevez/gr-satellites/main/python/satyaml/AEPEX.yml","https://db.satnogs.org/satellite-reviewed-suggestions/11341"],"basis":"upstream framing and explicit old98864 to current68506 identity transition","limitations":"Payload parser aepex_70cm is not required or loaded; unknown baud remains ambiguous between9600 and19200."}
+    },
+    {
+      "document": {"name":"COSMO UHF", "norad":68460, "data":{"Raw":"unknown"}, "transmitters":{"GMSK9600":{"frequency":401200000,"modulation":"FSK","baudrate":9600,"framing":"AX.25 G3RUH","data":["Raw"]}}},
+      "evidence": {"urls":["https://gitlab.com/librespacefoundation/satnogs-ops/-/work_items/332","https://db.satnogs.org/satellite/68460/"],"basis":"operator explicitly specifies GMSK9600 AX25 G3RUH","limitations":"Use corrected9600 rate, not obsolete19200 suggestion. Generic FSK-family demodulation, not claimed waveform-optimal GMSK detector."}
+    },
+    {
+      "document": {"name":"KNACKSAT-2 UHF", "norad":67683, "data":{"Raw":"unknown"}, "transmitters":{"UHF9600":{"frequency":400630000,"modulation":"FSK","baudrate":9600,"framing":"AX.25 G3RUH","data":["Raw"]}}},
+      "evidence": {"urls":["https://db.satnogs.org/transmitter-reviewed-suggestions/11816","https://community.libre.space/uploads/short-url/qSC41iyZEqv7Br7WKFsmdJ3bk5B.pdf"],"basis":"accepted operator-email transmitter contract and operator reception guide","limitations":"Only specified400.630MHz downlink; does not infer framing of other KNACKSAT payloads."}
+    },
+    {
+      "document": {"name":"KOSTKA private temporary NORAD", "norad":98395, "data":{"Raw":"unknown"}, "transmitters":{"UHF9600":{"frequency":436870000,"modulation":"FSK","baudrate":9600,"deviation":2400,"framing":"AX.25 G3RUH","data":["Raw"]}}},
+      "evidence": {"urls":["https://raw.githubusercontent.com/daniestevez/gr-satellites/main/python/satyaml/KOSTKA.yml","https://db.satnogs.org/satellite/98395/"],"basis":"upstream69935 contract with DB-confirmed temporary98395 identity","limitations":"Private snapshot keeps temporary NORAD98395. No arbitrary global name or NORAD rewriting."}
+    },
+    {
+      "document": {"name":"LASARsat packet channel", "norad":62391, "data":{"Raw":"unknown"}, "transmitters":{"UHF9600":{"frequency":436925000,"modulation":"FSK","baudrate":9600,"framing":"AX.25 G3RUH","data":["Raw"]}}},
+      "evidence": {"urls":["https://db.satnogs.org/satellite/62391/","https://spacemanic.com/wp-content/uploads/2026/03/SM-MRG-DS-0001_3.1_Data-Sheet.pdf"],"basis":"explicit DB packet contract and manufacturer MURGAS NRZI G3RUH","limitations":"CW on the same carrier is not this packet profile; retain modulation filtering."}
+    },
+    {
+      "document": {"name":"Marina VHF private temporary NORAD", "norad":98293, "data":{"Raw":"unknown"}, "transmitters":{"VHF9600":{"frequency":145925000,"modulation":"FSK","baudrate":9600,"framing":"AX.25 G3RUH","data":["Raw"]}}},
+      "evidence": {"urls":["https://db.satnogs.org/satellite/FZQD-0263-2257-6241-5637/"],"basis":"DB explicit VHF G3RUH contract and temporary98293 followed69920","limitations":"Upstream MARINA.yml is a different436.680MHz channel and is not evidence for this VHF profile."}
+    },
+    {
+      "document": {"name":"ARICA-2 qualified G3RUH receive hypothesis", "norad":98329, "data":{"Raw":"unknown"}, "transmitters":{"GMSK4800 AX25 hypothesis":{"frequency":436830000,"modulation":"FSK","baudrate":4800,"framing":"AX.25 G3RUH","data":["Raw"]}}},
+      "evidence": {"urls":["https://sakamotolab.phys.aoyama.ac.jp/research/current_space/ARICA-2_en/amateur","https://www.jamsat.or.jp/?page_id=2777","https://db.satnogs.org/satellite/98329/"],"basis":"qualified receive hypothesis, not fully specified modem contract: operator AX25+NRZI+scrambling and JAMSAT DireWolf recommendation","limitations":"Scrambler polynomial not explicitly stated by operator. G3RUH is tested as a hypothesis. Camera packets can use a custom header with AX25 FCS and are not strict AX25 UI; retain raw candidates separately."}
+    }
+    ,{
+      "document": {"name":"CUTE-1.7 APD II AX25 branch", "norad":32785, "data":{"Raw":"unknown"}, "transmitters":{"AFSK1200 AX25":{"frequency":437475000,"modulation":"AFSK","baudrate":1200,"af_carrier":1700,"deviation":500,"framing":"AX.25","data":["Raw"]}}},
+      "evidence": {"urls":["https://www.jarl.org/Japanese/7_Technical/satellite/japanese-amateur-satellite.htm","https://db.satnogs.org/satellite/32785/"],"basis":"JARL explicitly identifies CO65 JQ1YTC and its AFSK1200 AX25/SRLL downlink, distinct from CO56","limitations":"AX25 branch only; SRLL and CW not decoded by this profile. Standard Bell202 tones are a receive assumption, not a parameter explicitly stated by JARL."}
+    },
+    {
+      "document": {"name":"SwissCube post-FM audio receive hypothesis", "norad":35932, "data":{"Raw":"unknown"}, "transmitters":{"BFSK1200 AX25 postFM":{"frequency":437505000,"modulation":"FSK","metadata_mode_aliases":["AFSK"],"baudrate":1200,"deviation":500,"framing":"AX.25","data":["Raw"]}}},
+      "evidence": {"urls":["https://swisscube.live/Home/RadioAmateurs","https://www.hb9afo.ch/articles/swisscube/RA%20presentation%2003%20mar%2009.pdf","https://db.satnogs.org/satellite/35932/"],"basis":"operator documents physical BFSK1200 AX25 with500Hz deviation; post-FM real-audio decoding is an explicit input-representation hypothesis","limitations":"Private metadata labelsAFSK but does not prove FM versus USB preprocessing. This scoped alias tests post-FM FSK; USB tone decoding would need different audio frequencies. Operator Bell202 uplink parameters are not used as downlink evidence. Zero frames does not rule out a USB-tone transmission."}
+    }
+  ],
+  "unresolved": [
+    {"norad":43017,"mode":"DUV","reason":"FOX200bps 8b10b/RS needs a FoxTelem-compatible deframer, absent in installed gr-satellites; a YAML name cannot implement it","url":"https://www.amsat.org/two-way-satellites/ao-91/"},
+    {"norad":43770,"mode":"DUV","reason":"FOX200bps 8b10b/RS needs a FoxTelem-compatible deframer, absent in installed gr-satellites","url":"https://www.amsat.org/foxtelem-software-for-windows-mac-linux/"},
+    {"norad":98330,"mode":"GFSK","reason":"PEARL-1B frequency and bitrate known; framing/FEC/scrambler unconfirmed. Do not copy PEARL-1C/H protocols","url":"https://db.satnogs.org/satellite/UOPM-9818-0116-8045-5386/"},
+    {"norad":98600,"mode":"GMSK","reason":"RIDU145.925MHz GMSK framing unconfirmed; confirmed145.825MHz AFSK profile is a different channel","url":"https://community.libre.space/t/all-about-ridu-sat1/15205"},
+    {"norad":32785,"mode":"CW","reason":"Known CW beacon. Existing native Morse inspector accepts IQ, not this audio dispatcher; separate audio adapter/validation required","url":"https://db.satnogs.org/satellite/32785/"},
+    {"norad":62391,"mode":"CW","reason":"Known CW beacon, not packet data; existing native Morse inspector requires IQ input","url":"https://db.satnogs.org/satellite/62391/"}
+  ]
+}

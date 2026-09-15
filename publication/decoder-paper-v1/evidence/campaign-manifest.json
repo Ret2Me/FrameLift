@@ -1,0 +1,1307 @@
+{
+  "arms": [
+    "innovation_v2",
+    "innovation_v1_no_codec",
+    "progressive_v3",
+    "direwolf",
+    "gr_satellites"
+  ],
+  "binary_and_selected_gr_source_hashes_not_full_system_closure": true,
+  "cohort": {
+    "bytes": 1653086,
+    "path": "/home/ubuntu/telemetry-yield/work/publication-execution-20260912-v1/historical-acquisition-v1/cohort.json",
+    "sha256": "291d773cca67ba4a108b43338e6592974fe2c915717f92ef0bd352109b2ac1a9"
+  },
+  "cohort_metadata_frozen_before_runner_started": true,
+  "created_utc": "2026-09-12T15:25:45+00:00",
+  "decoder_seconds": 900,
+  "improved": {
+    "bytes": 13978624,
+    "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/after/innovation_audio_probe",
+    "sha256": "c406199366ecccef6ce14d4c13600d8cd6e3019ac9a69921430d80e59424960b"
+  },
+  "network_submission": false,
+  "pcm_conversion": "ffmpeg -nostdin -v error -n -i ORIGINAL -map 0:a:0 -c:a pcm_s16le -flags:a +bitexact -fflags +bitexact SHARED",
+  "profile": {
+    "bytes": 202,
+    "path": "/home/ubuntu/telemetry-yield/work/publication-speed-restart-20260912-v1/comparison/grsat-profile.yml",
+    "sha256": "5f2adc52422b8bfe635c30fb669ef0015ad4df2c2c855e094c4f78b6df699735"
+  },
+  "progressive_receiver_binding": {
+    "arm_label_is_algorithm_lineage_not_binary_identity": true,
+    "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/after/telemetry-yield-rs",
+    "sha256": "cd2c8adcf9db34e5f177753357e7915ac29189816ce73e11e90814c0f3d96acf"
+  },
+  "protocol_path": "/home/ubuntu/telemetry-yield/work/publication-speed-restart-20260912-v1/protocol.md",
+  "receiver_bindings": {
+    "direwolf": {
+      "bytes": 257024,
+      "path": "/usr/bin/atest",
+      "sha256": "39f828de41f3afbc545b04dd73e8f1e254cd8130cb8e37a68c7ac3b1e9feae5b"
+    },
+    "gr_satellites": {
+      "bytes": 16115,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/bin/gr_satellites",
+      "sha256": "86059e664af0e12ade1a5c3c52a7c14dc8fbe87f3febafdee1b1626e1f4827f7"
+    },
+    "innovation_v1_no_codec": {
+      "bytes": 13390112,
+      "path": "/home/ubuntu/telemetry-yield/work/innovation-field-20260910-v1/bin/innovation_audio_probe",
+      "sha256": "47493db215ba9e42e922524f13839596b02a977864802807362acbf23a4a59d0"
+    },
+    "innovation_v2": {
+      "bytes": 13978624,
+      "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/after/innovation_audio_probe",
+      "sha256": "c406199366ecccef6ce14d4c13600d8cd6e3019ac9a69921430d80e59424960b"
+    },
+    "progressive_v3": {
+      "bytes": 45789176,
+      "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/after/telemetry-yield-rs",
+      "sha256": "cd2c8adcf9db34e5f177753357e7915ac29189816ce73e11e90814c0f3d96acf"
+    }
+  },
+  "release_receipt": {
+    "bytes": 4053,
+    "path": "/home/ubuntu/telemetry-yield/work/publication-speed-restart-20260912-v1/waveform-release.json",
+    "sha256": "b897b4574dbc42b28650376c5be147fac158cfb40bc5a665be28a54ad5a55fc5"
+  },
+  "runner": {
+    "bytes": 12464832,
+    "path": "/home/ubuntu/telemetry-yield/work/publication-speed-restart-20260912-v1/bin/innovation_benchmark_run",
+    "sha256": "00613b60e713771e1721b40907c33eb8960e1fccd15b3a64368ef2e45ef9849c"
+  },
+  "runtime": [
+    {
+      "bytes": 13390112,
+      "path": "/home/ubuntu/telemetry-yield/work/innovation-field-20260910-v1/bin/innovation_audio_probe",
+      "sha256": "47493db215ba9e42e922524f13839596b02a977864802807362acbf23a4a59d0"
+    },
+    {
+      "bytes": 45789176,
+      "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/after/telemetry-yield-rs",
+      "sha256": "cd2c8adcf9db34e5f177753357e7915ac29189816ce73e11e90814c0f3d96acf"
+    },
+    {
+      "bytes": 13978624,
+      "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/after/innovation_audio_probe",
+      "sha256": "c406199366ecccef6ce14d4c13600d8cd6e3019ac9a69921430d80e59424960b"
+    },
+    {
+      "bytes": 16115,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/bin/gr_satellites",
+      "sha256": "86059e664af0e12ade1a5c3c52a7c14dc8fbe87f3febafdee1b1626e1f4827f7"
+    },
+    {
+      "bytes": 257024,
+      "path": "/usr/bin/atest",
+      "sha256": "39f828de41f3afbc545b04dd73e8f1e254cd8130cb8e37a68c7ac3b1e9feae5b"
+    },
+    {
+      "bytes": 342488,
+      "path": "/usr/bin/ffmpeg",
+      "sha256": "ed16af623947494a72e284b6eb8ff225f2da22b38b5d5069c2fd4b4ba3384e41"
+    },
+    {
+      "bytes": 191888,
+      "path": "/usr/bin/ffprobe",
+      "sha256": "272f6ebc634a63d9c8b4ca68e964119d980f25154e5aa2c35e5487da48e9a58f"
+    },
+    {
+      "bytes": 27160,
+      "path": "/usr/bin/time",
+      "sha256": "3b11dec50514a8473e9f6efa7a34d584d0657538c09988f61b72d38ad4991a10"
+    },
+    {
+      "bytes": 202,
+      "path": "/home/ubuntu/telemetry-yield/work/publication-speed-restart-20260912-v1/comparison/grsat-profile.yml",
+      "sha256": "5f2adc52422b8bfe635c30fb669ef0015ad4df2c2c855e094c4f78b6df699735"
+    },
+    {
+      "bytes": 3709,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/__init__.py",
+      "sha256": "df21798abc7660bf94927a5cc8c36a278bee41cdc2b2bd68e9c8adfd9beb9ea8"
+    },
+    {
+      "bytes": 1418,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/aausat4_remove_fsm.py",
+      "sha256": "7538590dec5b79810e49b59cbfac104e7ed7703f66857baadb865f70d1f78aa2"
+    },
+    {
+      "bytes": 1889,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/adapters.py",
+      "sha256": "966532e6401d4b72c2407cc273a6eeedb1148328a6f501d61abf121a93bbb3b3"
+    },
+    {
+      "bytes": 1632,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/adsb_kml.py",
+      "sha256": "162775fdba01043550b60bc1d3cd600e5bb13befcd8a1aa06958a25b509d1109"
+    },
+    {
+      "bytes": 870,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ao40_uncoded_crc.py",
+      "sha256": "4d5d8ebfc4ee0643592f7f62aef9a8600b2ceaa02c43049a569200897a492cd8"
+    },
+    {
+      "bytes": 1257,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/append_crc32c.py",
+      "sha256": "ac451a1956d7c85964ee3d6d5817953eaebe4072fcbb1bc4fe9d39edf3e41738"
+    },
+    {
+      "bytes": 3282,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/autopolarization.py",
+      "sha256": "c082562085482ed6c331f8273762fcd128b89203f24b49e6a60e1819599b8bab"
+    },
+    {
+      "bytes": 4111,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/bch15.py",
+      "sha256": "2a84d7253a96198952d0d6d902cd5c5429b29e50b814dd24ed61e2cb22c10ee5"
+    },
+    {
+      "bytes": 1829,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/beesat_classifier.py",
+      "sha256": "feca88640f2211919f8f12545be9f468770e8531c8ad6515c82dddd7cf45733e"
+    },
+    {
+      "bytes": 2935,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/bme_submitter.py",
+      "sha256": "5134026c7653e2830ac1107d51a8f30a2eed00720127c8c5da046c4bb56e43c5"
+    },
+    {
+      "bytes": 1815,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/bme_ws_submitter.py",
+      "sha256": "9c7fbb406335420dbb5e5334a17738e86b0fa058b3fdebe759680ad6aa0fd54e"
+    },
+    {
+      "bytes": 1218,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/cc11xx_packet_crop.py",
+      "sha256": "e8ab2d4f8c788074b8fe4bd98d42f5d5b8899733edfa5ef44609b66399170549"
+    },
+    {
+      "bytes": 1167,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ccsds/__init__.py",
+      "sha256": "f5bb1b588ddd8c204b53c68defa364cb59b9efe35ec8d2f479f662f2fdd9d0de"
+    },
+    {
+      "bytes": 1821,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ccsds/pathID_demultiplexer.py",
+      "sha256": "01b4314321e5f189387f20de89f276db76111a209ad3565a894ae70b3229f3a3"
+    },
+    {
+      "bytes": 12145,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ccsds/space_packet.py",
+      "sha256": "eb8f3811a852695b782c59c0f0ca6d940c86c855f6dbf4c19186b2c0b0cd7066"
+    },
+    {
+      "bytes": 4556,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ccsds/space_packet_parser.py",
+      "sha256": "29c5b5810bcb7a8611eb6f794c089d13a7fa56bcb24b7a172dc8a972e36e28fe"
+    },
+    {
+      "bytes": 3034,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ccsds/space_packet_primaryheader_adder.py",
+      "sha256": "ddb25a84badf6111b5fe4bd2452ca68ec1442edff9ce127329ff4eb989ca83b0"
+    },
+    {
+      "bytes": 12433,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ccsds/space_packet_time_stamp_adder.py",
+      "sha256": "ca48d94795623150a224b37741b75e7e42f747a2194e4df5f2d6cb452ee05825"
+    },
+    {
+      "bytes": 1038,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ccsds/telecommand.py",
+      "sha256": "0eef8cca002249e4e76ac52577ac16fc970d9db41a3a998a93a3480c13ac9ed3"
+    },
+    {
+      "bytes": 1198,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ccsds/telecommand_parser.py",
+      "sha256": "9dba8550442bc5884fe0eeafcc2f7bbb71c592ff34ef3256fdbad10eab24857b"
+    },
+    {
+      "bytes": 3088,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ccsds/telecommand_primaryheader_adder.py",
+      "sha256": "6a715eeaf0c0df848e0fb7e36beb93b951ea9931bd6d15a8599ccec95d6daa93"
+    },
+    {
+      "bytes": 2048,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ccsds/telemetry.py",
+      "sha256": "6d270beac5a5afe70cbaa82ad93fc646bb34ecb9cf07f6ad74714ea7a43a3fdb"
+    },
+    {
+      "bytes": 4116,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ccsds/telemetry_ocf_adder.py",
+      "sha256": "27646f3a045343d106fd05f3f0c68c10fa3d781aaf8f0c0a05aa0e1002ef4e51"
+    },
+    {
+      "bytes": 2817,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ccsds/telemetry_packet_reconstruction.py",
+      "sha256": "9d06b46cfe0fc318c52ffcf3aeaa533ba49b1070ebab5fa6e324e828c24c9663"
+    },
+    {
+      "bytes": 1470,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ccsds/telemetry_parser.py",
+      "sha256": "527a4b148437e419ee724bca2fa40d6c16f7a900a47c2cc42d2d347d00958a67"
+    },
+    {
+      "bytes": 5875,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ccsds/telemetry_primaryheader_adder.py",
+      "sha256": "198929ce269ffc59dccae01edfab26647636cc12253dcfe4de2a65068837bc10"
+    },
+    {
+      "bytes": 1834,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ccsds/virtual_channel_demultiplexer.py",
+      "sha256": "5a9dc5932150d429d9388c01f8d561e17600e4535506afd64f739f4ee640de19"
+    },
+    {
+      "bytes": 2540,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/check_address.py",
+      "sha256": "fc3f9dd3142b5671b621748033be35a5205d96c2d4ba824b6ea1bc6e613e3b55"
+    },
+    {
+      "bytes": 1342,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/check_ao40_uncoded_crc.py",
+      "sha256": "0116bf92d08f2a44e97ae9f83fce94c39a8fff6ebdb2f11469e43e57399bb71f"
+    },
+    {
+      "bytes": 1726,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/check_astrocast_crc.py",
+      "sha256": "58b9abf68443d5dfe806f1808c6830d314d2b7eabf5eb185d590926884ea9a5b"
+    },
+    {
+      "bytes": 3899,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/check_cc11xx_crc.py",
+      "sha256": "48394c515ce225c06fec20234c931b0547f1031b416563db9797354ef0857c8d"
+    },
+    {
+      "bytes": 2229,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/check_crc.py",
+      "sha256": "a64a5ab6e2084e74ae66142d94e27caf1c618d0bfb8433fb0e057d67ecb2cd8f"
+    },
+    {
+      "bytes": 1649,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/check_crc16_ccitt.py",
+      "sha256": "4ade2061cf59bd9a5c360a9e159e28132c297dda8fbfbc8ecde6d49bb36ae45e"
+    },
+    {
+      "bytes": 4007,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/check_crc16_ccitt_false.py",
+      "sha256": "7123a96168ff2598f23b215b45a88940677584fd17735f262d26d26b2fbaf5cd"
+    },
+    {
+      "bytes": 3895,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/check_eseo_crc.py",
+      "sha256": "0656bdf9548c6d853a9d3c0fdcd2ebdb0f0007bf1e28aae323cd44724ba9fe4b"
+    },
+    {
+      "bytes": 1440,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/check_hex_string.py",
+      "sha256": "eaeb7a1d7deb55d7943551488fbae3e66afe7ebfbf18ca4eb1fca19b125b8d5e"
+    },
+    {
+      "bytes": 1657,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/check_swiatowid_crc.py",
+      "sha256": "84cb03341080aee976632de556cb59366899e5fee7e13bc01a0ae07ca354f2ae"
+    },
+    {
+      "bytes": 4259,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/check_tt64_crc.py",
+      "sha256": "8020d9e4ffcd3280eaa9f28ca4f54de5d05f270b521522ca9424abc6fe6c4f99"
+    },
+    {
+      "bytes": 368,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/__init__.py",
+      "sha256": "0f5127a3aff93e3995d71febf62850f635d6543a84979cbd2e6f8430f9cf6bc6"
+    },
+    {
+      "bytes": 745,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/datasinks/__init__.py",
+      "sha256": "e72a5b47423097908480b06c2d0237d44cc3a8286d30fbd86f165b11a34be26d"
+    },
+    {
+      "bytes": 2469,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/datasinks/codec2_udp_sink.py",
+      "sha256": "f64c332ba5370024470f4fa49a190c0af222c0d4dde1bc93d212c3edf88c079e"
+    },
+    {
+      "bytes": 2496,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/datasinks/file_receiver.py",
+      "sha256": "d19bcd47d6d005e060fa80893fc9bca797cbae87b5d15cb5680f4de004d54fd8"
+    },
+    {
+      "bytes": 801,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/datasinks/hexdump_sink.py",
+      "sha256": "85315517ec25d401c560db0921cdcb273788950d827081d1231846bdae8d1d40"
+    },
+    {
+      "bytes": 1743,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/datasinks/kiss_file_sink.py",
+      "sha256": "3f4f7f3282b8b7495abf710b04847b6fd0583dace5f3ae2ba0afa139600d7f70"
+    },
+    {
+      "bytes": 1724,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/datasinks/kiss_server_sink.py",
+      "sha256": "1a5cce733a82542fd7b4021172a9d337b0d8bddbcf70507cf0774de44421abad"
+    },
+    {
+      "bytes": 2413,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/datasinks/telemetry_parser.py",
+      "sha256": "e3d1dec969aeb762fd8dcb25ff85a660afbc05ef2fd4db53c8b0e9663960b3f8"
+    },
+    {
+      "bytes": 3401,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/datasinks/telemetry_submit.py",
+      "sha256": "c9f7ebeba78bf84a776685312a7b74d27381126e2d7113657e49c12b0e67d964"
+    },
+    {
+      "bytes": 414,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/datasources/__init__.py",
+      "sha256": "a2f34ae3e1abeb35dedb9063964c18adf9ee78e72d52ac4cfd73a9224463655b"
+    },
+    {
+      "bytes": 996,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/datasources/kiss_file_source.py",
+      "sha256": "65311425bf5182c4db85129bfc2c5061f2eaa88e7759eee30ea3afb2ca985185"
+    },
+    {
+      "bytes": 2594,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/__init__.py",
+      "sha256": "c436483e304a95cb90d51970e7eae7310e788102cdc973f34eb7292621e6202a"
+    },
+    {
+      "bytes": 2490,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/aalto1_deframer.py",
+      "sha256": "daa29b6c669b8d88a5cd020a92cbef1390699bf823d81cc6277131799e813f51"
+    },
+    {
+      "bytes": 3955,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/aausat4_deframer.py",
+      "sha256": "9b6b72b639ad9c1266d00a6aa1689f0616a11e7258228b41f8a88ecf39db5989"
+    },
+    {
+      "bytes": 2245,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/aistechsat_2_deframer.py",
+      "sha256": "3481d0ea86318aaee1196072c3987c84a98ec7b7b5ecd71cf19966fe97266e63"
+    },
+    {
+      "bytes": 3378,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/ao40_fec_deframer.py",
+      "sha256": "796e71c53c1e2223dacf763ebf0e17a15f06400297f339899041d9f156ae830a"
+    },
+    {
+      "bytes": 1979,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/ao40_uncoded_deframer.py",
+      "sha256": "6047d5bcda0b6a62b3bd6a0701e16d0cc3382c5d2dd58a62dc8e6db5f5202753"
+    },
+    {
+      "bytes": 2623,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/astrocast_fx25_deframer.py",
+      "sha256": "fadde2d754376cb0bf221c8f3a5125bdfd97070447487425a5f9f4f3e0d55109"
+    },
+    {
+      "bytes": 3028,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/ax100_deframer.py",
+      "sha256": "69764ed0c5147a13ee83ee4d6d926241d9651a6093894b175cd12a36a25c151b"
+    },
+    {
+      "bytes": 1415,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/ax25_deframer.py",
+      "sha256": "0e313d9825da10c3e7843762cbb02c98d52f020a3a3439d7cc8411ff6cf3d72c"
+    },
+    {
+      "bytes": 4021,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/ax5043_deframer.py",
+      "sha256": "594c7ae383c23a1929b8c472267723693d609b4cc9166d5062790b7d710577e3"
+    },
+    {
+      "bytes": 2475,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/binar1_deframer.py",
+      "sha256": "0fde1293f006f66655f1f26b2e7950f7f015dd46f966d172bdd7186e6ef147e1"
+    },
+    {
+      "bytes": 2264,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/binar2_deframer.py",
+      "sha256": "61d03f3a94f5a569c5566650cfc0768712007676aa7a7aaf89eb8402cd9a967f"
+    },
+    {
+      "bytes": 3102,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/ccsds_concatenated_deframer.py",
+      "sha256": "e61b058058ff967643b69e4861966ab7ed56669efb0eaa65d45a35b9046df970"
+    },
+    {
+      "bytes": 3999,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/ccsds_rs_deframer.py",
+      "sha256": "5f451da2bf44fee995406a4550b983cc8f34afe046f98e687998382970bed3e5"
+    },
+    {
+      "bytes": 4493,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/diy1_deframer.py",
+      "sha256": "e30d90a751c3ee91c4a0b8cdf2b0ac7231fd36bcfa872b6c467dda1616689947"
+    },
+    {
+      "bytes": 2486,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/endurosat_deframer.py",
+      "sha256": "00218fdb6969e045929e3b3fbfc5c3580b871f03c99d3cb87560f8fe86872c7d"
+    },
+    {
+      "bytes": 2345,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/eseo_deframer.py",
+      "sha256": "88db5544eb78f956cf0eafc54d193979cf7c578719e63bc94b94b4a0148e312f"
+    },
+    {
+      "bytes": 2901,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/fossasat_deframer.py",
+      "sha256": "d60ac421ba509eadc2fed99c5c8998b0ffcafeb67b90ab41bccf7c5587d63c0c"
+    },
+    {
+      "bytes": 2283,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/geoscan_deframer.py",
+      "sha256": "e33845f74daddfa9429043915ff2e5515a94b8dd98015e5849ab7a55ad3eb7b1"
+    },
+    {
+      "bytes": 3397,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/grizu263a_deframer.py",
+      "sha256": "a7e31f868d8fee4aa43f525c3064aa4e8040161934494b9a948bead459455b82"
+    },
+    {
+      "bytes": 6679,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/hades_deframer.py",
+      "sha256": "c963e91ca4cfcdcb1313ac56691ab9f89bde3cf75067afaa313034b9e7c00e84"
+    },
+    {
+      "bytes": 6299,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/hsu_sat1_deframer.py",
+      "sha256": "307a90c3704cf8133f8566a6b0302ae1eea37ede5ee77b1426b8eaada4f8358d"
+    },
+    {
+      "bytes": 5528,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/ideassat_deframer.py",
+      "sha256": "4d37c442e5d5ea8a1b54932a30c06717d332d049f1cee11a01681978421c99bb"
+    },
+    {
+      "bytes": 3389,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/k2sat_deframer.py",
+      "sha256": "19c3857abae280f70df02854f25d7e8459065b2d8eda31afd5ae836e7a43db2f"
+    },
+    {
+      "bytes": 3033,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/lilacsat_1_deframer.py",
+      "sha256": "0f65f716d58ac7ec5b5fb0e77bb39158a3a9fe637865d3591d4e25cccfdf7409"
+    },
+    {
+      "bytes": 2181,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/lucky7_deframer.py",
+      "sha256": "6705646ff96c553540be11faa8792b41721670f06c719a4c7c10198c70a9d201"
+    },
+    {
+      "bytes": 7969,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/mobitex_deframer.py",
+      "sha256": "3f64ad567334c65074712d3483af2da4c2b7201b00f886958473fba4139bf30f"
+    },
+    {
+      "bytes": 3369,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/ngham_deframer.py",
+      "sha256": "a7f816ac7b91dc02a369269edd14b32cb69a5067548fc3636b62b3870c6e62e9"
+    },
+    {
+      "bytes": 1934,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/nusat_deframer.py",
+      "sha256": "bb5578429eeff3e7c371a03a79da37377352eb93ff9b0492dd2246a276582f52"
+    },
+    {
+      "bytes": 8044,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/openlst_deframer.py",
+      "sha256": "b66cf80ae4b6fba1fb5f05da492f58b3fb23c6aaa057dbc2bae5fb465b1fead9"
+    },
+    {
+      "bytes": 2828,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/ops_sat_deframer.py",
+      "sha256": "aa7bca56ecbe15e7b62c9458d0c7d6ad3f3f535973047ce3738f5f2d5a832179"
+    },
+    {
+      "bytes": 3476,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/qubik_deframer.py",
+      "sha256": "5c685df118c0af672e4f4e7a0d30ed806f82a2f61b1c1cdeacbee2db89a8b549"
+    },
+    {
+      "bytes": 2977,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/reaktor_hello_world_deframer.py",
+      "sha256": "a5f30b1ed676a13ac93daeaa039114f5510ce9fe50c63da69134bf6ca580cd9b"
+    },
+    {
+      "bytes": 3537,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/sanosat_deframer.py",
+      "sha256": "ad313749466f8515899d5f69ba4dfb318369735fbc103712af4eddc009cadb45"
+    },
+    {
+      "bytes": 2352,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/sat_3cat_1_deframer.py",
+      "sha256": "a9c7a79440b71bc6c24fa43ba7e000b295cc7e6592ad25a5f3c2574d4c0bdb6a"
+    },
+    {
+      "bytes": 4725,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/smogp_ra_deframer.py",
+      "sha256": "258ed6e2c0b6236d1b8556aadac9f7007e5ebcc6c1f12210acfcffce0e9e6637"
+    },
+    {
+      "bytes": 2415,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/smogp_signalling_deframer.py",
+      "sha256": "5d45e9860cf86c09f74ebf941f9cdf648c4d025d1fc0a8def8d21a9494ab41bd"
+    },
+    {
+      "bytes": 2156,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/snet_deframer.py",
+      "sha256": "f937d46123a1ec5c36917733cdc227d4091ef25da8f67bb0817c95c850bddba7"
+    },
+    {
+      "bytes": 3365,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/spino_deframer.py",
+      "sha256": "76a7a13602e3a62fc08e1f9f51b800b20e41418ed761db1df99ffa6e60b83259"
+    },
+    {
+      "bytes": 2477,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/swiatowid_deframer.py",
+      "sha256": "b0f9737bc2c10447f714a30f5ad6b083448fe60c6e0f0f7e8e8a9ace0f7f55e6"
+    },
+    {
+      "bytes": 2180,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/tt64_deframer.py",
+      "sha256": "46d765bc689afb8b26495905f0c39faf61f2f0d3664e2347a44bf2efaf60c4bc"
+    },
+    {
+      "bytes": 2104,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/u482c_deframer.py",
+      "sha256": "e71f2b068e66604d940772312ae2e35edcc36ba792af3a7f0c55855e03c0c2ca"
+    },
+    {
+      "bytes": 1268,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/ua01_deframer.py",
+      "sha256": "e3bc0eeaabd9011e1a84142a7055533e5eb32a16bb2f9c68cc21ac7aa463a0c4"
+    },
+    {
+      "bytes": 2907,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/usp_deframer.py",
+      "sha256": "e8998f935c8cbf5edd2d016c88275d2efb2f6f56b74bc545cbcd8c1518a18499"
+    },
+    {
+      "bytes": 2570,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/deframers/yusat_deframer.py",
+      "sha256": "4ba81f6716745b7195531cd65a4f2c9b5300479c360f0395467072b7306f21ef"
+    },
+    {
+      "bytes": 608,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/demodulators/__init__.py",
+      "sha256": "f3c5337ff5f22c78e527f966cdcb72d7faac51cf5c0e1378463bdd38f38e4605"
+    },
+    {
+      "bytes": 3631,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/demodulators/afsk_demodulator.py",
+      "sha256": "db0e6def9a55550d4821a3aede51c7fd1a9757e8252a8a76ac00660309ab7905"
+    },
+    {
+      "bytes": 9686,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/demodulators/bpsk_demodulator.py",
+      "sha256": "65a17d206d6e1e8e8d28c823d089c1d352cb3307a8574e1c46821cd911fe8069"
+    },
+    {
+      "bytes": 8041,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/demodulators/fsk_demodulator.py",
+      "sha256": "0912425dc61d8bcfc48d2e47a01ddca778831e99c4f0a714f6de31033bbcb33f"
+    },
+    {
+      "bytes": 634,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/transports/__init__.py",
+      "sha256": "e2b9e36899e7e9b655235019432c8e42fa9756b686d9c5c280ea383355387d75"
+    },
+    {
+      "bytes": 1610,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/transports/kiss_transport.py",
+      "sha256": "a864ff300a20c709d94fed50632afd0c5bc325e9e59bb7abcce497b27449d719"
+    },
+    {
+      "bytes": 3730,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/transports/nanolink_transport.py",
+      "sha256": "bcf2b28033ccf9f35952829f22bd6d8911257e16aadea34a5b9e5b4a50e9ea38"
+    },
+    {
+      "bytes": 2654,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/components/transports/tm_kiss_transport.py",
+      "sha256": "25fa2a637ae4ebecd2c410df9b82ff47a45066e0416c05bebaa079b5badd1358"
+    },
+    {
+      "bytes": 348,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/core/__init__.py",
+      "sha256": "256b0248c74f8193defc7caefde5e5766c2e029e6be8cf48de49e244a0efd43d"
+    },
+    {
+      "bytes": 20833,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/core/gr_satellites_flowgraph.py",
+      "sha256": "c909eeee05a7379def75295034bb68a8fa8c71bcb99b1cb6c47227d53ed130d2"
+    },
+    {
+      "bytes": 5243,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/crc32c.py",
+      "sha256": "01d7633a539893225f329aae4fc86296db02871914870196c40475482d393f78"
+    },
+    {
+      "bytes": 1385,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/crcs.py",
+      "sha256": "14a28703b6a53531de040101de480724efc08dd7dacd21f642c39d0918270f71"
+    },
+    {
+      "bytes": 1448,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/csp_address_filter.py",
+      "sha256": "33236e2961f2c88496430745763974740a8bd4ce8dca7a9e6eebd3e54b475806"
+    },
+    {
+      "bytes": 1290,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/csp_header.py",
+      "sha256": "84bf752d4c516fe8f0354e08938ba700970bc79659fcb21618855b89708de916"
+    },
+    {
+      "bytes": 1393,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/csp_zmq_pub.py",
+      "sha256": "390514601c4588d0eea333788a53e526ad480a93b41095451871113100a7ce9b"
+    },
+    {
+      "bytes": 1446,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/csp_zmq_sub.py",
+      "sha256": "8fc82fa884e7a090dfb9ee5b6e50f031113b2018c12e247f221cfbbc47546641"
+    },
+    {
+      "bytes": 494,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ecss_pus.py",
+      "sha256": "7af8f036f86028057185f1acde77e1b68a3dfdcccb59321428c7d210952a2dab"
+    },
+    {
+      "bytes": 2309,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/eseo_line_decoder.py",
+      "sha256": "cd6e33b22145532a74d796880699796a891adbc77065720f74d3b753070b5d36"
+    },
+    {
+      "bytes": 1599,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/eseo_packet_crop.py",
+      "sha256": "d820c5b0473ba454eb39ff0691b6f7d1607718ca3d246186887a143e13abca8f"
+    },
+    {
+      "bytes": 616,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/feh.py",
+      "sha256": "c02d26fc82d0018d5e515a9ff7d825ff4e621f60c38125448ff3120b314c83bd"
+    },
+    {
+      "bytes": 705,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/filereceiver/__init__.py",
+      "sha256": "2c37828498c1229cfa468d17ea94e3e7ce1f5f6472b67bb4838d03324c298fbd"
+    },
+    {
+      "bytes": 610,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/filereceiver/by70_1.py",
+      "sha256": "ddb09bfe06186dc9054a168ed36aaa1389e6ce9ee9554801b74408b97a83d3d9"
+    },
+    {
+      "bytes": 3035,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/filereceiver/cas5a.py",
+      "sha256": "fce846ba04189eb5f8fa1122e67cd6f300bd0489c3cd10abc51d9eaf820b4670"
+    },
+    {
+      "bytes": 2986,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/filereceiver/dsat.py",
+      "sha256": "820472b9713e80391ba510357b9c316c3f9191c24f0a8a0204f3505b0749d462"
+    },
+    {
+      "bytes": 9297,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/filereceiver/filereceiver.py",
+      "sha256": "88045c8e6c24d528863a68aeee08f4ec090e2e3b5cbe346eca9c8fbd71abd687"
+    },
+    {
+      "bytes": 2415,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/filereceiver/imagereceiver.py",
+      "sha256": "7f859fe565f2e88a2a21851d278de1c3c4416bd59d0663256a3efa2f62aa2e98"
+    },
+    {
+      "bytes": 1754,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/filereceiver/k2sat.py",
+      "sha256": "e047df562bebf210dcb47c11d7b8e4490a9e6d55819e1592a41fc5ecc4675169"
+    },
+    {
+      "bytes": 956,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/filereceiver/lucky7.py",
+      "sha256": "2ceb866701aa695db5905b8d6fd160be07b5ccf04692b325a9b2cd8b4a955498"
+    },
+    {
+      "bytes": 951,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/filereceiver/mirsat1.py",
+      "sha256": "70400ae32417cec338586510bd1b69ee0a089051bb17c0545bcbcda19dad10bf"
+    },
+    {
+      "bytes": 3679,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/filereceiver/qo100_multimedia.py",
+      "sha256": "8b2caa7292e6f0eb2fdc46dfae077235437ac311fbb3685c77821fcdd82f486f"
+    },
+    {
+      "bytes": 663,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/filereceiver/sat_1kuns_pf.py",
+      "sha256": "f6443a694efb19cc921675eb826dca0886736f08cd2aae0263a3bedb475c8914"
+    },
+    {
+      "bytes": 1230,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/filereceiver/smogp.py",
+      "sha256": "013ed0424fe62ee2e5e319da776b5c3a5cf22c2273662011cf56dd07ff26dd87"
+    },
+    {
+      "bytes": 824,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/filereceiver/swiatowid.py",
+      "sha256": "80bb4092c6d6e17f15e7f14e6e51fed5e9981f93641771a3225fab2f2073cc72"
+    },
+    {
+      "bytes": 1902,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/funcube_submit.py",
+      "sha256": "6066aa6b383b2a2e2bcbd0ec336cc93134dfa44bd87b067c277c75a972d98452"
+    },
+    {
+      "bytes": 704,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/grpdu.py",
+      "sha256": "915d05affe74f958b81a7ea59c231e14485c3352a1791242a345428ceff61fca"
+    },
+    {
+      "bytes": 700,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/grtypes.py",
+      "sha256": "b06c5f51dc2c327d337182fba94f2f3b9a0eda473e159e12ec904f29aaabb18c"
+    },
+    {
+      "bytes": 544,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/hdlc.py",
+      "sha256": "6fbb9510594a35b4f9d74af47693bd0bf0485f2faeca95ed955a4b5eba3a9f58"
+    },
+    {
+      "bytes": 2910,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/hdlc_deframer.py",
+      "sha256": "0ef782e6ead1b4fa082b7af10cfa7f2d02e924fac0038d68ca83ce226dd811c8"
+    },
+    {
+      "bytes": 1996,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/hdlc_framer.py",
+      "sha256": "0d46198ae12da314a2535c6b5942bb2e3d6a5119ce783115654411473a2731bb"
+    },
+    {
+      "bytes": 674,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/hier/__init__.py",
+      "sha256": "2ccd99f4068fc067c66d600988038ffeb9637845b4648ce905d8e03427da175c"
+    },
+    {
+      "bytes": 2529,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/hier/ccsds_descrambler.py",
+      "sha256": "7ffdde27d93fc5d24bc985a7ec04aa62dcd6a77da6f9118fcff999dd40cb0616"
+    },
+    {
+      "bytes": 1830,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/hier/ccsds_viterbi.py",
+      "sha256": "f861d5b76f1df4109af716de4b3caa1d39148e4229e6faa5d316df7ff5b42b89"
+    },
+    {
+      "bytes": 1924,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/hier/pn9_scrambler.py",
+      "sha256": "d5e9a10cfe3e5ff9b3eea562cbb52981889489927c51a1d4ec695e29b6952267"
+    },
+    {
+      "bytes": 2393,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/hier/rms_agc.py",
+      "sha256": "051d4a3a844196cc44b3555b8a967e7214ce036f78e8e3a61b56800d318e417f"
+    },
+    {
+      "bytes": 2199,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/hier/rms_agc_f.py",
+      "sha256": "084c4c6e995d28d0934fd1a3cd640322c2dec2253ad4991021202dbb710ed21d"
+    },
+    {
+      "bytes": 2417,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/hier/si4463_scrambler.py",
+      "sha256": "5c02738d0a596ff1dd352d9c04d8b62edafd193a02d6d3b90eecf8907537c53b"
+    },
+    {
+      "bytes": 2423,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/hier/sync_to_pdu.py",
+      "sha256": "03ac0b82461b5e60b46902c26ab005ae567ca6d4dec1c751c032f408b2eaed55"
+    },
+    {
+      "bytes": 2539,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/hier/sync_to_pdu_packed.py",
+      "sha256": "583383882710eb86ada6939ebcce41f269aad97d10073eabb6e7bb58849d9d72"
+    },
+    {
+      "bytes": 2478,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/hier/sync_to_pdu_soft.py",
+      "sha256": "9dc4871cc484642cd94251e0847395c9552f17154c1d7b16f52f7c68b78de237"
+    },
+    {
+      "bytes": 2575,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/k2sat_deframer.py",
+      "sha256": "7a749bc4b3d13039ed9a6af128089b6e3fd04eeab0d276ab40d81ae0867a1b67"
+    },
+    {
+      "bytes": 716,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/kiss.py",
+      "sha256": "c6698d4a81066fba3d569eaec19a79877440cc8698de1b62243fccff584a6953"
+    },
+    {
+      "bytes": 1597,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/kiss_to_pdu.py",
+      "sha256": "0508a04b714ccd4f165c006ec48f4198db5a90722787442a779487e0910e1909"
+    },
+    {
+      "bytes": 1409,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ks1q_header_remover.py",
+      "sha256": "8c339a0ae2aeb828dbf2883339b0bc0f7c288398c808e03444690396c57ac631"
+    },
+    {
+      "bytes": 1555,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/lilacsat1_gps_kml.py",
+      "sha256": "d10e0383fc7f416fa6606ef9aef4847d0533b1446656a98bae1cbece89980210"
+    },
+    {
+      "bytes": 5133,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/mobitex_fec.py",
+      "sha256": "06d7e70f7585a78c0e7ebf58fbb640880e2ffb39f618c60d08796cfee3f9c99a"
+    },
+    {
+      "bytes": 2542,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/mobitex_fec_block.py",
+      "sha256": "41f9ba4895d1a2299beafb5af3cc6b13fd61b1054a0e21c464b40f53d37d6420"
+    },
+    {
+      "bytes": 11960,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/mobitex_to_datablocks.py",
+      "sha256": "19d4e9fbcc8e61723efc1b18af048742506c6fcae8e5c364f127af4e1168ae4a"
+    },
+    {
+      "bytes": 4314,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ngham_check_crc.py",
+      "sha256": "709d383324ec13e0bad8ca672ed6729457c4a898b24a7a7f7a87757073b539dd"
+    },
+    {
+      "bytes": 2234,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ngham_packet_crop.py",
+      "sha256": "39ec1238240e86b742ac3e98213d3851617f22d5a2bdb26bc10b99c4b253557c"
+    },
+    {
+      "bytes": 1740,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/ngham_remove_padding.py",
+      "sha256": "801a5459d5a9365f6b085e16c49ae52624a0ba1acceebf2175a808f930d9ca06"
+    },
+    {
+      "bytes": 2898,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/pdu_to_kiss.py",
+      "sha256": "634a49656a23ef4e589f4d24439b1d484c9c9fa15253b8195b495c81c57f3e30"
+    },
+    {
+      "bytes": 989,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/print_header.py",
+      "sha256": "d8b4a056060fd4d6f238778a98fdb59d2b83daa92c4c878f07547e54d155b7d2"
+    },
+    {
+      "bytes": 1216,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/print_timestamp.py",
+      "sha256": "0a9452ca1f47d8b780d6932f67d347896f3b66639f46f7ae15b5d35d01ad9dde"
+    },
+    {
+      "bytes": 4883,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/pwsat2_submitter.py",
+      "sha256": "56914824dede71fc2a4655d44d29b6766b6174844bdf8e1f061800f1964cde84"
+    },
+    {
+      "bytes": 1362,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/pwsat2_telemetry_parser.py",
+      "sha256": "324a200c482e90e256075c76658ce982d46aa41f32aa53c1bf0e85b0805d8e14"
+    },
+    {
+      "bytes": 1235,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/reflect_bytes.py",
+      "sha256": "34d8b9a395496faf6d091f73682fe3569ade7add6bf3ade0232ed96a726988e1"
+    },
+    {
+      "bytes": 502384,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/satellites_python.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "f35dbaff0a14dbe06f0fa52ec0856e3e0a371f8cdc8b27a5b583f159f895b71f"
+    },
+    {
+      "bytes": 335,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/satyaml/__init__.py",
+      "sha256": "d02bdd882b6e6b69b2aeb7f00d60921065a82f21b1541f8b6cac9fbe85f6bd5d"
+    },
+    {
+      "bytes": 11249,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/satyaml/satyaml.py",
+      "sha256": "405321e5cd36ddea0dad87d5e107dfa4546b0dd422bf418acb27101c03d17b15"
+    },
+    {
+      "bytes": 1414,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/snet_classifier.py",
+      "sha256": "d538fa80708f2a001c7e9912178a2c0089ec382524e016c9e9ffe935b1cf3ecc"
+    },
+    {
+      "bytes": 5696,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/snet_deframer.py",
+      "sha256": "2e21c6d3755fcab98217d5bd6c48492bbaaf82f9c62445711f62887d5fce9167"
+    },
+    {
+      "bytes": 4922,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/submit.py",
+      "sha256": "0f22a667d4edd437fbe91d02b720e54e6594e8288ae94f3a2bb4e2c14a6a75c3"
+    },
+    {
+      "bytes": 1508,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/swap_crc.py",
+      "sha256": "83cc76860000bb0409a0f2088da5d805e6c2df26afbdfc6b4687e976b3637eac"
+    },
+    {
+      "bytes": 1149,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/swap_header.py",
+      "sha256": "e97d51f6b25c18e488aae0b92edf3043a009f9f8f982d02a51c2eae9759abe96"
+    },
+    {
+      "bytes": 1242,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/swiatowid_packet_crop.py",
+      "sha256": "d03576b73c4d8f4dc4ad1a1652ddfb5ab054dc4e69cb46183b5aeb938affbdac"
+    },
+    {
+      "bytes": 1285,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/swiatowid_packet_split.py",
+      "sha256": "808a90c43a1d728dcd4972acf7bbf7015d5d59bf72fa2df06f57576ca71a61a2"
+    },
+    {
+      "bytes": 4212,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/sx12xx_check_crc.py",
+      "sha256": "5979637e27766fcf80c11682595f95ea02150e079ce9ebda35f0528cecc3ccf1"
+    },
+    {
+      "bytes": 1262,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/sx12xx_packet_crop.py",
+      "sha256": "5113383333e01b796efb271bae7c96ef093e27eef58e4ee12b9c64ed01c9e233"
+    },
+    {
+      "bytes": 1842,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/__init__.py",
+      "sha256": "93966296ffaf72f031e70d7e225242238d77ef32da6cd20eec7d485c813a43a2"
+    },
+    {
+      "bytes": 1606,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/aausat4.py",
+      "sha256": "e028964c2fbb6cc48628f8f92fffa9b615e0b8121dff3dad9bc12f37133ecb2b"
+    },
+    {
+      "bytes": 1151,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/aepex_70cm.py",
+      "sha256": "eed5ce1f275e18ed3552566fd530e8153fe8d3229b2c0cfb45d7b964e37420b9"
+    },
+    {
+      "bytes": 11497,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/aepex_sw_stat.py",
+      "sha256": "408e69d3b593c8ce76044a6ac9b1106ac1b7c13d38d8e842f5dde286d625e041"
+    },
+    {
+      "bytes": 338,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/amicalsat.py",
+      "sha256": "a93b1deb15da4a25f59237f53a5852ad93f543b1ae7f35e9433501de46fe951b"
+    },
+    {
+      "bytes": 361,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/asrtu.py",
+      "sha256": "e9df6f19d7151f94aeea607f18cf4156d0ee1ddf6f35303d0b77e9a850083a61"
+    },
+    {
+      "bytes": 1923,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/au03.py",
+      "sha256": "5ee69cb4a90709a94f827810c7ccf69fc886e9ed903f9f0cd2eb35ebc5e51a68"
+    },
+    {
+      "bytes": 1264,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/ax25.py",
+      "sha256": "686e35428643dd672a8096c6eb5ea7f18a88d11a9b7c1bc953a15e1fc9984c8b"
+    },
+    {
+      "bytes": 3718,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/binar1.py",
+      "sha256": "dfa4409cefe960d4ede3f7dff2345030bb58f815e203f637488b2c4c70062af2"
+    },
+    {
+      "bytes": 2874,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/by02.py",
+      "sha256": "c794b51148dd0c191bcc1024a242861f0fbd13f2710687d978cb0c8f806b96a4"
+    },
+    {
+      "bytes": 12678,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/by70_1.py",
+      "sha256": "a815f20346e316b02f21c9cab24ec08c4fa25a7fed7823065adb726e89d9e140"
+    },
+    {
+      "bytes": 1026,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/ccsds.py",
+      "sha256": "6102564455b5a41fdb80a5677c0ddda1fd518fa64d090c9cf8a95407083c9825"
+    },
+    {
+      "bytes": 1812,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/cirbe_70cm.py",
+      "sha256": "84535598fb5334e2a1756f47e097cfccb0b973d7cdf09e5fe1e44864c98de47e"
+    },
+    {
+      "bytes": 15238,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/cirbe_bct_soh.py",
+      "sha256": "86c4c431b42bb95b5c53c31824b918255905241f53dd1bfaec5711b61dad3206"
+    },
+    {
+      "bytes": 1038,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/csp.py",
+      "sha256": "500e8297307b3f4921ea545458c8b3c1f694f297ea7052affc563153407d1fc2"
+    },
+    {
+      "bytes": 17677,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/ctim_70cm.py",
+      "sha256": "803f383f353073b79b64bcb7b517f428050247d58671cbd68a557e20f842c88c"
+    },
+    {
+      "bytes": 4368,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/cute_70cm.py",
+      "sha256": "edf05691e73391d06bd7b43123dcd6c5d6fcad60de53ddf4ec6ba4d0d8a1e645"
+    },
+    {
+      "bytes": 67066,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/cute_bct_fsw.py",
+      "sha256": "e27a0d8e13fb4f72a4e37b03167198c06bfb034879f990567633b0af817007ec"
+    },
+    {
+      "bytes": 14384,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/cute_bct_soh.py",
+      "sha256": "3804392cf9b8426863981579b42e555dc3d7f407cfbf07579a1cad1203e3e93e"
+    },
+    {
+      "bytes": 7512,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/cute_pld.py",
+      "sha256": "e9493dd70b89f2efeb0486e51d67f8a74f170aeae2bed8b103192610b576a521"
+    },
+    {
+      "bytes": 15401,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/delfic3.py",
+      "sha256": "5033786561343f27dd6518b1c62db3932c372cb756be6e2c98f793aaa3ea5f2f"
+    },
+    {
+      "bytes": 13565,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/delfipq.py",
+      "sha256": "b197b2a4eec0cb991e8a691f9829e99ead50a7dcd07080e126beabbce0ca8f87"
+    },
+    {
+      "bytes": 1920,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/dstar_one.py",
+      "sha256": "2f81254d1f50b2ff3dac80573954f15a47779debb0a53df3d612d8af66c4d850"
+    },
+    {
+      "bytes": 791,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/erminaz.py",
+      "sha256": "169732b84c571883f3c8df387a88bed88107bf3e963b636b8ea1c1351d9d91a6"
+    },
+    {
+      "bytes": 9109,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/eseo.py",
+      "sha256": "e185f27d2daf1ba2bde429465f22e1f5ad78e99194bb7df5c1967e80d1b440d5"
+    },
+    {
+      "bytes": 2564,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/floripasat.py",
+      "sha256": "f85b758891ce4bf67bfe31b12e7b26194bf2d07fb89777eec2d9d868b0342dbc"
+    },
+    {
+      "bytes": 7161,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/fossasat.py",
+      "sha256": "d4e9473dfe60894e2add75bb7eb3959874620c2c34b6bc7ade8361c8a2bf1504"
+    },
+    {
+      "bytes": 3072,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/fossasat_1b.py",
+      "sha256": "3efab73438dd564cfa0393fc6bf3dccb82bd78376581ea9dfc818e5a87245a48"
+    },
+    {
+      "bytes": 1463,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/fossasat_2.py",
+      "sha256": "88b761b0bd854e4bac0cf53f1208144735e09bcdda9630fcface1ffdf3caac45"
+    },
+    {
+      "bytes": 13705,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/funcube.py",
+      "sha256": "9d2c24d690b3e71a3533fb0df702f287cf15284ecd720f8f1810cd1b40a00f1c"
+    },
+    {
+      "bytes": 2695,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/gomx_1.py",
+      "sha256": "6f662228ab00822244805a460ede150688c9b187321cba891f296d1ebf4f618a"
+    },
+    {
+      "bytes": 2035,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/gomx_3.py",
+      "sha256": "5ddd60f3190e9843f9c7e7c3d5438615732edad53e88cd0355bc9cb9a1c4a2dd"
+    },
+    {
+      "bytes": 11794,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/inspiresat_1.py",
+      "sha256": "e82c77902ee22d7f574e0b83d754254fc1030677db605cd2842205df918c00ee"
+    },
+    {
+      "bytes": 1731,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/kr01.py",
+      "sha256": "6f6bd2df9cb402ad11b97029320fa4cf8e69c6b3478e8bae69c9db24f4d0d69c"
+    },
+    {
+      "bytes": 4637,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/lume.py",
+      "sha256": "f61ba8591d54a6155220559dfd0c2efe8e6fd813ffa50cb8c1ce29c5242480db"
+    },
+    {
+      "bytes": 6390,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/mirsat1.py",
+      "sha256": "7590f55ab20ba13424038bc8714ab34e6dbbad8b9944c3899950740d41ca16ed"
+    },
+    {
+      "bytes": 2204,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/mysat1.py",
+      "sha256": "a208efedeaba5a2af05ead007a2fd84f4d37f9ace15564e074b7f29b6b355e6b"
+    },
+    {
+      "bytes": 9513,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/nila.py",
+      "sha256": "222c94e29ab9f96d04491a1474c425cac6b06ca6490816f4eb46b8e5a06c964d"
+    },
+    {
+      "bytes": 5385,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/picsat.py",
+      "sha256": "8d103616b0e099825d2eb70cd7553e698cb0dac7608b7139ddff4110409d9fa7"
+    },
+    {
+      "bytes": 383,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/qo100.py",
+      "sha256": "860b7a1a9440fee2291d3cd8463e55da1d59f793c1c3b16e07c8af8d85baa4c5"
+    },
+    {
+      "bytes": 4647,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/quetzal1.py",
+      "sha256": "1a9fbc1dc587837ea45bedb9109abb824e3d7a736b110370db339d5d4e2a085d"
+    },
+    {
+      "bytes": 2193,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/sat_1kuns_pf.py",
+      "sha256": "2c6429dedd5d45f0461b56d1b27dbaee0df9e31af45edb95588c56877568f200"
+    },
+    {
+      "bytes": 2928,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/sat_3cat_1.py",
+      "sha256": "014e89e202b84430ee8dd3b84a564366db02a3096cd2e1d5f205f1c16b782f3b"
+    },
+    {
+      "bytes": 1271,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/sat_3cat_2.py",
+      "sha256": "7ffb67e03416d8266b5d71ab377d4eba04464dbcbda75f7fccce5e89ee11e377"
+    },
+    {
+      "bytes": 16653,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/smogp.py",
+      "sha256": "b199bae935bf62d760e91a2db51e3066012861af6b7232e4b49d04f2c87d0364"
+    },
+    {
+      "bytes": 5485,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/snet.py",
+      "sha256": "e6332c059037160e9f621d0862390819d58edf33f3d08c1ef5aed91d430f725b"
+    },
+    {
+      "bytes": 2191,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/suomi100.py",
+      "sha256": "9e0c80571025add86f30a3460a8fe63f6edd42b3a10706aa092a2c0975d49bd7"
+    },
+    {
+      "bytes": 409,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/trisat.py",
+      "sha256": "7786b1003f760fd1e02806fc7eb73dce6b3bd5bb31bfb0cf90248545ee081e86"
+    },
+    {
+      "bytes": 1367,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/tubix20.py",
+      "sha256": "98c0fead5931a8da5d4529941d6885aeaccee7b18ccdedd557a70df327eee0e1"
+    },
+    {
+      "bytes": 3734,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/upmsat_2.py",
+      "sha256": "6a96fd927c2be551b76a289fa3e03daea6c614225eabf8af1e883a6e7eafd50c"
+    },
+    {
+      "bytes": 1213,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/telemetry/vzlusat_2.py",
+      "sha256": "a43fa6af5ecea8701c01921f8c3f3931eabeda69cfc39ab6d18dbcbaec85fddf"
+    },
+    {
+      "bytes": 6134,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/tubix20_reframer.py",
+      "sha256": "5559e89587fb7c6c83a6a41149f5c9a0132061d0f300199efd05e8d9fb370c77"
+    },
+    {
+      "bytes": 369,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/usp/__init__.py",
+      "sha256": "f3666a4e7982d7c0139b6fc3adba3539da2d2849b7e62d4cd1d31bd4aa673c1a"
+    },
+    {
+      "bytes": 1433,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/usp/usp_ax25_crop.py",
+      "sha256": "9aa6f2cdd2a16da43fc8ea6e4b157fc4faab7c2dc30fe66e67f0ab5e46d85f55"
+    },
+    {
+      "bytes": 3076,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/usp/usp_pls_crop.py",
+      "sha256": "39ebf7cbc52fa2cfb55266f07a323d4effac511c877276a07e59f69186dcb522"
+    },
+    {
+      "bytes": 273,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/utils/__init__.py",
+      "sha256": "ec332025f68e7a651fd6afb5830028a1ce89470743195678fb9800609f79a99d"
+    },
+    {
+      "bytes": 1393,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/utils/config.py",
+      "sha256": "e5c8f382949b1a80eba730b528a0ca387d3d4e97805045ad0cd2819d3f2c8c0b"
+    },
+    {
+      "bytes": 1277,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/utils/options_block.py",
+      "sha256": "699bda773657b61b6169dc934d35be3ea9892f4cabeb1fda9705c13770fe42bc"
+    },
+    {
+      "bytes": 671,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/lib/python3.12/site-packages/satellites/utils/satcfg.py",
+      "sha256": "57bd25e6c5383975fe1ffc8cf276462a7d7fa8aabf682405182b16d8766d5b9a"
+    },
+    {
+      "bytes": 2339,
+      "path": "/home/ubuntu/telemetry-yield/work/publication-speed-restart-20260912-v1/protocol.md",
+      "sha256": "a331511e8db81fb56c4ff3caa6fa781da857f514ca3d861c5a28eb80c00427b1"
+    },
+    {
+      "bytes": 7348,
+      "path": "/home/ubuntu/telemetry-yield/docs/innovation-benchmark-protocol-20260910.md",
+      "sha256": "eea3d74c7bb81f2f8c9dfda5576a27d31351e67fcc2226312f27d2056b9fc77a"
+    },
+    {
+      "bytes": 6428,
+      "path": "/home/ubuntu/telemetry-yield/docs/innovation-prospective-analysis-20260911.md",
+      "sha256": "479b6cfae4d252db53b9defa65eff3777f5ba34ebf58c4f993b4c9b9546b0e3d"
+    },
+    {
+      "bytes": 6781,
+      "path": "/home/ubuntu/telemetry-yield/work/innovation-prospective-20260912-v2/protocol.json",
+      "sha256": "bef3cdb38676acea3ab0f10758a2e12f190bc3e2f836cd53eb53c1ac0e72994b"
+    },
+    {
+      "bytes": 3302,
+      "path": "/home/ubuntu/telemetry-yield/work/innovation-prospective-20260912-v2/pass-dependence-amendment-v2.json",
+      "sha256": "2bc0ee5c193c9053afd072da5cfca29b7506b4aab853ebf8c3f726842c6d1675"
+    }
+  ],
+  "schema": "innovation-benchmark-manifest-v3",
+  "selected_runtime_sha256": "aeb0584c4407277d2e97d9e1edfc6424453707460de804cf36065aa63b937d5f",
+  "source_archive_used_for_search": false,
+  "threads": 2,
+  "v1_sideinfo": false,
+  "v2_additional_information": "original Vorbis packet features, verified original->PCM16 sample equality",
+  "workers": 4
+}

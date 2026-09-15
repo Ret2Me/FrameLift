@@ -1,0 +1,143 @@
+{
+  "schema": "python-sigmf-core-oracle-v1",
+  "cases": [
+    {
+      "document": {
+        "global": {
+          "core:datatype": "ci16_le",
+          "core:sample_rate": 48000,
+          "core:version": "1.2.0",
+          "core:sha512": "1a74152f13d085bc31c6b98c3a16c6f0c8de26dbdc395ce8e0f96b2c099b4f2b418607435033d0471cff047293f1068b4d238bb6bd467d8d82f2577f7a78fe78"
+        },
+        "captures": [
+          {
+            "core:sample_start": 0
+          }
+        ],
+        "annotations": []
+      },
+      "data_hex": "00000000000000000000000000000000000000000000000000000000",
+      "expected": {
+        "datatype": "ci16_le",
+        "sample_rate_hz": 48000.0,
+        "sample_count": 7,
+        "sha512": "1a74152f13d085bc31c6b98c3a16c6f0c8de26dbdc395ce8e0f96b2c099b4f2b418607435033d0471cff047293f1068b4d238bb6bd467d8d82f2577f7a78fe78"
+      }
+    },
+    {
+      "document": {
+        "global": {
+          "core:datatype": "ci16_be",
+          "core:sample_rate": 48000,
+          "core:version": "1.2.0",
+          "core:sha512": "1a74152f13d085bc31c6b98c3a16c6f0c8de26dbdc395ce8e0f96b2c099b4f2b418607435033d0471cff047293f1068b4d238bb6bd467d8d82f2577f7a78fe78"
+        },
+        "captures": [
+          {
+            "core:sample_start": 0
+          }
+        ],
+        "annotations": []
+      },
+      "data_hex": "00000000000000000000000000000000000000000000000000000000",
+      "expected": {
+        "datatype": "ci16_be",
+        "sample_rate_hz": 48000.0,
+        "sample_count": 7,
+        "sha512": "1a74152f13d085bc31c6b98c3a16c6f0c8de26dbdc395ce8e0f96b2c099b4f2b418607435033d0471cff047293f1068b4d238bb6bd467d8d82f2577f7a78fe78"
+      }
+    },
+    {
+      "document": {
+        "global": {
+          "core:datatype": "cf32_le",
+          "core:sample_rate": 48000,
+          "core:version": "1.2.0",
+          "core:sha512": "2146aa8ab60c48acff43ae8c33c5da4c2586f20a39f8f1308aefb6f833b758ad7158bd5e9a386e45feba446f33855d393857b557fe8ba6fe52364e7a7af3be9b"
+        },
+        "captures": [
+          {
+            "core:sample_start": 0
+          }
+        ],
+        "annotations": []
+      },
+      "data_hex": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected": {
+        "datatype": "cf32_le",
+        "sample_rate_hz": 48000.0,
+        "sample_count": 7,
+        "sha512": "2146aa8ab60c48acff43ae8c33c5da4c2586f20a39f8f1308aefb6f833b758ad7158bd5e9a386e45feba446f33855d393857b557fe8ba6fe52364e7a7af3be9b"
+      }
+    },
+    {
+      "document": {
+        "global": {
+          "core:datatype": "cf32_be",
+          "core:sample_rate": 48000,
+          "core:version": "1.2.0",
+          "core:sha512": "2146aa8ab60c48acff43ae8c33c5da4c2586f20a39f8f1308aefb6f833b758ad7158bd5e9a386e45feba446f33855d393857b557fe8ba6fe52364e7a7af3be9b"
+        },
+        "captures": [
+          {
+            "core:sample_start": 0
+          }
+        ],
+        "annotations": []
+      },
+      "data_hex": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected": {
+        "datatype": "cf32_be",
+        "sample_rate_hz": 48000.0,
+        "sample_count": 7,
+        "sha512": "2146aa8ab60c48acff43ae8c33c5da4c2586f20a39f8f1308aefb6f833b758ad7158bd5e9a386e45feba446f33855d393857b557fe8ba6fe52364e7a7af3be9b"
+      }
+    },
+    {
+      "document": {
+        "global": {
+          "core:datatype": "cf64_le",
+          "core:sample_rate": 48000,
+          "core:version": "1.2.0",
+          "core:sha512": "2be2e788c8a8adeaa9c89a7f78904cacea6e39297d75e0573a73c756234534d6627ab4156b48a6657b29ab8beb73334040ad39ead81446bb09c70704ec707952"
+        },
+        "captures": [
+          {
+            "core:sample_start": 0
+          }
+        ],
+        "annotations": []
+      },
+      "data_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected": {
+        "datatype": "cf64_le",
+        "sample_rate_hz": 48000.0,
+        "sample_count": 7,
+        "sha512": "2be2e788c8a8adeaa9c89a7f78904cacea6e39297d75e0573a73c756234534d6627ab4156b48a6657b29ab8beb73334040ad39ead81446bb09c70704ec707952"
+      }
+    },
+    {
+      "document": {
+        "global": {
+          "core:datatype": "cf64_be",
+          "core:sample_rate": 48000,
+          "core:version": "1.2.0",
+          "core:sha512": "2be2e788c8a8adeaa9c89a7f78904cacea6e39297d75e0573a73c756234534d6627ab4156b48a6657b29ab8beb73334040ad39ead81446bb09c70704ec707952"
+        },
+        "captures": [
+          {
+            "core:sample_start": 0
+          }
+        ],
+        "annotations": []
+      },
+      "data_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected": {
+        "datatype": "cf64_be",
+        "sample_rate_hz": 48000.0,
+        "sample_count": 7,
+        "sha512": "2be2e788c8a8adeaa9c89a7f78904cacea6e39297d75e0573a73c756234534d6627ab4156b48a6657b29ab8beb73334040ad39ead81446bb09c70704ec707952"
+      }
+    }
+  ]
+}

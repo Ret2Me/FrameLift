@@ -1,0 +1,1396 @@
+{
+  "schema": "python-triage-differential-fixture-v1",
+  "numpy": "1.26.4",
+  "oscillator": [
+    [
+      1000,
+      0
+    ],
+    [
+      924,
+      383
+    ],
+    [
+      707,
+      707
+    ],
+    [
+      383,
+      924
+    ],
+    [
+      0,
+      1000
+    ],
+    [
+      -383,
+      924
+    ],
+    [
+      -707,
+      707
+    ],
+    [
+      -924,
+      383
+    ],
+    [
+      -1000,
+      0
+    ],
+    [
+      -924,
+      -383
+    ],
+    [
+      -707,
+      -707
+    ],
+    [
+      -383,
+      -924
+    ],
+    [
+      0,
+      -1000
+    ],
+    [
+      383,
+      -924
+    ],
+    [
+      707,
+      -707
+    ],
+    [
+      924,
+      -383
+    ]
+  ],
+  "source_sha256": {
+    "signal_triage.py": "28801d8f95e9e1c7e83d9c94c94f01fce2c78fdc33b5fa2c2705a9ddb14144c8",
+    "phase_window_selector.py": "9665b87eef7c5be6810ec1db392ae83d681c450b722f17ca61202c28e029a4ea",
+    "burst_window_selector.py": "ea025b92065e431dd449d2a8617e33dcf94ca0e3f1d39eb2bc5104d5195703c1",
+    "waveform_routing.py": "fd4c3b2b6151f9f6b389337fb461eac7c3a5323cc2104f5273a3e600231da53f"
+  },
+  "note": "Scheduling outputs only. No frame bytes, truth outcomes, or mission metadata are inputs.",
+  "cases": [
+    {
+      "mode": "triage",
+      "waveform": "noise",
+      "sample_rate": 4096,
+      "samples": 20499,
+      "seed": 42,
+      "config": {
+        "sample_rate_hz": 4096,
+        "window_seconds": 1.0,
+        "fft_size": 256,
+        "fft_slices_per_window": 3,
+        "noise_lower_fraction": 0.2,
+        "active_power_ratio": 1.5,
+        "active_fft_ratio": 20.0,
+        "active_fft_baseline_multiplier": 1.5
+      },
+      "input_sha256": "f94afde46df69637f91c12badbaebd30e5b9a3342b6a26086bfc2d942db72ca9",
+      "expected": {
+        "file_size_bytes": 81996,
+        "sha256": "f94afde46df69637f91c12badbaebd30e5b9a3342b6a26086bfc2d942db72ca9",
+        "complex_sample_count": 20499,
+        "duration_seconds": 5.004638671875,
+        "one_second_window_count": 5,
+        "trailing_sample_count": 19,
+        "robust_noise_power_normalized": 2.4083110474748537e-05,
+        "median_power_normalized": 2.4824556021485478e-05,
+        "p90_power_normalized": 2.515487649361603e-05,
+        "median_power_to_noise_ratio": 1.0307869511919714,
+        "p90_power_to_noise_ratio": 1.0445028070602116,
+        "max_power_to_noise_ratio": 1.0464797508729342,
+        "fft_noise_peak_to_median_ratio": 8.650534094413583,
+        "median_fft_peak_to_median_ratio": 11.069501666399425,
+        "p90_fft_peak_to_median_ratio": 12.140102898238684,
+        "max_fft_peak_to_median_ratio": 12.208923110423425,
+        "median_peak_frequency_offset_hz": -1488.0,
+        "p10_peak_frequency_offset_hz": -1814.4,
+        "p90_peak_frequency_offset_hz": -643.2,
+        "median_occupied_bandwidth_hz": 48.0,
+        "p90_occupied_bandwidth_hz": 48.0,
+        "active_window_count": 0,
+        "active_window_fraction": 0.0,
+        "longest_active_run_seconds": 0.0,
+        "ranking_score": 2.166143394339391
+      }
+    },
+    {
+      "mode": "triage",
+      "waveform": "carrier",
+      "sample_rate": 4096,
+      "samples": 20480,
+      "seed": 17,
+      "config": {
+        "sample_rate_hz": 4096,
+        "window_seconds": 1.0,
+        "fft_size": 256,
+        "fft_slices_per_window": 3,
+        "noise_lower_fraction": 0.2,
+        "active_power_ratio": 1.5,
+        "active_fft_ratio": 20.0,
+        "active_fft_baseline_multiplier": 1.5
+      },
+      "input_sha256": "30e5fcad89e8ecece4e9df5c2217e3e476c36655d645f790f3d0e0fb6c4f04d0",
+      "expected": {
+        "file_size_bytes": 81920,
+        "sha256": "30e5fcad89e8ecece4e9df5c2217e3e476c36655d645f790f3d0e0fb6c4f04d0",
+        "complex_sample_count": 20480,
+        "duration_seconds": 5.0,
+        "one_second_window_count": 5,
+        "trailing_sample_count": 0,
+        "robust_noise_power_normalized": 0.023294027894735336,
+        "median_power_normalized": 0.02331959828734398,
+        "p90_power_normalized": 0.023346514999866487,
+        "median_power_to_noise_ratio": 1.0010977231041447,
+        "p90_power_to_noise_ratio": 1.0022532429929394,
+        "max_power_to_noise_ratio": 1.0025855025385646,
+        "fft_noise_peak_to_median_ratio": 216246.3136761938,
+        "median_fft_peak_to_median_ratio": 228047.15847815364,
+        "p90_fft_peak_to_median_ratio": 252913.64362314582,
+        "max_fft_peak_to_median_ratio": 265516.24570893554,
+        "median_peak_frequency_offset_hz": 256.0,
+        "p10_peak_frequency_offset_hz": 256.0,
+        "p90_peak_frequency_offset_hz": 256.0,
+        "median_occupied_bandwidth_hz": 48.0,
+        "p90_occupied_bandwidth_hz": 48.0,
+        "active_window_count": 0,
+        "active_window_fraction": 0.0,
+        "longest_active_run_seconds": 0.0,
+        "ranking_score": 10.581796373856145
+      }
+    },
+    {
+      "mode": "phase",
+      "waveform": "mixed",
+      "sample_rate": 2048,
+      "samples": 24587,
+      "seed": 61,
+      "config": {
+        "sample_rate_hz": 2048,
+        "analysis_window_seconds": 1.0,
+        "decoder_window_seconds": 5.0,
+        "top_k": 2,
+        "active_power_ratio": 20.0,
+        "active_coherence_ratio": 2.0,
+        "minimum_phase_coherence": 0.6,
+        "padding_seconds": 1.0,
+        "baseline_fraction": 0.25
+      },
+      "input_sha256": "c9ec53234c672108b32a0f29b7ce78dcebe56d7b9aa8c5bae671857bbd4ba981",
+      "expected": {
+        "schema_version": "phase-window-selector-v1",
+        "input_sha256": "c9ec53234c672108b32a0f29b7ce78dcebe56d7b9aa8c5bae671857bbd4ba981",
+        "input_complex_samples": 24587,
+        "input_duration_seconds": 12.00537109375,
+        "reference_paths_available_to_selector": false,
+        "reference_hashes_available_to_selector": false,
+        "event_timestamps_available_to_selector": false,
+        "config": {
+          "sample_rate_hz": 2048,
+          "analysis_window_seconds": 1.0,
+          "decoder_window_seconds": 5.0,
+          "top_k": 2,
+          "active_power_ratio": 20.0,
+          "active_coherence_ratio": 2.0,
+          "minimum_phase_coherence": 0.6,
+          "padding_seconds": 1.0,
+          "baseline_fraction": 0.25
+        },
+        "baselines": {
+          "mean_power": 0.024845415726304054,
+          "lag1_phase_coherence": 0.006167389679102931,
+          "active_coherence_threshold": 0.6
+        },
+        "analysis_window_count": 12,
+        "selected_before_padding_count": 4,
+        "selected_after_padding_count": 9,
+        "decoder_window_start_count": 9,
+        "decoder_window_starts_seconds": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0,
+          7.00537109375
+        ],
+        "windows": [
+          {
+            "window_index": 0,
+            "start_seconds": 0.0,
+            "mean_power": 0.025845356285572052,
+            "power_ratio": 1.0402464812939054,
+            "lag1_phase_coherence": 0.021323704775723092,
+            "coherence_ratio": 3.457492697108885,
+            "score": 1.240543672366226,
+            "selected_before_padding": false,
+            "selected_after_padding": false
+          },
+          {
+            "window_index": 1,
+            "start_seconds": 1.0,
+            "mean_power": 0.025453751906752586,
+            "power_ratio": 1.024484846104003,
+            "lag1_phase_coherence": 0.010446101776916836,
+            "coherence_ratio": 1.6937638645262738,
+            "score": 0.5269531913105403,
+            "selected_before_padding": false,
+            "selected_after_padding": true
+          },
+          {
+            "window_index": 2,
+            "start_seconds": 2.0,
+            "mean_power": 23.892906188964844,
+            "power_ratio": 961.6625639179472,
+            "lag1_phase_coherence": 0.9994729931085689,
+            "coherence_ratio": 162.05770108788485,
+            "score": 6.86866362397516,
+            "selected_before_padding": true,
+            "selected_after_padding": true
+          },
+          {
+            "window_index": 3,
+            "start_seconds": 3.0,
+            "mean_power": 23.883163452148438,
+            "power_ratio": 961.2704297341713,
+            "lag1_phase_coherence": 0.9994554607020179,
+            "coherence_ratio": 162.05485832823072,
+            "score": 6.868255773893534,
+            "selected_before_padding": true,
+            "selected_after_padding": true
+          },
+          {
+            "window_index": 4,
+            "start_seconds": 4.0,
+            "mean_power": 0.024845415726304054,
+            "power_ratio": 1.0,
+            "lag1_phase_coherence": 0.022094944012590514,
+            "coherence_ratio": 3.5825438576477793,
+            "score": 1.2760731228358422,
+            "selected_before_padding": false,
+            "selected_after_padding": true
+          },
+          {
+            "window_index": 5,
+            "start_seconds": 5.0,
+            "mean_power": 0.025717120617628098,
+            "power_ratio": 1.035085140088888,
+            "lag1_phase_coherence": 0.0069672835933819125,
+            "coherence_ratio": 1.12969732024381,
+            "score": 0.12194973865251799,
+            "selected_before_padding": false,
+            "selected_after_padding": true
+          },
+          {
+            "window_index": 6,
+            "start_seconds": 6.0,
+            "mean_power": 1.0256882905960083,
+            "power_ratio": 41.282798480610786,
+            "lag1_phase_coherence": 0.14463928874682927,
+            "coherence_ratio": 23.45227012927576,
+            "score": 3.7204459115259443,
+            "selected_before_padding": true,
+            "selected_after_padding": true
+          },
+          {
+            "window_index": 7,
+            "start_seconds": 7.0,
+            "mean_power": 0.02540937438607216,
+            "power_ratio": 1.0226987008782886,
+            "lag1_phase_coherence": 0.006167389679102931,
+            "coherence_ratio": 1.0,
+            "score": 0.022444918542808927,
+            "selected_before_padding": false,
+            "selected_after_padding": true
+          },
+          {
+            "window_index": 8,
+            "start_seconds": 8.0,
+            "mean_power": 4.314700126647949,
+            "power_ratio": 173.66182052168034,
+            "lag1_phase_coherence": 0.9200757238199495,
+            "coherence_ratio": 149.18397761332602,
+            "score": 5.157109847830345,
+            "selected_before_padding": true,
+            "selected_after_padding": true
+          },
+          {
+            "window_index": 9,
+            "start_seconds": 9.0,
+            "mean_power": 0.025729630142450333,
+            "power_ratio": 1.0355886343737108,
+            "lag1_phase_coherence": 0.019805935678002554,
+            "coherence_ratio": 3.2113968321332664,
+            "score": 1.1667059926888137,
+            "selected_before_padding": false,
+            "selected_after_padding": true
+          },
+          {
+            "window_index": 10,
+            "start_seconds": 10.0,
+            "mean_power": 0.024808894842863083,
+            "power_ratio": 0.9985300755743722,
+            "lag1_phase_coherence": 0.022431603861967322,
+            "coherence_ratio": 3.6371309466584703,
+            "score": 1.2911951693870964,
+            "selected_before_padding": false,
+            "selected_after_padding": false
+          },
+          {
+            "window_index": 11,
+            "start_seconds": 11.0,
+            "mean_power": 0.025325356051325798,
+            "power_ratio": 1.0193170575332184,
+            "lag1_phase_coherence": 0.005426581102882674,
+            "coherence_ratio": 0.8798829626851129,
+            "score": 0.019132851608491118,
+            "selected_before_padding": false,
+            "selected_after_padding": false
+          }
+        ]
+      }
+    },
+    {
+      "mode": "burst",
+      "waveform": "mixed",
+      "sample_rate": 4096,
+      "samples": 49157,
+      "seed": 91,
+      "config": {
+        "sample_rate_hz": 4096,
+        "analysis_window_seconds": 0.5,
+        "decoder_window_seconds": 5.0,
+        "decoder_window_lead_seconds": 0.25,
+        "signal_window_limit": 3,
+        "change_window_limit": 3,
+        "burst_window_limit": 3,
+        "signal_nms_seconds": 2.0,
+        "burst_nms_seconds": 5.0,
+        "coverage_hop_seconds": 4.0,
+        "baseline_fraction": 0.25,
+        "spectral_fft_size": 1024,
+        "persistence_subwindows": 8,
+        "burst_fft_size": 256,
+        "burst_hop_samples": 128,
+        "burst_band_width_bins": [
+          4,
+          8,
+          16,
+          32,
+          64,
+          128
+        ],
+        "maximum_analysis_windows": 100000
+      },
+      "input_sha256": "7c122e3985f12df9f9fe01853111afdb5f01ca22bebd1a832c4a04828596e53f",
+      "expected": {
+        "schema_version": "protocol-neutral-window-selection-v2",
+        "selector_version": "protocol-neutral-four-lane-v2",
+        "input_size_bytes": 196628,
+        "input_duration_seconds": 12.001220703125,
+        "reference_paths_available_to_selector": false,
+        "frame_bytes_available_to_selector": false,
+        "event_timestamps_available_to_selector": false,
+        "mission_metadata_available_to_selector": false,
+        "config": {
+          "sample_rate_hz": 4096,
+          "analysis_window_seconds": 0.5,
+          "decoder_window_seconds": 5.0,
+          "decoder_window_lead_seconds": 0.25,
+          "signal_window_limit": 3,
+          "change_window_limit": 3,
+          "burst_window_limit": 3,
+          "signal_nms_seconds": 2.0,
+          "burst_nms_seconds": 5.0,
+          "coverage_hop_seconds": 4.0,
+          "baseline_fraction": 0.25,
+          "spectral_fft_size": 1024,
+          "persistence_subwindows": 8,
+          "burst_fft_size": 256,
+          "burst_hop_samples": 128,
+          "burst_band_width_bins": [
+            4,
+            8,
+            16,
+            32,
+            64,
+            128
+          ],
+          "maximum_analysis_windows": 100000
+        },
+        "analysis_window_count": 24,
+        "lane_counts_before_merge": {
+          "signal": 3,
+          "change": 3,
+          "burst": 3,
+          "coverage": 3
+        },
+        "selected_decoder_window_count": 8,
+        "coverage_audit": {
+          "enabled": true,
+          "entire_capture_covered": true,
+          "maximum_uncovered_gap_seconds": 0.0
+        },
+        "selected_windows": [
+          {
+            "decoder_start_seconds": 0.0,
+            "analysis_index": 5,
+            "analysis_start_seconds": 2.5,
+            "lanes": [
+              "coverage"
+            ],
+            "mean_power": 25021310.0,
+            "power_ratio": 950.7382796534023,
+            "lag1_phase_coherence": 0.9994665828994732,
+            "within_window_power_persistence": 0.9972877361762094,
+            "spectral_entropy": 0.12741463253728402,
+            "spectral_peak_to_median_ratio": 950782.3861165978,
+            "endpoint_clip_fraction": 0.0,
+            "signal_score": 0.07455351573715371,
+            "change_score": 0.3195780969024286,
+            "burst_score": 3.37914538006203,
+            "burst_localized_log_excess": 5.29172335062472,
+            "burst_localized_excess_fraction": 0.6385718141639248
+          },
+          {
+            "decoder_start_seconds": 0.25,
+            "analysis_index": 1,
+            "analysis_start_seconds": 0.5,
+            "lanes": [
+              "burst"
+            ],
+            "mean_power": 27277.33203125,
+            "power_ratio": 1.036460670081833,
+            "lag1_phase_coherence": 0.041114188293068996,
+            "within_window_power_persistence": 0.973005902579682,
+            "spectral_entropy": 0.9398048235612753,
+            "spectral_peak_to_median_ratio": 9.590493180646941,
+            "endpoint_clip_fraction": 0.0,
+            "signal_score": 0.05102849387618587,
+            "change_score": 2.858481693349138,
+            "burst_score": 3.5781922716158197,
+            "burst_localized_log_excess": 5.644894416291037,
+            "burst_localized_excess_fraction": 0.6338811690240367
+          },
+          {
+            "decoder_start_seconds": 1.25,
+            "analysis_index": 3,
+            "analysis_start_seconds": 1.5,
+            "lanes": [
+              "change"
+            ],
+            "mean_power": 27166.1640625,
+            "power_ratio": 1.0322366049404819,
+            "lag1_phase_coherence": 0.016371985828112796,
+            "within_window_power_persistence": 0.9740291618350646,
+            "spectral_entropy": 0.9359402977943323,
+            "spectral_peak_to_median_ratio": 11.523979002088634,
+            "endpoint_clip_fraction": 0.0,
+            "signal_score": 0.045678463700687975,
+            "change_score": 471.5384115493642,
+            "burst_score": 3.0214945827109387,
+            "burst_localized_log_excess": 4.949964847614698,
+            "burst_localized_excess_fraction": 0.6104072808046191
+          },
+          {
+            "decoder_start_seconds": 1.75,
+            "analysis_index": 4,
+            "analysis_start_seconds": 2.0,
+            "lanes": [
+              "signal"
+            ],
+            "mean_power": 25082852.0,
+            "power_ratio": 953.076699792333,
+            "lag1_phase_coherence": 0.9994500223268409,
+            "within_window_power_persistence": 0.9986244158065629,
+            "spectral_entropy": 0.1272668424732167,
+            "spectral_peak_to_median_ratio": 914277.6708119774,
+            "endpoint_clip_fraction": 0.0,
+            "signal_score": 0.07578056175669806,
+            "change_score": 471.5384115493642,
+            "burst_score": 3.4135410612908395,
+            "burst_localized_log_excess": 5.499501191161404,
+            "burst_localized_excess_fraction": 0.6207001221814367
+          },
+          {
+            "decoder_start_seconds": 3.25,
+            "analysis_index": 7,
+            "analysis_start_seconds": 3.5,
+            "lanes": [
+              "change"
+            ],
+            "mean_power": 25009560.0,
+            "power_ratio": 950.2918132299445,
+            "lag1_phase_coherence": 0.9994596171824439,
+            "within_window_power_persistence": 0.9980366175511093,
+            "spectral_entropy": 0.12743524961745825,
+            "spectral_peak_to_median_ratio": 901619.8425024046,
+            "endpoint_clip_fraction": 0.0,
+            "signal_score": 0.07508273370879562,
+            "change_score": 471.2318275840272,
+            "burst_score": 3.3744694244234337,
+            "burst_localized_log_excess": 5.360254085600766,
+            "burst_localized_excess_fraction": 0.6295353486112273
+          },
+          {
+            "decoder_start_seconds": 4.0,
+            "analysis_index": 13,
+            "analysis_start_seconds": 6.5,
+            "lanes": [
+              "coverage"
+            ],
+            "mean_power": 26232.09765625,
+            "power_ratio": 0.9967447506706552,
+            "lag1_phase_coherence": 0.00861203844964652,
+            "within_window_power_persistence": 0.965998602075443,
+            "spectral_entropy": 0.9342580687188807,
+            "spectral_peak_to_median_ratio": 11.237952067144574,
+            "endpoint_clip_fraction": 0.0,
+            "signal_score": 0.0,
+            "change_score": 199.98447152053703,
+            "burst_score": 3.5418798107198586,
+            "burst_localized_log_excess": 5.426052191474806,
+            "burst_localized_excess_fraction": 0.6527544678403051
+          },
+          {
+            "decoder_start_seconds": 5.75,
+            "analysis_index": 12,
+            "analysis_start_seconds": 6.0,
+            "lanes": [
+              "burst",
+              "signal"
+            ],
+            "mean_power": 1075175.25,
+            "power_ratio": 40.85358710279025,
+            "lag1_phase_coherence": 0.028766325051115222,
+            "within_window_power_persistence": 0.9511149433133342,
+            "spectral_entropy": 0.9449553245201167,
+            "spectral_peak_to_median_ratio": 8.013774720969396,
+            "endpoint_clip_fraction": 0.00048828125,
+            "signal_score": 5.247728835561656,
+            "change_score": 199.98447152053703,
+            "burst_score": 3.869600969821273,
+            "burst_localized_log_excess": 5.950569874732379,
+            "burst_localized_excess_fraction": 0.6502908210947284
+          },
+          {
+            "decoder_start_seconds": 7.001220703125,
+            "analysis_index": 16,
+            "analysis_start_seconds": 8.0,
+            "lanes": [
+              "burst",
+              "change",
+              "coverage",
+              "signal"
+            ],
+            "mean_power": 9011193.0,
+            "power_ratio": 342.3995838125494,
+            "lag1_phase_coherence": 0.9229803075874471,
+            "within_window_power_persistence": 0.9964386359431954,
+            "spectral_entropy": 0.7101847033935133,
+            "spectral_peak_to_median_ratio": 3161.9209738883937,
+            "endpoint_clip_fraction": 0.0,
+            "signal_score": 1.9383859501743854,
+            "change_score": 353.7306898927055,
+            "burst_score": 3.0801180856888926,
+            "burst_localized_log_excess": 5.160711298885488,
+            "burst_localized_excess_fraction": 0.5968398360811382
+          }
+        ]
+      }
+    },
+    {
+      "mode": "burst",
+      "waveform": "noise",
+      "sample_rate": 2048,
+      "samples": 18432,
+      "seed": 31,
+      "config": {
+        "sample_rate_hz": 2048,
+        "analysis_window_seconds": 0.5,
+        "decoder_window_seconds": 5.0,
+        "decoder_window_lead_seconds": 0.25,
+        "signal_window_limit": 3,
+        "change_window_limit": 3,
+        "burst_window_limit": 3,
+        "signal_nms_seconds": 2.0,
+        "burst_nms_seconds": 5.0,
+        "coverage_hop_seconds": 4.0,
+        "baseline_fraction": 0.25,
+        "spectral_fft_size": 1024,
+        "persistence_subwindows": 8,
+        "burst_fft_size": 256,
+        "burst_hop_samples": 128,
+        "burst_band_width_bins": [
+          4,
+          8,
+          16,
+          32,
+          64,
+          128
+        ],
+        "maximum_analysis_windows": 100000
+      },
+      "input_sha256": "ee7bba1ac573c3e25c4d98280908977a5e8075cc858e5210f61e0d68b9c84398",
+      "expected": {
+        "schema_version": "protocol-neutral-window-selection-v2",
+        "selector_version": "protocol-neutral-four-lane-v2",
+        "input_size_bytes": 73728,
+        "input_duration_seconds": 9.0,
+        "reference_paths_available_to_selector": false,
+        "frame_bytes_available_to_selector": false,
+        "event_timestamps_available_to_selector": false,
+        "mission_metadata_available_to_selector": false,
+        "config": {
+          "sample_rate_hz": 2048,
+          "analysis_window_seconds": 0.5,
+          "decoder_window_seconds": 5.0,
+          "decoder_window_lead_seconds": 0.25,
+          "signal_window_limit": 3,
+          "change_window_limit": 3,
+          "burst_window_limit": 3,
+          "signal_nms_seconds": 2.0,
+          "burst_nms_seconds": 5.0,
+          "coverage_hop_seconds": 4.0,
+          "baseline_fraction": 0.25,
+          "spectral_fft_size": 1024,
+          "persistence_subwindows": 8,
+          "burst_fft_size": 256,
+          "burst_hop_samples": 128,
+          "burst_band_width_bins": [
+            4,
+            8,
+            16,
+            32,
+            64,
+            128
+          ],
+          "maximum_analysis_windows": 100000
+        },
+        "analysis_window_count": 18,
+        "lane_counts_before_merge": {
+          "signal": 3,
+          "change": 3,
+          "burst": 2,
+          "coverage": 2
+        },
+        "selected_decoder_window_count": 5,
+        "coverage_audit": {
+          "enabled": true,
+          "entire_capture_covered": true,
+          "maximum_uncovered_gap_seconds": 0.0
+        },
+        "selected_windows": [
+          {
+            "decoder_start_seconds": 0.0,
+            "analysis_index": 5,
+            "analysis_start_seconds": 2.5,
+            "lanes": [
+              "coverage"
+            ],
+            "mean_power": 27353.80078125,
+            "power_ratio": 1.0457434243547483,
+            "lag1_phase_coherence": 0.006185729699812258,
+            "within_window_power_persistence": 0.9575663618501623,
+            "spectral_entropy": 0.9408027535830509,
+            "spectral_peak_to_median_ratio": 8.450278339214343,
+            "endpoint_clip_fraction": 0.0,
+            "signal_score": 0.06411849964169322,
+            "change_score": 6.6379607951755455,
+            "burst_score": 3.094537860472855,
+            "burst_localized_log_excess": 4.954218037815236,
+            "burst_localized_excess_fraction": 0.6246269011279765
+          },
+          {
+            "decoder_start_seconds": 0.75,
+            "analysis_index": 2,
+            "analysis_start_seconds": 1.0,
+            "lanes": [
+              "signal"
+            ],
+            "mean_power": 27777.0,
+            "power_ratio": 1.0619224483865104,
+            "lag1_phase_coherence": 0.013224797402375987,
+            "within_window_power_persistence": 0.9380006180463334,
+            "spectral_entropy": 0.9342250288204674,
+            "spectral_peak_to_median_ratio": 10.049089902156862,
+            "endpoint_clip_fraction": 0.0,
+            "signal_score": 0.08396463742877554,
+            "change_score": 5.610901822134996,
+            "burst_score": 3.1444931329713275,
+            "burst_localized_log_excess": 4.921297721228631,
+            "burst_localized_excess_fraction": 0.6389560866043859
+          },
+          {
+            "decoder_start_seconds": 1.25,
+            "analysis_index": 3,
+            "analysis_start_seconds": 1.5,
+            "lanes": [
+              "change"
+            ],
+            "mean_power": 26809.37109375,
+            "power_ratio": 1.024929725729112,
+            "lag1_phase_coherence": 0.026021136503725006,
+            "within_window_power_persistence": 0.8769209879996582,
+            "spectral_entropy": 0.9397818141678159,
+            "spectral_peak_to_median_ratio": 8.469921916494746,
+            "endpoint_clip_fraction": 0.0,
+            "signal_score": 0.03258329825816367,
+            "change_score": 6.894440172233112,
+            "burst_score": 3.3745794951182777,
+            "burst_localized_log_excess": 5.244707245761927,
+            "burst_localized_excess_fraction": 0.6434257122445037
+          },
+          {
+            "decoder_start_seconds": 2.75,
+            "analysis_index": 6,
+            "analysis_start_seconds": 3.0,
+            "lanes": [
+              "burst"
+            ],
+            "mean_power": 25986.439453125,
+            "power_ratio": 0.9934688198477271,
+            "lag1_phase_coherence": 0.01871519964898295,
+            "within_window_power_persistence": 0.9219630385898174,
+            "spectral_entropy": 0.9370586441854841,
+            "spectral_peak_to_median_ratio": 12.335506076369107,
+            "endpoint_clip_fraction": 0.0,
+            "signal_score": 0.0,
+            "change_score": 6.6379607951755455,
+            "burst_score": 3.784634646414709,
+            "burst_localized_log_excess": 5.603959976528025,
+            "burst_localized_excess_fraction": 0.675350049298444
+          },
+          {
+            "decoder_start_seconds": 4.0,
+            "analysis_index": 9,
+            "analysis_start_seconds": 4.5,
+            "lanes": [
+              "burst",
+              "change",
+              "coverage",
+              "signal"
+            ],
+            "mean_power": 27773.162109375,
+            "power_ratio": 1.0617757247587198,
+            "lag1_phase_coherence": 0.04909052390092961,
+            "within_window_power_persistence": 0.9009840306077177,
+            "spectral_entropy": 0.9414790547250441,
+            "spectral_peak_to_median_ratio": 8.18109940270533,
+            "endpoint_clip_fraction": 0.0,
+            "signal_score": 0.08016074287845826,
+            "change_score": 4.711863837099528,
+            "burst_score": 3.3885718103740623,
+            "burst_localized_log_excess": 5.338850708369946,
+            "burst_localized_excess_fraction": 0.6347006116993781
+          }
+        ]
+      }
+    },
+    {
+      "mode": "routing",
+      "waveform": "noise",
+      "sample_rate": 57600,
+      "samples": 172800,
+      "seed": 121,
+      "config": {
+        "sample_rate_hz": 57600,
+        "window_seconds": 1.0,
+        "strongest_window_count": 2,
+        "psd_fft_size": 8192,
+        "symbol_rate_bank_baud": [
+          50,
+          100,
+          200,
+          300,
+          400,
+          600,
+          1200,
+          2400,
+          4800,
+          9600,
+          19200
+        ]
+      },
+      "input_sha256": "6b92195dae100e9ef34514666e335a9c1a23b2bd63404d5b2be06bd910fd285e",
+      "expected": {
+        "strongest_window_start_seconds": [
+          0.0,
+          1.0
+        ],
+        "envelope_coefficient_of_variation": 0.49403076482950925,
+        "envelope_robust_variation": 1.3524671240528594,
+        "power_p99_to_mean_papr": 4.106384230271383,
+        "phase_increment_circular_concentration": 0.6386064445257698,
+        "phase_increment_robust_sigma_rad": 0.7446956455408412,
+        "phase_increment_near_center_fraction": 0.39347007115948096,
+        "phase_increment_two_cluster_improvement": 0.5271796015217949,
+        "spectral_peak_to_median_ratio": 11.83738343298714,
+        "occupied_bandwidth_99_hz": 55216.40625,
+        "peak_connected_bandwidth_hz": 21.09375,
+        "dominant_connected_excess_fraction": 0.2302901863324769,
+        "symbol_rate_candidates": [
+          {
+            "baud": 400,
+            "clock_line_snr_db": 6.481014831797572,
+            "phase_transition_line_snr_db": 6.481014831797572,
+            "envelope_transition_line_snr_db": 4.951202891218646,
+            "phase_transition_autocorrelation": -0.0069140886948382795
+          },
+          {
+            "baud": 50,
+            "clock_line_snr_db": 5.057183333264003,
+            "phase_transition_line_snr_db": 5.057183333264003,
+            "envelope_transition_line_snr_db": 2.1007864627438675,
+            "phase_transition_autocorrelation": -0.002727295354509355
+          },
+          {
+            "baud": 100,
+            "clock_line_snr_db": 4.82604373024304,
+            "phase_transition_line_snr_db": -2.203521899974423,
+            "envelope_transition_line_snr_db": 4.82604373024304,
+            "phase_transition_autocorrelation": -0.007110007424016547
+          },
+          {
+            "baud": 4800,
+            "clock_line_snr_db": 4.621266694624555,
+            "phase_transition_line_snr_db": 4.621266694624555,
+            "envelope_transition_line_snr_db": 1.087907600875936,
+            "phase_transition_autocorrelation": -0.004313542263086022
+          },
+          {
+            "baud": 19200,
+            "clock_line_snr_db": 4.394350884907613,
+            "phase_transition_line_snr_db": 4.394350884907613,
+            "envelope_transition_line_snr_db": 0.5556693206139169,
+            "phase_transition_autocorrelation": 0.0028408176026078437
+          },
+          {
+            "baud": 2400,
+            "clock_line_snr_db": 4.135315349277102,
+            "phase_transition_line_snr_db": 1.8295105769295672,
+            "envelope_transition_line_snr_db": 4.135315349277102,
+            "phase_transition_autocorrelation": 0.007737344351987649
+          },
+          {
+            "baud": 600,
+            "clock_line_snr_db": 4.063236519078977,
+            "phase_transition_line_snr_db": 4.063236519078977,
+            "envelope_transition_line_snr_db": -0.9226991875284551,
+            "phase_transition_autocorrelation": -0.0024276366371703707
+          },
+          {
+            "baud": 200,
+            "clock_line_snr_db": 3.90832942389731,
+            "phase_transition_line_snr_db": 3.085634771163519,
+            "envelope_transition_line_snr_db": 3.90832942389731,
+            "phase_transition_autocorrelation": 0.002971810080414324
+          },
+          {
+            "baud": 1200,
+            "clock_line_snr_db": 3.7734451353711513,
+            "phase_transition_line_snr_db": 3.7734451353711513,
+            "envelope_transition_line_snr_db": 1.8982076425013186,
+            "phase_transition_autocorrelation": 0.00059190140822635
+          },
+          {
+            "baud": 300,
+            "clock_line_snr_db": 2.637420564243871,
+            "phase_transition_line_snr_db": -0.7461078222930574,
+            "envelope_transition_line_snr_db": 2.637420564243871,
+            "phase_transition_autocorrelation": -0.0024163381859946317
+          },
+          {
+            "baud": 9600,
+            "clock_line_snr_db": 1.889797096606357,
+            "phase_transition_line_snr_db": 1.889797096606357,
+            "envelope_transition_line_snr_db": -0.49459150297821713,
+            "phase_transition_autocorrelation": 0.016366656107731237
+          }
+        ],
+        "hypotheses": [
+          {
+            "signal_type": "analog_like",
+            "confidence": 0.49762041588397815,
+            "evidence": [
+              "envelope_cv=0.494",
+              "p99_power_to_mean=4.106",
+              "occupied_bandwidth_99_hz=5.522e+04",
+              "peak_connected_bandwidth_hz=21.09",
+              "dominant_connected_excess_fraction=0.2303",
+              "phase_increment_concentration=0.6386",
+              "best_clock_line_snr_db=6.481"
+            ]
+          },
+          {
+            "signal_type": "unknown",
+            "confidence": 0.2763087712638121,
+            "evidence": [
+              "envelope_cv=0.494",
+              "p99_power_to_mean=4.106",
+              "occupied_bandwidth_99_hz=5.522e+04",
+              "peak_connected_bandwidth_hz=21.09",
+              "dominant_connected_excess_fraction=0.2303",
+              "phase_increment_concentration=0.6386",
+              "best_clock_line_snr_db=6.481"
+            ]
+          },
+          {
+            "signal_type": "continuous_carrier_or_cw_like",
+            "confidence": 0.0,
+            "evidence": [
+              "envelope_cv=0.494",
+              "p99_power_to_mean=4.106",
+              "occupied_bandwidth_99_hz=5.522e+04",
+              "peak_connected_bandwidth_hz=21.09",
+              "dominant_connected_excess_fraction=0.2303",
+              "phase_increment_concentration=0.6386",
+              "best_clock_line_snr_db=6.481"
+            ]
+          },
+          {
+            "signal_type": "fsk_like",
+            "confidence": 0.0,
+            "evidence": [
+              "envelope_cv=0.494",
+              "p99_power_to_mean=4.106",
+              "occupied_bandwidth_99_hz=5.522e+04",
+              "peak_connected_bandwidth_hz=21.09",
+              "dominant_connected_excess_fraction=0.2303",
+              "phase_increment_concentration=0.6386",
+              "best_clock_line_snr_db=6.481"
+            ]
+          },
+          {
+            "signal_type": "psk_like",
+            "confidence": 0.0,
+            "evidence": [
+              "envelope_cv=0.494",
+              "p99_power_to_mean=4.106",
+              "occupied_bandwidth_99_hz=5.522e+04",
+              "peak_connected_bandwidth_hz=21.09",
+              "dominant_connected_excess_fraction=0.2303",
+              "phase_increment_concentration=0.6386",
+              "best_clock_line_snr_db=6.481"
+            ]
+          }
+        ],
+        "primary_routing": "analog_like",
+        "primary_confidence": 0.49762041588397815,
+        "g3ruh_9600_probe_physically_sensible": false,
+        "g3ruh_9600_evidence": [
+          "fsk_like_confidence=0",
+          "occupied_bandwidth_99_hz=5.522e+04",
+          "9600_clock_line_snr_db=1.89",
+          "decision requires FSK-like>=0.35, BW 4..28 kHz, 9600 line>=2.5 dB or |autocorr|>=0.15, non-CW primary"
+        ]
+      }
+    },
+    {
+      "mode": "routing",
+      "waveform": "carrier",
+      "sample_rate": 57600,
+      "samples": 172800,
+      "seed": 71,
+      "config": {
+        "sample_rate_hz": 57600,
+        "window_seconds": 1.0,
+        "strongest_window_count": 2,
+        "psd_fft_size": 8192,
+        "symbol_rate_bank_baud": [
+          50,
+          100,
+          200,
+          300,
+          400,
+          600,
+          1200,
+          2400,
+          4800,
+          9600,
+          19200
+        ]
+      },
+      "input_sha256": "005e9ebf41153f37b5e5338c6efcbcc96111a1f2eff244aea6c9df89fec282a7",
+      "expected": {
+        "strongest_window_start_seconds": [
+          1.0,
+          2.0
+        ],
+        "envelope_coefficient_of_variation": 0.002051657530771042,
+        "envelope_robust_variation": 0.005351494025069041,
+        "power_p99_to_mean_papr": 1.0098615727855145,
+        "phase_increment_circular_concentration": 0.9999999992146793,
+        "phase_increment_robust_sigma_rad": 3.682061031298225e-05,
+        "phase_increment_near_center_fraction": 1.0,
+        "phase_increment_two_cluster_improvement": 0.5912375414311408,
+        "spectral_peak_to_median_ratio": 7406496.188626846,
+        "occupied_bandwidth_99_hz": 21.09375,
+        "peak_connected_bandwidth_hz": 21.09375,
+        "dominant_connected_excess_fraction": 0.9999927726691292,
+        "symbol_rate_candidates": [
+          {
+            "baud": 50,
+            "clock_line_snr_db": 11.905049103662515,
+            "phase_transition_line_snr_db": 11.905049103662515,
+            "envelope_transition_line_snr_db": 2.6502812667066022,
+            "phase_transition_autocorrelation": -0.025773790632303936
+          },
+          {
+            "baud": 100,
+            "clock_line_snr_db": 6.546974340322334,
+            "phase_transition_line_snr_db": 4.32144876722431,
+            "envelope_transition_line_snr_db": 6.546974340322334,
+            "phase_transition_autocorrelation": -0.046295741958592686
+          },
+          {
+            "baud": 1200,
+            "clock_line_snr_db": 6.0663287933291885,
+            "phase_transition_line_snr_db": -1.3732472291282174,
+            "envelope_transition_line_snr_db": 6.0663287933291885,
+            "phase_transition_autocorrelation": 0.23449889332078686
+          },
+          {
+            "baud": 400,
+            "clock_line_snr_db": 5.5310196386042705,
+            "phase_transition_line_snr_db": 5.5310196386042705,
+            "envelope_transition_line_snr_db": 3.1085506876717157,
+            "phase_transition_autocorrelation": 0.6652973618350808
+          },
+          {
+            "baud": 300,
+            "clock_line_snr_db": 5.169578938652963,
+            "phase_transition_line_snr_db": 5.169578938652963,
+            "envelope_transition_line_snr_db": 1.4453244785321013,
+            "phase_transition_autocorrelation": 0.14441534780283988
+          },
+          {
+            "baud": 4800,
+            "clock_line_snr_db": 4.913993927416146,
+            "phase_transition_line_snr_db": 4.913993927416146,
+            "envelope_transition_line_snr_db": 0.40471640753467464,
+            "phase_transition_autocorrelation": 0.9115122553797852
+          },
+          {
+            "baud": 600,
+            "clock_line_snr_db": 3.768445315340849,
+            "phase_transition_line_snr_db": 3.768445315340849,
+            "envelope_transition_line_snr_db": 1.6820236020089128,
+            "phase_transition_autocorrelation": 0.3539640352401787
+          },
+          {
+            "baud": 19200,
+            "clock_line_snr_db": 3.7176885712468373,
+            "phase_transition_line_snr_db": 1.506515289096614,
+            "envelope_transition_line_snr_db": 3.7176885712468373,
+            "phase_transition_autocorrelation": 0.9937548113787111
+          },
+          {
+            "baud": 2400,
+            "clock_line_snr_db": 1.9514766252361309,
+            "phase_transition_line_snr_db": 1.9514766252361309,
+            "envelope_transition_line_snr_db": 0.6993271465029536,
+            "phase_transition_autocorrelation": 0.7011564565767837
+          },
+          {
+            "baud": 9600,
+            "clock_line_snr_db": 0.5865837375608419,
+            "phase_transition_line_snr_db": -2.594966489554288,
+            "envelope_transition_line_snr_db": 0.5865837375608419,
+            "phase_transition_autocorrelation": 0.9761066934170041
+          },
+          {
+            "baud": 200,
+            "clock_line_snr_db": -2.8728008966097103,
+            "phase_transition_line_snr_db": -2.8728008966097103,
+            "envelope_transition_line_snr_db": -4.2217065567518315,
+            "phase_transition_autocorrelation": 0.1855425504364463
+          }
+        ],
+        "hypotheses": [
+          {
+            "signal_type": "continuous_carrier_or_cw_like",
+            "confidence": 0.9999999947645288,
+            "evidence": [
+              "envelope_cv=0.002052",
+              "p99_power_to_mean=1.01",
+              "occupied_bandwidth_99_hz=21.09",
+              "peak_connected_bandwidth_hz=21.09",
+              "dominant_connected_excess_fraction=1",
+              "phase_increment_concentration=1",
+              "best_clock_line_snr_db=11.91"
+            ]
+          },
+          {
+            "signal_type": "unknown",
+            "confidence": 0.2,
+            "evidence": [
+              "envelope_cv=0.002052",
+              "p99_power_to_mean=1.01",
+              "occupied_bandwidth_99_hz=21.09",
+              "peak_connected_bandwidth_hz=21.09",
+              "dominant_connected_excess_fraction=1",
+              "phase_increment_concentration=1",
+              "best_clock_line_snr_db=11.91"
+            ]
+          },
+          {
+            "signal_type": "analog_like",
+            "confidence": 0.0,
+            "evidence": [
+              "envelope_cv=0.002052",
+              "p99_power_to_mean=1.01",
+              "occupied_bandwidth_99_hz=21.09",
+              "peak_connected_bandwidth_hz=21.09",
+              "dominant_connected_excess_fraction=1",
+              "phase_increment_concentration=1",
+              "best_clock_line_snr_db=11.91"
+            ]
+          },
+          {
+            "signal_type": "fsk_like",
+            "confidence": 0.0,
+            "evidence": [
+              "envelope_cv=0.002052",
+              "p99_power_to_mean=1.01",
+              "occupied_bandwidth_99_hz=21.09",
+              "peak_connected_bandwidth_hz=21.09",
+              "dominant_connected_excess_fraction=1",
+              "phase_increment_concentration=1",
+              "best_clock_line_snr_db=11.91"
+            ]
+          },
+          {
+            "signal_type": "psk_like",
+            "confidence": 0.0,
+            "evidence": [
+              "envelope_cv=0.002052",
+              "p99_power_to_mean=1.01",
+              "occupied_bandwidth_99_hz=21.09",
+              "peak_connected_bandwidth_hz=21.09",
+              "dominant_connected_excess_fraction=1",
+              "phase_increment_concentration=1",
+              "best_clock_line_snr_db=11.91"
+            ]
+          }
+        ],
+        "primary_routing": "continuous_carrier_or_cw_like",
+        "primary_confidence": 0.9999999947645288,
+        "g3ruh_9600_probe_physically_sensible": false,
+        "g3ruh_9600_evidence": [
+          "fsk_like_confidence=0",
+          "occupied_bandwidth_99_hz=21.09",
+          "9600_clock_line_snr_db=0.5866",
+          "decision requires FSK-like>=0.35, BW 4..28 kHz, 9600 line>=2.5 dB or |autocorr|>=0.15, non-CW primary"
+        ]
+      }
+    },
+    {
+      "mode": "routing",
+      "waveform": "fsk",
+      "sample_rate": 57600,
+      "samples": 172800,
+      "seed": 44,
+      "config": {
+        "sample_rate_hz": 57600,
+        "window_seconds": 1.0,
+        "strongest_window_count": 2,
+        "psd_fft_size": 8192,
+        "symbol_rate_bank_baud": [
+          50,
+          100,
+          200,
+          300,
+          400,
+          600,
+          1200,
+          2400,
+          4800,
+          9600,
+          19200
+        ]
+      },
+      "input_sha256": "5bd4bd9b81e8a071b4a30224a511774b5ab788deca559577396ffff529175eab",
+      "expected": {
+        "strongest_window_start_seconds": [
+          1.0,
+          2.0
+        ],
+        "envelope_coefficient_of_variation": 0.06537760701103708,
+        "envelope_robust_variation": 0.16962508302648055,
+        "power_p99_to_mean_papr": 1.3233191500026567,
+        "phase_increment_circular_concentration": 0.9315943503485843,
+        "phase_increment_robust_sigma_rad": 0.5628689424637834,
+        "phase_increment_near_center_fraction": 0.17420119994418864,
+        "phase_increment_two_cluster_improvement": 0.9149968715647255,
+        "spectral_peak_to_median_ratio": 3500.251822516986,
+        "occupied_bandwidth_99_hz": 15778.125,
+        "peak_connected_bandwidth_hz": 10898.4375,
+        "dominant_connected_excess_fraction": 0.9823521838309068,
+        "symbol_rate_candidates": [
+          {
+            "baud": 9600,
+            "clock_line_snr_db": 29.903024992913885,
+            "phase_transition_line_snr_db": 29.903024992913885,
+            "envelope_transition_line_snr_db": 22.893928110983968,
+            "phase_transition_autocorrelation": 0.15919691499030797
+          },
+          {
+            "baud": 19200,
+            "clock_line_snr_db": 20.5366208730749,
+            "phase_transition_line_snr_db": 14.559761938777317,
+            "envelope_transition_line_snr_db": 20.5366208730749,
+            "phase_transition_autocorrelation": 0.052460843498916505
+          },
+          {
+            "baud": 300,
+            "clock_line_snr_db": 6.517007993140016,
+            "phase_transition_line_snr_db": 6.517007993140016,
+            "envelope_transition_line_snr_db": 5.419770841523492,
+            "phase_transition_autocorrelation": 0.16408079691980373
+          },
+          {
+            "baud": 4800,
+            "clock_line_snr_db": 6.255497481484689,
+            "phase_transition_line_snr_db": 6.255497481484689,
+            "envelope_transition_line_snr_db": 3.7487784476164796,
+            "phase_transition_autocorrelation": 0.19415403916448806
+          },
+          {
+            "baud": 600,
+            "clock_line_snr_db": 4.773389467436934,
+            "phase_transition_line_snr_db": 4.773389467436934,
+            "envelope_transition_line_snr_db": 3.8398492294198796,
+            "phase_transition_autocorrelation": 0.1797266929670874
+          },
+          {
+            "baud": 400,
+            "clock_line_snr_db": 4.745153673577549,
+            "phase_transition_line_snr_db": 3.4231730511963034,
+            "envelope_transition_line_snr_db": 4.745153673577549,
+            "phase_transition_autocorrelation": 0.18164439541015448
+          },
+          {
+            "baud": 1200,
+            "clock_line_snr_db": 3.975147872348879,
+            "phase_transition_line_snr_db": 3.975147872348879,
+            "envelope_transition_line_snr_db": 2.923734348799802,
+            "phase_transition_autocorrelation": 0.18994669394589436
+          },
+          {
+            "baud": 2400,
+            "clock_line_snr_db": 3.9724354111123605,
+            "phase_transition_line_snr_db": 3.9724354111123605,
+            "envelope_transition_line_snr_db": 3.7329409660029866,
+            "phase_transition_autocorrelation": 0.17245370462206822
+          },
+          {
+            "baud": 100,
+            "clock_line_snr_db": 3.94202190047458,
+            "phase_transition_line_snr_db": 3.94202190047458,
+            "envelope_transition_line_snr_db": 3.7584136086090925,
+            "phase_transition_autocorrelation": 0.17895028732915455
+          },
+          {
+            "baud": 200,
+            "clock_line_snr_db": 3.9344204721010536,
+            "phase_transition_line_snr_db": 3.9344204721010536,
+            "envelope_transition_line_snr_db": 2.9986128673108308,
+            "phase_transition_autocorrelation": 0.17457450525228463
+          },
+          {
+            "baud": 50,
+            "clock_line_snr_db": 3.0703104736033366,
+            "phase_transition_line_snr_db": 3.0703104736033366,
+            "envelope_transition_line_snr_db": 1.6790367385291602,
+            "phase_transition_autocorrelation": 0.15032481163704264
+          }
+        ],
+        "hypotheses": [
+          {
+            "signal_type": "fsk_like",
+            "confidence": 0.9166015858007128,
+            "evidence": [
+              "envelope_cv=0.06538",
+              "p99_power_to_mean=1.323",
+              "occupied_bandwidth_99_hz=1.578e+04",
+              "peak_connected_bandwidth_hz=1.09e+04",
+              "dominant_connected_excess_fraction=0.9824",
+              "phase_increment_concentration=0.9316",
+              "best_clock_line_snr_db=29.9"
+            ]
+          },
+          {
+            "signal_type": "psk_like",
+            "confidence": 0.38462239298896295,
+            "evidence": [
+              "envelope_cv=0.06538",
+              "p99_power_to_mean=1.323",
+              "occupied_bandwidth_99_hz=1.578e+04",
+              "peak_connected_bandwidth_hz=1.09e+04",
+              "dominant_connected_excess_fraction=0.9824",
+              "phase_increment_concentration=0.9316",
+              "best_clock_line_snr_db=29.9"
+            ]
+          },
+          {
+            "signal_type": "unknown",
+            "confidence": 0.2,
+            "evidence": [
+              "envelope_cv=0.06538",
+              "p99_power_to_mean=1.323",
+              "occupied_bandwidth_99_hz=1.578e+04",
+              "peak_connected_bandwidth_hz=1.09e+04",
+              "dominant_connected_excess_fraction=0.9824",
+              "phase_increment_concentration=0.9316",
+              "best_clock_line_snr_db=29.9"
+            ]
+          },
+          {
+            "signal_type": "analog_like",
+            "confidence": 0.0,
+            "evidence": [
+              "envelope_cv=0.06538",
+              "p99_power_to_mean=1.323",
+              "occupied_bandwidth_99_hz=1.578e+04",
+              "peak_connected_bandwidth_hz=1.09e+04",
+              "dominant_connected_excess_fraction=0.9824",
+              "phase_increment_concentration=0.9316",
+              "best_clock_line_snr_db=29.9"
+            ]
+          },
+          {
+            "signal_type": "continuous_carrier_or_cw_like",
+            "confidence": 0.0,
+            "evidence": [
+              "envelope_cv=0.06538",
+              "p99_power_to_mean=1.323",
+              "occupied_bandwidth_99_hz=1.578e+04",
+              "peak_connected_bandwidth_hz=1.09e+04",
+              "dominant_connected_excess_fraction=0.9824",
+              "phase_increment_concentration=0.9316",
+              "best_clock_line_snr_db=29.9"
+            ]
+          }
+        ],
+        "primary_routing": "fsk_like",
+        "primary_confidence": 0.9166015858007128,
+        "g3ruh_9600_probe_physically_sensible": true,
+        "g3ruh_9600_evidence": [
+          "fsk_like_confidence=0.9166",
+          "occupied_bandwidth_99_hz=1.578e+04",
+          "9600_clock_line_snr_db=29.9",
+          "decision requires FSK-like>=0.35, BW 4..28 kHz, 9600 line>=2.5 dB or |autocorr|>=0.15, non-CW primary"
+        ]
+      }
+    }
+  ]
+}

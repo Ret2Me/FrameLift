@@ -1,0 +1,102 @@
+{
+  "format": "cf32_le",
+  "sample_rate_hz": 48000,
+  "window_seconds": 0.25,
+  "hop_seconds": 0.125,
+  "protocols": {
+    "csp": {
+      "type": "coded_sync",
+      "config": {
+        "syncword": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          0,
+          1
+        ],
+        "maximum_sync_hamming": 1,
+        "frame_bytes": 32,
+        "code": {
+          "kind": "reed_solomon",
+          "config": {
+            "field_polynomial": 391,
+            "first_root": 112,
+            "primitive_step": 11,
+            "parity_symbols": 32,
+            "shortening": 191,
+            "interleaving": 1,
+            "basis": "ccsds_dual"
+          }
+        },
+        "randomizer": "ccsds_tm255",
+        "maximum_candidates": 64,
+        "validator": {
+          "type": "space_link",
+          "config": {
+            "type": "csp_v1",
+            "crc32": "required_header_and_payload"
+          }
+        }
+      }
+    }
+  },
+  "hypotheses": [
+    {
+      "protocol_id": "csp",
+      "waveform": {
+        "hypothesis_id": "qpsk-example",
+        "demodulator_id": "iq_qpsk",
+        "dsp": {
+          "baud": 6000,
+          "mode": "qpsk",
+          "rate_errors_ppm": [
+            -250,
+            0,
+            250
+          ],
+          "phase_bins": 8,
+          "top_timing": 8,
+          "bank": "full"
+        },
+        "decimation": 1,
+        "carrier_hz": null,
+        "cutoff_hz": null,
+        "psk": {
+          "matched_filter": {
+            "type": "rectangular"
+          },
+          "loop_bandwidth": 0.01,
+          "differential_binary": false,
+          "max_carrier_offset_hz": 500
+        }
+      }
+    }
+  ]
+}

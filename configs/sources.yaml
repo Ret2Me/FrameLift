@@ -1,0 +1,31 @@
+sources:
+  camras-satnogs-iq:
+    url: "https://data.camras.nl/satnogs/?C=N;O=D"
+    capture_layer: iq_doppler_state_per_recording
+    sample_rate_hz: null
+    sample_rate_policy: per_recording_evidence_required
+    doppler_state_policy: per_recording_evidence_required
+    datatype_candidate: ci16_le
+    license_spdx: null
+    license_claims: [CC-BY-4.0, CC-BY-NC-4.0]
+    license_verified: false
+    publication_reviewed: false
+    internal_research_authorized_by_user: true
+    authorization_evidence: docs/decisions/004-research-authorization.md
+    max_concurrency: 2
+    note: "Observed contracts are heterogeneous. Compatible RSP-03 flowgraph candidates derive 57.6 kS/s and supersede the timing-only 56 kS/s estimate, but the installed historical tag remains unresolved. User authorization permits internal research; publication review remains separate."
+  satnogs-network-api:
+    url: "https://network.satnogs.org/api/"
+    license_spdx: CC-BY-SA-4.0
+    license_verified: true
+    publication_reviewed: false
+    internal_research_authorized_by_user: true
+    authorization_evidence: docs/decisions/004-research-authorization.md
+    max_concurrency: 2
+  satellite-recordings:
+    url: "https://github.com/daniestevez/satellite-recordings"
+    capture_layer: audio
+    sample_rate_hz: 48000
+    license_spdx: Unlicense
+    license_verified: true
+    publication_reviewed: true

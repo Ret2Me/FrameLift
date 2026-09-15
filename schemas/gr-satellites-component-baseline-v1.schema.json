@@ -1,0 +1,259 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://telemetry-yield.invalid/schemas/gr-satellites-component-baseline-v1.schema.json",
+  "title": "telemetry-yield official gr-satellites component baseline v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "status", "result_payload_sha256", "baseline", "source", "attempt_fingerprint",
+    "effective_config", "config_sha256", "hypothesis_bank", "conversion",
+    "acceptance", "detections", "unique_candidates", "counts", "runtime",
+    "child_runtime", "execution", "claim_guard"
+  ],
+  "properties": {
+    "schema_version": {"const": "gr-satellites-component-baseline-v1"},
+    "status": {"enum": ["completed", "output_limit_exceeded"]},
+    "result_payload_sha256": {"$ref": "#/$defs/sha256"},
+    "baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "classification", "gr_satellites_version", "historical_satnogs_platform_equivalent", "mission_satyaml_flowgraph", "description"],
+      "properties": {
+        "id": {"const": "gr-satellites-5.9.0-official-fsk-ax25-components"},
+        "classification": {"const": "official_component_baseline"},
+        "gr_satellites_version": {"const": "5.9.0"},
+        "historical_satnogs_platform_equivalent": {"const": false},
+        "mission_satyaml_flowgraph": {"const": false},
+        "description": {"type": "string", "minLength": 1}
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sample_format", "sample_rate_hz", "size_bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sample_format": {"const": "ci16_le"},
+        "sample_rate_hz": {"type": "integer", "minimum": 19201},
+        "size_bytes": {"type": "integer", "minimum": 4, "multipleOf": 4},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "attempt_fingerprint": {"$ref": "#/$defs/sha256"},
+    "effective_config": {"$ref": "#/$defs/effectiveConfig"},
+    "config_sha256": {"$ref": "#/$defs/sha256"},
+    "hypothesis_bank": {"$ref": "#/$defs/hypothesisBank"},
+    "conversion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["component", "swap_iq", "scale_factor"],
+      "properties": {
+        "component": {"const": "gnuradio.blocks.interleaved_short_to_complex"},
+        "swap_iq": {"const": false},
+        "scale_factor": {"const": 32768.0}
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["official_deframer_checks_fcs_and_removes_fcs", "strict_ax25_ui_structure_required_for_trusted", "crc_valid_pdu_is_not_automatically_trusted"],
+      "properties": {
+        "official_deframer_checks_fcs_and_removes_fcs": {"const": true},
+        "strict_ax25_ui_structure_required_for_trusted": {"const": true},
+        "crc_valid_pdu_is_not_automatically_trusted": {"const": true}
+      }
+    },
+    "detections": {"type": "array", "items": {"$ref": "#/$defs/detection"}},
+    "unique_candidates": {"type": "array", "items": {"$ref": "#/$defs/candidate"}},
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["detection_count", "unique_candidate_count", "trusted_unique_ax25_ui_count", "stored_pdu_bytes"],
+      "properties": {
+        "detection_count": {"type": "integer", "minimum": 0},
+        "unique_candidate_count": {"type": "integer", "minimum": 0},
+        "trusted_unique_ax25_ui_count": {"type": "integer", "minimum": 0},
+        "stored_pdu_bytes": {"type": "integer", "minimum": 0}
+      }
+    },
+    "runtime": {"$ref": "#/$defs/runtimeManifest"},
+    "child_runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["python", "satellites_module", "gnuradio_version"],
+      "properties": {
+        "python": {"type": "string", "pattern": "^3\\.12\\."},
+        "satellites_module": {"type": "string", "minLength": 1},
+        "gnuradio_version": {"const": "3.10.12.0"}
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["argv", "argv0", "argv0_sha256", "runner_sha256", "return_code", "elapsed_seconds", "stdout_bytes", "stderr_bytes", "child_result_bytes", "peak_resident_bytes_observed", "stderr_sha256", "stdout_sha256", "limits"],
+      "properties": {
+        "argv": {"type": "array", "minItems": 2, "items": {"type": "string"}},
+        "argv0": {"type": "string", "minLength": 1},
+        "argv0_sha256": {"$ref": "#/$defs/sha256"},
+        "runner_sha256": {"$ref": "#/$defs/sha256"},
+        "return_code": {"const": 0},
+        "elapsed_seconds": {"type": "number", "minimum": 0},
+        "stdout_bytes": {"type": "integer", "minimum": 0},
+        "stderr_bytes": {"type": "integer", "minimum": 0},
+        "child_result_bytes": {"type": "integer", "minimum": 1},
+        "peak_resident_bytes_observed": {"type": "integer", "minimum": 0},
+        "stderr_sha256": {"$ref": "#/$defs/sha256"},
+        "stdout_sha256": {"$ref": "#/$defs/sha256"},
+        "limits": {"$ref": "#/$defs/bounds"}
+      }
+    },
+    "claim_guard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["same_iq_component_baseline", "identical_to_historical_satnogs_deployment", "identical_to_mission_profile_gr_satellites", "publication_superiority_established"],
+      "properties": {
+        "same_iq_component_baseline": {"const": true},
+        "identical_to_historical_satnogs_deployment": {"const": false},
+        "identical_to_mission_profile_gr_satellites": {"const": false},
+        "publication_superiority_established": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "bounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["timeout_seconds", "cpu_seconds", "maximum_rss_bytes", "maximum_address_space_bytes", "maximum_frames", "maximum_pdu_bytes", "maximum_child_output_bytes"],
+      "properties": {
+        "timeout_seconds": {"type": "integer", "minimum": 1},
+        "cpu_seconds": {"type": "integer", "minimum": 1},
+        "maximum_rss_bytes": {"type": "integer", "minimum": 1},
+        "maximum_address_space_bytes": {"type": "integer", "minimum": 1},
+        "maximum_frames": {"type": "integer", "minimum": 1},
+        "maximum_pdu_bytes": {"type": "integer", "minimum": 1},
+        "maximum_child_output_bytes": {"type": "integer", "minimum": 1}
+      }
+    },
+    "effectiveConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sample_format", "sample_rate_hz", "baudrates", "g3ruh_modes", "deviation_hz", "iq_input", "dc_block", "ci16_scale_factor", "bounds"],
+      "properties": {
+        "sample_format": {"const": "ci16_le"},
+        "sample_rate_hz": {"type": "integer", "minimum": 19201},
+        "baudrates": {"type": "array", "minItems": 1, "maxItems": 4, "uniqueItems": true, "items": {"enum": [1200, 4800, 9600, 19200]}},
+        "g3ruh_modes": {"const": [false, true]},
+        "deviation_hz": {"const": 5000.0},
+        "iq_input": {"const": true},
+        "dc_block": {"const": true},
+        "ci16_scale_factor": {"const": 32768.0},
+        "bounds": {"$ref": "#/$defs/bounds"}
+      }
+    },
+    "hypothesisBank": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["baudrates", "g3ruh_modes", "deviation_hz", "official_component_defaults"],
+      "properties": {
+        "baudrates": {"type": "array", "minItems": 1, "maxItems": 4, "uniqueItems": true, "items": {"enum": [1200, 4800, 9600, 19200]}},
+        "g3ruh_modes": {"const": [false, true]},
+        "deviation_hz": {"const": 5000.0},
+        "official_component_defaults": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["clock_relative_bandwidth", "clock_limit_relative_to_baudrate", "dc_block", "iq_input"],
+          "properties": {
+            "clock_relative_bandwidth": {"const": 0.06},
+            "clock_limit_relative_to_baudrate": {"const": 0.004},
+            "dc_block": {"const": true},
+            "iq_input": {"const": true}
+          }
+        }
+      }
+    },
+    "detection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["baudrate", "g3ruh", "payload_hex", "payload_sha256", "strict_ax25_ui"],
+      "properties": {
+        "baudrate": {"enum": [1200, 4800, 9600, 19200]},
+        "g3ruh": {"type": "boolean"},
+        "payload_hex": {"type": "string", "pattern": "^(?:[0-9a-f]{2})+$"},
+        "payload_sha256": {"$ref": "#/$defs/sha256"},
+        "strict_ax25_ui": {"type": "boolean"}
+      }
+    },
+    "origin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["baudrate", "g3ruh"],
+      "properties": {
+        "baudrate": {"enum": [1200, 4800, 9600, 19200]},
+        "g3ruh": {"type": "boolean"}
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["payload_hex", "payload_sha256", "strict_ax25_ui", "origins"],
+      "properties": {
+        "payload_hex": {"type": "string", "pattern": "^(?:[0-9a-f]{2})+$"},
+        "payload_sha256": {"$ref": "#/$defs/sha256"},
+        "strict_ax25_ui": {"type": "boolean"},
+        "origins": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/origin"}}
+      }
+    },
+    "fileRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "size_bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "size_bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "runtimeManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["golden_root", "files"],
+      "properties": {
+        "golden_root": {"type": "string", "minLength": 1},
+        "files": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ax25_deframer.py", "conda-package-record.json", "cpython-conda-record.json",
+            "fsk_demodulator.py", "gnuradio-analog-python.so", "gnuradio-blocks-python.so",
+            "gnuradio-core-conda-record.json", "gnuradio-digital-python.so",
+            "gnuradio-filter-python.so", "gnuradio-gr-python.so", "gnuradio-pmt-conda-record.json",
+            "hdlc_deframer.py", "libgnuradio-satellites.so.5.9.0.0", "numpy-conda-record.json",
+            "options_block.py", "pmt-python.so", "python", "rms_agc_f.py", "satellites_python.so"
+          ],
+          "properties": {
+            "ax25_deframer.py": {"$ref": "#/$defs/fileRecord"},
+            "conda-package-record.json": {"$ref": "#/$defs/fileRecord"},
+            "cpython-conda-record.json": {"$ref": "#/$defs/fileRecord"},
+            "fsk_demodulator.py": {"$ref": "#/$defs/fileRecord"},
+            "gnuradio-analog-python.so": {"$ref": "#/$defs/fileRecord"},
+            "gnuradio-blocks-python.so": {"$ref": "#/$defs/fileRecord"},
+            "gnuradio-core-conda-record.json": {"$ref": "#/$defs/fileRecord"},
+            "gnuradio-digital-python.so": {"$ref": "#/$defs/fileRecord"},
+            "gnuradio-filter-python.so": {"$ref": "#/$defs/fileRecord"},
+            "gnuradio-gr-python.so": {"$ref": "#/$defs/fileRecord"},
+            "gnuradio-pmt-conda-record.json": {"$ref": "#/$defs/fileRecord"},
+            "hdlc_deframer.py": {"$ref": "#/$defs/fileRecord"},
+            "libgnuradio-satellites.so.5.9.0.0": {"$ref": "#/$defs/fileRecord"},
+            "numpy-conda-record.json": {"$ref": "#/$defs/fileRecord"},
+            "options_block.py": {"$ref": "#/$defs/fileRecord"},
+            "pmt-python.so": {"$ref": "#/$defs/fileRecord"},
+            "python": {"$ref": "#/$defs/fileRecord"},
+            "rms_agc_f.py": {"$ref": "#/$defs/fileRecord"},
+            "satellites_python.so": {"$ref": "#/$defs/fileRecord"}
+          }
+        }
+      }
+    }
+  }
+}

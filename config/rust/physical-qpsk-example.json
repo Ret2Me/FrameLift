@@ -1,0 +1,8 @@
+{
+  "sample_rate_hz": 1000000,
+  "symbol_rate_hz": 100000,
+  "modulation": "QPSK",
+  "recovery_version": "carrier_timing_v2",
+  "max_carrier_offset_hz": 2000,
+  "delayed_branch": null
+}

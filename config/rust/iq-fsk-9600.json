@@ -1,0 +1,29 @@
+{
+  "format": "ci16_le",
+  "sample_rate_hz": 48000,
+  "window_seconds": 6.0,
+  "hop_seconds": 3.0,
+  "protocols": {
+    "ax25": {"type": "ax25", "g3ruh_modes": [false, true]}
+  },
+  "hypotheses": [
+    {
+      "protocol_id": "ax25",
+      "waveform": {
+        "hypothesis_id": "phase-fsk-9600",
+        "demodulator_id": "phase_fsk",
+        "decimation": 2,
+        "dsp": {"mode": "fsk", "baud": 9600, "bank": "diverse", "top_timing": 16}
+      }
+    },
+    {
+      "protocol_id": "ax25",
+      "waveform": {
+        "hypothesis_id": "conditioned-fsk-9600",
+        "demodulator_id": "channel_conditioned_phase_fsk",
+        "decimation": 2,
+        "dsp": {"mode": "fsk", "baud": 9600, "bank": "diverse", "top_timing": 16}
+      }
+    }
+  ]
+}

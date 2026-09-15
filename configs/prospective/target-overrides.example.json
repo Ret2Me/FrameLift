@@ -1,0 +1,28 @@
+{
+  "schema_version": "observation-planning-target-overrides-v1",
+  "targets": [
+    {
+      "norad_id": 40071,
+      "transmit_power_dbw": 3.0,
+      "transmit_antenna_gain_dbi": 1.0,
+      "samples_per_second": 1.0,
+      "priority": 2.0,
+      "exclusive_transmission": true,
+      "transmission_rule": {
+        "weekdays_utc": [4],
+        "month_days_utc": [],
+        "daily_windows_utc": [["10:00:00", "12:00:00"]],
+        "transmit_regions": [
+          {
+            "south_deg": 49.0,
+            "north_deg": 55.0,
+            "west_deg": 14.0,
+            "east_deg": 24.5,
+            "label": "example-poland-downlink-zone"
+          }
+        ],
+        "probability_when_allowed": 0.95
+      }
+    }
+  ]
+}

@@ -1,0 +1,2287 @@
+{
+  "schema": "python-candidate-ledger-oracle-v1",
+  "source_sha256": "a09da3cf72e356e7f281aeee3aa6b47367f3c71281cdbba6689723669446235e",
+  "cases": [
+    {
+      "name": "empty",
+      "input": [],
+      "expected": {
+        "schema_version": 1,
+        "baseline_count": 0,
+        "candidate_count": 0,
+        "branch_counts": {},
+        "union_count": 0,
+        "incremental_over_baseline": 0,
+        "origin_count": 0,
+        "frames": []
+      }
+    },
+    {
+      "name": "single",
+      "input": [
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 10.25,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "rates": [
+              9599.0,
+              9600.0
+            ],
+            "timing_rank": 2
+          }
+        }
+      ],
+      "expected": {
+        "schema_version": 1,
+        "baseline_count": 0,
+        "candidate_count": 1,
+        "branch_counts": {
+          "phase-first": 1
+        },
+        "union_count": 1,
+        "incremental_over_baseline": 1,
+        "origin_count": 1,
+        "frames": [
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-10",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "478d2a84e1ae34ff1a87a7fbaf9bb088562a9a17143e21cd676c38887d80ca6b",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 10.25,
+                "provenance": {
+                  "rates": [
+                    9599.0,
+                    9600.0
+                  ],
+                  "timing_rank": 2
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "duplicate",
+      "input": [
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 10.25,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "rates": [
+              9599.0,
+              9600.0
+            ],
+            "timing_rank": 2
+          }
+        },
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 10.25,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "rates": [
+              9599.0,
+              9600.0
+            ],
+            "timing_rank": 2
+          }
+        },
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 10.25,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "rates": [
+              9599.0,
+              9600.0
+            ],
+            "timing_rank": 2
+          }
+        }
+      ],
+      "expected": {
+        "schema_version": 1,
+        "baseline_count": 0,
+        "candidate_count": 1,
+        "branch_counts": {
+          "phase-first": 1
+        },
+        "union_count": 1,
+        "incremental_over_baseline": 1,
+        "origin_count": 1,
+        "frames": [
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-10",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "478d2a84e1ae34ff1a87a7fbaf9bb088562a9a17143e21cd676c38887d80ca6b",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 10.25,
+                "provenance": {
+                  "rates": [
+                    9599.0,
+                    9600.0
+                  ],
+                  "timing_rank": 2
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "same_event_baseline_candidate",
+      "input": [
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 10.25,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "rates": [
+              9599.0,
+              9600.0
+            ],
+            "timing_rank": 2
+          }
+        },
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "reference",
+          "source_role": "baseline",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 10.25,
+          "original_frame_hex": "626173656c696e652d656e76656c6f7065",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "rates": [
+              9599.0,
+              9600.0
+            ],
+            "timing_rank": 2
+          }
+        }
+      ],
+      "expected": {
+        "schema_version": 1,
+        "baseline_count": 1,
+        "candidate_count": 1,
+        "branch_counts": {
+          "phase-first": 1,
+          "reference": 1
+        },
+        "union_count": 1,
+        "incremental_over_baseline": 0,
+        "origin_count": 2,
+        "frames": [
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-10",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+              "46aef85e701e75d787c526784d4b24d6c4b4cb161204fa688d759eaa15c5e612"
+            ],
+            "branch_ids": [
+              "phase-first",
+              "reference"
+            ],
+            "has_baseline_origin": true,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "478d2a84e1ae34ff1a87a7fbaf9bb088562a9a17143e21cd676c38887d80ca6b",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 10.25,
+                "provenance": {
+                  "rates": [
+                    9599.0,
+                    9600.0
+                  ],
+                  "timing_rank": 2
+                }
+              },
+              {
+                "origin_sha256": "dc62945e7f88f1b05abc6b8d4746823cdef4d97a30e745e748cfa0339f6abc36",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "reference",
+                "source_role": "baseline",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "626173656c696e652d656e76656c6f7065",
+                "original_frame_sha256": "46aef85e701e75d787c526784d4b24d6c4b4cb161204fa688d759eaa15c5e612",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 10.25,
+                "provenance": {
+                  "rates": [
+                    9599.0,
+                    9600.0
+                  ],
+                  "timing_rank": 2
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "different_events",
+      "input": [
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 10.25,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "rates": [
+              9599.0,
+              9600.0
+            ],
+            "timing_rank": 2
+          }
+        },
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-b",
+          "event_time_seconds": 10.25,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "rates": [
+              9599.0,
+              9600.0
+            ],
+            "timing_rank": 2
+          }
+        },
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-a",
+          "event_time_seconds": 10.25,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "rates": [
+              9599.0,
+              9600.0
+            ],
+            "timing_rank": 2
+          }
+        }
+      ],
+      "expected": {
+        "schema_version": 1,
+        "baseline_count": 0,
+        "candidate_count": 3,
+        "branch_counts": {
+          "phase-first": 3
+        },
+        "union_count": 3,
+        "incremental_over_baseline": 3,
+        "origin_count": 3,
+        "frames": [
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-10",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "478d2a84e1ae34ff1a87a7fbaf9bb088562a9a17143e21cd676c38887d80ca6b",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 10.25,
+                "provenance": {
+                  "rates": [
+                    9599.0,
+                    9600.0
+                  ],
+                  "timing_rank": 2
+                }
+              }
+            ]
+          },
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-a",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "34163955f3fabcb63f64586a39bea3289fce4b2fd4ab4274e460b1a5f42ebef8",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-a",
+                "event_time_seconds": 10.25,
+                "provenance": {
+                  "rates": [
+                    9599.0,
+                    9600.0
+                  ],
+                  "timing_rank": 2
+                }
+              }
+            ]
+          },
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-b",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "288b9435b8ae8bced6694e856783df7d9f0133e8219ba623f48d9e316a446abb",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-b",
+                "event_time_seconds": 10.25,
+                "provenance": {
+                  "rates": [
+                    9599.0,
+                    9600.0
+                  ],
+                  "timing_rank": 2
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "different_capture_protocol",
+      "input": [
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 10.25,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "rates": [
+              9599.0,
+              9600.0
+            ],
+            "timing_rank": 2
+          }
+        },
+        {
+          "capture_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 10.25,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "rates": [
+              9599.0,
+              9600.0
+            ],
+            "timing_rank": 2
+          }
+        },
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "raw_ccsds",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 10.25,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "rates": [
+              9599.0,
+              9600.0
+            ],
+            "timing_rank": 2
+          }
+        }
+      ],
+      "expected": {
+        "schema_version": 1,
+        "baseline_count": 0,
+        "candidate_count": 3,
+        "branch_counts": {
+          "phase-first": 3
+        },
+        "union_count": 3,
+        "incremental_over_baseline": 3,
+        "origin_count": 3,
+        "frames": [
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-10",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "478d2a84e1ae34ff1a87a7fbaf9bb088562a9a17143e21cd676c38887d80ca6b",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 10.25,
+                "provenance": {
+                  "rates": [
+                    9599.0,
+                    9600.0
+                  ],
+                  "timing_rank": 2
+                }
+              }
+            ]
+          },
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-10",
+              "protocol_id": "raw_ccsds",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "8cb2ec2df64c2d63deeeb9c3d5a0efd22a5c13ec9dbbbaf8afb112c21acb0f48",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "raw_ccsds",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 10.25,
+                "provenance": {
+                  "rates": [
+                    9599.0,
+                    9600.0
+                  ],
+                  "timing_rank": 2
+                }
+              }
+            ]
+          },
+          {
+            "key": {
+              "capture_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+              "event_key": "event-10",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "a28dd1e0f3ba1f2060a10b484687115818ffcd3a99a11ed492b7ce42481dcb0d",
+                "capture_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 10.25,
+                "provenance": {
+                  "rates": [
+                    9599.0,
+                    9600.0
+                  ],
+                  "timing_rank": 2
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "different_hypothesis",
+      "input": [
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 10.25,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "rates": [
+              9599.0,
+              9600.0
+            ],
+            "timing_rank": 2
+          }
+        },
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-2",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 10.25,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "timing_rank": 3
+          }
+        }
+      ],
+      "expected": {
+        "schema_version": 1,
+        "baseline_count": 0,
+        "candidate_count": 1,
+        "branch_counts": {
+          "phase-first": 1
+        },
+        "union_count": 1,
+        "incremental_over_baseline": 1,
+        "origin_count": 2,
+        "frames": [
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-10",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "478d2a84e1ae34ff1a87a7fbaf9bb088562a9a17143e21cd676c38887d80ca6b",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 10.25,
+                "provenance": {
+                  "rates": [
+                    9599.0,
+                    9600.0
+                  ],
+                  "timing_rank": 2
+                }
+              },
+              {
+                "origin_sha256": "df27c53f828575d742a4055b1a4628233729600e4a25f034cf5c3535a48a29d2",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-2",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 10.25,
+                "provenance": {
+                  "timing_rank": 3
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "float-0",
+      "input": [
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 1e-06,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "control": "\u0001\n\t",
+            "nested": {
+              "a": {},
+              "b": [
+                null,
+                true,
+                17,
+                17.0
+              ]
+            },
+            "unicode": "Zażółć gęślą jaźń 😀",
+            "x": 1e-06
+          }
+        }
+      ],
+      "expected": {
+        "schema_version": 1,
+        "baseline_count": 0,
+        "candidate_count": 1,
+        "branch_counts": {
+          "phase-first": 1
+        },
+        "union_count": 1,
+        "incremental_over_baseline": 1,
+        "origin_count": 1,
+        "frames": [
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-10",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "100df48fb4a194e637070b909537943e58638d10e0596459845b1d8ed4a329a2",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 1e-06,
+                "provenance": {
+                  "control": "\u0001\n\t",
+                  "nested": {
+                    "a": {},
+                    "b": [
+                      null,
+                      true,
+                      17,
+                      17.0
+                    ]
+                  },
+                  "unicode": "Zażółć gęślą jaźń 😀",
+                  "x": 1e-06
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "float-1",
+      "input": [
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 1e+16,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "control": "\u0001\n\t",
+            "nested": {
+              "a": {},
+              "b": [
+                null,
+                true,
+                17,
+                17.0
+              ]
+            },
+            "unicode": "Zażółć gęślą jaźń 😀",
+            "x": 1e+16
+          }
+        }
+      ],
+      "expected": {
+        "schema_version": 1,
+        "baseline_count": 0,
+        "candidate_count": 1,
+        "branch_counts": {
+          "phase-first": 1
+        },
+        "union_count": 1,
+        "incremental_over_baseline": 1,
+        "origin_count": 1,
+        "frames": [
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-10",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "141ec0f44916dc80763d85601852bdc3288b9756c21d47f151327e2f413befec",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 1e+16,
+                "provenance": {
+                  "control": "\u0001\n\t",
+                  "nested": {
+                    "a": {},
+                    "b": [
+                      null,
+                      true,
+                      17,
+                      17.0
+                    ]
+                  },
+                  "unicode": "Zażółć gęślą jaźń 😀",
+                  "x": 1e+16
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "float-2",
+      "input": [
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 1000000000000000.0,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "control": "\u0001\n\t",
+            "nested": {
+              "a": {},
+              "b": [
+                null,
+                true,
+                17,
+                17.0
+              ]
+            },
+            "unicode": "Zażółć gęślą jaźń 😀",
+            "x": 1000000000000000.0
+          }
+        }
+      ],
+      "expected": {
+        "schema_version": 1,
+        "baseline_count": 0,
+        "candidate_count": 1,
+        "branch_counts": {
+          "phase-first": 1
+        },
+        "union_count": 1,
+        "incremental_over_baseline": 1,
+        "origin_count": 1,
+        "frames": [
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-10",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "37eb0b283cc953baacad1d4dc3ce9d353b9eb6c5e1a7fcf7028ab85fb3c556ba",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 1000000000000000.0,
+                "provenance": {
+                  "control": "\u0001\n\t",
+                  "nested": {
+                    "a": {},
+                    "b": [
+                      null,
+                      true,
+                      17,
+                      17.0
+                    ]
+                  },
+                  "unicode": "Zażółć gęślą jaźń 😀",
+                  "x": 1000000000000000.0
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "float-3",
+      "input": [
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 0.0001,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "control": "\u0001\n\t",
+            "nested": {
+              "a": {},
+              "b": [
+                null,
+                true,
+                17,
+                17.0
+              ]
+            },
+            "unicode": "Zażółć gęślą jaźń 😀",
+            "x": 0.0001
+          }
+        }
+      ],
+      "expected": {
+        "schema_version": 1,
+        "baseline_count": 0,
+        "candidate_count": 1,
+        "branch_counts": {
+          "phase-first": 1
+        },
+        "union_count": 1,
+        "incremental_over_baseline": 1,
+        "origin_count": 1,
+        "frames": [
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-10",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "b55289ca5c43c6b943639463beff32e65a81f46001f556c9a2674b7a24ca50a7",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 0.0001,
+                "provenance": {
+                  "control": "\u0001\n\t",
+                  "nested": {
+                    "a": {},
+                    "b": [
+                      null,
+                      true,
+                      17,
+                      17.0
+                    ]
+                  },
+                  "unicode": "Zażółć gęślą jaźń 😀",
+                  "x": 0.0001
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "float-4",
+      "input": [
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 0.0,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "control": "\u0001\n\t",
+            "nested": {
+              "a": {},
+              "b": [
+                null,
+                true,
+                17,
+                17.0
+              ]
+            },
+            "unicode": "Zażółć gęślą jaźń 😀",
+            "x": 0.0
+          }
+        }
+      ],
+      "expected": {
+        "schema_version": 1,
+        "baseline_count": 0,
+        "candidate_count": 1,
+        "branch_counts": {
+          "phase-first": 1
+        },
+        "union_count": 1,
+        "incremental_over_baseline": 1,
+        "origin_count": 1,
+        "frames": [
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-10",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "f49b4412ec8a526c6452d15dfaf84c04ed6dc9c5d6eed5a7a63271dea1a8427b",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 0.0,
+                "provenance": {
+                  "control": "\u0001\n\t",
+                  "nested": {
+                    "a": {},
+                    "b": [
+                      null,
+                      true,
+                      17,
+                      17.0
+                    ]
+                  },
+                  "unicode": "Zażółć gęślą jaźń 😀",
+                  "x": 0.0
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "float-5",
+      "input": [
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 0.0,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "control": "\u0001\n\t",
+            "nested": {
+              "a": {},
+              "b": [
+                null,
+                true,
+                17,
+                17.0
+              ]
+            },
+            "unicode": "Zażółć gęślą jaźń 😀",
+            "x": -0.0
+          }
+        }
+      ],
+      "expected": {
+        "schema_version": 1,
+        "baseline_count": 0,
+        "candidate_count": 1,
+        "branch_counts": {
+          "phase-first": 1
+        },
+        "union_count": 1,
+        "incremental_over_baseline": 1,
+        "origin_count": 1,
+        "frames": [
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-10",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "ab43b374c921d568a86aa9deaaf318e4153b517f0742151281f9134811a6772b",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 0.0,
+                "provenance": {
+                  "control": "\u0001\n\t",
+                  "nested": {
+                    "a": {},
+                    "b": [
+                      null,
+                      true,
+                      17,
+                      17.0
+                    ]
+                  },
+                  "unicode": "Zażółć gęślą jaźń 😀",
+                  "x": -0.0
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "float-6",
+      "input": [
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 1e-100,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "control": "\u0001\n\t",
+            "nested": {
+              "a": {},
+              "b": [
+                null,
+                true,
+                17,
+                17.0
+              ]
+            },
+            "unicode": "Zażółć gęślą jaźń 😀",
+            "x": 1e-100
+          }
+        }
+      ],
+      "expected": {
+        "schema_version": 1,
+        "baseline_count": 0,
+        "candidate_count": 1,
+        "branch_counts": {
+          "phase-first": 1
+        },
+        "union_count": 1,
+        "incremental_over_baseline": 1,
+        "origin_count": 1,
+        "frames": [
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-10",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "53ede9462f45a4587dafe51eef31ff3979b47263b07624d2fc16bc46beb47615",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 1e-100,
+                "provenance": {
+                  "control": "\u0001\n\t",
+                  "nested": {
+                    "a": {},
+                    "b": [
+                      null,
+                      true,
+                      17,
+                      17.0
+                    ]
+                  },
+                  "unicode": "Zażółć gęślą jaźń 😀",
+                  "x": 1e-100
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "float-7",
+      "input": [
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 1e+100,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "control": "\u0001\n\t",
+            "nested": {
+              "a": {},
+              "b": [
+                null,
+                true,
+                17,
+                17.0
+              ]
+            },
+            "unicode": "Zażółć gęślą jaźń 😀",
+            "x": 1e+100
+          }
+        }
+      ],
+      "expected": {
+        "schema_version": 1,
+        "baseline_count": 0,
+        "candidate_count": 1,
+        "branch_counts": {
+          "phase-first": 1
+        },
+        "union_count": 1,
+        "incremental_over_baseline": 1,
+        "origin_count": 1,
+        "frames": [
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-10",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "3b1ce976648b3b2b55530b990d5ef70f2c97280e8e41848e1158fb74869fab23",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 1e+100,
+                "provenance": {
+                  "control": "\u0001\n\t",
+                  "nested": {
+                    "a": {},
+                    "b": [
+                      null,
+                      true,
+                      17,
+                      17.0
+                    ]
+                  },
+                  "unicode": "Zażółć gęślą jaźń 😀",
+                  "x": 1e+100
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "float-8",
+      "input": [
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 1.2345678901234567,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "control": "\u0001\n\t",
+            "nested": {
+              "a": {},
+              "b": [
+                null,
+                true,
+                17,
+                17.0
+              ]
+            },
+            "unicode": "Zażółć gęślą jaźń 😀",
+            "x": 1.2345678901234567
+          }
+        }
+      ],
+      "expected": {
+        "schema_version": 1,
+        "baseline_count": 0,
+        "candidate_count": 1,
+        "branch_counts": {
+          "phase-first": 1
+        },
+        "union_count": 1,
+        "incremental_over_baseline": 1,
+        "origin_count": 1,
+        "frames": [
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-10",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "ff947808df09f747d41e96b60b8e103db22141eb5cf222e1972609aec1826176",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 1.2345678901234567,
+                "provenance": {
+                  "control": "\u0001\n\t",
+                  "nested": {
+                    "a": {},
+                    "b": [
+                      null,
+                      true,
+                      17,
+                      17.0
+                    ]
+                  },
+                  "unicode": "Zażółć gęślą jaźń 😀",
+                  "x": 1.2345678901234567
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "float-9",
+      "input": [
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 5e-324,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "control": "\u0001\n\t",
+            "nested": {
+              "a": {},
+              "b": [
+                null,
+                true,
+                17,
+                17.0
+              ]
+            },
+            "unicode": "Zażółć gęślą jaźń 😀",
+            "x": 5e-324
+          }
+        }
+      ],
+      "expected": {
+        "schema_version": 1,
+        "baseline_count": 0,
+        "candidate_count": 1,
+        "branch_counts": {
+          "phase-first": 1
+        },
+        "union_count": 1,
+        "incremental_over_baseline": 1,
+        "origin_count": 1,
+        "frames": [
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-10",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "39bdad8c96e1c44cf0b7b103d473f8945067a68c673dc55c818f59dd177acd9f",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 5e-324,
+                "provenance": {
+                  "control": "\u0001\n\t",
+                  "nested": {
+                    "a": {},
+                    "b": [
+                      null,
+                      true,
+                      17,
+                      17.0
+                    ]
+                  },
+                  "unicode": "Zażółć gęślą jaźń 😀",
+                  "x": 5e-324
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "float-10",
+      "input": [
+        {
+          "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "segment_start_sample": 100,
+          "segment_sample_count": 2000,
+          "branch_id": "phase-first",
+          "source_role": "candidate",
+          "plugin_id": "phase_fsk",
+          "plugin_version": "1",
+          "protocol_id": "ax25_ccsds_space_packet",
+          "validation_layers": [
+            "crc16_x25",
+            "ccsds_primary_header"
+          ],
+          "validated": true,
+          "hypothesis_fingerprint": "hypothesis-1",
+          "config_fingerprint": "config-1",
+          "event_key": "event-10",
+          "event_time_seconds": 1.7976931348623157e+308,
+          "original_frame_hex": "6f757465722d6672616d65",
+          "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+          "provenance": {
+            "control": "\u0001\n\t",
+            "nested": {
+              "a": {},
+              "b": [
+                null,
+                true,
+                17,
+                17.0
+              ]
+            },
+            "unicode": "Zażółć gęślą jaźń 😀",
+            "x": 1.7976931348623157e+308
+          }
+        }
+      ],
+      "expected": {
+        "schema_version": 1,
+        "baseline_count": 0,
+        "candidate_count": 1,
+        "branch_counts": {
+          "phase-first": 1
+        },
+        "union_count": 1,
+        "incremental_over_baseline": 1,
+        "origin_count": 1,
+        "frames": [
+          {
+            "key": {
+              "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "event_key": "event-10",
+              "protocol_id": "ax25_ccsds_space_packet",
+              "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8"
+            },
+            "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+            "original_frame_sha256s": [
+              "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f"
+            ],
+            "branch_ids": [
+              "phase-first"
+            ],
+            "has_baseline_origin": false,
+            "has_candidate_origin": true,
+            "origins": [
+              {
+                "origin_sha256": "f8fd9b1253bd7f3dfc3e69f0d5d85b155a728bfd344eb19716780f67ec0a3f58",
+                "capture_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "segment_start_sample": 100,
+                "segment_sample_count": 2000,
+                "branch_id": "phase-first",
+                "source_role": "candidate",
+                "plugin_id": "phase_fsk",
+                "plugin_version": "1",
+                "protocol_id": "ax25_ccsds_space_packet",
+                "original_frame_hex": "6f757465722d6672616d65",
+                "original_frame_sha256": "13cd13031bc2c5e3d1b80636653173ab241fecba89277aa1ebbca7f69db7a92f",
+                "normalized_payload_hex": "696e6e65722d7061796c6f6164",
+                "normalized_payload_sha256": "ef982726fbc0d6162ea098d5d7ac23cd89f3db3e9ef2daf6121ed863c45fe9f8",
+                "validation_layers": [
+                  "crc16_x25",
+                  "ccsds_primary_header"
+                ],
+                "validated": true,
+                "hypothesis_fingerprint": "hypothesis-1",
+                "config_fingerprint": "config-1",
+                "event_key": "event-10",
+                "event_time_seconds": 1.7976931348623157e+308,
+                "provenance": {
+                  "control": "\u0001\n\t",
+                  "nested": {
+                    "a": {},
+                    "b": [
+                      null,
+                      true,
+                      17,
+                      17.0
+                    ]
+                  },
+                  "unicode": "Zażółć gęślą jaźń 😀",
+                  "x": 1.7976931348623157e+308
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

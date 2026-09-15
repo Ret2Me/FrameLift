@@ -1,0 +1,45 @@
+{
+  "schema": "rust-external-backends-migration-validation-v1",
+  "generated_utc": "2026-09-08T11:51:55Z",
+  "command": "CARGO_BUILD_JOBS=2 cargo test --lib backends:: -- --test-threads=2",
+  "rust_tests_passed": 10,
+  "rust_tests_failed": 0,
+  "python_frozen_oracles": {
+    "candidate_deduplication_order_and_parser_provenance": 40,
+    "gr_satellites_full_argv": 8,
+    "sample_rate_dot17g_argument_spelling": 111
+  },
+  "native_operational_checks": [
+    "Literal hostile argv remains data; no shell is inserted",
+    "Environment overrides validated and passed directly",
+    "Structured input, invocation, launch, timeout, combined output-limit, nonzero-exit and parser failures",
+    "Combined stdout/stderr bound retains exactly the configured byte maximum and prevents parser invocation on failure",
+    "Owned direct-child and descendant cleanup with inherited or closed pipes, on timeout and success",
+    "Capture bounds, finite positive rate, supported little-endian IQ datatypes and unique capability contracts",
+    "Gr-satellites full-file-only policy rejects sample ranges instead of silently decoding the whole recording",
+    "Gr-satellites telemetry submission explicitly disabled with GR_SATELLITES_SUBMIT_TLM=0",
+    "KISS payload/timestamp provenance retained with pending_downstream_validator and null transmitter attribution",
+    "Missing, oversized, FIFO and symlink KISS outputs rejected; explicitly empty KISS remains a successful zero-candidate result"
+  ],
+  "source_sha256": {
+    "rust/backends.rs": "435a14dcd99f4e87a9983f4badc85884d5d5901c7c9cae84dc1eca8f0bc2a880",
+    "rust/tests/backends_tests.rs": "8ecce865e6fe365dfd9e29611485b3aae1cac1a1a33c434cf5dc508144b2e11f",
+    "rust/tests/backends_g17_oracle.json": "168fb4cc3f8ef9f75993ee0fe7dc95dee1873c3c2adff8feb256840797c4fd48",
+    "rust/tests/backends_contract_oracle.json": "2d0be9d542fc74f320bb75565f8c15d3d08ec4ccf8cc974e89a25142bcfb1e14",
+    "src/telemetry_yield/external_backends.py": "22ff7b1bdeaaa060408b8ac07de15ec58d32ca9a9b5b5280fc3383a4e1f1bb28",
+    "src/telemetry_yield/gr_satellites_backend.py": "13b96144107d6ab553b7876983f84a5d136afe5033986f9ab051de14746aa11e"
+  },
+  "scope_boundaries_and_explicit_hardening": [
+    "The adapter itself is standalone Rust; gr-satellites remains a separately installed external comparison dependency and was not rewritten",
+    "Operational tests use isolated shell-script fixtures as external programs, never Python; adapters insert no shell themselves",
+    "Process containment uses Linux owned process groups and fails explicitly on unsupported platforms; this is not a malicious-program sandbox",
+    "Generic builder/parser closures are native Rust APIs; no legacy Python callback runtime remains",
+    "Candidate ordering matches frozen Python fixtures, including ASCII-escaped Unicode metadata sorting",
+    "Additional explicit limits: timeout at most 24 h, combined logs/KISS/candidate metadata at most 64 MiB, per-child-file output at most 1 GiB",
+    "Per-file RLIMIT_FSIZE additionally bounds child-created disk output; a large write can fail as nonzero_exit before KISS parsing",
+    "Relative SatYAML selectors are canonicalized so leading-dash filenames cannot become command-line options",
+    "Existing input identity hashing remains the campaign or manifest caller responsibility; external provenance does not invent a verified capture hash",
+    "Profile capabilities are declarations, not independently verified protocol support or transmitter attribution",
+    "No real gr-satellites performance or yield improvement is claimed by these adapter contract tests"
+  ]
+}

@@ -1,0 +1,2 @@
+!!python/object/new:tuple
+  - [this, must, not, be, constructed]

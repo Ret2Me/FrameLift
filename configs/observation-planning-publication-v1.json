@@ -1,0 +1,170 @@
+{
+  "schema_version": "observation-planning-publication-config-v1",
+  "study_id": "observation-planning-publication-v1",
+  "frozen_at": "2026-09-02T20:17:00Z",
+  "protocol_amended_at": "2026-09-03T00:33:12Z",
+  "protocol_amendment_scope": "API pagination/chunk semantics, stricter temporal LOSO, scheduler replay identifiability, minimum cluster diversity, synthetic correlated-risk sensitivity, correction of TLE-churn claim, direct paired ablations, bounded same-pass TLE matching, crossed multi-asset optimizer verification, station-cluster temporal sensitivity with an evaluated-cluster gate, fail-closed malformed-demoddata handling, a single confirmatory-comparison hierarchy, explicit indeterminate TLE matching, asymmetric artifact-qualified conditional-decode labels, timestamp-atomic temporal boundaries, and exclusion of retrieval-time station coordinates from probability features in favor of observation-cached schedule geometry; no real-cohort model fitted or real-cohort performance metric inspected (synthetic integration smoke and partial label-count/schema QA only)",
+  "protocol_amendments": [
+    {
+      "at": "2026-09-02T21:13:00Z",
+      "scope": "API pagination/chunk semantics, stricter temporal LOSO, and scheduler replay identifiability guard"
+    },
+    {
+      "at": "2026-09-02T21:48:00Z",
+      "scope": "Require at least five satellite and station clusters in the conditional-decode task so its cluster-bootstrap interval is identifiable; added after partial acquisition QA but before any model fit or performance metric"
+    },
+    {
+      "at": "2026-09-02T21:56:00Z",
+      "scope": "Add two declared station-day/satellite-day/environment-day correlated-risk engineering scenarios to the synthetic monthly robustness artifact; this does not use cohort outcomes and is not a forecast"
+    },
+    {
+      "at": "2026-09-02T22:00:00Z",
+      "scope": "Correct the TLE analysis claim from unobservable selected-plan churn to observable material replan-trigger counts and freeze-horizon proxy counts"
+    },
+    {
+      "at": "2026-09-02T22:18:00Z",
+      "scope": "Add direct paired full-vs-geometry and full-vs-group Brier ablations in temporal, held-satellite and held-station splits; same 5% and upper-CI-below-zero usefulness rule"
+    },
+    {
+      "at": "2026-09-02T22:33:36Z",
+      "scope": "Require older/newer TLE predictions to match the observed job midpoint within 20 minutes so an adjacent orbit cannot be misclassified as the same pass; added before any model fit or performance inspection"
+    },
+    {
+      "at": "2026-09-02T22:53:50Z",
+      "scope": "Add an independent exhaustive exactness benchmark for crossed station/satellite conflicts alongside weighted interval DP; added before any real-cohort model fit or real-cohort metric inspection, after synthetic integration smoke"
+    },
+    {
+      "at": "2026-09-02T22:57:27Z",
+      "scope": "Add station-cluster sensitivity for temporal baseline/ablation comparisons and require at least five evaluated clusters for any usefulness flag; added before any real-cohort model fit or real-cohort metric inspection"
+    },
+    {
+      "at": "2026-09-02T23:40:51Z",
+      "scope": "Treat missing/non-list demoddata on a confirmed-signal packet observation as a counted malformed-row exclusion rather than a negative decode label; added after partial label-count/schema QA and before any normalized real-cohort build, model fit, or performance inspection"
+    },
+    {
+      "at": "2026-09-02T23:42:47Z",
+      "scope": "Declare temporal signal-present full-logit versus global-rate as the sole confirmatory comparison and all decode/transfer/station-cluster/alternative/ablation intervals as secondary sensitivity analyses without a multiplicity claim; added before any real-cohort model fit or performance inspection"
+    },
+    {
+      "at": "2026-09-02T23:47:37Z",
+      "scope": "Report transitions where neither older nor reference TLE yields a same-pass match as indeterminate_unmatched_both rather than implicitly immaterial; added before any real-cohort normalization, TLE result inspection, model fit, or performance inspection"
+    },
+    {
+      "at": "2026-09-03T00:00:52Z",
+      "scope": "For packet modes, qualify decode positives by a non-empty demoddata artifact even with unknown waterfall, require with-signal plus an explicit empty list for negatives, and exclude without-signal plus positive artifact as contradictory; added after partial label-count/schema QA and before normalized cohort build, model fit, or performance inspection"
+    },
+    {
+      "at": "2026-09-03T00:16:00Z",
+      "scope": "Keep all observations sharing an exact start timestamp on the same side of temporal and forward-validation boundaries, and independently audit holdout membership/counts/time bounds; added before normalized cohort build, real-cohort model fit, or performance inspection"
+    },
+    {
+      "at": "2026-09-03T00:33:12Z",
+      "scope": "Use the observation-cached max-altitude and rise/set-azimuth fields for probability features and exclude retrieval-time station coordinates plus coordinate-derived range/Doppler after upstream source inspection showed the API serializer returns current ground_station coordinates; all four cached geometry fields were schema-counted only, no model or performance result was inspected"
+    }
+  ],
+  "start": "2026-03-01T00:00:00Z",
+  "end": "2026-09-01T00:00:00Z",
+  "selection_rule": "Active packet-capable transmitter with non-trivial Network transmitter-level good/bad counts; no feature/outcome relationship inspected.",
+  "selection_snapshots": [
+    {
+      "path": "work/a1/satnogs-transmitters-active-direct-2026-08-31.json",
+      "sha256": "07059586791612b61e562b27c1fd1a9601fca817b3fb25128100deb43b8ceccd"
+    },
+    {
+      "path": "work/observation-planning-publication-v1/network-transmitter-stats-selection-2026-09-02.json",
+      "sha256": "4b6c2225c4d735a0f76e26b7eddff42e3f4739c5094483afb0bfc7e291705951",
+      "source": "https://network.satnogs.org/api/transmitters/",
+      "retrieved_on": "2026-09-02"
+    }
+  ],
+  "targets": [
+    {
+      "norad_id": 40071,
+      "selection_transmitter_uuid": "g2PQTyQ6gv4kudov7KoSQc",
+      "selection_mode": "GFSK",
+      "selection_total_count": 37023,
+      "selection_good_count": 11284,
+      "selection_bad_count": 12764
+    },
+    {
+      "norad_id": 44909,
+      "selection_transmitter_uuid": "ZiJbdMEwj92mqojjtjTN87",
+      "selection_mode": "BPSK",
+      "selection_total_count": 2773,
+      "selection_good_count": 2090,
+      "selection_bad_count": 516
+    },
+    {
+      "norad_id": 49008,
+      "selection_transmitter_uuid": "eueXbMpruNuH7k34ePxgaA",
+      "selection_mode": "BPSK",
+      "selection_total_count": 2656,
+      "selection_good_count": 1329,
+      "selection_bad_count": 728
+    },
+    {
+      "norad_id": 53106,
+      "selection_transmitter_uuid": "b6RKUFf8YvJGGrFv4AoJUy",
+      "selection_mode": "FSK AX.100 Mode 5",
+      "selection_total_count": 37686,
+      "selection_good_count": 14382,
+      "selection_bad_count": 8500
+    },
+    {
+      "norad_id": 53807,
+      "selection_transmitter_uuid": "YT4thHBcgY73CfCMH3sGKB",
+      "selection_mode": "GFSK",
+      "selection_total_count": 7608,
+      "selection_good_count": 3138,
+      "selection_bad_count": 1997
+    },
+    {
+      "norad_id": 56933,
+      "selection_transmitter_uuid": "MMDemm2pQWzcGpjFyaD9Zv",
+      "selection_mode": "GFSK",
+      "selection_total_count": 4686,
+      "selection_good_count": 1199,
+      "selection_bad_count": 778
+    },
+    {
+      "norad_id": 58468,
+      "selection_transmitter_uuid": "KssvhYC4X8LeY4Rye8UQTT",
+      "selection_mode": "FSK",
+      "selection_total_count": 4355,
+      "selection_good_count": 1023,
+      "selection_bad_count": 919
+    },
+    {
+      "norad_id": 60477,
+      "selection_transmitter_uuid": "UgLfHsfKxc7bgXVVRw9jYC",
+      "selection_mode": "BPSK",
+      "selection_total_count": 2472,
+      "selection_good_count": 783,
+      "selection_bad_count": 612
+    },
+    {
+      "norad_id": 60523,
+      "selection_transmitter_uuid": "PUDih7ogjbDhCJskydF5Y5",
+      "selection_mode": "FSK",
+      "selection_total_count": 3484,
+      "selection_good_count": 1262,
+      "selection_bad_count": 1389
+    },
+    {
+      "norad_id": 60535,
+      "selection_transmitter_uuid": "hdxq4LxTwD3moSxZ3wwd8G",
+      "selection_mode": "GFSK",
+      "selection_total_count": 2309,
+      "selection_good_count": 1353,
+      "selection_bad_count": 567
+    }
+  ],
+  "geometry_step_seconds": 30,
+  "minimum_chunk_hours": 6,
+  "max_response_bytes": 20000000,
+  "random_seed": 7538,
+  "bootstrap_replicates": 2000,
+  "temporal_test_fraction": 0.2,
+  "regularization_grid": [0.01, 0.1, 1.0, 10.0],
+  "user_agent": "telemetry-yield-research/0.1 contact=research@example.invalid"
+}

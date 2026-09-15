@@ -1,0 +1,7469 @@
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Introduction to Per-Survivor Processing
+second edition
+
+Riccardo Raheli
+Università degli Studi di Parma
+Dipartimento di Ingegneria dell’Informazione
+Parco Area delle Scienze 181A
+I-43100 Parma - Italia
+E-mail: raheli@unipr.it
+http://www.tlc.unipr.it/raheli
+June 2004
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Motivation
+Why a course on Per-Survivor Processing (PSP)?
+PSP is useful to communication system designers thanks to its broad
+applicability in coping with hostile transmission environments, such as
+those of many current applications
+PSP is technically elegant and intellectually appealing. As many interesting
+ideas, it is general, intuitive and conceptually straightforward. It is a
+nice example of a recent research result which may be worth describing in a
+structured advanced University course in the area of digital transmission
+theory and techniques
+PSP is intriguing from the scientific and historical viewpoints. Like many
+other ideas, PSP has been reinvented independently by many researchers
+over the last decades, with different contexts and formulations each time. Its
+conceptual roots can be found in earlier general theoretical results, but
+this fact was fully understood only after its invention
+1
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Foreword
+Unfortunately, this course might be unclear (and likely will !)
+Please, feel free to ask questions. Doing so you will help:∗
+; Yourself understanding what is going on
+,→ Your colleagues understanding questions they had not even thought of
+ The instructor realizing what is unclear and should be better explained
+You will also:
+Avoid falling behind (if you do in the first lectures, you will hardly
+recover)
+# Contribute to make the lectures more stimulating and pleasant
+∗
+
+Arrows by LATEX and AMSLATEX
+2
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Outline
+1. Review of detection techniques
+2. Detection under parametric uncertainty
+3. Per-Survivor Processing (PSP): concept and historical review
+4. Classical applications of PSP
+4.1 Complexity reduction
+4.2 Linear predictive detection for fading channels
+4.3 Adaptive detection
+5. Advanced applications of PSP
+Prerequisite: A course in Digital Transmission Theory
+
+3
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+1. Review of detection techniques
+Outline
+1. Review of detection techniques
+2. Detection under parametric uncertainty
+3. Per-Survivor Processing (PSP): concept and historical review
+4. Classical applications of PSP
+4.1 Complexity reduction
+4.2 Linear predictive detection for fading channels
+4.3 Adaptive detection
+5. Advanced applications of PSP
+
+4
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+General model of transmission systems
+... how about storage systems?
+
+in
+
+channel
+modulation
+coding
+coded modulation
+
+channel
+
+demod
+
+decoding
+
+out
+
+parameter
+estimation
+demodulation and decoding
+
+Focus on: demodulation and decoding
+
+5
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Principal channel models
+Additive White Gaussian Noise (AWGN) channel
+Static dispersive channel
+Flat fading channel
+Dispersive fading channel
+Phase uncertain channel
+Like-signal (or cochannel) interference channel
+Nonlinear channel
+Transition noise channel
+Combinations
+
+6
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+AWGN channel
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+r(t) = s(t) + w(t)
+
+w(t): circular complex AWGN
+
+7
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Static dispersive channel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+r(t) = s(t) ? c(t) + w(t)
+
+c(t): channel impulse response
+
+8
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Flat fading channel
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+r(t) = s(t)f (t) + w(t)
+
+f (t): circular complex Gaussian random process
+
+9
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Dispersive fading channel
+s(t)
+
+∆τ1
+
+∆τ2
+
+f0 (t)
+
+f1 (t)
+
+f2 (t)
+w(t)
+r(t)
+
+r(t) =
+
+L
+X
+l=0
+
+fl (t)s(t − τl ) + w(t)
+
+τ l = τ0 +
+
+l
+X
+
+∆τi
+
+i=1
+
+fl (t): independent circular complex Gaussian random processes
+The l-th dominant propagation path has delay τl
+10
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Phase-uncertain channel
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+r(t) = s(t)ej[2πν(t)t+θ(t)] + w(t)
+ν(t): frequency shift
+θ(t): phase shift
+Special cases:
+– Phase noncoherent channel (ν(t) = 0, θ(t) = θ)
+– Frequency offset (or Doppler shift) channel (ν(t) 6= 0, θ(t) = θ)
+
+– Phase noisy channel (ν(t) = 0, θ(t) is a Wiener random process)
+11
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Principal channel models
+Overview
+w(t)
+
+w(t)
+
+s(t)
+
+s(t)
+
+r(t)
+
+r(t)
+c(t)
+
+(a)
+
+(b)
+s(t)
+
+f (t)
+
+w(t)
+
+s(t)
+
+∆τ1
+
+∆τ2
+
+f0 (t)
+
+f1 (t)
+
+f2 (t)
+w(t)
+
+r(t)
+
+r(t)
+(c)
+
+(d)
+ej[2πν(t)t+θ(t)]
+
+w(t)
+r(t)
+
+s(t)
+(e)
+
+12
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Statistical Detection Theory
+Optimal detection of M -ary signals
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+s(t) ∈ {si(t)}M
+i=1
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+m ∈ {mi}M
+i=1
+
+m̂ ∈ {mi}M
+i=1
+
+r(t)
+
+Probabilistic modeling ⇒ Optimal decision (detection) strategy
+Minimize P (m 6= m̂):
+⇒ maximize: P (m = m̂) = E {P [m = m̂|r(t)]}
+⇒ maximize: P [m = m̂|r(t)] ∀r(t) (positive)
+For m̂ = mi, P [m = m̂|r(t)] = P [m = mi|r(t)] (APP)
+⇒ MAP strategy: m̂ = argmax |P [m ={zmi|r(t)]}
+mi
+
+P [mi|r(t)]
+
+13
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Statistical Detection Theory
+Computation of the APPs
+
+
+
+
+
+
+
+
+
+
+Discretization (finite dimensionality) ⇒ Sufficient statistic
+APPs:
+
+p(r|mi)P (mi)
+P (mi|r) =
+∼ p(r|mi)P (mi)
+p(r)
+
+∼ : monotonic relationship with respect to the variable of interest
+MAP strategy:
+
+m̂ = argmax P (mi|r) = argmax p(r|mi)P (mi)
+mi
+
+mi
+
+Statistical information:
+P (mi) : information source
+p(r|mi) : overall system (transmitter, channel, discretizer)
+14
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Statistical Detection Theory
+Geometric interpretation
+
+D1
+D2
+
+D3
+D5
+D4
+Decision region:
+
+Di = {r : P (mi|r) = max P (mk |r)}
+mk
+
+Signal detection is a geometric game
+15
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Statistical Detection Theory
+Special case: Strategy for the AWGN channel
+Discretization: signal space spanned by {si(t)}M
+i=1 is relevant:
+Z T
+Q
+r(t)ϕ∗k (t)dt with {ϕk (t)}k=1 (basis)
+rk =
+0
+
+{m = mi}
+
+⇒
+
+r(t) = si(t) + w(t)
+
+⇒
+
+r = si + w
+
+APPs (but for a factor):
+
+
+1
+1
+2 P (m )
+exp
+−
+||r
+−
+s
+||
+p(r|mi)P (mi) =
+i
+i
+σ2
+(πσ 2)Q
+∼ −||r − si||2 + σ 2 ln P (mi)
+ 1
+
+1 2
+T
+∗
+2
+∼ Re r si − ||si|| + σ ln P (mi)
+2
+# 2Z
+"Z
+T
+T
+1
+1 2
+∗
+2
+r(t)si (t)dt −
+|si(t)| dt + σ ln P (mi)
+= Re
+2 0
+2
+0
+16
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Statistical Detection Theory
+Special case: Receiver for the AWGN channel
+t=T
+
+r(t)
+
+Re(·)
+
+s∗1 (T − t)
+t=T
+s∗2 (T − t)
+..
+.
+
+C1
+Re(·)
+
+m̂
+argmax
+m
+i
+
+..
+.
+
+..
+.
+
+t=T
+
+C2
+..
+.
+
+Re(·)
+
+s∗M (T −t)
+
+Z T
+
+1 2
+1
+Ci = σ ln P (mi) −
+|si(t)|2dt
+2
+2 0
+
+CM
+
+2 must be known (unless ML)
+and
+σ
+{si(t)}M
+i=1
+17
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Statistical Detection Theory
+Special case: Decision regions for the AWGN channel
+d
+s1
+
+s2
+
+s3
+
+s4
+
+s5
+
+s6
+
+s7
+
+s8
+
+s9
+
+s10
+
+s11
+
+s12
+
+s13
+
+s14
+
+s15
+
+s16
+
+Decision regions are polytopes
+2D example: 16QAM (quadrature amplitude modulation)
+18
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Statistical Detection Theory
+Problem 1
+Let the observation vector be the concatenation of two subvectors
+rT = (rT1 , rT2 )
+and assume the following condition is satisfied
+p(r2|r1, mi) = p(r2|r1) ∀mi
+Show that vector r2 is irrelevant, given r1, in the decision problem and
+can be discarded (Theorem of irrelevance)
+Hint: formulate the MAP detection strategy in terms of the
+conditional joint pdf of these vectors and use chain factorization
+
+19
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Statistical Detection Theory
+Problem 2
+Consider an M -ary signaling scheme with signal set {si(t)}M
+i=1
+Assuming signal si(t) is sent, the received signal at the output of an
+AWGN phase noncoherent channel is
+r(t) = si(t) ejθ + w(t)
+where θ is uniformly distributed over 2π
+A. Determine a discretization process of the received signal which provides a
+sufficient statistic for MAP detection
+Hint: Extend the results for the simple AWGN channel
+B. Derive the non coherent MAP strategy
+C. Give examples of signal sets suitable for non coherent detection
+20
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Review of detection techniques
+Bibliography
+General references:
+– J. G. Proakis, Digital Communications. New York: McGraw-Hill, 1989, 2nd ed..
+– S. Benedetto, E. Biglieri and V. Castellani. Digital Transmission Theory. Prentice-Hall,
+Englewood Cliffs, U.S.A., 1987.
+Fading and phase-uncertain channel models:
+– G. L. Stüber, Principles of Mobile Communication, Kluwer Academic Publishers, 1996.
+– U. Mengali and A. N. D’Andrea, Synchronization techniques for digital receivers. New
+York: Plenum, 1997.
+Statistical detection theory:
+– J. M. Wozencraft and I. M. Jacobs, Principles of Communication Engineering. New
+York: John Wiley & Sons, 1965.
+– H. L. Van Trees, Detection, Estimation, and Modulation Theory, Part I. New York:
+John Wiley & Sons, 1968.
+
+21
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Systems with memory
+Where does this memory come from?
+Any practical system transmits by periodical repetitions of M -ary signaling
+acts (log2 M bits/signaling period or bits/channel use)
+In memoryless systems different signaling acts do not influence each other
+In systems with memory the detection process may benefit from the
+observation of the received signal over “present,” “past,” and possibly
+“future” signaling periods
+Memory arises if (e.g.):
+– Channel coding is employed for error control
+– The transmission channel is dispersive (Inter-Symbol Interference (ISI))
+– The transmission channel includes stochastic parameters, such as a phase
+rotation or a complex fading weight
+– The channel additive Gaussian noise is colored, i.e., its power spectral
+density is not constant
+22
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Systems with memory
+General system model
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Information sequence: a = a0K−1 = (aK−1 , . . . , a1, a0)T
+Transmitted signal:
+
+s(t, a)
+
+Received signal:
+
+r(t) = x(t, a) + n(t)
+
+Notation:
+
+xk2 = (xk2 , . . . , xk1+1, xk1 )T
+
+k
+
+1
+
+Detection strategy? (What is a message?)
+23
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Sequence and symbol detection
+What is a message?
+MAP sequence detection
+â = argmax P [a|r(t)] = argmax P (a|r)
+a
+
+a
+
+MAP symbol detection
+âk = argmax P [ak |r(t)] = argmax P (ak |r)
+ak
+
+ak
+
+r(t) is observed over the entire information bearing interval T0 ⊃ (0, KT )
+Performance is similar and tends to be equal for high SNR
+Complexity is different: sequence detection is less complex
+Symbol APPs are the route to iterative detection
+Discretization is the key to the computation of the APPs. One or more
+discrete observables per information symbol may be used
+24
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Causal systems
+The viewpoint of detection
+A system is causal if:
+
+p(rk0 |a) = p(rk0 |ak0 )
+
+This property involves the cascade of encoder, modulator, channel, and signal
+discretizer
+It is formulated in terms of statistical dependence of the discrete observable
+sequence on the information sequence
+Any physical system is causal
+
+25
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+MAP sequence detection
+Computation of the APPs
+K−1
+and
+r
+=
+r
+Let a = aK−1
+0
+0
+
+For a causal system, the APPs are:
+P (a|r) ∼ p(r|a)P (a) =
+=
+
+K−1
+Y
+k=0
+K−1
+Y
+
+p(rk |rk−1
+0 , a)P (ak )
+k )P (a ) (causality)
+p(rk |rk−1
+,
+a
+k
+0
+0
+
+k=0
+K−1
+Xh
+
+i
+
+k ) + ln P (a )
+ln p(rk |rk−1
+,
+a
+k
+0
+0
+{z
+}
+k=0 |
+branch metrics
+The sequence metric can be recursively computed in terms of branch
+metrics
+
+∼
+
+Implementation requires a tree search (sequence ↔ path)
+
+26
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Path-search algorithms
+On a tree diagram
+
+An example of binary tree:
+ak = +1
+ak = −1
+Branch metric:
+k−1
+,
+a
+,
+a
+ln p(rk |rk−1
+k
+0
+0 ) + ln P (ak )
+
+time →
+
+Branch metrics depend on the entire previous path history:
+⇒ unlimited memory (complexity is exponential with K)
+Tree reduced-search (approximate) algorithms:
+– M-algorithm, T-algorithm (breadth-first)
+– Fano-algorithm (single-stack algorithm) (depth-first)
+– Jelinek-algorithm (stack algorithm) (metric-first)
+27
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Finite-memory causal systems
+The viewpoint of detection
+A system is causal and finite memory if:
+k ) = p(r |rk−1, ak , µ
+,
+a
+p(rk |rk−1
+k 0
+0
+k−C k−C )
+0
+
+C is a suitable integer (finite memory parameter)
+µk−C is a suitable state, at epoch k − C, of the encoder/modulator
+In the computation of the APPs (or metrics), the system can be modeled as a
+Finite State Machine (FSM)
+Minimal folding condition: the tree folds into a trellis diagram
+Path search can be implemented efficiently
+28
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Causality and finite memory
+A pictorial view
+
+...
+
+ak−5 ak−4 ak−3 ak−2 ak−1
+
+ak
+
+ak+1 ak+2
+
+...
+
+...
+
+rk−5 rk−4 rk−3 rk−2 rk−1
+
+rk
+
+rk+1 rk+2
+
+...
+
+C=3
+
+Not allowed because of finite memory
+Not allowed because of causality
+k ) = p(r |rk−1, ak )
+p(rk |rk−1
+,
+a
+k 0
+0
+k−3
+0
+
+29
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Path-search algorithms
+On a trellis diagram
+An example of binary trellis:
+Branch metric:
+k−1
+,
+a
+,
+a
+ln p(rk |rk−1
+k
+0
+k−C , µk−C ) + ln P (ak )
+
+|
+
+{z
+
+}
+
+σk
+
+ak = +1
+ak = −1
+time →
+
+Augmented trellis state:
+σk = (ak−1
+k−C , µk−C )
+Finite-memory branch metrics:
+γk (ak , σk ) = ln p(rk |r0k−1, ak , σk ) + ln P (ak )
+30
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Viterbi algorithm
+Basic recursions
+I Path metric:
+
+Γk (σk ) =
+
+k
+X
+i=0
+
+k h
+i
+X
+ln p(ri|r0i−1, ai, σi) + ln P (ai)
+γi(ai, σi) =
+i=0
+
+I Path metric update step (Add-Compare-Select):
+
+Γk+1(σk+1) =
+
+max
+
+(ak ,σk ):σk+1
+
+[Γk (σk ) + γk (ak , σk )]
+
+I Survivor update step: the survivor of the maximizing state is extended
+
+by the label ak of the winning branch
+
+31
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Viterbi algorithm
+Add-Compare-Select: a pictorial view
+k−1
+
+k
+
+k+1
+survivors at k
+Candidates:
+ak = +1
+ak = −1
+survivors at k+1
+Γk+1 (σk+1 )
+=
+
+max [Γk (σk ) + γk (ak , σk )]
+
+(ak ,σk ):σk+1
+
+32
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+MAP symbol detection
+Computation of the APPs (1)
+By (conditional) marginalization:
+X X
+P (ak |r) =
+P (ak , ak−1
+, µk−C |r)
+k−C
+|
+{z
+}
+µ
+k−1
+ak−C k−C
+
+∼
+
+X X
+
+k−1 µk−C
+ak−C
+
+akk−C
+
+p(r|akk−C , µk−C )P (akk−C , µk−C )
+
+By (conditional) chain factorization:
+K−1 |ak , µ
+,
+r
+,
+r
+p(r|akk−C , µk−C ) = p(rk−1
+k k+1 k−C k−C )
+0
+k−1, r , ak , µ
+k−1, ak , µ
+= p(rK−1
+|
+r
+)
+p(r
+|r
+k 0
+k−C k−C )
+k+1 |0 {z k} k−C k−C
+k ,µ
+rk0
+· p(rk−1
+|a
+k−C k−C )
+0
+
+Three factors: future given the past and present, present given the past,
+and past, respectively
+
+33
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+MAP symbol detection
+Computation of the APPs (2)
+By causality and finite memory, the first and third factors are:
+k , ak , µ
+K−1 |rk , ak
+|r
+)
+=
+p(r
+p(rK−1
+k+1 0 k−C k−C
+k+1 0 k−C+1, µk−C+1)
+k ,µ
+k−1|ak−1 , µ
+p(rk−1
+|a
+)
+=
+p(r
+k−C k−C
+0
+0
+k−C k−C )
+
+By independence of the information symbols:
+P (akk−C , µk−C ) = P (ak )P (ak−1
+k−C , µk−C )
+
+34
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+MAP symbol detection
+Computation of the APPs (3)
+The APPs can be rearranged as:
+X X
+k−1 , µ
+k−1 , µ
+p(rk−1
+|a
+)P
+(a
+P (ak |r) ∼
+k−C
+k−C )
+0
+k−C
+k−C
+{z
+}
+|
+k−1 µ
+ak−C k−C
+
+k−1 ,µ
+ᾱk (ak−C
+k−C )
+k ,µ
+· p(rk |rk−1
+,
+a
+)P (ak )
+k−C
+k−C
+0
+|
+{z
+}
+
+=
+
+γ̄k (akk−C ,µk−C )
+K−1|rk , ak
+· p(rk+1
+, µk−C+1)
+0
+k−C+1
+{z
+}
+|
+
+X X
+
+k−1 µk−C
+ak−C
+
+=
+
+X
+
+β̄k+1 (akk−C+1,µk−C+1)
+
+k ,µ
+k
+ᾱk (ak−1
+,
+µ
+)γ̄
+(a
+)
+β̄
+(a
+, µk−C+1)
+k−C k | k−C{z k−C} k+1 | k−C+1{z
+k−C
+}
+| {z }
+σk
+
+(ak ,σk )
+
+σk+1(ak ,σk )
+
+ᾱk (σk ) γ̄k (ak , σk ) β̄k+1[σk+1(ak , σk )]
+
+σk
+
+35
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+MAP symbol detection
+The key quantities
+Augmented trellis state:
+
+σk = (ak−1
+k−C , µk−C )
+
+Branch metrics (in the metric or logarithmic domain):
+k ,µ
+,
+a
+γk (ak , σk ) = ln γ̄k (ak , σk ) = ln p(rk |rk−1
+k−C k−C ) + ln P (ak )
+0
+
+Exponential of branch metrics (in the probability domain):
+k ,µ
+,
+a
+γ̄k (ak , σk ) = eγk (ak ,σk ) = p(rk |rk−1
+k−C k−C )P (ak )
+0
+
+These are exactly the quantities introduced in MAP sequence detection
+What about ᾱk (σk ) and β̄k+1(σk+1)?
+
+36
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+MAP symbol detection
+Forward recursion
+By averaging, chain factorization, and causality:
+ᾱk+1(σk+1) = p(rk0 |akk−C+1, µk−C+1)P (akk−C+1, µk−C+1)
+X
+=
+p(rk0 |akk−C , µk−C )P (akk−C , µk−C )
+(ak−C ,µk−C ):σk+1
+
+=
+
+X
+
+k ,µ
+p(rk |rk−1
+,
+a
+)P (ak )
+k−C
+k−C
+0
+{z
+}
+|
+
+(ak−C ,µk−C ):σk+1
+
+=
+
+X
+
+γ̄k (ak ,σk )
+k ,µ
+k−1 , µ
+· p(rk−1
+|a
+)
+P
+(a
+)
+k−C
+k−C
+k−C
+0
+k−C
+|
+{z
+}
+
+|
+
+p(r0k−1|ak−1
+k−C ,µk−C )
+
+γ̄k (ak , σk ) ᾱk (σk )
+
+(ak ,σk ):σk+1
+
+{z
+
+ᾱk (σk )
+
+}
+37
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+MAP symbol detection
+Backward recursion
+By averaging, independence of the information symbols, chain factorization,
+and finite memory:
+k−1, ak−1 , µ
+|r
+β̄k (σk ) = p(rK−1
+0
+k
+k−C k−C )
+X
+k−1, ak , µ
+k−1, ak−1 , µ
+p(rK−1
+|r
+)
+P
+(a
+|r
+=
+k−C )
+k−C k−C | k 0
+0
+k
+k−C
+{z
+}
+ak
+P (ak )
+X
+k , ak , µ
+k−1, ak , µ
+=
+p(rK−1
+|r
+)
+p(r
+|r
+)P (ak )
+k−C | k 0
+k−C
+0
+k−C
+k−C
+k+1
+{z
+}
+{z
+}
+|
+ak
+
+=
+
+X
+
+k ,ak
+p(rK−1
+|r
+k+1 0 k−C+1 ,µk−C+1 )
+
+|
+
+{z
+
+β̄k+1[σk+1(ak ,σk )]
+
+}
+
+γ̄k (ak ,σk )
+
+β̄k+1[σk+1(ak , σk )] γ̄k (ak , σk )
+
+ak
+
+38
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Forward-Backward (BCJR) algorithm
+Basic recursions
+I APPs:
+
+P (ak |r) ∼
+
+X
+
+ᾱk (σk ) γ̄k (ak , σk ) β̄k+1[σk+1(ak , σk )]
+
+σk
+
+I Forward recursion:
+
+ᾱk+1(σk+1) =
+
+X
+
+γ̄k (ak , σk ) ᾱk (σk )
+
+(ak ,σk ):σk+1
+I Backward recursion:
+
+β̄k (σk ) =
+
+X
+
+β̄k+1[σk+1(ak , σk )] γ̄k (ak , σk )
+
+ak
+
+I With suitable initialization
+
+39
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+MAP symbol detection
+Comparison with MAP sequence detection
+Processing the “exponential metrics” γ̄k (ak , σk ) in the FSM trellis diagram is
+sufficient (again!)
+Sum-product algorithm (complexity is much larger than Viterbi)
+The entire observation r0K−1 must be processed before the APPs can be
+computed
+Block processing (or approximations): latency delay
+
+40
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Memoryless systems
+Sequence and symbol detection coincide
+For memoryless systems, C = 0 and the state variable µk vanishes:
+k ) = p(r |rk−1, a )
+p(rk |rk−1
+,
+a
+k 0
+k
+0
+0
+
+Sequence detection:
+K−1
+i
+Y h
+p(rk |rk−1
+P (a|r) ∼ p(r|a)P (a) =
+0 , ak )P (ak )
+
+k=0
+Symbol detection:
+X X
+X X K−1
+Y
+p(r|a)P (a) =
+p(ri|r0i−1, ai)P (ai)
+P (ak |r) ∼
+i=0
+a0k−1 aK−1
+k+1
+
+a0k−1 aK−1
+k+1
+
+= p(rk |rk−1
+0 , ak )P (ak )
+
+⇒
+
+X X K−1
+Y
+
+i=0
+a0k−1 aK−1
+k+1 i6=k
+
+|
+
+p(ri|r0i−1, ai)P (ai)
+
+{z
+independent of ak
+
+âk = argmax p(rk |rk−1
+0 , ak )P (ak )
+ak
+
+}
+41
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Forward-Backward (BCJR) algorithm
+Max-log-MAP approximation: APPs
+We could equivalently formulate the algorithm in the logarithmic (or metric)
+domain:
+X
+ln P (ak |r) ∼ ln
+ᾱk (σk ) γ̄k (ak , σk ) β̄k+1[σk+1(ak , σk )]
+σ
+
+= ln
+
+k
+X
+
+eαk (σk )+γk (ak ,σk )+βk+1[σk+1(ak ,σk )]
+
+σk
+
+≃ max {αk (σk ) + γk (ak , σk ) + βk+1[σk+1(ak , σk )]}
+σk
+
+where αk (σk ) = ln ᾱk (σk ) and βk+1(σk+1) = ln β̄k+1(σk+1)
+For large |x − y|
+
+⇒
+
+ln(ex + ey ) ≃ max(x, y)
+
+and by extension:
+
+ln(ex1 + ex2 + · · · + exn ) ≃ max(x1, x2, . . . , xn)
+42
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Forward-Backward (BCJR) algorithm
+Max-log-MAP approximation: FB recursions
+αk+1(σk+1) = ln ᾱk+1(σk+1) = ln
+
+X
+
+γ̄k (ak , σk ) ᾱk (σk )
+
+(ak ,σk ):σk+1
+
+≃
+
+max
+
+(ak ,σk ):σk+1
+
+[γk (ak , σk ) + αk (σk )]
+
+βk (σk ) = ln β̄k (σk ) = ln
+
+X
+
+β̄k+1[σk+1(ak , σk )] γ̄k (ak , σk )
+
+ak
+
+≃ max {βk+1[σk+1(ak , σk )] + γk (ak , σk )}
+ak
+
+43
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Forward-Backward (BCJR) algorithm
+Max-log-MAP approximation: key features
+Forward and backward recursions can be implemented by two Viterbi
+algorithms running in direct and inverse time
+αk (σk ) and βk (σk ) can be interpreted as forward and backward survivor
+metrics
+The max-log-MAP algorithm is computationally efficient, at the cost of a
+slight degradation in performance
+Various degrees of approximations have been studied (intermediate between
+the “full-complexity” forward-backward algorithm and the max-log-MAP
+approximation)
+
+44
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Forward-Backward (BCJR) algorithm
+Max-log-MAP approximation: a pictorial view
+
+k
+
+k+1
+
+Forward survivor metrics αk (σk ) = ln ᾱk (σk )
+Backward survivor metrics βk+1 (σk+1 ) = ln β̄k+1 (σk+1 )
+max {αk (σk ) + γk (ak , σk ) + βk+1 [σk+1 (ak , σk )]}
+σk
+
+max {αk (σk ) + γk (ak , σk ) + βk+1 [σk+1 (ak , σk )]}
+σk
+
+ak =+1
+ak =−1
+
+45
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Summary of MAP detection
+I For causal finite-memory systems:
+k ) = p(r |rk−1, a , σ )
+,
+a
+p(rk |rk−1
+k 0
+k k
+0
+0
+
+I In the computation of the APPs, the system can be modeled as a Finite
+
+State Machine (FSM) with state σk . The underlying FSM model is
+identical for sequence and symbol detection
+I Branch metrics (our focus in the following):
+
+γk (ak , σk ) = ln p(rk |rk−1
+0 , ak , σk ) + ln P (ak )
+
+I MAP sequence detection can be implemented efficiently by the Viterbi
+
+algorithm
+I MAP symbol detection can be implemented by a sum-product
+
+forward-backward algorithm (complex)
+I The max-log-MAP approximation of the forward-backward algorithm can
+
+be implemented efficiently by means of two Viterbi algorithms running in
+direct and inverse time
+
+46
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+MAP sequence and symbol detection
+Problem 3
+Assuming a system is causal and finite memory:
+A. Work out the derivation of the Viterbi algorithm for MAP sequence
+detection
+B. Work out the derivation of the forward-backward algorithm for MAP
+symbol detection
+Rederive the main recursions in each case
+
+47
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Max-log-MAP algorithm
+Problem 4
+Let
+
+max∗ (x1, x2, . . . , xn) = ln(ex1 + ex2 + · · · + exn )
+
+A. Show that
+max∗ (max∗ (x1, x2), x3) = max∗ (x1, x2, x3)
+B. Show that
+max∗ (x1, x2) = max(x1, x2) + ln(1 + e−|x1−x2|)
+C. Show that the exact forward-backward algorithm can be formulated
+replacing the max(·, ·) operator with max∗ (·, ·) in the max-log-MAP
+approximation
+D. Comment on the computational complexity of the exact formulation of
+the forward-backward algorithm in item C.
+48
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+MAP detection for systems with memory
+Examples of application
+Linear modulation on static dispersive channel
+Linear modulation on flat fading channel
+
+49
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on static dispersive channel
+System overview
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+$,
+
+
+
+
+
+
+
+
+
+!
+ )
+
+
+
+!
+
+#
+
+"
+*
+
+#
+
+"
+*
+
+)
+
+(
+
+"
+ )
+-
+!
+
+
+
+
+
+
+
+
+
+!
+ )
+
++
+
+
+
+
+
+
+
+
+
+
+#
+!
+
+"
+
+
+
+
+
+
+
+
+
+
+
+
+
+'
+
+(
+
+
+
+
+
+
+
+/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+
+#
+
+&%
+$
+
+"
+
+.
+
+'
+
+
+
+'
+
+
+"
+
+
+
+
+!'
+
+(
+
+
+
+
+
+50
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on static dispersive channel
+System model
+Model of discrete observable:
+rk =
+
+L
+X
+
+fl ck−l + wk
+
+l=0
+
+{fl }L
+l=0: white-noise discrete equivalent of the ISI channel
+{ck }: code sequence
+2
+{wk }: i.i.d. Gaussian noise sequence with variance σw
+Coding rule:
+
+µk : encoder state
+
+
+
+ck = o(ak , µk )
+µk+1 = t(ak , µk )
+
+System state:
+σk = (ak−1, ak−2, . . . , ak−L, µk−L)
+
+(C = L)
+51
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on static dispersive channel
+Computation of the branch metrics
+Conditional statistics of the observation:
+k ) = p(r |ak ) (conditionally independent observations)
+,
+a
+p(rk |rk−1
+k 0
+0
+0
+#
+"
+1
+|rk − xk (ak , σk )|2
+= p(rk |ak , σk ) =
+exp −
+2
+2
+πσw
+σw
+
+xk (ak , σk ) =
+
+L
+X
+
+fl ck−l
+
+l=0
+
+Branch metrics:
+
+γk (ak , σk ) = ln p(rk |ak , σk ) + ln P (ak )
+
+2 ln P (a )
+∝ −|rk − xk (ak , σk )|2 + σw
+k
+ 1
+ ∗
+1 2
+2
+∝ Re rk xk (ak , σk ) − |xk (ak , σk )| + σw ln P (ak )
+2
+2
+∝ : proportionality plus a constant term
+
+52
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on static dispersive channel
+Problem 5
+Consider uncoded transmission of binary symbols ak ∈ {±1} through a
+static dispersive channel with white-noise discrete equivalent
+1
+(f0, f1, f2) = √ (1, 2, 1)
+6
+A. Define a suitable system state and draw the relevant trellis diagram
+B. Express explicitly the branch metrics as a function of the received signal
+sample rk for any possible transition
+Assume the received sequence is
+(r0, r1, r2, r3, r4, r5, r6, r7) = (1.7, 1.2, 1.1, 0.3, −0.2, −1.1, 0.7, 0.4)
+
+and the initial state is σ0 = (+1, +1)
+
+(V A) 7
+}k=0
+
+C. Use the Viterbi algorithm to detect the MAP sequence {âk
+
+D. Use the max-log-MAP algorithm to approximately detect the sequence of
+(F B) 7
+MAP symbols {âk }k=0
+
+53
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on flat fading channel
+System overview
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+!
+
+
+"
+
+Discretization provides a sufficient statistic if f (t) is constant (i.e., a random
+variable). It is a good approximation if f (t) varies very slowly (small Doppler
+bandwidth)
+In general, one sample per signaling interval is not sufficient. Oversampling,
+e.g., two (or more) samples per symbol, provides a sufficient statistic
+54
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on flat fading channel
+System model
+Model of discrete observable:
+r k = f k ck + w k
+{fk }: circular complex Gaussian random sequence
+{ck }: code sequence
+2
+{wk }: i.i.d. Gaussian noise sequence with variance σw
+Coding rule:
+
+µk : encoder state
+
+
+
+ck = o(ak , µk )
+µk+1 = t(ak , µk )
+
+Conditional statistics of the observation are Gaussian
+
+55
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on flat fading channel
+Does a FSM model hold? (1)
+Conditional statistics of the observation:
+
+"
+
+k )|2
+|r
+−
+r̄
+(a
+1
+k
+k
+k) =
+0
+,
+a
+exp
+−
+p(rk |rk−1
+0
+0
+π σ̄k2 (ak0 )
+σ̄k2 (ak0 )
+
+Conditional mean
+
+#
+
+k}
+,
+a
+r̄k (ak0 ) = E{rk |rk−1
+0
+0
+
+Conditional variance
+k}
+,
+a
+σ̄k2 (ak0 ) = E{|rk − r̄k (ak0 )|2 |rk−1
+0
+0
+
+They depend on the fading autocovariance sequence
+
+56
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on flat fading channel
+Does a FSM model hold? (2)
+For Gaussian random variables, the conditional mean (i.e., the mean square
+estimate) is linear in the observation
+k
+k
+X
+X
+rk−i
+k
+k−1
+k
+k
+0
+pi(a0 ) rk−i ≃ ck
+pi
+r̄k (a0 ) = E{rk |r0 , a0 } =
+ck−i
+i=1
+
+i=1
+
+The sequence-dependent linear prediction coefficients of the observation at
+time k can be approximated as
+0
+p
+for high SNR
+pi(ak0 ) ≃ ck i
+ck−i
+where {p0i}ki=1 are the linear prediction coefficients of the fading process
+k
+X
+p0ifk−i
+E{fk |f0k−1} =
+i=1
+
+The conditional mean depends on all the previous code symbols:
+⇒ unlimited memory
+
+57
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on flat fading channel
+Special case: slow fading
+Constant fading (random variable): fk = f
+rk = f ck + w k
+Conditional mean:
+k
+
+1 X rk−i
+k
+k−1
+k
+r̄k (a0 ) = E{rk |r0 , a0 } ≃ ck
+k
+ck−i
+
+for high SNR
+
+i=1
+
+depends on all the previous code symbols ⇒ unlimited memory
+
+58
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on static dispersive channel
+Problem 6
+Consider the flat fading model
+r k = f k ck + w k
+2 ≃0
+with negligible noise power σw
+
+A. Show that the linear prediction coefficients of the observation and fading
+processes are related by
+0
+p
+i = 1, 2, . . . , k
+pi(ak0 ) ≃ ck i
+ck−i
+B. Show that for slow (constant) fading
+1
+0
+pi ≃
+k
+Hint: Use the fading model in the conditional mean
+59
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Review of detection techniques
+Bibliography
+MAP sequence and symbol detection:
+– G. D. Forney, “Maximum-likelihood sequence estimation of digital sequences in the
+presence of intersymbol interference,” IEEE Trans. Inform. Theory, pp. 363–378,
+May 1972.
+– L. R. Bahl, J. Cocke, F. Jelinek, and R. Raviv, “Optimal decoding of linear codes for
+minimizing symbol error rate,” IEEE Trans. Inform. Theory,, pp. 284-284, March 1974.
+– J. G. Proakis, Digital Communications. New York: McGraw-Hill, 1989, 2nd ed..
+– S. Benedetto, E. Biglieri and V. Castellani. Digital Transmission Theory. Prentice-Hall,
+Englewood Cliffs, U.S.A., 1987.
+– K. M. Chugg, A. Anastasopoulos, X. Chen, Iterative Detection: Adaptivity,
+Complexity Reduction, and Applications. Kluwer Academic Publishers, 2001.
+– G. Ferrari, G. Colavolpe, R. Raheli, Detection Algorithms for Wireless
+Communications, with Applications to Wired and Storage Systems, John Wiley &
+Sons, London, (August) 2004.
+– G. Ferrari, G. Colavolpe, R. Raheli, “A unified framework for finite-memory detection,”
+March 2004.
+60
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+2. Detection under parametric uncertainty
+Outline
+1. Review of detection techniques
+2. Detection under parametric uncertainty
+3. Per-Survivor Processing (PSP): concept and historical review
+4. Classical applications of PSP:
+4.1 Complexity reduction
+4.2 Linear predictive detection for fading channels
+4.3 Adaptive detection
+5. Advanced applications of PSP
+
+61
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Detection for systems with unlimited memory
+Preliminaries
+Channel models described in terms of stochastic parameters (even
+time-invariant) yield systems with unlimited memory
+Optimal sequence or symbol detection algorithms can be exactly implemented
+only by resorting to some type of exhaustive search accounting for all
+possible transmission acts
+Implementation complexity increases exponentially with the length of
+transmission, i.e., the number of transmitted information symbols K
+Optimal detection is implementable only for very limited transmission
+lengths (not of practical interest, even for packet transmissions: e.g.,
+M K = 48 = 216 = 65536)
+⇒ Design suitable approximate, hence suboptimal, detection algorithms
+62
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Estimation-Detection decomposition
+A suboptimal solution
+Idea of “decomposing” the functions of data detection and parameter
+estimation:
+1. Derive the detection algorithms under the assumption of knowledge, to a
+certain degree of accuracy, of some (channel) parameters
+2. Devise an estimation algorithm for extracting information about these
+parameters
+This approach is viable alternative if a statistical characterization of the
+parameter is not available or not usable because of constrained
+implementation complexity
+A statistical characterization is not available if static (or slow varying)
+parameters are modeled as unknown deterministic quantities
+63
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Estimation-Detection decomposition
+System model
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+θ̂ k denotes an estimate of a parameter vector θ k , at the k-th time-discrete
+instant
+The estimation process observes explicitly the received signal r(t) and
+possibly the detected data sequence â
+64
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Estimation-Detection decomposition
+Some remarks
+Conceptual advantage of decoupling the detection and estimation problems
+Implementation advantage of physically simplifying the receiver
+This decomposition has been used for decades, e.g., in synchronization, i.e.,
+estimation of timing epoch, carrier phase or carrier frequency (of interest in
+virtually any passband communication system)
+Logical ad-hoc solution: no claim of optimality can be made, in general.
+Optimality, i.e., minimal error probability, can only be attained if the
+statistical information about the parameter is known and exploited directly
+in the detection process.
+Time-varying parameters can be viewed as static in the detection
+process. Their time variations must be tracked by the estimation function,
+provided they are slow. Rate of variation is critical
+65
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Parameter-conditional finite memory
+A conceptual framework for Estimation-Detection decomposition
+K−1 (for
+and
+r
+=
+r
+Assume information lossless discretization with a = aK−1
+0
+0
+time-varying parameters, more samples per symbol may be necessary)
+
+Let us collect some undesired (or nuisance) parameters into a vector θ k , in
+general time-varying
+The observation conditional statistics obey:
+k , θ ) = p(r |rk−1, a , σ , θ )
+,
+a
+p(rk |rk−1
+k 0
+k k k
+0 k
+0
+where the system state is
+σk = (ak−1
+k−C ; µk−C )
+C is the residual channel memory (i.e., assuming knowledge of the parameter)
+The system can be modeled as a Finite State Machine (FSM) conditionally
+upon the parameter
+66
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Parameter-conditional finite memory
+An example: Linear modulation on flat fading channel
+Model of discrete observable:
+r k = f k ck + w k
+{fk }: circular complex Gaussian random sequence
+{ck }: code sequence
+2
+{wk }: i.i.d. Gaussian noise sequence with variance σw
+The system is not finite memory
+⇒ Viewing fk as a nuisance parameter:
+
+"
+
+2
+1
+|r
+−
+f
+c
+|
+k
+k k
+k , f ) = p(r |c , f ) =
+,
+a
+exp
+−
+p(rk |rk−1
+k k k
+0 k
+0
+2
+2
+πσw
+σw
+
+#
+
+The system is conditionally finite memory because the code symbols are the
+output of a finite state machine
+For an uncoded system (ck = ak ), the observation is conditionally memoryless
+67
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Parameter-conditional finite memory
+Some remarks
+I By a clever choice of the nuisance parameters, it is possible to transform
+
+the transmission system into conditionally finite-memory.
+I This property holds conditionally on the undesired parameters; hence,
+
+only if they are known. It is the route to a decomposed
+estimation-detection design
+I One can assume that some undesired parameters are known in devising
+
+the detection algorithms, thus avoiding intractable complexity, and devote
+some implementation complexity to the estimation of these undesired
+parameters.
+I The parameter-conditional finite memory property suggests to view the
+
+presence of stochastic or unknown deterministic parameters as
+parametric uncertainty affecting the detection problem.
+68
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Parameter estimation
+The “dual” problem
+The parameter estimation problem can be viewed as the “dual” of the
+detection problem.
+The “undesired” parameters become parameters of interest, whereas the
+“parameters” of interest in the detection process, namely the data symbols,
+are now just nuisance (or undesired) parameters.
+Like the knowledge of the undesired parameters simplifies the detection
+problem, the possible knowledge of the data sequence may facilitate the
+estimation of the nuisance parameters.
+An exact knowledge of the data symbols may reduce the “degree of
+randomness” of the received signal and facilitate the estimation of the
+parameters of interest
+69
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Parameter estimation
+Data-aided parameter estimation
+In coded systems the transmitted signal is modulated by the code sequence:
+knowledge of this sequence may be helpful in parameter estimation
+We assume the code sequence is a data sequence aiding the parameter
+estimation process.
+The data sequence is known during the (initial) training mode: preamble,
+midamble, postamble
+During the transmission of the training sequence there is no transfer of
+information: training must be limited
+In long term tracking of the channel parameters, detected data can be used:
+decision-directed estimation
+Non-data-aided estimation is more complex: requires averaging over the
+data
+70
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Parameter estimation
+A pictorial example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+71
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Data-aided parameter estimation
+A general formulation
+Formal definition of a causal data-aided estimator of parameter θ k :
+
+
+θ̂ k = gk−l rk0 , ck−d
+0
+
+g(·) denotes the functional dependence on the observation rk0 and the aiding
+data sequence ck−d
+0
+Causality upon the observation: at time k, only rk0 is observable
+Causality upon the data-aiding sequence:
+At time k, the most recent available data symbol is ck−d, where d is the
+decision delay
+In decision-directed mode causality requires d ≥ 1
+
+l denotes the estimation delay (θ̂k ≃ θ k−l )
+
+l − d is the estimation lag (l < d: prediction)
+
+72
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Causal data-aided parameter estimation
+A pictorial view
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+#
+
+&
+
+%
+
+$#"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+73
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Feedforward parameter estimation
+Open-loop processing
+The aiding data sequence is assumed ideally known (training)
+Feedforward data-aided parameter estimator:
+
+
+θ̂k = p rkk−ν , ck−d
+0
+
+Explicit function of the ν + 1 most recent signal observations (and the aiding
+data sequence)
+Feedforward processing of the discrete observable (if linear: FIR filter)
+The “loop“ is “open“ because the previous parameter estimates (not the
+data!) are not used in the current estimation
+
+74
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Feedback parameter estimation
+Closed-loop processing
+The aiding data sequence is assumed ideally known (training)
+Feedback data-aided parameter estimator:
+
+ k−1
+θ̂k = q θ̂k−ξ , rkk−ν , ck−d
+0
+
+Explicit function of ξ previous estimates and ν + 1 most recent signal
+observations (and the aiding data sequence)
+
+Feedback processing of the previous parameter estimates and feedforward
+processing of the discrete observable (if linear: IIR filter)
+The “loop“ is “closed“ because the previous parameter estimates (not the
+data!) are used in the current estimation
+ξ = 1, 2: first, second order loops (most typical)
+75
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Joint detection and estimation
+Combination of detection and estimation functions
+Define the branch metrics on the basis of the parameter-conditional finite
+memory p.d.f., with the true parameter vector θ k replaced by its estimate θ̂ k :
+γk (ak , σk ) = ln p(rk |rk−1
+0 , ak , σk , θ̂ k ) + ln P (ak )
+Proper definition of trellis state σk is necessary
+The parameter estimate is obtained using a data-aided estimator:
+
+
+θ̂ k = gk−l rk0 , ck−d
+0
+
+⇒ Which code sequence c can be used for parameter estimation?
+
+76
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Joint detection and estimation
+Final versus preliminary decisions
+During training the data sequence is readily available
+Tracking can be based on previous data decisions: decision-directed mode
+The detection scheme outputs data decisions with a delay D
+E.g., detection delay of the Viterbi algorithm (survivor merge)
+E.g., processing delay of the forward-backward algorithm (possible latency
+due to the packet duration)
+The detection delay of the sequence aiding in parameter estimation should be
+small because it directly carries over to a delay in the parameter estimate:
+Preliminary or tentative decisions with delay d < D
+
+77
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Joint detection and estimation
+System model
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+D : “final” decision delay
+d : “preliminary” or “tentative” decision delay
+{ĉˆk−d} : sequence of tentative decisions
+78
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Joint detection and estimation
+Summary
+I Branch metrics:
+
+γk (ak , σk ) = ln p(rk |rk−1
+0 , ak , σk , θ̂ k ) + ln P (ak )
+I Data-aided parameter estimator:
+
+
+
+
+
+ gk−l rk0 , ck−d
+0
+
+
+θ̂k =
+
+ gk−l rk0 , ĉˆk−d
+0
+
+training
+tracking
+
+I In the tracking mode, preliminary decisions are used
+
+79
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Detection under parametric uncertainty
+Examples of application
+Linear modulation on phase-uncertain channel
+Linear modulation on dispersive fading channel
+
+80
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on phase-uncertain channel
+Synchronization-Detection decomposition
+Model of discrete observable (usual notation):
+rk = ejθk ck + wk
+θk : channel-induced phase rotation
+{ck } : code sequence with FSM model of state µk
+2
+{wk } : i.i.d. Gaussian noise sequence with variance σw
+Unlimited memory (observation not even conditionally Gaussian)
+Considering θk as undesired, the parameter-conditional finite-memory
+property is verified:
+k , θ ) = p(r |a , µ , θ )
+,
+a
+p(rk |rk−1
+k k "k k
+0 k
+0
+#
+|rk − ejθk ck (ak , µk )|2
+1
+exp −
+=
+2
+2
+πσw
+σw
+
+ck (ak , µk ) : code symbol branch label
+
+81
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on phase-uncertain channel
+Feedback phase synchronization
+A data-aided phase estimate θ̂k can be obtained through a first order
+Phase-Locked Loop (PLL), where η controls the loop bandwidth:
+
+θ̂k+1 = θ̂k + η Im r̄k+1−d c∗k+1−d
+
+r̄k = rk e−j θ̂k : phase-synchronized observation
+
+The estimated phase is inherently delayed by d instants
+In the training mode, d can be chosen arbitrarily, except for the causality
+condition upon the observation which imposes d ≥ 0. d = 0 is convenient to
+minimize the estimation delay
+In the decision-directed tracking mode:
+o
+n
+θ̂k+1 = θ̂k + η Im r̄k+1−d ĉˆ∗k+1−d
+
+The tentative decision delay must comply with the causality condition upon
+the detected data, which implies d ≥ 1.
+
+82
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on phase-uncertain channel
+Joint detection and synchronization
+The estimated phase can be used in place of the true unknown phase in the
+computation of the branch metrics:
+γk (ak , µk ) = ln p(rk |ak , µk , θ̂k ) + ln P (ak )
+
+2 ln P (a )
+∝ −|rk − ej θ̂k ck (ak , µk )|2 + σw
+k
+2 ln P (a )
+= −|r̄k − ck (ak , µk )|2 + σw
+k
+
+The detection and synchronization functions can be based on the
+phase-synchronized observation
+r̄k = rk e−j θ̂k
+
+83
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on phase-uncertain channel
+Problem 7
+Consider the model of discrete observable
+rk = ejθ ck + wk
+where θ is the overall phase rotation induced by the channel. Let θ̂ be a
+phase estimate and define the phase-synchronized observation r̄k = rk e−j θ̂
+A. Derive an explicit expression of the mean square error (MSE)
+E{|r̄k − ck |2} as a function of θ̂
+B. Obtain an estimate of θ minimizing the MSE
+
+C. Formulate a data-aided iterative stochastic gradient algorithm for
+minimizing the MSE
+D. Comment on the functional relationship of the obtained synchronization
+scheme with a first-order PLL
+Hint: Define a stochastic gradient by differentiating the MSE with
+respect to θ̂ and discarding the expectation
+
+84
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on dispersive fading channel
+System model
+Model of discrete observable (slow fading):
+rk =
+
+L
+X
+
+fl,k ck−l + wk = fkT ck + wk
+
+l=0
+)T : overall time-varying discrete equivalent impulse
+
+fk = (f0,k , f1,k , . . . , fL,k
+response at the k-th instant, circular complex Gaussian random vector
+ck = (ck , ck−1, . . . , ck−L)T : code sequence with FSM model of state µk
+Unlimited memory (observation is conditionally Gaussian)
+
+85
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on dispersive fading channel
+Estimation-Detection decomposition
+Considering fk as undesired, the system is parameter-conditionally
+finite-memory:
+k , f ) + ln P (a )
+,
+a
+γk (ak , σk ) = ln p(rk |rk−1
+k
+0 k
+0
+= ln p(rk |ak , σk , fk ) + ln P (ak )
+"
+(
+#)
+|rk − fkT ck (ak , σk )|2
+1
+exp −
+= ln
++ ln P (ak )
+2
+2
+πσw
+σw
+2 ln P (a )
+∝ −|rk − fkT ck (ak , σk )|2 + σw
+k
+
+σk = (ak−1, ak−2, . . . , ak−L; µk−L) : system state
+ck (ak , σk ) = [ck (ak , µk ), ck−1(ak−1, µk−1), . . . , ck−L(ak−L, µk−L)]T :
+code symbol vector uniquely associated with the considered trellis branch
+(ak , σk ), in accordance with the coding rule
+86
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on dispersive fading channel
+Feedback parameter estimation
+Least Mean Squares (LMS) adaptive identification:
+f̂k+1 = f̂k + β (rk+1−d − f̂kT ck+1−d) c∗k+1−d
+
+β compromises between adaptation speed and algorithm stability
+During the decision-directed tracking mode:
+f̂k+1 = f̂k + β (rk+1−d − f̂kT ĉˆk+1−d) ĉˆ∗k+1−d
+
+ĉˆk+1−d = (ĉˆk+1−d, ĉˆk−d, . . . , ĉˆk+1−d−L)T
+
+d ≥ 1 to comply with the causality condition upon the data
+Branch metrics:
+2 ln P (a )
+γk (ak , σk ) ∝ −|rk − f̂kT ck (ak , σk )|2 + σw
+k
+87
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on dispersive fading channel
+Problem 8
+Consider the model of discrete observable
+rk = f T ck + w k
+where f is the overall discrete equivalent channel impulse response. Let f̂
+be an estimate of the channel response. Assume the code symbols are
+zero-mean and uncorrelated
+A. Derive an explicit expression of the mean square error (MSE)
+E{|rk − f T ck |2} as a function of f̂
+
+B. Formulate a data-aided iterative stochastic gradient algorithm for
+minimizing the MSE
+C. Comment on the functional relationship of the obtained identification
+scheme and the LMS algorithm
+Hint: Define a stochastic gradient by differentiating the MSE with
+respect to f̂ and discarding the expectation
+88
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Joint detection and estimation
+Error propagation
+A decision-feedback mechanism characterizes the decision-directed tracking
+phase: decisions are used for parameter estimation and, hence, for detecting
+the successive data
+Error propagation may take place, namely wrong data decisions may
+negatively affect the parameter estimate and cause further decision errors
+This effect is usually non catastrophic but it affects the overall performance
+
+89
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Joint detection and estimation
+Optimization of the tentative decision delay
+Preliminary decisions with delay d < D can be considerably worse than the
+final decisions. E.g., in the Viterbi algorithm, decisions with reduced delay
+d < D are affected by the probability of unmerged survivors
+⇒ Large values of tentative decision delay d may be best
+
+The delay d of the aiding data sequence yields a delay in the parameter
+estimate which may affect the detection quality when the true parameter is
+time-varying
+
+⇒ Small values of d may be best, possibly the minimal value d = 1.
+
+Good values of tentative decision delay d must be the result of a trade-off
+between two conflicting requirements
+
+⇒ In practice, one would have to experiment several values of d and select a
+good compromise value (minimize error propagation)
+90
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Detection under parametric uncertainty
+Bibliography
+– H. L. Van Trees, Detection, Estimation, and Modulation Theory, Part I. New York:
+John Wiley & Sons, 1968.
+– H. Kobayashi, “Simultaneous adaptive estimation and decision algorithm for carrier
+modulated data transmission systems,” IEEE Trans. Commun., pp. 268-280, June 1971.
+– F. R. Magee, Jr. and J. G. Proakis, “Adaptive maximum-likelihood sequence estimation for
+digital signaling in the presence of intersymbol interference,” IEEE Trans. Inform.
+Theory, pp. 120–124, Jan. 1973.
+– S. U. H. Qureshi and E. E. Newhall, “An adaptive receiver for data transmission over
+time-dispersive channels,” IEEE Trans. Inform. Theory, pp. 448-457, July 1973.
+– G. Ungerboeck, “Adaptive maximum-likelihood receiver for carrier modulated
+data-transmission systems,” IEEE Trans. Commun., pp. 624-636, May 1974.
+– G. Ungerboeck, “Channel coding with multilevel/phase signals,” IEEE Trans. Inform.
+Theory, pp. 55-67, Jan. 1982.
+– S. Benedetto, E. Biglieri and V. Castellani. Digital Transmission Theory. Prentice-Hall,
+Englewood Cliffs, U.S.A., 1987.
+– J. G. Proakis, Digital Communications. New York: McGraw-Hill, 1989, 2nd ed..
+– R. Raheli, A. Polydoros, C. K. Tzou, “Per-survivor processing: a general approach to MLSE
+in uncertain environments,” IEEE Trans. Commun., pp. 354-364, Feb.-Apr. 1995.
+91
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+3. Per-Survivor Processing: concept
+
+Outline
+1. Review of detection techniques
+2. Detection under parametric uncertainty
+3. Per-Survivor Processing (PSP): concept and historical review
+4. Classical applications of PSP:
+4.1 Complexity reduction
+4.2 Linear predictive detection for fading channels
+4.3 Adaptive detection
+5. Advanced applications of PSP
+
+92
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing (PSP)
+A step toward a unification of estimation and detection
+The Estimation-Detection decomposition is a general suboptimal design
+approach to force a finite-memory property and achieve feasible detection
+complexity
+Optimal processing is not compatible with the decomposition approach and
+would require a unified detection function (often of infeasible complexity)
+Per-Survivor Processing is an alternative general design approach which still
+exploits the forced finite-memory property but reduces the degree of
+separation between the detection and estimation functions
+In this technique, the code sequences associated with each survivor are used
+as the aiding data sequence for a set of per-survivor estimators of the
+unknown parameters
+
+93
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing
+A formal description
+Let σk be the trellis state descriptive of the overall parameter-conditional
+finite state machine which models the transmission system
+Let c̆k−1
+0 (σk ) denote the code sequence associated with the survivor of
+state σk
+Per-survivor estimates of the parameter vector θ k based on a data-aided
+estimator can be expressed as
+h
+i
+θ̆ k (σk ) = gk−l rk0 , c̆k−d
+0 (σk )
+
+These per-survivor estimates can be used in the computation of the branch
+metrics:
+γk (ak , σk ) = ln p(rk |rk−1
+0 , ak , σk , θ̆ k (σk )) + ln P (ak )
+94
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing
+Some remarks
+I The structure of the branch metrics is inherently different, with respect to
+
+the previous cases, in the fact that it also depends on the state σk
+through the parameter estimate
+I There is now a data-aided parameter estimator per trellis state. This
+
+estimator uses the data sequence associated with the survivor of this
+state as aiding sequence. The resulting parameter estimates, one per
+state, are inherently associated with the survivor sequences—hence,
+the terminology “per-survivor processing”
+I Compared to a conventional decomposed estimation-detection scheme
+
+based on tentative decisions, the complexity of per-survivor processing is
+larger
+
+95
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing
+System model
+r(t)
+
+rk
+discret
+
+âk−D
+detection
+decoding
+θ̆ k (σk )
+
+c̆k−d (σk )
+
+parameter
+estimation
+PSP-based detection
+
+A “tentative” block diagram: a set of parameter estimators observe the
+received sequence rk and are aided by the survivor sequences c̆k−d
+0 (σk ). A
+corresponding set of per-survivor parameter estimates θ̆ k (σk ) are passed to
+the detection block
+96
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing
+A pictorial description: branch metrics computation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The metrics of branches reaching the same state are computed using different
+values of the parameter.
+97
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing
+A pictorial description: evolution of the parameter estimates
+θ̂ k−1
+σk−1
+
+θ̂ k
+
+θ̂ k+1
+θ̆ k−1(σk−1)
+θ̆(σk )
+
+σk
+
+σk+1
+“universal” estimation
+
+θ̆(σk+1)
+PSP-based estimation
+
+In the “universal” scheme, only one parameter estimate is used for
+computation of all the branch metrics at the k-th step
+In the PSP-based scheme the parameter estimates evolve along the survivors
+98
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing
+An intuitive rationale
+Whenever the incomplete knowledge of some quantities prevents us from
+calculating a particular branch metric in a precise and predictable form, we use
+estimates of those quantities based on the data sequence associated with the
+survivor leading to that branch. If any particular survivor is correct (an event
+of high probability under normal operating conditions), the corresponding
+estimates are evaluated using the correct data sequence. Since at each stage
+of decoding we do not know which survivor is correct (or the best), we extend
+each survivor based on estimates obtained using its associated data sequence.
+Roughly speaking, the best survivor is extended using the best data sequence
+available (which is the sequence associated to it), regardless of our temporary
+ignorance as to which survivor is the best.
+
+99
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing
+Is a delay d necessary?
+The best survivor is extended according to its associated data sequence,
+despite the fact that we do not know which survivor is the best at the current
+time (we will know the best survivor after D further steps)
+There are no reasons for delaying the aiding data sequence of the best survivor
+beyond the minimal delay d = 1 complying with the causality condition
+Since all survivors eventually merge, the quality of the data sequences
+associated to all survivors improves for increasing values of d
+⇒ The minimal value d = 1 offers the best overall performance because it
+attains simultaneously good quality of the aiding data sequence and a small
+delay in the parameter estimate
+⇒ PSP allows one to design receivers particularly robust when the undesired
+parameters are time-varying
+100
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing
+Error propagation
+PSP is a mechanism for virtually using “final” decisions for aiding the
+parameter estimation (with no delay!)
+Only errors in the final decisions, the so-called error events, are “fed back” to
+the parameter estimator of the best survivor
+As the aiding data sequence along the best survivor is of best possible quality,
+the effects of error propagation are reduced (compared with the traditional
+scheme that uses tentative decisions)
+Parameter estimators of other survivors use data sequences of worse quality,
+but they do not affect future decisions provided these survivors are later
+discarded
+
+101
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on phase-uncertain channel
+PSP-based detection and phase synchronization
+Branch metrics:
+2 ln P (a )
+γk (ak , µk ) ∝ −|rk e−j θ̆k (µk ) − ck (ak , µk )|2 + σw
+k
+
+Phase estimate update recursion:
+
+n
+
+θ̆k+1(µk+1) = θ̆k (µk ) + η Im rk+1−d e−j θ̆k (µk ) c̆∗k+1−d(µk )
+
+o
+
+c̆∗k+1−d(µk ) is the code symbol at epoch k + 1 − d in the survivor sequence
+of state µk
+The phase estimate update recursions must take place along the branches
+which extend the survivor of state µk , i.e., after the usual add-compare-select
+step at time k
+Remember: d = 1 for best performance
+102
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on dispersive fading channel
+PSP-based detection and channel estimation
+Branch metrics:
+2 ln P (a )
+γk (ak , σk ) ∝ −|rk − f̆k (σk )T ck (ak , σk )|2 + σw
+k
+
+Channel estimate update recursions:
+h
+i
+f̆k+1(σk+1) = f̆k (σk ) + β rk+1−d − f̆k (σk )T c̆k+1−d(σk+1) c̆∗k+1−d(σk+1)
+c̆k+1−d(σk+1) = [c̆k+1−d(σk+1), c̆k−d(σk+1), . . . , c̆k+1−d−L(σk+1)]T
+
+Channel estimate update recursions must take place over those branches
+(σk → σk+1) which comply with the Viterbi algorithm add-compare-select
+step at time k
+Remember: d = 1 for best performance
+103
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing
+Hybrid version
+The survivor merge is normally a few steps backward from current time
+Only the most recent code symbols should be searched for in the survivor
+history; earlier symbols can be reliably based on preliminary decisions
+Formulation:
+
+h
+
+k−1 (σ )
+,
+c̆
+θ̆ k (σk ) = gk−l rk0 , ĉˆk−d
+0
+k−d+1 k
+
+i
+
+104
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing
+A pictorial description: Hybrid version
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+For d = 3, the computation of the branch metrics is based on 2 elements of
+the survivor sequences and the remaining elements of the tentative decision
+sequence (red survivor is best at current time)
+105
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing
+Reduced-estimator version
+In PSP, the number of parameter estimators equals the number of survivors
+In a conventional decomposed design, there is one parameter estimator
+What is in between?
+The number N of parameter estimators can be adjusted independently of the
+number S of survivors: 1 ≤ N ≤ S (N = 1 ⇒ tentative decisions;
+N = S ⇒ PSP):
+
+– Select the best survivor and the N best survivors;
+– Extend each of the N best survivors using its associated parameter
+estimate;
+– Extend each of the remaining S − N survivors using the parameter estimate
+associated with the best survivor;
+– Update each of the N parameter estimates along the extensions of the N
+best survivors.
+106
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing
+A pictorial description: Reduced-estimator version
+2
+
+4
+
+4
+
+2
+
+1
+
+3
+
+3
+
+1
+(a)
+4
+
+4
+
+2
+
+2
+
+3
+
+1
+
+1
+
+3
+
+(b)
+
+Figure reproduced from:
+– R. Raheli, G. Marino, P. Castoldi, “Per-survivor processing and tentative decisions: what is
+in between?,” IEEE Trans. Commun., pp. 127-129, Feb. 1996.
+107
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing
+Update-first version
+The temporal sequence: ACS step followed by parameter update can be
+inverted
+Update-first version of PSP:
+1. The per-survivor parameter update recursions are run along all possible
+candidate survivors
+2. The branch metrics are computed using these updated parameter
+estimates
+3. The ACS step is performed
+In this version, there is one parameter estimator per candidate (complexity is
+larger)
+PSP allows d = 0 in parameter estimation (in a scheme based on tentative
+decisions this would violate the causality condition)
+108
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing
+A pictorial description: Update-first version
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The computation of the branch metrics is based on the candidate sequences
+(i.e., survivors plus their possible evolutions)
+The ACS step follows on the basis of these branch metrics
+109
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing
+Application to reduced-search (sequential) algorithms
+Per-survivor processing can be directly applied to any tree or trellis
+reduced-search algorithm, also referred to as sequential detection algorithms
+Reduced-search algorithms may be used to search a small part of a large FSM
+trellis diagram or non-FSM tree diagram
+The M-algorithm keeps a list of M best paths: at each step, each path is
+extended in all possible way, say N ; from the resulting list of M N paths, the
+best M are retained for further extension (breadth-first)
+Depth-first and metric-first algorithms keep one or more paths and
+backtrack whenever the retained paths are judged of insufficient quality,
+according to some criterion
+An alternative terminology could be Per-Path Processing, or P3
+110
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing
+A pictorial description: Application to M-algorithm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+M =2
+
+Branch metrics based on maintaned paths (survivors)
+111
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing
+Application to list Viterbi algorithms
+The Viterbi algorithm detects the “best” MAP (or ML) path or sequence
+Nothing is known about the second, third, etc. best paths
+List Viterbi algorithms release the ordered list of V best paths by maintaining
+V survivors per state
+These algorithms may be used in concatenated coding schemes: whenever the
+outer code detects an error, the second, third, etc. sequence at the output of
+the inner decoder can be tried out
+Per-survivor processing can be readily applied to list Viterbi algorithms by
+associating a parameter estimator to each survivor
+
+112
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Per-Survivor Processing: concept
+Bibliography
+– A. Polydoros, R. Raheli, “The Principle of Per-Survivor Processing: A General Approach to
+Approximate and Adaptive ML Sequence Estimation,” University of Southern California,
+Technical Report CSI-90-07-05, July 1990. Also presented at the IEEE Commun.
+Theory Workshop, Rhodes, Greece, July 1991.
+– R. Raheli, A. Polydoros, C. K. Tzou, “The Principle of Per-Survivor Processing: A General
+Approach to Approximate and Adaptive MLSE,” in Proc. IEEE Global Commun. Conf.
+(GLOBECOM ’91), Phoenix, Arizona, USA, Dec. 1991, pp. 1170-1175.
+– R. Raheli, A. Polydoros, C. K. Tzou, “Per-survivor processing: a general approach to MLSE
+in uncertain environments,” IEEE Trans. Commun., pp. 354-364, Feb.-Apr. 1995.
+– A. Polydoros, R. Raheli, “System and method for estimating data sequences in digital
+transmission,” University of Southern California, U.S. Patent No. 5,432,821, July 1995.
+– R. Raheli, G. Marino, P. Castoldi, “Per-survivor processing and tentative decisions: what is
+in between?,” IEEE Trans. Commun., pp. 127-129, Feb. 1996.
+– G. Marino, “Hybrid decision feed-back sequence estimation”, in Proc. Intern. Conf.
+Telecommun., Istanbul, Turkey, Apr. 1996, pp. 132-135.
+– K. M. Chugg, A. Polydoros, “MLSE for an unknown channel—Parts I and II,” IEEE
+Trans. Commun., pp. 836-846 and 949-958, July and Aug. 1996.
+113
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+3. Per-Survivor Processing: historical review
+
+Outline
+1. Review of detection techniques
+2. Detection under parametric uncertainty
+3. Per-Survivor Processing (PSP): concept and historical review
+4. Classical applications of PSP:
+4.1 Complexity reduction
+4.2 Linear predictive detection for fading channels
+4.3 Adaptive detection
+5. Advanced applications of PSP
+
+114
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Historical review
+The beginning and afterwards ...
+The general concept of per-survivor processing was understood and proposed
+in the early nineties as a generalization of per-survivor DFE-like ISI
+cancellation techniques of reduced-state sequence detection (RSSD), also
+known as (delayed) decision-feedback sequence detection (DFSD)
+RSSD and DFSD appeared and established in the late eighties, except for
+isolated seminal contributions which date back to the seventies
+In the early nineties, a number of independent research results appeared in
+diverse technical areas which could be interpreted as special cases of the
+general PSP concept (not yet known)
+During the nineties (and currently) PSP has emerged as a broad approach to
+detection in hostile transmission environments
+As we will see, sometimes PSP arises naturally from the analytical
+development itself, when devising detection algorithms
+115
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduced-state sequence detection
+The main references
+– J. W. M. Bergmans, S. A. Rajput, F. A. M. Van De Laar, “On the use of Decision
+Feedback for Simplifying the Viterbi Decoder,” Philips Journal of Research, No. 4, 1987.
+– K. Wesolowski, “Efficient Digital Receiver Structure for Trellis-Coded Signals Transmitted
+through Channels with Intersymbol Interference,” Electronics Letters, Nov. 1987.
+– T. Hashimoto, “A List-Type Reduced-Constraint Generalization of the Viterbi Algorithm,”
+IEEE Trans. Inform. Theory, pp. 866-876, Nov. 1987.
+– M. V. Eyuboǧlu, S. U. H. Qureshi, “Reduced-State Sequence Estimation with Set Partition
+and Decision Feedback,” IEEE Trans. Commun., pp. 13-20, Jan. 1988.
+– A. Duel Hallen, C. Heegard, “Delayed Decision-Feedback Sequence Estimation,” IEEE
+Trans. Commun., pp. 428-436, May 1989.
+– P. R. Chevillat, E. Eleftheriou, “Decoding of Trellis-Encoded Signals in the Presence of
+Intersymbol Interference and Noise,” IEEE Trans. Commun., pp. 669-676, July 1989.
+– M. V. Eyuboǧlu, S. U. H. Qureshi, “Reduced-State Sequence Estimation for Coded
+Modulation on Intersymbol Interference Channels,” IEEE J. Sel. Areas Commun., pp.
+989-995, Aug. 1989.
+– A. Svensson, “Reduced state sequence detection of full response continuous phase
+modulation,“ IEE Electronics Letters, pp. 652 -654, 1 May 1990.
+116
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduced-state sequence detection
+There was earlier work ...
+– F. L. Vermeulen and M. E. Hellman, ”Reduced state Viterbi decoders for channels with
+intersymbol interference,’ in Proc. IEEE Int. Conf. Commun. (ICC ’74), Minneapolis,
+MN, June 1974, pp. 37B1-37B4.
+– F. L. Vermeulen, ”Low complexity decoders for channels with intersymbol interference,”
+Ph.D. dissertation, Dep. Elect. Eng., Stanford Univ., Aug. 1975.
+– G. J. Foschini, “A reduced state variant of maximum likelihood sequence detection
+attaining optimum performance for high signal-to-noise ratios,” IEEE Trans. Inform.
+Theory, pp. 553-651, Sept. 1977
+– A. Polydoros, “Maximum-likelihood sequence estimation in the presence of infinite
+intersymbol interference,” Master’s Thesis, Graduate School of State University of New
+York at Buffalo, Dec. 1978.
+– A. Polydoros, D. Kazakos, “Maximum-Likelihood Sequence Estimation in the Presence of
+Infinite Intersymbol Interference,” in Proc. ICC ’79, June 1979.
+
+117
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Independent results interpretable as PSP
+When the time has come ...
+Sequence detection for a time-varying statistically known channel:
+– J. Lodge, M. Moher, “ML estimation of CPM signals transmitted over Rayleigh flat fading
+channels,” IEEE Trans. Commun., pp. 787-794, June 1990.
+– D. Makrakis, P. T. Mathiopoulos, D. P. Bouras, “Optimal decoding of coded PSK and
+QAM signals in correlated fast fading channels and AWGN: a combined envelope, multiple
+differential and coherent detection approach,” IEEE Trans. Commun., pp.63-75,
+Jan. 1994.
+
+Joint ML estimation of a deterministic channel and data detection:
+– R. Iltis, “A Bayesian MLSE algorithm for a priori unknown channels and symbol timing,”
+IEEE J. Sel. Areas Commun., April 1992.
+– N. Seshadri, “Joint data and channel estimation using blind trellis search techniques,”
+IEEE Trans. Commun., Feb.-Apr. 1994.
+
+118
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Independent results interpretable as PSP
+When the time has come ... (cntd)
+Adaptive sequence detection with tracking of a time-varying deterministic
+channel:
+– Z. Xie, C. Rushforth, R. Short, T. Moon, “Joint signal detection and parameter estimation
+in multiuser communications,” IEEE Trans. Commun., Aug. 1993.
+– H. Kubo, K. Murakami, T. Fujino, “An adaptive MLSE for fast time-varying ISI channels,”
+IEEE Trans. Commun., pp, 1872-1880, Feb.-Apr. 1994.
+
+Trellis coded quantization (source encoding):
+– M. W. Marcellin, T. R. Fischer, “Trellis coded quantization of memoryless Gauss-Markov
+sources,” IEEE Trans. Commun., Jan. 1990.
+
+Joint sequence detection and carrier phase synchronization:
+– A. J. Macdonald and J. B. Anderson, “PLL synchronization for coded modulation,” in
+Proc. ICC ’91, June 1991.
+– A. Reichman and R. A. Scholtz, “Joint phase estimation and data decoding for tcm
+systems,” in Proc. First Intern. Symp. Commun. Theory and Applications,
+Scotland, U.K., Sept. 1991.
+119
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Earlier work
+... and beforehand
+Analog FM demodulation with discrete phase approximation based on the
+Viterbi algorithm (there are no data !)
+In an extended-memory version, a procedure similar to PSP was proposed
+– C. Cahn, “Phase tracking and demodulation with delay,” IEEE Trans. Inform. Theory,
+Jan. 1974.
+
+120
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+The roots
+Generalized likelihood
+Model the parameter as deterministic or random with unknown distribution
+Joint ML parameter estimation and sequence detection viewed as a
+composite hypotheses test:
+
+
+â = argmax max p (r|a, θ)
+a
+| θ {z
+}
+⇒ θ̂ (a)
+
+⇒ A per-hypothesis parameter estimate is obtained as a side result
+
+– H. L. Van Trees, Detection, Estimation, and Modulation Theory, Part I. New York:
+John Wiley & Sons, 1968.
+
+121
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+The roots
+Estimation-Correlation detection
+Detection of M -ary random signals in AWGN: s(t) is conditionally Gaussian,
+given mi
+!
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+ 
+
+"#
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+%
+
+&
+
+$
+
+⇒ Per-hypothesis conditional mean square estimate of s(t)
+
+For deterministic signals: s(t) ∈ {si(t)}M
+i=1 ⇒ ŝi(t) = si(t)
+– T. Kailath, “Correlation detection of signals perturbed by a random channel,” IRE Trans.
+Inform. Theory, June 1960.
+– T. Kailath, “A general likelihood ratio formula for random signals in Gaussian noise,”
+IEEE Trans. Inform. Theory, May 1969.
+
+122
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Further references on PSP
+... this is not an exhaustive list ...
+– A. N. D’Andrea, U. Mengali, and G. M. Vitetta, “Approximate ML decoding of coded PSK
+with no explicit carrier phase reference,” IEEE Trans. Commun., pp. 1033-1039,
+Feb.-Apr. 1994.
+– Q. Dai, E. Shwedyk, “Detection of bandlimited signals over frequency selective Rayleigh
+fading channels,” IEEE Trans. Commun., pp. 941-950, Feb.-Apr. 1994.
+– J. Lin, F. Ling, J. Proakis, “Joint data and channel estimation for TDMA mobile channels,”
+Plenum Intern. J. Wireless Inform. Networks, vol. 1, no. 4, pp. 229-238, 1994.
+– X. Yu, S. Pasupathy, “Innovations-based MLSE for Rayleigh fading channels,” IEEE
+Trans. Commun., pp. 1534-1544, Feb.-Apr. 1995.
+– G. M. Vitetta, D. P. Taylor, “Maximum likelihood decoding of uncoded and coded PSK
+signal sequences transmitted over Rayleigh flat-fading channels,” IEEE Trans.
+Commun., vol. 43, pp. 2750-2758, Nov. 1995
+– K. Hamied, G. Stüber, “An adaptive truncated MLSE receiver for Japanese personal digital
+cellular,” IEEE Trans. Veh. Techn., Feb. 1996.
+– G. M. Vitetta, D. P. Taylor, U. Mengali, “Double filtering receivers for PSK signals
+transmitted over Rayleigh frequency-flat fading channels,” IEEE Trans. Commun., vol.
+44, pp. 686-695, June 1996.
+123
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Further references on PSP
+... this is not an exhaustive list ... (cntd)
+– M. E. Rollins, S. J. Simmons, “Simplified per-survivor Kalman processing in fast
+frequency-selective fading channels,” IEEE Trans. Commun., pp. 544-553, May 1997.
+– B. C. Ng, S. N. Diggavi, A. Paulray, “Joint structured channel and data estimation over
+time-varying channels,” in Proc. IEEE Globecom, 1997.
+– A. Anastasopoulos, A. Polydoros, “Adaptive soft-decision algorithms for mobile fading
+channels,” European Trans. Telecommun.., vol. 9, no. 2, pp. 183-190, Mar-Apr. 1998.
+– K. M. Chugg, “Blind acquisition characteristics of PSP-based sequence detectors,” IEEE
+J. Sel. Areas Commun., vol. 16, pp. 1518-1529, Oct. 1998.
+– F. Rice, B. Cowley, M. Rice, B. Moran, “Spectrum analysis using a trellis algorithm,” in
+Proc. IEEE Intern. Conf. Signal Process. (ICTS ’98), Oct. 1998.
+
+124
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+4. Classical applications of PSP
+4.1 Complexity reduction
+Outline
+1. Review of detection techniques
+2. Detection under parametric uncertainty
+3. Per-Survivor Processing (PSP): concept and historical review
+4. Classical applications of PSP:
+4.1 Complexity reduction
+4.2 Linear predictive detection for fading channels
+4.3 Adaptive detection
+5. Advanced applications of PSP
+125
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduction of trellis state-complexity
+Motivation
+Consider a FSM system model based on some finite memory property
+(strict-sense or conditional)
+Detection schemes are based on branch metrics: γk (ak , σk )
+System state: σk = (ak−1, ak−2, . . . , ak−L; µk−L)
+
+(C = L)
+
+Encoder state: µk
+
+ck = o(ak , µk )
+Coding rule:
+µk+1 = t(ak , µk )
+Number of FSM states: S = ScM L
+Example: Sc = M = L = 4
+
+⇒
+
+S = 4 × 44 = 4 × 28 = 1024
+
+⇒ State-complexity may be large!
+126
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduction of trellis state-complexity
+An alternative definition of system state
+Assume an invertible coding rule
+Solving for given (ck−1, µk )
+
+o(ak−1, µk−1) = ck−1
+t(ak−1, µk−1) = µk
+ak−L+1
+
+(ak−1, µk−1)
+
+...
+
+ak−2
+
+ak
+
+...
+
+state seq.: . . . µk−L µk−L+1 . . . µk−2 µk−1 µk
+code seq.: . . . ck−L ck−L+1 . . . ck−2 ck−1 ck
+
+...
+
+input seq.: . . .
+
+ak−L
+
+⇒
+
+ak−1
+
+...
+
+System state can be equivalently defined as:
+σk = (µk ; ck−1, ck−2, . . . , ck−L)
+State transition and corresponding branch metrics can be equivalently defined
+as (ck , σk ) and γk (ck , σk ), respectively
+
+127
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduction of trellis state-complexity
+Genie-aided trellis folding
+Suppose at each epoch k a genie passed a group of correct code symbols
+c̃k−Q−1, . . . , c̃k−L to the branch metric computer (Q ≤ L)
+Genie-aided branch metrics could be defined as γk (ck , σ̃k ) for each state σk
+whose first Q + 1 entries coincide with those in
+σ̃k = (µk ; ck−1, . . . , ck−Q, c̃k−Q−1, . . . , c̃k−L)
+The group of states
+σk = (µk ; ck−1, . . . , ck−Q, ck−Q−1, . . . , ck−L) ∀ck−Q−1, . . . , ck−L
+|
+{z
+}
+fixed
+would have identical path metrics and could be folded into a reduced state
+ωk = (µk ; ck−1, ck−2, . . . , ck−Q)
+128
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduction of trellis state-complexity
+Folding by memory truncation
+Path search could be equivalently performed in a folded trellis diagram with
+this reduced (also partial, folded or super) state
+ωk = (µk ; ck−1, ck−2, . . . , ck−Q)
+Genie-aided branch metrics in the reduced-state trellis:
+γ̃k (ck , ωk ) = γk (ck , σ̃k (ωk ))
+A pseudo state is defined as
+σ̃k (ωk ) = (µk ; ck−1, . . . , ck−Q, c̃k−Q−1, . . . , c̃k−L)
+|
+{z
+}
+ωk
+
+where (c̃k−Q−1, . . . , c̃k−L) is the genie information
+
+Effective genie-aided truncation of the system memory: Q ≤ L
+Reduced number of states: S 0 = ScM Q ≤ S = ScM L
+
+⇒The full-state trellis folds into a reduced-state trellis
+
+129
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduction of trellis state-complexity
+A pictorial description of trellis folding
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+130
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduction of trellis state-complexity
+Interpretation of trellis folding by memory truncation
+The code symbols (c̃k−Q−1, . . . , c̃k−L) can be viewed as an undesired set
+of parameters
+A parameter-conditional reduced memory property holds
+The Estimation-Detection decomposition can be (again) the route to the
+approximation of the branch metrics in the presence of this special parametric
+uncertainty
+The genie information (c̃k−Q−1, . . . , c̃k−L) must be estimated in order to
+implement detection schemes with reduced state-complexity
+Curiosity: we do not need a data-aided parameter estimator but only the
+aiding code sequence
+We can use tentative decisions or per-survivor processing
+131
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduction of trellis state-complexity
+Branch metrics based on tentative-decision feedback
+Branch metrics in the original full-state trellis: γk (ck , σk )
+Branch metrics in the reduced-state trellis:
+γ̃k (ck , ωk ) = γk (ck , σ̃k (ωk ))
+The pseudo state is defined as
+σ̃k (ωk ) = (µk ; ck−1, . . . , ck−Q, ĉˆk−Q−1, . . . , ĉˆk−L)
+|
+{z
+}
+ωk
+
+ĉˆk−Q−1, . . . , ĉˆk−L are preliminary decisions on the code sequence
+
+132
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduction of trellis state-complexity
+Branch metrics based on PSP
+Branch metrics in the original full-state trellis: γk (ck , σk )
+Branch metrics in the reduced-state trellis:
+γ̃k (ck , ωk ) = γk (ck , σ̃k (ωk ))
+The pseudo state is defined as
+σ̃k (ωk ) = (µk ; ck−1, . . . , ck−Q, c̆k−Q−1(ωk ), . . . , c̆k−L(ωk ))
+|
+{z
+}
+ωk
+
+c̆k−Q−1(ωk ), . . . , c̆k−L(ωk ) are the code symbols in the survivor of state ωk
+The pseudo state depends on ωk through the feedback of survivor symbols as
+well
+133
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on static dispersive channel
+Branch metrics in a reduced-state trellis
+Branch metrics in the original full-state trellis (S = ScM L states)
+γk (ck , σk ) = − rk − fk ck −
+
+L
+X
+
+2
+
+2 ln P [a (c , σ )]
+fl ck−l (σk ) + σw
+k k k
+
+l=1
+
+Branch metrics in the reduced-state trellis (S 0 = ScM Q states)
+γ̃k (ck , ωk ) = γk (ck , σ̃k (ωk ))
+= − r k − f k ck −
+
+Q
+X
+l=1
+
+fl ck−l (ωk ) −
+
+2 ln P [a (c , ω )]
++ σw
+k k k
+
+L
+X
+
+2
+
+fl c̆k−l (ωk )
+
+l=Q+1
+
+ck−1(ωk ), . . . , ck−Q(ωk ) are code symbols uniquely associated with state ωk
+c̆k−Q−1(ωk ), . . . , c̆k−L(ωk ) are code symbols in the survivor of state ωk
+134
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduction of trellis state-complexity
+Folding by set partitioning
+State-complexity reduction can also be achieved replacing the code symbols
+ck−i in the “full” state
+σk = (µk ; ck−1, ck−2, . . . , ck−L)
+with subsets of the code symbol alphabet (or constellation)
+Define a reduced state
+ωk = (µk ; Ik−1(1), Ik−2(2), . . . , Ik−L(L))
+At epoch k, for i = 1, 2, . . . , L:
+Ik−i(i) ∈ Ω(i) are subsets of the code constellation A
+Ω(i) are partitions of the code constellation A
+
+A given reduced state specifies only the constellation subsets Ik−i(i)
+ck−i ∈ Ik−i(i) are code symbols compatible with the given state
+
+135
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduction of trellis state-complexity
+Folding by set partitioning (cntd)
+Let Ji = card{Ω(i)} and M 0 = card{A} (1 ≤ Ji ≤ M 0)
+The reduced state is well-defined if current state ωk and subset Ik (1) (which
+the current symbol ck belongs to) uniquely specify the successive state
+ωk+1 = (µk+1; Ik (1), Ik−1(2), . . . , Ik−L+1(L))
+Ω(i) must be a further partition of Ω(i + 1)
+The partition depths Ji must satisfy the condition
+J1 ≥ J 2 ≥ · · · ≥ J L
+If Q is such that JQ > 1 and JQ+1 = · · · = JL = 1, the definition of partial
+state can be simplified
+ωk = (µk ; Ik−1(1), Ik−2(2), . . . , Ik−Q(Q))
+For J1 = · · · = JQ = M 0, memory truncation arises as a special case
+136
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduction of trellis state-complexity
+An example: partition of an 8-PSK constellation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+137
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduction of trellis state-complexity
+An example: definition of partial states
+Full-complexity state for uncoded transmission and L = 2
+S = M L = 82 = 64
+σk = (ak−1, ak−2)
+1. Partial state by memory truncation with Q = 1 (also J1 = 8, J2 = 1)
+ωk0 = ak−1
+
+S 0 = M Q = 81 = 8
+
+2. Partial state by set partition with
+Ω(1) = C = {C0, C1, C2, C3} (J1 = 4)
+(J2 = 2)
+Ω(2) = B = {B0, B1}
+ωk00 = (Ik−1(1), Ik−2(2))
+S 00 = J1J2 = 4 × 2 = 8
+
+3. Partial state by set partition with
+Ω(1) = Ω(2) = C = {C0, C1, C2, C3} (J1 = J2 = 4)
+S 000 = J1J2 = 4 × 4 = 16
+ωk000 = (Ik−1(1), Ik−2(2))
+138
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduction of trellis state-complexity
+Folding by set partitioning: some remarks
+Set partition should follow the partition rules used in Trellis Coded
+Modulation (TCM)
+If J1 < M 0, parallel transitions may be present (they are in the uncoded
+case)
+If J1 < M 0, state transitions and corresponding branch metrics are defined as
+(Ik (1), ωk ) and γ̃k (Ik (1), ωk ), respectively
+
+139
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduction of trellis state-complexity
+Folding by set partitioning: branch metrics
+Branch metrics in the original full-state trellis: γk (ck , σk )
+Branch metrics in the reduced-state trellis:
+γ̃k (Ik (1), ωk ) = max γk (ck , σ̃k (ωk ))
+ck ∈Ik (1)
+
+The pseudo state σ̃k (ωk ) must be compatible with ωk : ck−i ∈ Ik−i(i)
+Missing information can be based on tentative decisions or PSP
+PSP-based pseudo state:
+σ̃k (ωk ) = (µk ; c̃k−1(ωk ), . . . , c̃k−Q(ωk ), c̆k−Q−1(ωk ), . . . , c̆k−L(ωk ))
+c̃k−1(ωk ), . . . , c̃k−Q(ωk ) are code symbols compatible with state ωk to be
+found in the survivor history of state ωk
+c̆k−Q−1(ωk ), . . . , c̆k−L(ωk ) are code symbols in the survivor of state ωk
+140
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on static dispersive channel
+Folding by set partitioning: branch metrics
+Branch metrics in the original full-state trellis (S = ScM L states)
+γk (ck , σk ) = − rk − fk ck −
+
+L
+X
+
+2
+
+2 ln P [a (c , σ )]
+fl ck−l (σk ) + σw
+k k k
+
+l=1
+
+Branch metrics in the reduced-state trellis
+γ̃k (Ik (1), ωk ) =
+=
+
+max γk (ck , σ̃k (ωk ))
+
+ck ∈Ik (1)
+
+max − rk − fk ck −
+
+ck ∈Ik (1)
+
+2 ln P [a (c , ω )]
++ σw
+k k k
+
+Q
+X
+l=1
+
+fl c̃k−l (ωk ) −
+
+L
+X
+
+2
+
+fl c̆k−l (ωk )
+
+l=Q+1
+
+c̃k−1(ωk ), . . . , c̃k−Q(ωk ) are code symbols compatible with state ωk to be
+found in the survivor history of state ωk
+c̆k−Q−1(ωk ), . . . , c̆k−L(ωk ) are code symbols in the survivor of state ωk
+
+141
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduction of trellis state-complexity
+Problem 9
+Consider a linear modulation for transmitting uncoded binary symbols
+ak ∈ {±1} through the static dispersive channel with white-noise
+discrete equivalent considered in Problem 5
+A. Define a reduced system state by memory truncation and draw the
+relevant trellis diagram
+B. Express explicitly the branch metrics as a function of the received signal
+sample rk for any possible transition in the reduced trellis
+Assume the received sequence is
+(r0, r1, r2, r3, r4, r5, r6, r7) = (1.7, 1.2, 1.1, 0.3, −0.2, −1.1, 0.7, 0.4)
+
+and the initial “full” state is σ0 = (+1, +1)
+C. Use the Viterbi algorithm to approximately detect the MAP sequence
+{âk }7k=0
+D. Would it be possible to define a different reduced system state by set
+partitioning?
+
+142
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+A case-study: TCM on ISI channel
+System model: encoder
+#
+
+
+
+
+
+
+
+ &
+
+
+
+
+ 
+
+
+
+
+
+
+
+%
+$
+
+$
+#
+
+
+
+
+"
+
+!
+
+
+
+ &
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ &
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ &
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(i)
+
+(j)
+
+Information and code bits: ak and ck
+Gross spectral efficiency: 3 bit/s/Hz (to be reduced by the bandwidth
+expansion factor 1 + α = 1.3 ⇒ net spectral efficiency is 2.3 bit/s/Hz)
+
+143
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+TCM on ISI channel
+System model: set partition and mapping rule
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2 bits per parallel transition (code trellis)
+144
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+TCM on ISI channel
+System model: channel response
+Model of discrete observable:
+L
+X
+
+rk =
+
+fl ck−l + wk
+
+l=0
+
+{fl }L
+l=0: white-noise discrete equivalent of the ISI channel
+{wk }: i.i.d. Gaussian noise sequence.
+{ck }: code sequence
+
+
+L must be large enough to
+accommodate the significant pulses
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+L = 3 may be sufficient for the
+considered channel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+145
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+TCM on ISI channel
+Definition of partial states
+0. Full-complexity state for L = 3
+σk = (µk ; ck−1, ck−2, ck−3)
+
+S = ScM L = 4 × 83 = 4 × 29 = 2048
+
+1. Partial state by memory truncation with Q = 1 (J1 = 16, J2 = J3 = 1)
+ωk0 = (µk ; ck−1)
+
+S 0 = ScM Q = 4 × 81 = 32
+
+2. Partial state by set partition with
+Ω(1) = D = {D0, D1, . . . , D7} (J1 = 8)
+Ω(2) = Ω(3) = A
+(J2 = J3 = 1)
+J1
+00
+00
+= 4 × 4 = 16
+S = Sc
+ωk = (µk ; Ik−1(1))
+2
+
+146
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+TCM on ISI channel
+Definition of partial states (cntd)
+3. Partial state by set partition with
+Ω(1) = Ω(2) = C = {C0, C1, C2, C3} (J1 = J2 = 4)
+Ω(3) = A
+(J3 = 1)
+J1 J2
+000
+000
+= 4 × 2 × 2 = 16
+S = Sc
+ωk = (µk ; Ik−1(1), Ik−2(2))
+2 2
+4. Partial state by set partition with
+Ω(1) = = C = {C0, C1, C2, C3} (J1 = 4)
+Ω(2) = Ω(3) = A
+(J2 = J3 = 1)
+J1
+0000
+0000
+=4×2=8
+S = Sc
+ωk = (µk ; Ik−1(1))
+2
+5. Partial state by memory truncation with Q = 0 (code trellis)
+ωk00000 = µk
+S 00000 = Sc = 4
+147
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+10
+
+TCM on ISI channel
+Performance vs. complexity for RSSD
+
+-1
+
+• TC-16QAM
+
+• 4-tap channel
+10
+
+• reduced-estimator PSP
+with (S, N )
+
+-2
+
+BER
+
+• S = 2048: full combined
+code/ISI trellis
+10
+
+10
+
+• S = 32: reduced combined
+code/ISI trellis (case 1)
+
+(4,1)
+(4,2)
+(4,3)
+(4,4)
+(16,4)
+(16,16)
+(32,32)
+No ISI
+
+-3
+
+• S = 16: reduced combined
+code/ISI trellis (case 2)
+
+-4
+
+4
+
+5
+
+6
+
+7
+
+8
+
+Eb /N0 (dB)
+
+9
+
+10
+
+11
+
+12
+
+• S = 4: code trellis (case 5)
+• Reference curve for no ISI
+
+Figure reproduced from:
+– R. Raheli, G. Marino, P. Castoldi, “Per-survivor processing and tentative decisions: what is in
+between?,” IEEE Trans. Commun., pp. 127-129, Feb. 1996.
+148
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduced-search algorithms
+Motivation
+Reduced-search (or sequential) algorithms may be used to search a small part
+of a large FSM trellis diagram or non-FSM tree diagram
+As opposed to state-complexity reduction, the original full-complexity trellis
+(or tree) diagram is searched in a partial fashion
+These algorithms date back to the pre-Viterbi algorithm era. They were first
+proposed for decoding convolutional codes. The denomination “sequential”
+emphasizes the “novelty” compared to the then-established algebraic
+decoding of block codes
+These algorithms can be applied to any system characterized by large memory
+or state complexity (if a FSM model hold)
+If optimal processing is infeasible, any type of suboptimal processing may
+deserve our attention. Ranking of suboptimal solutions is difficult because of
+lacking of reference criteria
+RSSD must be considered but an alternative among many others
+
+149
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduced-search algorithms
+A general formulation of breadth-first detection
+Assume a FSM model hold and let S be the number of states (full-size trellis)
+Partition the S states into C (disjoint) classes
+Mantain B paths per class selecting those which maximize the APPs under
+the constraint imposed by the partition rule and class structure
+The resulting search algorithm may be denoted as SA(B,C)
+Special cases:
+B > 1 and C = S ⇒ list Viterbi algorithms with B survivors per state
+B = 1 and C = S ⇒ classical Viterbi algorithm
+B = 1 and C < S ⇒ RSSD with C states
+B > 1 and C < S ⇒ list RSSD with B survivors per state and C states
+B = M and C = 1 ⇒ M-algorithm
+150
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Reduced-search algorithms
+A general formulation of breadth-first detection (cntd)
+Whenever C < S, PSP allows the branch metrics to be defined
+PSP also allows the above formalization to be applied when an FSM model
+does not hold (S → ∞)
+Define the complexity level as the total number of paths being traced, i.e.,
+BC
+Imposing a constraint on complexity, i.e., BC ≤ η, constrained optimality
+can be defined
+According to this criterion, the M-algorithm is considered the constrained
+optimal search algorithm
+– T. Aulin, “Breadth-first maximum likelihood sequence detection: basics,” IEEE Trans.
+Commun., pp. 208-216, Feb. 1999.
+151
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Complexity reduction
+Bibliography
+– J. B. Anderson, S. Mohan, “Sequential coding algorithms: A survey and cost analysis,”
+IEEE Trans. Commun., vol. 32, pp. 169-176, Feb. 1984.
+– J. W. M. Bergmans, S. A. Rajput, F. A. M. Van De Laar, “On the use of Decision
+Feedback for Simplifying the Viterbi Decoder,” Philips Journal of Research, No. 4, 1987.
+– K. Wesolowski, “Efficient Digital Receiver Structure for Trellis-Coded Signals Transmitted
+through Channels with Intersymbol Interference,” Electronics Letters, Nov. 1987.
+– T. Hashimoto, “A List-Type Reduced-Constraint Generalization of the Viterbi Algorithm,”
+IEEE Trans. Inform. Theory, pp. 866-876, Nov. 1987.
+– M. V. Eyuboǧlu, S. U. H. Qureshi, “Reduced-State Sequence Estimation with Set Partition
+and Decision Feedback,” IEEE Trans. Commun., pp. 13-20, Jan. 1988.
+– A. Duel Hallen, C. Heegard, “Delayed Decision-Feedback Sequence Estimation,” IEEE
+Trans. Commun., pp. 428-436, May 1989.
+– P. R. Chevillat, E. Eleftheriou, “Decoding of Trellis-Encoded Signals in the Presence of
+Intersymbol Interference and Noise,” IEEE Trans. Commun., pp. 669-676, July 1989.
+– M. V. Eyuboǧlu, S. U. H. Qureshi, “Reduced-State Sequence Estimation for Coded
+Modulation on Intersymbol Interference Channels,” IEEE J. Sel. Areas Commun., pp.
+989-995, Aug. 1989.
+152
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Complexity reduction
+Bibliography (cntd)
+– J. B. Anderson, “Limited search trellis decoding of convolutional codes,” IEEE Trans.
+Inform. Theory, pp. 944-955, Sept. 1989.
+– S. J. Simmons, “Breadth-first trellis decoding with adaptive effort,” IEEE Trans.
+Commun., vol. 38, pp. 3-12, Jan. 1990.
+– A. Svensson, “Reduced state sequence detection of full response continuous phase
+modulation,“ IEE Electronics Letters, pp. 652 -654, 1 May 1990.
+– J. B. Anderson, E. Offer, “Reduced-state sequence detection with convolutional codes,”
+IEEE Trans. Inform. Theory, pp. 965-972, May 1994.
+– R. Raheli, A. Polydoros, C. K. Tzou, “Per-survivor processing: a general approach to MLSE
+in uncertain environments,” IEEE Trans. Commun., pp. 354-364, Feb.-Apr. 1995.
+– R. Raheli, G. Marino, P. Castoldi, “Per-survivor processing and tentative decisions: what is
+in between?,” IEEE Trans. Commun., pp. 127-129, Feb. 1996.
+– T. Aulin, “Breadth-first maximum likelihood sequence detection: basics,” IEEE Trans.
+Commun., pp. 208-216, Feb. 1999.
+
+153
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+4. Classical applications of PSP
+4.2 Linear predictive detection for fading channels
+Outline
+1. Review of detection techniques
+2. Detection under parametric uncertainty
+3. Per-Survivor Processing (PSP): concept and historical review
+4. Classical applications of PSP:
+4.1 Complexity reduction
+4.2 Linear predictive detection for fading channels
+4.3 Adaptive detection
+5. Advanced applications of PSP
+154
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on flat fading channel
+System model
+Model of discrete observable:
+r k = f k ck + w k
+{fk }: circular complex Gaussian random sequence
+{ck }: code sequence
+2
+{wk }: i.i.d. Gaussian noise sequence with variance σw
+Coding rule:
+
+µk : encoder state
+
+
+
+ck = o(ak , µk )
+µk+1 = t(ak , µk )
+
+Conditional statistics of the observation are Gaussian
+
+155
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear modulation on flat fading channel
+Does a FSM model hold?
+Conditional statistics of the observation:
+
+"
+
+k )|2
+|r
+−
+r̄
+(a
+1
+k
+k
+k) =
+0
+,
+a
+exp
+−
+p(rk |rk−1
+0
+0
+π σ̄k2 (ak0 )
+σ̄k2 (ak0 )
+
+Conditional mean
+
+#
+
+k}
+,
+a
+r̄k (ak0 ) = E{rk |rk−1
+0
+0
+
+Conditional variance
+k}
+,
+a
+σ̄k2 (ak0 ) = E{|rk − r̄k (ak0 )|2 |rk−1
+0
+0
+
+The conditional mean and variance depend on the entire previous code
+sequence:
+⇒
+
+unlimited memory
+156
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+Markov assumption
+These receivers are based on the approximation
+k ) ≃ p(r |rk−1 , ak )
+p(rk |rk−1
+,
+a
+k k−ν 0
+0
+0
+
+where integer ν > 0 must be sufficiently large
+
+Intuitive motivation: “old” observations do not add up much information to
+the current observation, given the immediately preceding ones
+If this condition were strictly met, the random sequence rk would be Markov
+of order ν, conditionally upon ak0
+This Markov assumption is never verified in an exact sense for realistic fading
+models. Even assuming a Markov fading model, thermal noise destroys the
+Markovianity in the observation.
+The quality of this approximation depends on the autocovariance sequence of
+the fading process fk and the value of ν, which is an important design
+parameter
+157
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+Problem 10
+Assume a first-order autoregressive fading model
+q
+fk+1 = 1 − ρ2 fk + ρ vk
+0 ≤ ρ ≤ 1 is a constant
+
+{vk } is an i.i.d. zero-mean Gaussian sequence with variance σv2
+
+A. Show that the fading sequence is Markov of first order
+Assume f0 is Gaussian with variance σv2
+B. Show that {fk } is a stationary Gaussian sequence
+C. Check if the conditional observation {rk } satisfies a Markov property.
+
+158
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+Conditional observation
+For Markovian observation, we may concentrate on
+"
+#
+k )|2
+|r
+−
+r̂
+(a
+1
+k
+k 0
+k) =
+exp
+−
+,
+a
+p(rk |rk−1
+k−ν 0
+π σ̂k2 (ak0 )
+σ̂k2 (ak0 )
+The conditional mean and variance
+k}
+,
+a
+r̂k (ak0 ) = E{rk |rk−1
+k−ν 0
+
+k}
+,
+a
+σ̂k2 (ak0 ) = E{|rk − r̂k (ak0 )|2 |rk−1
+k−ν 0
+
+are the ν-th order mean-square prediction of current observation rk , given the
+previous ν observations and the information sequence, and the relevant
+prediction error, respectively
+Note the difference with respect to the previously introduced notation r̄k (ak0 )
+and σ̄k2 (ak0 ), which denoted similar quantities given the entire previous
+(k-th order prediction at time k)
+observation history rk−1
+159
+0
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+Linear prediction
+For zero-mean Gaussian random sequences, the conditional mean (i.e., the
+mean-square prediction) is linear in the observation
+ν
+X
+k} =
+k) r
+,
+a
+p
+(a
+r̂k (ak0 ) = E{rk |rk−1
+i,k 0 k−i
+k−ν 0
+i=1
+
+At time k, the linear prediction coefficients pi,k and the mean-square
+prediction error σ̂k2 are the solution of the (linear) matrix equation (Wiener-Hopf)
+Rk (ak0 ) p = q
+o
+n
+where
+
+H k
+a0
+Rk (ak0 ) = E rkk−ν rkk−ν
+p = [1, −p1, −p2, . . . , −pν ]T
+T
+q = (σ̂ 2, 0,
+.
+.
+.
+,
+0
+)
+| {z }
+
+ν zeros
+The observation correlation matrix Rk (ak0 ) incorporates the dependence on
+the data sequence ak0 and vectors p and q include the unknowns
+
+160
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+Finite-memory condition
+Given the flat fading model, the observation vector can be expressed as
+k
+k
++ wk−ν
+rkk−ν = Ck fk−ν
+
+where Ck = diag(ckk−ν )
+o
+n
+
+H k
+Rk (ak0 ) = E rkk−ν rkk−ν
+a0
+ih
+i
+o
+nh
+k
+k
+k )H CH + (wk )H ak
+(fk−ν
++ wk−ν
+= E Ck fk−ν
+0
+k
+k−ν
+
+2 I = R(c , ζ )
++
+σ
+= Ck F C H
+k k
+w
+k
+o
+n
+
+H
+k
+k
+is the fading correlation matrix, which does not
+fk−ν
+and F = E fk−ν
+depend on k assuming stationary fading
+The dependence of Rk (ak0 ) on the information sequence can be compacted
+into the code sequence ckk−ν , hence in a suitably defined transition with state
+
+ζk = (µk ; ck−1, ck−2, . . . , ck−ν )
+161
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+Finite-memory condition (cntd)
+Since
+
+Rk (ak0 ) = R(ck , ζk )
+
+a similar dependence characterizes the prediction coefficients, the conditional
+mean and variance, and the entire conditional statistics of the observation
+pi(ak0 ) = pi(ck , ζk )
+r̂k (ak0 ) = r̂k (ck , ζk ) =
+
+ν
+X
+
+pi(ck , ζk ) rk−i
+
+i=1
+
+σ̂k2 (ak0 ) = σ̂ 2(ck , ζk )
+
+k ) = p(r |rk−1 , c , ζ )
+,
+a
+p(rk |rk−1
+k k−ν k k
+k−ν 0
+
+where unnecessary time indexes can be dropped assuming a stationary fading
+regime
+We may conclude that
+Markov assumption ⇒ finite memory
+
+162
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+Problem 11
+Assume {xk } is a stationary time-discrete random process with
+autocorrelation sequence E{xk+mx∗k } = ρm
+Pν
+Let x̂k = i=1 pixk−i denote the linear prediction of xk , given the
+previous ν samples xk−1, xk−2, . . . , xk−ν . The prediction coefficients
+{pi}νi=1 minimize the mean-square prediction error σ̂ 2 = E{|xk − x̂k |2}
+
+A. Show that the prediction coefficients {pi}νi=1 and the minimum
+prediction error σ̂ 2 are the solution of the Wiener-Hopf equation
+Xp=q
+where
+
+H o
+
+n
+
+X = E xkk−ν xkk−ν
+p = [1, −p1, −p2, . . . , −pν ]T
+T
+q = (σ̂ 2, 0,
+.
+.
+.
+,
+0
+)
+| {z }
+ν zeros
+
+B. Show that the linear prediction coincides with the mean-square prediction
+when {xk } is a zero-mean Gaussian sequence
+
+163
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+Branch metrics
+The resulting branch metrics are
+γk (ck , ζk ) = ln p(rk |rk−1
+k−ν , ck , ζk ) + ln P [ak (ck , ζk )]
+|rk − r̂k (ck , ζk )|2
+2(c , ζ ) + ln P [a (c , ζ )]
+−
+ln
+σ̂
+∝−
+k k
+k k k
+σ̂ 2(ck , ζk )
+Pν
+|rk − i=1 pi(ck , ζk ) rk−i|2
+2(c , ζ ) + ln P [a (c , ζ )]
+−
+ln
+σ̂
+= −
+k k
+k k k
+σ̂ 2(ck , ζk )
+They are based on linear predictions r̂k (ck , ζk ) of the current observation rk
+based on the previous observations and path-dependent prediction
+coefficients
+
+164
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+An interpretation
+Based on the conditional Gaussianity of the observation and the Markov
+assumption, we can concentrate on the Gaussian p.d.f. p(rk |rk−1
+k−ν , ck , ζk )
+
+The conditional mean r̂k (ck , ζk ) and variance σ̂ 2(ck , ζk ) can be viewed as
+system parameters to be estimated
+1. Adopt a linear feedforward data-aided parameter estimator of order ν (see
+Section 2)
+2. Use a set of estimators by associating one estimator to each trellis path
+3. Compute the estimation coefficients in order to minimize the
+mean-square estimation error with respect to the random variable rk ,
+conditionally on the path data sequence
+⇒ The resulting estimator is the described path-dependent linear predictor
+Linear prediction of rk based on the previous observations is a form of
+PSP-based feedforward parameter estimation
+We obtained it naturally in the derivation of the detection algorithm
+
+165
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+Alternative formulation of the branch metrics
+The observation prediction can be expressed as
+k−1 , c , ζ }
+,
+c
+,
+ζ
+}
+=
+E{f
+c
++
+w
+|r
+r̂k (ck , ζk ) = E{rk |rk−1
+k k
+k k−ν k k
+k−ν k k
+
+ˆk (ck , ζk )
+,
+c
+,
+ζ
+}
+=
+c
+f
+= ck E{fk |rk−1
+k
+k
+k
+k−ν
+fˆk (ck , ζk ) =
+
+ν
+X
+
+rk−i
+00
+pi (ck , ζk )
+ck−i(ζk )
+i=1
+
+fˆk (ck , ζk ) denote path-dependent linear predictions of the fading coefficient
+at time k, based on previous observations
+p00i (ck , ζk ) are path-dependent linear prediction coefficients of the fading
+process based on previous observations of noisy fading-like path-dependent
+sequences {ri/ci(ζk )}k−1
+i=k−ν
+ck
+00
+⇒ pi(ck , ζk ) = pi (ck , ζk )
+ck−i(ζk )
+
+166
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+Alternative formulation of the branch metrics (cntd)
+The mean-square prediction error of observation and fading are similarly
+related by
+σ 2(ck , ζk ) = E{|rk − r̂k (ck , ζk )|2|rk−1
+k−ν , ck , ζk }
+
+= E{|fk ck + wk − ck fˆk (ck , ζk )|2|rk−1
+k−ν , ck , ζk }
+
+2
+= |ck |22(ck , ζk ) + σw
+2(ck , ζk ) = E{|fk − fˆk (ck , ζk )|2|rk−1 , ck , ζk }
+k−ν
+
+The branch metrics can be expressed as
+i
+h
+|rk − ck fˆk (ck , ζk )|2
+22(c , ζ ) + σ 2
+−
+ln
+|c
+|
+γk (ck , ζk ) = −
+k
+k k
+w
+2
+|ck |22(ck , ζk ) + σw
++ ln P [ak (ck , ζk )]
+
+167
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+An interpretation of the alternative formulation
+The observation model rk = fk ck + wk satisfies a parameter-conditional
+finite memory property by viewing fk as an undesired parameter (see
+Section 2)
+For estimating this parameter we could:
+1. Adopt a linear feedforward data-aided parameter estimator of order ν (see
+Section 2)
+2. Use a set of estimators by associating one estimator to each trellis path
+3. Compute the estimation coefficients in order to minimize the
+mean-square estimation error with respect to the random variable rk /ck ,
+conditionally on the path data sequence
+⇒ The resulting estimator is exactly the described path-dependent linear
+predictor
+Linear prediction of fk based on the previous observations is a form of
+PSP-based feedforward parameter estimation
+
+168
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+Computation of the fading prediction coefficients
+The fading prediction coefficients p00i (ck , ζk ) and mean-square prediction error
+2(ck , ζk ) are the solution of the following Wiener-Hopf equation
+ 00
+2
+F + σw C̃k p = q00
+where
+
+o
+n
+
+H
+k
+k
+F = E fk−ν
+fk−ν
+
+
+C̃k = diag |c1|2 , |c 1 |2 , . . . , |c 1 |2
+k
+k−1
+k−ν
+
+
+T
+00
+00
+00
+00
+p = 1, −p1 , −p2 , . . . , −pν
+2
+
+σ
+T
+q00 = (2 + |c w|2 , 0,
+.
+.
+.
+,
+0
+)
+| {z }
+k
+ν zeros
+
+The dependence of the solution on the hypothetical sequence is only through
+the moduli of the code symbols
+For code symbols with constant modulus, the solution is path-independent
+
+169
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+Special case: Coded PSK
+For code symbols with constant modulus |ck | = 1 (e.g., PSK), the fading
+prediction coefficients p00i and mean-squared prediction error 2 are
+path-independent
+The branch metrics simplify as
+γk (ck , ζk ) = − |rk − ck fˆk (ζk )|2 + (2 + σ 2 ) ln P [ak (ck , ζk )]
+w
+
+= − rk − ck
+
+ν
+X
+i=1
+
+2
+r
+k−i
+2 ) ln P [a (c , ζ )]
+p00i
++ (2 + σw
+k k k
+ck−i(ζk )
+
+This solution is remarkably similar to what we would obtain in a decomposed
+estimation-detection design by estimating the “undesired” parameter fk
+according to PSP
+The (Gaussian) prediction error variance 2 affects the “overall” thermal noise
+power
+
+170
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+Problem 12
+Consider the mean-square prediciton of fk given the previous ν fading
+k−1 and let {p0 }ν denote the linear prediction coefficients for
+samples fk−ν
+i i=1
+this problem
+A. Show that the fading prediction coefficients {p00i (ck , ζk )}νi=1 equal
+{p0i}νi=1 in the limit of vanishing noise power
+Consider the first-order autoregressive fading model described in
+Problem 10 in a stationary regime and a constellation of unit-modulus
+code symbols
+B. Show that the ν-th order prediction coefficients {p0i}νi=1 satisfy p01 = ρ,
+p02 = · · · = p0ν = 0
+
+C. Show that the ν-th order prediction coefficients {p00i }νi=1 are not zero for
+2 6= 0
+σw
+171
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+State-complexity reduction
+The state-complexity of a linear predicition receiver can be naturally
+decoupled from the prediction order ν by means of state reduction techniques
+For simplicity we consider folding by memory truncation, but set partitioning
+could be used as well
+Let Q < ν denote the memory parameter to be taken into account in the
+definition of reduced trellis state
+ωk = (µk ; ck−1, ck−2, . . . , ck−Q)
+The branch metrics can be obtained by defining a pseudo state
+ζ̃k (ωk ) = (µk ; ck−1, . . . , ck−Q, c̆k−Q−1(ωk ), . . . , c̆k−ν (ωk ))
+|
+{z
+}
+ωk
+
+c̆k−Q−1(ωk ), . . . , c̆k−L(ωk ) are the code symbols in the survivor of state ωk
+172
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+State-complexity reduction: branch metrics
+The branch metrics in the reduced-state trellis can be defined as usual
+according to
+γ̃k (ck , ωk ) = γk (ck , ζ̃k (ωk ))
+For coded PSK the branch metrics are
+2 ) ln P [a (c , ω )]
+γ̃k (ck , ωk ) = − |rk − ck fˆk (ζ̃k (ωk ))|2 + (2 + σw
+k k k
+Q
+X
+
+ν
+2
+X
+r
+r
+k−i
+k−i
+− ck
+p00i
+p00i
+= − rk − ck
+ck−i(ωk )
+c̆k−i(ωk )
+i=1
+i=Q+1
+2 ) ln P [a (c , ω )]
++ (2 + σw
+k k k
+
+The prediction order ν and assumed memory Q are design parameters to be
+jointly optimized by experiment to yield a good compromise between
+performance and complexity
+173
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+Performance vs. ideal CSI
+• QPSK (M = 4)
+
+• time-varying flat Rayleigh fading
+
+• BT : max Doppler rate
+
+• ν = 10, Q = 2 (16 states)
+
+• Periodically inserted pilot symbols
+(one every 9 data symbols)
+• Reference curve for ideal
+channel state information (CSI)
+
+Figure reproduced from:
+– G. M. Vitetta, D. P. Taylor, “Maximum likelihood decoding of uncoded and coded PSK signal
+sequences transmitted over Rayleigh flat-fading channels,” IEEE Trans. Commun., vol. 43,
+pp. 2750-2758, Nov. 1995
+174
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+Bibliography
+– J. Lodge, M. Moher, “ML estimation of CPM signals transmitted over Rayleigh flat fading
+channels,” IEEE Trans. Commun., pp. 787-794, June 1990.
+– D. Makrakis, P. T. Mathiopoulos, D. P. Bouras, “Optimal decoding of coded PSK and
+QAM signals in correlated fast fading channels and AWGN: a combined envelope, multiple
+differential and coherent detection approach,” IEEE Trans. Commun., pp.63-75,
+Jan. 1994.
+– Q. Dai, E. Shwedyk, “Detection of bandlimited signals over frequency selective Rayleigh
+fading channels,” IEEE Trans. Commun., pp. 941-950, Feb.-Apr. 1994.
+– X. Yu, S. Pasupathy, “Innovations-based MLSE for Rayleigh fading channels,” IEEE
+Trans. Commun., pp. 1534-Feb.-Apr. 1995.
+– G. M. Vitetta, D. P. Taylor, “Maximum likelihood decoding of uncoded and coded PSK
+signal sequences transmitted over Rayleigh flat-fading channels,” IEEE Trans.
+Commun., vol. 43, pp. 2750-2758, Nov. 1995
+– G. M. Vitetta, D. P. Taylor, U. Mengali, “Double filtering receivers for PSK signals
+transmitted over Rayleigh frequency-flat fading channels,” IEEE Trans. Commun., vol.
+44, pp. 686-695, June 1996.
+175
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Linear predictive detection
+Bibliography (cntd)
+– D. M. Matolak, S. G. Wilson, “Detection for a statistically known, time-varying dispersive
+channel,” vol. 44, pp. 1673-1683, Dec. 1996.
+– M. E. Rollins, S. J. Simmons, “Simplified per-survivor Kalman processing in fast
+frequency-selective fading channels,” IEEE Trans. Commun., pp. 544-553, May 1997.
+– P. Castoldi, R. Raheli, “On recursive optimal detection of linear modulations in the
+presence of random fading”, European Trans. Telecommun. (ETT), vol. 9, no. 2, pp.
+209-220, March-April 1998.
+– G. Colavolpe, P. Castoldi, R. Raheli, “Linear predictive receivers for fading channels”, IEE
+Electronics Letters, vol. 34, no. 13, pp. 1289-1290, 25th June 1998.
+
+176
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+4. Classical applications of PSP
+4.3 Adaptive detection
+Outline
+1. Review of detection techniques
+2. Detection under parametric uncertainty
+3. Per-Survivor Processing (PSP): concept and historical review
+4. Classical applications of PSP:
+4.1 Complexity reduction
+4.2 Linear predictive detection for fading channels
+4.3 Adaptive detection
+5. Advanced applications of PSP
+177
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Adaptive detection
+Motivation
+Channel model parameters can be time-varying (e.g., carrier phase, timing
+epoch, and channel impulse response)
+A receiver based on the estimation-detection decomposition must be able to
+track these time variations, provided they are not too fast
+The receiver must adapt itself to the time-varying channel conditions
+PSP may be useful in adaptive receivers:
+a) The per-survivor estimator associated with the best survivor is derived from
+data information which can be perceived as high-quality zero-delay decisions
+⇒ Useful in fast time-varying channels
+b) Many hypothetical data sequences are simultaneously considered in the
+parameter estimation process
+⇒ Acquisition without training (blind) may be facilitated
+178
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Adaptive detection
+PSP-based feedforward parameter estimation
+Assume a parameter-conditional FSM model with state σk
+PSP-based feedforward data-aided parameter estimator at time k
+h
+i
+k−1 (σ )
+,
+c̆
+θ̆ k (σk ) = p rk−1
+k
+k−ν 0
+
+Function of the ν most recent signal observations rk−1
+k−ν and the per-survivor
+aiding data sequence c̆k−1
+0 (σk )
+
+Branch metrics at time k
+
+h
+i
+γk (ak , σk ) = ln p rk |rk−1
+0 , ak , σk , θ̆ k (σk ) + ln P (ak )
+
+Update of the parameter estimator at time k + 1
+h
+i
+θ̆k+1(σk+1) = p rkk−ν+1, c̆k0 (σk+1)
+
+These estimates are simply recomputed for the new observation vector
+rkk−ν+1 and each new survivor sequence c̆k0 (σk+1)
+An example is the linear predictive receiver for fading channels
+
+179
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Adaptive detection
+PSP-based feedback parameter estimation
+Assume a parameter-conditional FSM model with state σk
+PSP-based feedback data-aided parameter estimator θ̆k (σk )
+Branch metrics
+
+h
+i
+γk (ak , σk ) = ln p rk |rk−1
+0 , ak , σk , θ̆ k (σk ) + ln P (ak )
+
+Update of the parameter estimator
+h
+i
+θ̆k+1(σk+1) = q θ̆kk−ξ+1(σk ), rkk−ν+1, c̆k0 (σk+1)
+
+These estimates are computed for the ν most recent observations rkk−ν+1
+and each new survivor sequence c̆k0 (σk+1)
+The previous ξ parameter values θ̆kk−ξ+1(σk ) are those associated with the
+survivors of states σk in the transitions (σk → σk+1) selected during the ACS
+step
+Feedback parameter estimation is usually implied in adaptive receivers
+
+180
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Adaptive detection
+Tentative decisions can be used
+In feedforward and feedback parameter estimation, tentative decisions ĉˆk0
+can be used in place of the survivor data sequences c̆k0 (σk+1) for updating
+the parameter estimate
+The parameter estimate becomes universal, i.e., identical for all survivors
+Formally, the updating recursions yield identical estimates for all survivors
+The parameter estimator becomes external to the detection block
+During training the correct data sequence would be used
+
+181
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Tracking of a dispersive time-varying channel
+System model and notation
+Model of linearly modulated discrete observable (slow variation)
+rk =
+
+L
+X
+
+fl,k ck−l + wk = fkT ck + wk
+
+l=0
+
+fk = (f0,k , f1,k , . . . , fL,k )T : overall time-varying discrete equivalent impulse
+response at the k-th instant
+ck = (ck , ck−1, . . . , ck−L)T : code sequence with FSM model of state µk
+σk = (ak−1, ak−2, . . . , ak−L; µk−L) : system state
+ck (ak , σk ) = [ck (ak , µk ), ck−1(ak−1, µk−1), . . . , ck−L(ak−L, µk−L)]T :
+code symbol vector uniquely associated with the considered trellis branch
+(ak , σk ), in accordance with the coding rule
+182
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Tracking of a dispersive time-varying channel
+LMS adaptive identification
+Least Mean Squares (LMS) adaptive identification
+f̂k+1 = f̂k + β (rk+1−d − f̂kT ck+1−d) c∗k+1−d
+
+β compromises between adaptation speed and algorithm stability
+Branch metrics
+2 ln P (a )
+γk (ak , σk ) = −|rk − f̂kT ck (ak , σk )|2 + σw
+k
+
+In the (tentative) decision-directed tracking mode
+= f̂ + β (r
+− f̂ T ĉˆ
+f̂
+
+ˆ∗
+)
+ĉ
+k+1
+k
+k+1−d
+k k+1−d k+1−d
+ĉˆk+1−d = (ĉˆk+1−d, ĉˆk−d, . . . , ĉˆk+1−d−L)T
+
+d ≥ 1 to comply with the causality condition upon the data
+183
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Tracking of a dispersive time-varying channel
+PSP-based LMS adaptive identification
+Branch metrics
+2 ln P (a )
+γk (ak , σk ) = −|rk − f̆k (σk )T ck (ak , σk )|2 + σw
+k
+
+Channel estimate update recursions
+h
+i
+f̆k+1(σk+1) = f̆k (σk ) + β rk − f̆k (σk )T c̆k (ak , σk ) c̆∗k (ak , σk )
+c̆k (ak , σk ) = [c̆k (ak , σk ), c̆k−1(σk ), . . . , c̆k−L(σk )]T
+
+The parameter estimate update recursions must take place along the
+transitions (σk → σk+1) which extend the survivors of states σk , i.e., those
+selected during the ACS step at time k
+
+184
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Adaptive detection
+LMS tracking of a dispersive fading channel
+0
+
+10
+
+• QPSK (M = 4)
+• Data blocks of 60 symbols
+• Training preamble and tail
+• Rayleigh fading channel with
+3 independent tap weights
+• Power delay profile (standard
+dev. of tap gains): √1 (1, 2, 1)
+
+-1
+
+Probability of symbol error
+
+10
+
+-2
+
+10
+
+6
+
+-3
+
+10
+
+known-data
+PSP
+conv. (d=3)
+conv. (d=5)
+non-adaptive
+
+-4
+
+10
+
+-5
+
+10
+
+5
+
+10
+
+15
+
+20
+25
+30
+ES/N0 (dB)
+
+35
+
+40
+
+45
+
+• Doppler rate: fD T = 1.85 × 10−3
+In the 1.8 GHz band:
+32.5 km/h with 1/T = 24.3 kHz
+300 km/h with 1/T = 270.8 kHz
+• Full-state sequence detection:
+Q = L = 2 (16 states)
+
+Figure reproduced from:
+– R. Raheli, A. Polydoros, C. K. Tzou, “Per-survivor processing: a general approach to MLSE
+185
+in uncertain environments,” IEEE Trans. Commun., pp. 354-364, Feb.-Apr. 1995.
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Adaptive detection
+LMS tracking of a dispersive fading diversity channel
+10
+
+Probability of symbol error
+
+10
+
+10
+
+10
+
+10
+
+10
+
+• QPSK (M = 4)
+• Data blocks of 60 symbols
+• Training preamble and tail
+• Rayleigh fading channel with
+3 independent tap weights
+• Power delay profile (standard
+dev. of tap gains): √1 (1, 2, 1)
+
+0
+
+known data
+PSP
+conv. (d=3)
+conv. (d=5)
+
+-1
+
+-2
+
+6
+
+-3
+
+-4
+
+-5
+
+5
+
+10
+
+15
+
+20
+
+25
+
+Es/N0 (dB)
+
+30
+
+35
+
+40
+
+45
+
+• Doppler rate: fD T = 3.69 × 10−3
+In the 1.8 GHz band:
+65 km/h with 1/T = 24.3 kHz
+600 km/h with 1/T = 270.8 kHz
+• Dual diversity
+• Full-state sequence detection:
+Q = L = 2 (16 states)
+186
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Joint detection and phase synchronization
+System model
+Model of linearly modulated discrete observable (slow variation)
+rk = ejθk ck + wk
+θk : channel-induced phase rotation
+{ck } : code sequence with FSM model of state µk
+2
+{wk } : i.i.d. Gaussian noise sequence with variance σw
+First order data-aided Phase-Locked Loop (PLL)
+o
+n
+θ̂k+1 = θ̂k + η Im rk+1−d e−j θ̂k c∗k+1−d
+
+η controls the loop bandwidth
+
+187
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Joint detection and phase synchronization
+Decision-directed phase tracking
+Branch metrics
+2 ln P (a )
+γk (ak , µk ) = −|rk e−j θ̂k − ck (ak , µk )|2 + σw
+k
+
+ck (ak , σk ) : code symbol branch label
+PLL phase-update (feedback) recursion
+o
+n
+θ̂k+1 = θ̂k + η Im rk+1−d e−j θ̂k ĉˆ∗k+1−d
+
+The tentative decision delay must comply with the causality condition upon
+the detected data, which implies d ≥ 1.
+
+188
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Joint detection and phase synchronization
+PSP-based phase tracking
+Branch metrics:
+2 ln P (a )
+γk (ak , µk ) = −|rk e−j θ̆k (µk ) − ck (ak , µk )|2 + σw
+k
+
+Phase estimate update recursion:
+
+n
+o
+θ̆k+1(µk+1) = θ̆k (µk ) + η Im rk e−j θ̆k (µk ) c̆∗k (ak , µk )
+
+c̆∗k (ak µk ) is the code symbol associated with the transition (ak , µk )
+The phase estimate update recursions must take place along the transitions
+(µk → µk+1) which extend the survivors of states µk , i.e., those selected
+during the ACS step at time k
+
+189
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Adaptive detection
+Joint TCM decoding and phase synchronization
+0
+
+10
+
+Probability of symbol error
+
+10
+
+10
+
+-1
+
+• TC-8PSK (4 states)
+
+• Phase noise with Wiener
+model:
+
+-2
+
+θk+1 = θk + ∆k
+10
+
+10
+
+10
+
+∆k are Gaussian, i.i.d. with
+standard deviation 2◦
+
+-3
+
+-4
+
+kn.-phase
+kn.-data
+PSP
+conv. (d=2)
+
+-5
+
+5
+
+10
+ES/N0 (dB)
+
+15
+
+Figure reproduced from:
+– R. Raheli, A. Polydoros, C. K. Tzou, “Per-survivor processing: a general approach to MLSE
+190
+in uncertain environments,” IEEE Trans. Commun., pp. 354-364, Feb.-Apr. 1995.
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Adaptive detection
+Phase acquisition of PLL and VT
+• TC-8PSK (4 states)
+• 1st order PLL
+
+• 1st order vector tracker (VT)
+
+• With system in lock, a phase step
+∆φ is applied at time zero
+• Phase evolution is monitored until
+the phase error reduces to ±10◦
+• Acquisition time in symbol
+periods vs. ∆φ
+• Es/N0 = 10 dB
+• BEQT = 10−2
+
+Figure reproduced from:
+– A. N. D’Andrea, U. Mengali, and G. M. Vitetta, “Approximate ML decoding of coded PSK
+with no explicit carrier phase reference,” IEEE Trans. Commun., pp. 1033-1039, Feb.-Apr.
+1994.
+191
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Adaptive detection
+Bibliography
+– A. N. D’Andrea, U. Mengali, and G. M. Vitetta, “Approximate ML decoding of coded PSK
+with no explicit carrier phase reference,” IEEE Trans. Commun., pp. 1033-1039,
+Feb.-Apr. 1994.
+– H. Kubo, K. Murakami, T. Fujino, “An adaptive MLSE for fast time-varying ISI channels,”
+IEEE Trans. Commun., pp, 1872-1880, Feb.-Apr. 1994.
+– H. Kubo, K. Murakami, T. Fujino, “Adaptive MLSE by means of combined equalization
+and decoding in fading environments,” IEEE J. Sel. Areas Commun., pp, 102-109, vol.
+13, Jan. 1995.
+– R. Raheli, A. Polydoros, C. K. Tzou, “Per-survivor processing: a general approach to MLSE
+in uncertain environments,” IEEE Trans. Commun., pp. 354-364, Feb.-Apr. 1995.
+– R. Raheli, G. Marino, P. Castoldi, “Per-survivor processing and tentative decisions: what is
+in between?,” IEEE Trans. Commun., pp. 127-129, Feb. 1996.
+– K. M. Chugg, A. Polydoros, “MLSE for an unknown channel—Parts I and II,” IEEE
+Trans. Commun., pp. 836-846 and 949-958, July and Aug. 1996.
+– K. M. Chugg, “Blind acquisition characteristics of PSP-based sequence detectors,” IEEE
+J. Sel. Areas Commun., vol. 16, pp. 1518-1529, Oct. 1998.
+192
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+5. Advanced applications of PSP
+
+Outline
+1. Review of detection techniques
+2. Detection under parametric uncertainty
+3. Per-Survivor Processing (PSP): concept and historical review
+4. Classical applications of PSP:
+4.1 Complexity reduction
+4.2 Linear predictive detection for fading channels
+4.3 Adaptive detection
+5. Advanced applications of PSP
+
+193
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Iterative detection
+Motivation
+Iterative, or turbo, detection/decoding was first proposed as a suboptimal
+algorithm for decoding special very powerful channel codes, widely known as
+turbo codes
+Turbo codes are a parallel concatenation of simple component recursive
+convolutional codes through a long permuter, or interleaver
+The principle of iterative detection/decoding can be applied to any parallel or
+serial concatenation of FSM models:
+a) Each FSM model is detected/decoded by means of a suitable soft-input
+soft-output (SISO) module accounting for that model
+b) The soft-outputs of the various modules are passed to other modules, which
+refine the detection/decoding process in a next iteration
+c) The process can be iterated several times and usually converges in a few steps
+Since the channel can be typically modeled as a FSM, exactly or
+approximately, joint iterative detection of the received signal and decoding of
+a possible channel code can be performed
+194
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Iterative detection
+Soft-input soft-output (SISO) modules
+A SISO module processes the soft-information received from other modules
+and combines it with the possible observation of the channel output
+The input soft-information can be accounted for by assigning proper values to
+the a priori probabilities of the information or code symbols
+⇒ This is the reason for having so diligently accounted for these probabilities
+in the various branch-metric expressions
+In non-iterative detection, we are allowed to eliminate the a priori symbol
+probabilities from the very beginning, on the basis of the reasonable
+assumption that they have equal values (hence, they are irrelevant)
+The output soft-information is computed on the basis of the APPs of the
+possible information or code symbols
+195
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Iterative detection
+PSP-based SISO modules
+A SISO module computes the APPs of the information symbols by means of
+a forward-backward (FB) or soft-output Viterbi algorithm
+Soft-output Viterbi algorithms estimate a reliability value of any decision by
+comparing the metrics of best paths to those of their competitors
+The max-log approximation of the FB algorithm allows a direct application of
+PSP to the two counter-running Viterbi algorithms (in direct and inverse time)
+Soft-output Viterbi algorithms can be readily augmented with PSP
+These remarks entitle us to exploit any possible application of PSP in the
+soft-output modules used in iterative decoding, e.g. for:
+Complexity reduction
+Linear predictive detection
+Adaptive detection
+196
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Concatenation of code and ISI channel
+Reduced-state iterative detection/decoding
+
+
+
+
++ *
+,
+
+*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+
+
+"
+
+$
+
+(
+&'
+
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+#
+
+!
+
+
+
+
+
+Soft-output detector based on FB with max-log approximation in the forward
+and backward recursions (not in the APP computation)
+Exact FB decoder
+Pseudo-random interleaver Π
+197
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Concatenation of code and ISI channel
+Reduced-state iterative detection/decoding
+10
+
+10
+
+ζ’=2, L=4, Q =1
+ζ’=4, L=4, Q =2
+ζ’=8, L=4, Q =3
+ζ=16, L=4, Q=4
+No ISI
+
+-1
+
+1 iteration
+
+-2
+
+BER
+
+10
+
+0
+
+6 iterations
+10
+
+10
+
+10
+
+-3
+
+-4
+
+-5
+
+0
+
+1
+
+2
+
+3
+
+4 5 6 7
+E b/N 0 [dB]
+
+8
+
+9 10 11
+
+• Outer rate-1/2 16-state recursive
+systematic convolutional code (RSC)
+• Code generators:
+G1 = (23)8 and G2 = (35)8
+• 64 × 64 pseudo-random interleaver
+• BPSK
+• Known static ISI
+• ζ 0 = number of states in reduced-state
+trellis
+• 1 and 6 iterations
+• Reference curve for ideal channel
+
+Figure reproduced from:
+– G. Colavolpe, G. Ferrari, R. Raheli, “Reduced-state BCJR-type algorithms,” IEEE J. Select.
+Areas Commun., vol. 19, pp. 848-859, May 2001.
+198
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Concatenation of code and fading channel
+Linear-predictive iterative detection/decoding
+!
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+
+,
+
+)
+*+
+$
+'
+
+%&
+
+
+
+
+
+
+
+
+
+ 
+
+%
+
+
+
+ 
+
+
+
+
+(
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+
+Soft-output detector based on FB with linear prediction and state reduction
+(bit APPs)
+Exact FB decoder
+Pseudo-random bit interleaver Π
+199
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+10
+
+BER
+
+10
+
+10
+
+10
+
+10
+
+-1
+
+-2
+
+-3
+
+-4
+
+-5
+
+4
+
+Concatenation of code and fading channel
+Linear-predictive iterative detection/decoding
+• Outer rate-1/2 64-state non recursive
+1 iteration
+non systematic convolutional code
+6 iterations
+• Code generators:
+G1 = (133)8 and G2 = (171)8
+• 64 × 64 pseudo-random bit interleaver
+• DQPSK
+• Flat Rayleih fading
+Coherent
+ν=3 (Q=3)
+• Isotropic scattering model with
+ν=4 (Q=4)
+ν=3, Q=2
+normalized fading rate: fD T = 0.01
+ν=4, Q=3
+ν=5, Q=3
+• Various levels of complexity (ν, Q)
+• Number of detector trellis states:
+5
+6
+7
+8
+E /N [dB]
+S = 4Q−1 (accounting for diff. enc.)
+b
+
+0
+
+Figure reproduced from:
+– G. Colavolpe, G. Ferrari, R. Raheli, “Reduced-state BCJR-type algorithms,” IEEE J. Select.
+Areas Commun., vol. 19, pp. 848-859, May 2001.
+200
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Noncoherent detection
+Motivation
+In virtually any bandpass transmission system, the carrier phase reference is
+not known by the receiver
+In coherent detection this phase reference must be recovered by the receiver,
+provided it is sufficiently stable, according to the synchronization-detection
+decomposition
+Noncoherent detection assumes complete absence of knowledge about the
+phase reference—an effective approach if the phase is unstable
+A nonchoerent channel introduces unlimited memory in the
+signal—suboptimal detection algorithms are in order
+
+201
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Noncoherent detection
+Unlimited memory
+Discrete channel model
+rk = ck ejθ + wk
+The conditional p.d.f. of the observation is
+
+h
+
+i
+
+2 (rk )H ck
+2+|c |2)/σ 2
+I
+k
+k
+−(|r
+|
+0 σ2
+k
+k
+w
+0
+0
+p(r0 |a0 )
+e
+k−1
+k
+w
+i
+h
+=
+p(rk |r0 , a0 ) =
+2
+k−1
+k−1
+πσw
+H ck−1
+p(r0 |a0 )
+I0 σ22 (rk−1
+)
+0
+0
+w
+
+In fact
+
+1
+k
+k
+p(r0 |a0 ) =
+2π
+
+Z 2π
+
+p(rk0 |ak0 , θ)dθ
+0
+Z 2π
+k −ck ejθ ||2)/σ 2
+1
+−(||r
+w dθ
+0
+0
+e
+=
+2 )k+1
+2π(πσw
+0
+Z 2π
+k ||2+||ck ||2)/σ 2
+k )H ck ejθ })/σ 2
+1
+−(||r
+(2Re{(r
+w
+w dθ
+0
+0
+0
+0
+e
+e
+=
+2 )k+1
+2π(πσw
+
+0
+k ||2+||ck ||2)/σ 2
+2
+1
+−(||r
+k )H c k
+w
+0
+0
+e
+I
+(r
+=
+0
+0
+0
+2
+2 )k+1
+σw
+(πσw
+
+202
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Noncoherent detection
+Feedforward PSP-based phase estimation
+Data-aided mean-square phase estimate based on N most recent observations
+rk−1
+k−N
+e−j θ̂ =
+
+H ck−1
+(rk−1
+)
+k−N
+k−N
+
+H ck−1
+)
+(rk−1
+k−N
+k−N
+
+Branch metrics:
+γk (ck , µk ) = − rk e−j θ̆k (µk ) − ck
+
+2
+
+2 ln P [a (c , µ )]
++ σw
+k k k
+
+2
+1 2
+|
+|c
+k
+∗
+−j
+θ̆
+(µ
+)
+k
+k
++ σw ln P [ak (ck , µk )]
+−
+∝ Re rk ck e
+2
+2
+ ∗
+H c̆k−1 (µ )
+2
+2
+)
+Re rk ck · (rk−1
+σ
+|c
+|
+k
+k−N
+k−N
+k
+w
++
+ln P [ak (ak , µk )]
+−
+=
+k−1
+k−1
+H
+2
+2
+(rk−N ) c̆k−N (µk )
+
+
+
+The trellis state µk can be augmented to include part of the phase memory
+ωk = (µk ; ck−1, ck−2, . . . , ck−Q) Q ≤ N
+
+203
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Feedforward phase estimation
+Problem 13
+Consider the random-phase discrete channel model
+rk = ck ejθ + wk
+Define a feedforward data-aided phase estimate θ̂ based on the previous
+N observations by minimizing the mean-square error
+o
+n
+k−1 ej θ̂ 2 ck−1
+−
+c
+E rk−1
+k−N
+k−N
+k−N
+
+A. Show that this estimate must verify the condition
+e−j θ̂ =
+
+H ck−1
+(rk−1
+)
+k−N
+k−N
+H ck−1
+)
+(rk−1
+k−N
+k−N
+
+B. Show that the result in part A coincides with the data-aided
+maximum-likelihood phase estimate based on the previous N observations
+204
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+10
+
+10
+
+Noncoherent sequence detection
+Feedforward PSP-based phase estimation
+
+0
+
+• Performance vs. ideal
+coherent detection
+(stable phase)
+
+-1
+
+S =8
+S =16
+
+-2
+
+BER
+
+10
+
+• 8-state TC-16QAM
+
+• 90◦ rotational invariance
+with differential encoding
+
+S =64
+
+10
+
+10
+
+10
+
+-3
+
+N=5
+N=7
+N=5
+N=7
+N=5
+N=7
+Coherent
+
+-4
+
+-5
+
+4
+
+5
+
+• Robust when phase is
+unstable
+6
+
+7
+E b /N0 [dB]
+
+8
+
+9
+
+10
+
+Figure reproduced from:
+– G. Colavolpe, R. Raheli, “On noncoherent sequence detection of coded QAM”, IEEE
+Commun. Lett., vol. 2, pp. 211-213, August 1998.
+
+205
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Detection in MIMO systems
+Motivation
+Multiple-input multiple-output (MIMO) systems arise in a number of
+current scenarios:
+a) Multiuser detection, or code division multiple access (CDMA), when the
+user of interest is interfered by other users due to non-orthogonal or
+non-synchrounous codes
+b) Receive- and transmit-diversity systems, e.g., the well known space-time
+coded systems for fading channels
+c) Orthogonal frequency division multiplexing (OFDM) currently used as
+a modulation scheme in many systems (xDSL, DAB, DVB, WLAN, . . . ),
+just to mention a few
+d) Information storage, such as magnetic or optical memories, e.g., due to the
+multitrack interference in magnetic recording systems
+206
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Detection in MIMO systems
+The basic approach
+MIMO systems are multidimensional versions of transmission (or storage)
+systems and can be described by a suitable vector or matrix notation
+In some cases the increased system dimensionality can be exploited, e.g. in
+space-time coding
+Most detection techniques can be applied to MIMO systems in a conceptually
+straightforward manner by a proper notational extension
+The complexity may be an issue due to the increased dimensionality (not only
+notationwise)
+
+207
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+A
+
+..
+.
+
+Detection in MIMO systems
+General system model
+C
+R
+
+MIMO
+(ST)
+encoder
+
+..
+.
+
+MIMO
+channel
+
+..
+.
+
+MIMO
+MAP
+det./dec.
+
+c
+A
+
+..
+.
+
+A : input information matrix (N × K) (or N 0 × K)
+
+C : code matrix (N × K)
+
+R : received matrix (M × K)
+b : detected information matrix (N × K) (or N 0 × K)
+A
+
+Rows and columns may represent the “space” and time dimensions, respectively
+Notation: for an (N × K) matrix X, nXk is element (n, k), nX is the n-th
+n 2 k2
+row, Xk is the k-th column, and n1 Xk is an (n2−n1) × (k2−k1) submatrix
+1
+
+208
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Detection in MIMO systems
+MAP strategies
+MAP block detection
+
+b = argmax P (A|R)
+A
+A
+
+MAP sequence detection
+K−1 = argmax P ( AK−1 |R)
+b
+A
+n 0
+n 0
+K−1
+n A0
+
+MAP symbol detection
+
+b k = argmax P (nAk |R)
+nA
+n Ak
+
+Finite memory systems
+k ) = p(R |Rk−1, A , σ )
+,
+A
+p(Rk |Rk−1
+k 0
+k k
+0
+0
+where vectors Rk and Ak are the signal received and the information
+transmitted at time k (i.e., over “space”), respectively, and σk is a suitably
+defined system state
+209
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Advanced applications of PSP
+Bibliography
+Iterative detection:
+– V. Franz and J. B. Anderson, “Concatenated decoding with a reduced-search BCJR
+algorithm,” IEEE J. Selet. Areas Commun., vol. 16, pp. 186-195, February 1998.
+– K. R. Narayanan, G. L. Stüber, “List decoding of turbo codes”, IEEE Trans. Commun.,
+vol. 46, pp.754-762, June 1998.
+– P. Hoeher, J. Lodge, “‘Turbo DPSK’: iterative differential PSK demodulation and channel
+decoding”, IEEE Trans. Commun., vol. 47, pp. 837-843, June 1999.
+– G. Colavolpe, G. Ferrari, R. Raheli, “Noncoherent iterative (turbo) decoding”, IEEE
+Trans. Commun., vol. 48, pp. 1488-1498, September 2000.
+– G. Colavolpe, G. Ferrari, R. Raheli, “Reduced-state BCJR-type algorithms,” IEEE J.
+Select. Areas Commun. Special Issue-The Turbo Principle: from Theory to Practice, vol.
+19, pp. 848-859, May 2001.
+
+Noncoherent detection:
+– G. Colavolpe, R. Raheli, “On noncoherent sequence detection of coded QAM”, IEEE
+Commun. Lett., vol. 2, pp. 211-213, August 1998.
+– G. Colavolpe, R. Raheli, “Noncoherent sequence detection”, IEEE Trans. Commun., vol.
+47, pp. 1376-1385, September 1999.
+– G. Colavolpe, R. Raheli, “Noncoherent sequence detection of continuous phase
+modulations”, IEEE Trans. Commun., vol. 47, pp. 1303-1307, September 1999.
+210
+
+Riccardo Raheli — Introduction to Per-Survivor Processing — c 2004 by CNIT, Italy
+
+Advanced applications of PSP
+Bibliography (cntd)
+Detection in MIMO systems:
+– G. Paparisto, K. M. Chugg, A. Polydoros, “PSP array processing for multipath fading
+channels”, IEEE Trans. Commun., vol. 47, pp. 504-507, April 1999.
+– G. Caire, G. Colavolpe, “On low-complexity space-time coding for quasi-static channels”,
+in IEEE Trans. Inform. Theory, vol. 49, pp. 1400-1416, June 2003.
+– E. Chiavaccini, G. M. Vitetta, “Further results on differential space-time modulations”,
+IEEE Trans. Commun., vol. 51 , pp. 1093-1101, July 2003.
+
+Free-space optical communications:
+– Xiaoming Zhu, J. M. Kahn, “Free-space optical communication through atmospheric
+turbulence channels”, IEEE Trans. Commun., vol. 50, pp. 1293-1300, Aug. 2002.
+– Xiaoming Zhu, J. M. Kahn, “Markov chain model in maximum-likelihood sequence
+detection for free-space optical communication through atmospheric turbulence channels”,
+IEEE Trans. Commun., vol. 51, pp. 509-516, March 2003.
+– Wei Mao, J. M. Kahn, “Free-space heterochronous imaging reception of multiple optical
+signals”, IEEE Trans. Commun., vol. 52, pp. 269-279, Feb. 2004.
+211
+
+

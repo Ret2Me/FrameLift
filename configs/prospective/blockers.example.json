@@ -1,0 +1,23 @@
+{
+  "schema_version": "observation-planning-blockers-v1",
+  "blockers": [
+    {
+      "blocker_id": "maintenance-example",
+      "station_id": 1234,
+      "resource_id": null,
+      "start": "2026-09-10T08:00:00Z",
+      "end": "2026-09-10T12:00:00Z",
+      "kind": "maintenance",
+      "reason": "replace with an actual maintenance ticket"
+    },
+    {
+      "blocker_id": "priority-observation-example",
+      "station_id": 1234,
+      "resource_id": null,
+      "start": "2026-09-12T19:00:00Z",
+      "end": "2026-09-12T21:00:00Z",
+      "kind": "priority-reservation",
+      "reason": "receiver reserved for a nonstandard high-priority observation"
+    }
+  ]
+}

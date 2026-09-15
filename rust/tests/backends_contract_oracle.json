@@ -1,0 +1,5310 @@
+{
+  "schema": "python-backend-contract-oracle-v1",
+  "candidate_cases": [
+    {
+      "input": [
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {}
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "rank": 2
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "f": 1e-07
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0101",
+          "provenance": {}
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {}
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {}
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "f": 1e-07
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "f": 1e-07
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0301",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {}
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "rank": 2
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "rank": 2
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0102",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "rank": 2
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "f": 1e-07
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "rank": 1
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0301",
+          "provenance": {}
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0301",
+          "parser": {}
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {}
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {}
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "f": 1e-07
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "rank": 1
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0401",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {}
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {}
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "f": 1e-07
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "f": 1e-07
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "f": 1e-07
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "rank": 2
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "rank": 1
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "rank": 1
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "rank": 2
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {}
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {}
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "f": 1e-07
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "rank": 1
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {}
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "rank": 2
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {}
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {}
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "rank": 1
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "rank": 2
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "tag": "Stra\u00dfe"
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {}
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0101",
+          "provenance": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "provenance": {
+            "rank": 1
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0101",
+          "parser": {
+            "tag": "\u4e2d"
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {}
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0302",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0203",
+          "provenance": {
+            "rank": 2
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0203",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {}
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0301",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0402",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0201",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "f": 1e-07
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0201",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "f": 1e-07
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0402",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0403",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0303",
+          "provenance": {}
+        },
+        {
+          "payload_hex": "0202",
+          "provenance": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0102",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0401",
+          "provenance": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "provenance": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "provenance": {
+            "tag": "\ud83d\ude00"
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0102",
+          "parser": {
+            "rank": 2
+          }
+        },
+        {
+          "payload_hex": "0202",
+          "parser": {
+            "nested": {
+              "\u00e9": [
+                -0.0,
+                1e+20,
+                true,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "payload_hex": "0301",
+          "parser": {
+            "rank": 1
+          }
+        },
+        {
+          "payload_hex": "0302",
+          "parser": {
+            "tag": "\ud83d\ude00"
+          }
+        },
+        {
+          "payload_hex": "0303",
+          "parser": {}
+        },
+        {
+          "payload_hex": "0401",
+          "parser": {
+            "rank": 2
+          }
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "payload_hex": "0103",
+          "provenance": {
+            "rank": 1
+          }
+        }
+      ],
+      "expected": [
+        {
+          "payload_hex": "0103",
+          "parser": {
+            "rank": 1
+          }
+        }
+      ]
+    }
+  ],
+  "argv_cases": [
+    {
+      "sample_format": "ci16_le",
+      "sample_rate_hz": 57600.0,
+      "expected": [
+        "/usr/bin/gr_satellites",
+        "CANVAS",
+        "--rawint16",
+        "/FIXTURE/input.iq",
+        "--samp_rate",
+        "57600",
+        "--iq",
+        "--kiss_out",
+        "/FIXTURE/output.kiss",
+        "--hexdump",
+        "--start_time",
+        "2026-09-08T00:00:00Z"
+      ]
+    },
+    {
+      "sample_format": "ci16_le",
+      "sample_rate_hz": 48000.1,
+      "expected": [
+        "/usr/bin/gr_satellites",
+        "CANVAS",
+        "--rawint16",
+        "/FIXTURE/input.iq",
+        "--samp_rate",
+        "48000.099999999999",
+        "--iq",
+        "--kiss_out",
+        "/FIXTURE/output.kiss",
+        "--hexdump",
+        "--start_time",
+        "2026-09-08T00:00:00Z"
+      ]
+    },
+    {
+      "sample_format": "ci16_le",
+      "sample_rate_hz": 0.0001,
+      "expected": [
+        "/usr/bin/gr_satellites",
+        "CANVAS",
+        "--rawint16",
+        "/FIXTURE/input.iq",
+        "--samp_rate",
+        "0.0001",
+        "--iq",
+        "--kiss_out",
+        "/FIXTURE/output.kiss",
+        "--hexdump",
+        "--start_time",
+        "2026-09-08T00:00:00Z"
+      ]
+    },
+    {
+      "sample_format": "ci16_le",
+      "sample_rate_hz": 1e+17,
+      "expected": [
+        "/usr/bin/gr_satellites",
+        "CANVAS",
+        "--rawint16",
+        "/FIXTURE/input.iq",
+        "--samp_rate",
+        "1e+17",
+        "--iq",
+        "--kiss_out",
+        "/FIXTURE/output.kiss",
+        "--hexdump",
+        "--start_time",
+        "2026-09-08T00:00:00Z"
+      ]
+    },
+    {
+      "sample_format": "cf32_le",
+      "sample_rate_hz": 57600.0,
+      "expected": [
+        "/usr/bin/gr_satellites",
+        "CANVAS",
+        "--rawfile",
+        "/FIXTURE/input.iq",
+        "--samp_rate",
+        "57600",
+        "--iq",
+        "--kiss_out",
+        "/FIXTURE/output.kiss",
+        "--hexdump",
+        "--start_time",
+        "2026-09-08T00:00:00Z"
+      ]
+    },
+    {
+      "sample_format": "cf32_le",
+      "sample_rate_hz": 48000.1,
+      "expected": [
+        "/usr/bin/gr_satellites",
+        "CANVAS",
+        "--rawfile",
+        "/FIXTURE/input.iq",
+        "--samp_rate",
+        "48000.099999999999",
+        "--iq",
+        "--kiss_out",
+        "/FIXTURE/output.kiss",
+        "--hexdump",
+        "--start_time",
+        "2026-09-08T00:00:00Z"
+      ]
+    },
+    {
+      "sample_format": "cf32_le",
+      "sample_rate_hz": 0.0001,
+      "expected": [
+        "/usr/bin/gr_satellites",
+        "CANVAS",
+        "--rawfile",
+        "/FIXTURE/input.iq",
+        "--samp_rate",
+        "0.0001",
+        "--iq",
+        "--kiss_out",
+        "/FIXTURE/output.kiss",
+        "--hexdump",
+        "--start_time",
+        "2026-09-08T00:00:00Z"
+      ]
+    },
+    {
+      "sample_format": "cf32_le",
+      "sample_rate_hz": 1e+17,
+      "expected": [
+        "/usr/bin/gr_satellites",
+        "CANVAS",
+        "--rawfile",
+        "/FIXTURE/input.iq",
+        "--samp_rate",
+        "1e+17",
+        "--iq",
+        "--kiss_out",
+        "/FIXTURE/output.kiss",
+        "--hexdump",
+        "--start_time",
+        "2026-09-08T00:00:00Z"
+      ]
+    }
+  ],
+  "profile": {
+    "selector": "CANVAS",
+    "selector_kind": "name",
+    "name": "Fixture",
+    "norad_id": 42,
+    "transmitters": [
+      {
+        "transmitter_id": "txB",
+        "modulation": "FSK",
+        "framing": "AX.25",
+        "fec": [
+          "none"
+        ],
+        "metadata": {
+          "baudrate": 9600
+        }
+      },
+      {
+        "transmitter_id": "txA",
+        "modulation": "BPSK",
+        "framing": "CCSDS",
+        "fec": [
+          "convolutional",
+          "reed-solomon"
+        ],
+        "metadata": {}
+      }
+    ],
+    "modulations": [
+      "BPSK",
+      "FSK"
+    ],
+    "framing": [
+      "AX.25",
+      "CCSDS"
+    ],
+    "fec": [
+      "convolutional",
+      "none",
+      "reed-solomon"
+    ]
+  }
+}

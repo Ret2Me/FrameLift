@@ -1,0 +1,20 @@
+[Unit]
+Description=Telemetry Yield 50-target coverage-constrained prospective SatNOGS shadow planner v4d
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=43200
+StartLimitBurst=4
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/ubuntu/telemetry-yield
+ExecStart=/bin/bash /home/ubuntu/telemetry-yield/scripts/prospective-v4d-daily.sh
+Restart=on-failure
+RestartSec=900
+TimeoutStartSec=43200
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=6
+
+[Install]
+WantedBy=multi-user.target

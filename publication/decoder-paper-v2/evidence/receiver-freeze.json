@@ -1,0 +1,113 @@
+{
+  "analysis_protocol": {
+    "bytes": 6428,
+    "path": "/home/ubuntu/telemetry-yield/docs/innovation-prospective-analysis-20260911.md",
+    "sha256": "479b6cfae4d252db53b9defa65eff3777f5ba34ebf58c4f993b4c9b9546b0e3d"
+  },
+  "base_protocol": {
+    "bytes": 7348,
+    "path": "/home/ubuntu/telemetry-yield/docs/innovation-benchmark-protocol-20260910.md",
+    "sha256": "eea3d74c7bb81f2f8c9dfda5576a27d31351e67fcc2226312f27d2056b9fc77a"
+  },
+  "baselines": {
+    "direwolf": {
+      "bytes": 257024,
+      "path": "/usr/bin/atest",
+      "sha256": "39f828de41f3afbc545b04dd73e8f1e254cd8130cb8e37a68c7ac3b1e9feae5b"
+    },
+    "gr_satellites": {
+      "bytes": 16115,
+      "path": "/home/ubuntu/telemetry-yield/work/golden/env/bin/gr_satellites",
+      "sha256": "86059e664af0e12ade1a5c3c52a7c14dc8fbe87f3febafdee1b1626e1f4827f7"
+    },
+    "innovation_v1_no_codec": {
+      "bytes": 13390112,
+      "path": "/home/ubuntu/telemetry-yield/work/innovation-field-20260910-v1/bin/innovation_audio_probe",
+      "sha256": "47493db215ba9e42e922524f13839596b02a977864802807362acbf23a4a59d0"
+    }
+  },
+  "decoder_seconds": 900,
+  "fresh_unseen_holdout": false,
+  "frozen_utc": "2026-09-12T15:25:44Z",
+  "improved": {
+    "bytes": 13978624,
+    "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/after/innovation_audio_probe",
+    "sha256": "c406199366ecccef6ce14d4c13600d8cd6e3019ac9a69921430d80e59424960b"
+  },
+  "parent_freeze": {
+    "bytes": 7292,
+    "path": "/home/ubuntu/telemetry-yield/work/decoder-readiness-20260911/receiver-freeze-reviewed-v2.json",
+    "sha256": "b6a520a9dc7d6d7bd896b090c28c0657cb56ff31a77ffca474576aac23e5d9cb"
+  },
+  "performance_only_restart": true,
+  "prior_evaluation_exposure": {
+    "bytes": 23060,
+    "path": "/home/ubuntu/telemetry-yield/work/publication-speed-restart-20260912-v1/prior-evaluation-exposure.json",
+    "sha256": "b9d1d5fbc504d5ddcc826b0283c53c9357496f9d627f100439a63d3fc76079e8"
+  },
+  "profile_sha256": "5f2adc52422b8bfe635c30fb669ef0015ad4df2c2c855e094c4f78b6df699735",
+  "progressive": {
+    "bytes": 45789176,
+    "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/after/telemetry-yield-rs",
+    "sha256": "cd2c8adcf9db34e5f177753357e7915ac29189816ce73e11e90814c0f3d96acf"
+  },
+  "protocol": {
+    "bytes": 2339,
+    "path": "/home/ubuntu/telemetry-yield/work/publication-speed-restart-20260912-v1/protocol.md",
+    "sha256": "a331511e8db81fb56c4ff3caa6fa781da857f514ca3d861c5a28eb80c00427b1"
+  },
+  "publication_ready": false,
+  "qualification": [
+    {
+      "bytes": 11629,
+      "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/real-pairs/summary.json",
+      "sha256": "45d2238b9672b32f91810d3db2af6c686f6652a021047599721d35936a50015d"
+    },
+    {
+      "bytes": 11514,
+      "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/synthetic-pairs/summary.json",
+      "sha256": "a0cbdecd42281d0993e7c81c5426084937cac4ed53ce8557821a8b9b1b2e1c9c"
+    },
+    {
+      "bytes": 37637,
+      "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/build-test-v1.log",
+      "sha256": "2c24b40b097816b9c16b1d5e34580c4ac08df0a3f43f807db0d02a5f5f7e418b"
+    },
+    {
+      "bytes": 3572,
+      "path": "/home/ubuntu/telemetry-yield/work/publication-speed-restart-20260912-v1/runner-tests.log",
+      "sha256": "7e58a4149c3218594b0cc73613ec20f4e7f30de0a54e5d3a6e2540be77c6c5ef"
+    }
+  ],
+  "receiver_source_archive": {
+    "bytes": 4398938,
+    "path": "/home/ubuntu/telemetry-yield/work/receiver-speed-20260912-v1/after/source.tar.gz",
+    "sha256": "10868f9ed060e7a31ab79921061a7c68940cb4dd280329297b2f6ef22babbc36"
+  },
+  "reviewer": "/root; no new independent review claimed",
+  "runner": {
+    "bytes": 12464832,
+    "path": "/home/ubuntu/telemetry-yield/work/publication-speed-restart-20260912-v1/bin/innovation_benchmark_run",
+    "sha256": "00613b60e713771e1721b40907c33eb8960e1fccd15b3a64368ef2e45ef9849c"
+  },
+  "schema": "innovation-receiver-freeze-v1",
+  "selected_runtime_sha256": "aeb0584c4407277d2e97d9e1edfc6424453707460de804cf36065aa63b937d5f",
+  "selection_amendment": {
+    "bytes": 3302,
+    "path": "/home/ubuntu/telemetry-yield/work/innovation-prospective-20260912-v2/pass-dependence-amendment-v2.json",
+    "sha256": "2bc0ee5c193c9053afd072da5cfca29b7506b4aab853ebf8c3f726842c6d1675"
+  },
+  "selection_registration": {
+    "bytes": 6781,
+    "path": "/home/ubuntu/telemetry-yield/work/innovation-prospective-20260912-v2/protocol.json",
+    "sha256": "bef3cdb38676acea3ab0f10758a2e12f190bc3e2f836cd53eb53c1ac0e72994b"
+  },
+  "source_archive": {
+    "bytes": 51163,
+    "path": "/home/ubuntu/telemetry-yield/work/publication-speed-restart-20260912-v1/runner-source.tar.gz",
+    "sha256": "9ddbebe1c42dbbf50f67b81670feea494105f5a72673a98997531d4b5919ef07"
+  },
+  "status": "complete",
+  "threads": 2,
+  "workers": 4
+}

@@ -204,12 +204,48 @@ fn numpy_argpartition_and_morse_run_oracles_match() {
     for (index, case) in fixture["runs"].as_array().unwrap().iter().enumerate() {
         let input: Vec<(bool, f64)> = serde_json::from_value(case["runs"].clone()).unwrap();
         let actual = decode_runs(&input, case["wpm"].as_u64().unwrap() as u32);
-        assert_eq!(
-            serde_json::to_value(actual).unwrap(),
-            case["expected"],
-            "run case {index}"
+        let expected: (String, f64, f64, usize) =
+            serde_json::from_value(case["expected"].clone()).unwrap();
+        assert_eq!(actual.0, expected.0, "run case {index}: decoded text");
+        assert_eq!(actual.2, expected.2, "run case {index}: valid fraction");
+        assert_eq!(actual.3, expected.3, "run case {index}: character count");
+        // exp() uses the platform math implementation. The Linux CI runner and
+        // the oracle host differ by one ULP here, without a decoded-data change.
+        // Only this diagnostic gets a bounded tolerance; text, counts, fractions,
+        // partition order and the end-to-end candidate decisions stay exact.
+        assert!(
+            timing_score_matches(actual.1, expected.1),
+            "run case {index}: timing score {} != {} (maximum 4 ULP)",
+            actual.1,
+            expected.1
         );
     }
+}
+
+fn timing_score_matches(actual: f64, expected: f64) -> bool {
+    actual.is_finite()
+        && expected.is_finite()
+        && (0.0..=1.0).contains(&actual)
+        && (0.0..=1.0).contains(&expected)
+        && actual.to_bits().abs_diff(expected.to_bits()) <= 4
+}
+
+#[test]
+fn timing_score_tolerance_is_bounded_and_rejects_invalid_values() {
+    assert!(timing_score_matches(0.5230471474118935, 0.5230471474118936));
+    let reference = 0.5_f64;
+    for delta in 0..=8 {
+        assert_eq!(
+            timing_score_matches(f64::from_bits(reference.to_bits() + delta), reference),
+            delta <= 4
+        );
+    }
+    for invalid in [f64::NAN, f64::INFINITY, f64::NEG_INFINITY, -0.1, 1.1] {
+        assert!(!timing_score_matches(invalid, invalid));
+        assert!(!timing_score_matches(invalid, reference));
+        assert!(!timing_score_matches(reference, invalid));
+    }
+    assert!(!timing_score_matches(0.0, 0.01));
 }
 #[test]
 fn malformed_zero_and_bounded_metadata_fail_safely() {

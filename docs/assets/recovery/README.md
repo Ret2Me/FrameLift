@@ -22,7 +22,7 @@ cargo test --locked --example paper_evidence
 
 The command verifies the bundle checksums and count arithmetic first. The
 [Rust renderer](../../../examples/support/readme_figures.rs) derives displayed
-counts, percentages, bar lengths and the 266-observation grid from that summary.
+counts, percentages, bar lengths and the observation-share bar from that summary.
 This command writes only the three SVGs, not the paper or frozen evidence.
 
 ## Counting rules
@@ -32,8 +32,8 @@ This command writes only the three SVGs, not the paper or frozen evidence.
   not the original native SatNOGS station output or two counts added together.
 - Byte gain is `402,192 − 1,056 = 401,136`; bytes include protocol headers but
   exclude FCS. They are not application-only measurements.
-- Green grid cells indicate at least one addition. Some such observations also
-  contain missed reference packets. Cells are grouped by outcome, not time.
+- The green observation-bar segment counts recordings with at least one addition.
+  Some such observations also contain missed reference packets.
 - The 24 signal-labelled observations are a subset of the same 266-case cohort,
   selected by frozen metadata rather than native decoder success.
 - This is an exposed, single-mission historical study with higher computation
@@ -41,3 +41,8 @@ This command writes only the three SVGs, not the paper or frozen evidence.
 
 The older [paper illustration](../../../publication/decoder-paper-v2/generated/yield.svg)
 and its recorded checksum remain unchanged.
+
+The README figures use plain headings and direct labels, without decorative
+numbering, dot separators or small-print footers. Study limitations remain in the
+README captions and the accessible SVG descriptions. FrameLift labels the same
+historical progressive receiver previously presented as Telemetry Yield.

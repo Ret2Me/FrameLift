@@ -1,34 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="590" viewBox="0 0 1200 590" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="545" viewBox="0 0 1200 545" role="img" aria-labelledby="title desc">
 <title id="title">Recovery in the separately reported signal-labelled subset</title>
 <desc id="desc">24 observations with frozen waterfall_status=with-signal metadata: 174 progressive packets versus 111 reference-union packets. 63 added, 0 missed, +56.76% net. Gain in 6 observations. Exploratory subset of the same exposed historical cohort; not independent signal truth.</desc>
-<rect x="0.5" y="0.5" width="1199" height="589" rx="8" fill="#ffffff" stroke="#dce5ea"/>
+<rect width="1200" height="545" fill="#ffffff"/>
 <g font-family="Arial, Helvetica, sans-serif" style="font-variant-numeric:tabular-nums">
-<rect x="48" y="32" width="5.000" height="22" fill="#087e70"/>
-<text x="66" y="50" font-size="19" fill="#087e70" font-weight="700">03 / SIGNAL-LABELLED SUBSET</text>
-<text x="48" y="105" font-size="36" fill="#152e43" font-weight="700">Visible signal. Measurable extra recovery.</text>
-<text x="48" y="144" font-size="22" fill="#526879" font-weight="400">24 observations with a frozen “with-signal” archive label</text>
-<text x="48" y="235" font-size="64" fill="#087e70" font-weight="700">+56.76%</text>
-<text x="500" y="214" font-size="28" fill="#152e43" font-weight="700">63 added packets · 0 missed</text>
-<text x="500" y="251" font-size="23" fill="#526879" font-weight="400">Gain in 6 of 24 observations</text>
-<text x="48" y="330" font-size="24" fill="#152e43" font-weight="400">Reference union</text>
-<rect x="310" y="305" width="710.000" height="36" fill="#f2f5f7"/>
-<rect data-role="value-bar" data-value="111" data-scale-max="200" x="310" y="305" width="394.050" height="36" fill="#435f75"/>
-<text x="1040" y="331" font-size="25" fill="#152e43" font-weight="700">111</text>
-<text x="48" y="406" font-size="24" fill="#152e43" font-weight="700">Telemetry Yield</text>
-<rect x="310" y="381" width="710.000" height="36" fill="#f2f5f7"/>
-<rect data-role="value-bar" data-value="174" data-scale-max="200" x="310" y="381" width="617.700" height="36" fill="#087e70"/>
-<text x="1040" y="407" font-size="25" fill="#152e43" font-weight="700">174</text>
-<line x1="310" y1="453" x2="1020" y2="453" stroke="#dce5ea"/>
-<path d="M310 453v6" stroke="#7b8e9c"/>
-<text x="310" y="483" text-anchor="middle" font-size="19" fill="#526879">0</text>
-<path d="M487.5 453v6" stroke="#7b8e9c"/>
-<text x="487.5" y="483" text-anchor="middle" font-size="19" fill="#526879">50</text>
-<path d="M665 453v6" stroke="#7b8e9c"/>
-<text x="665" y="483" text-anchor="middle" font-size="19" fill="#526879">100</text>
-<path d="M842.5 453v6" stroke="#7b8e9c"/>
-<text x="842.5" y="483" text-anchor="middle" font-size="19" fill="#526879">150</text>
-<path d="M1020 453v6" stroke="#7b8e9c"/>
-<text x="1020" y="483" text-anchor="middle" font-size="19" fill="#526879">200</text>
-<text x="48" y="532" font-size="20" fill="#526879" font-weight="400">Exploratory metadata subgroup, not independent signal truth or spacecraft identification.</text>
-<text x="48" y="563" font-size="20" fill="#526879" font-weight="400">Subset of the same exposed CANVAS cohort, not an additional trial. Reference = tested union.</text>
+<text x="48" y="64" font-size="36" fill="#152e43" font-weight="700">Recordings labelled with-signal</text>
+<text x="48" y="104" font-size="25" fill="#526879" font-weight="400">24 observations from the same CANVAS study</text>
+<text x="48" y="195" font-size="64" fill="#087e70" font-weight="700">+56.76%</text>
+<text x="48" y="233" font-size="25" fill="#526879" font-weight="400">Net increase over reference union</text>
+<text x="600" y="183" font-size="28" fill="#152e43" font-weight="700">63 additional packets</text>
+<text x="600" y="224" font-size="25" fill="#526879" font-weight="400">0 reference packets missed</text>
+<text x="48" y="317" font-size="24" fill="#152e43" font-weight="400">Reference union</text>
+<rect x="310" y="292" width="710.000" height="36" fill="#f2f5f7"/>
+<rect data-role="value-bar" data-value="111" data-scale-max="200" x="310" y="292" width="394.050" height="36" fill="#435f75"/>
+<text x="1040" y="318" font-size="25" fill="#152e43" font-weight="700">111</text>
+<text x="48" y="393" font-size="24" fill="#152e43" font-weight="700">FrameLift</text>
+<rect x="310" y="368" width="710.000" height="36" fill="#f2f5f7"/>
+<rect data-role="value-bar" data-value="174" data-scale-max="200" x="310" y="368" width="617.700" height="36" fill="#087e70"/>
+<text x="1040" y="394" font-size="25" fill="#152e43" font-weight="700">174</text>
+<line x1="310" y1="435" x2="1020" y2="435" stroke="#dce5ea"/>
+<path d="M310 435v6" stroke="#7b8e9c"/>
+<text x="310" y="469" text-anchor="middle" font-size="24" fill="#526879">0</text>
+<path d="M487.5 435v6" stroke="#7b8e9c"/>
+<text x="487.5" y="469" text-anchor="middle" font-size="24" fill="#526879">50</text>
+<path d="M665 435v6" stroke="#7b8e9c"/>
+<text x="665" y="469" text-anchor="middle" font-size="24" fill="#526879">100</text>
+<path d="M842.5 435v6" stroke="#7b8e9c"/>
+<text x="842.5" y="469" text-anchor="middle" font-size="24" fill="#526879">150</text>
+<path d="M1020 435v6" stroke="#7b8e9c"/>
+<text x="1020" y="469" text-anchor="middle" font-size="24" fill="#526879">200</text>
+<text x="48" y="515" font-size="25" fill="#152e43" font-weight="400">Additional packets in 6 of 24 recordings</text>
 </g></svg>

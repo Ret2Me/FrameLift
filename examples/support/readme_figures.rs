@@ -87,12 +87,11 @@ impl Svg {
             r##"<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="{height}" viewBox="0 0 1200 {height}" role="img" aria-labelledby="title desc">
 <title id="title">{}</title>
 <desc id="desc">{}</desc>
-<rect x="0.5" y="0.5" width="1199" height="{}" rx="8" fill="#ffffff" stroke="{RULE}"/>
+<rect width="1200" height="{height}" fill="#ffffff"/>
 <g font-family="Arial, Helvetica, sans-serif" style="font-variant-numeric:tabular-nums">
 "##,
             xml(title),
-            xml(description),
-            height - 1
+            xml(description)
         ))
     }
 
@@ -112,11 +111,9 @@ impl Svg {
         ));
     }
 
-    fn header(&mut self, label: &str, title: &str, subtitle: &str) {
-        self.rect(48.0, 32.0, 5.0, 22.0, TEAL);
-        self.text(66.0, 50.0, 19, TEAL, 700, label);
-        self.text(48.0, 105.0, 36, INK, 700, title);
-        self.text(48.0, 144.0, 22, MUTED, 400, subtitle);
+    fn header(&mut self, title: &str, subtitle: &str) {
+        self.text(48.0, 64.0, 36, INK, 700, title);
+        self.text(48.0, 104.0, 25, MUTED, 400, subtitle);
     }
 
     fn bar(&mut self, label: &str, value: u64, maximum: u64, y: f64, color: &str) {
@@ -137,7 +134,7 @@ impl Svg {
         self.line(310.0, y, 1020.0, y);
         for &tick in ticks {
             let x = 310.0 + 710.0 * tick as f64 / maximum as f64;
-            self.0.push_str(&format!("<path d=\"M{x} {y}v6\" stroke=\"{GREY}\"/>\n<text x=\"{x}\" y=\"{}\" text-anchor=\"middle\" font-size=\"19\" fill=\"{MUTED}\">{}</text>\n",y+30.0,grouped(tick)));
+            self.0.push_str(&format!("<path d=\"M{x} {y}v6\" stroke=\"{GREY}\"/>\n<text x=\"{x}\" y=\"{}\" text-anchor=\"middle\" font-size=\"24\" fill=\"{MUTED}\">{}</text>\n",y+34.0,grouped(tick)));
         }
     }
 
@@ -156,10 +153,10 @@ fn packet_recovery(s: &Value, m: &Metrics) -> Result<String> {
         .ok_or("no values")?;
     let maximum = max_value.div_ceil(1000) * 1000;
     let mut svg = Svg::new(
-        740,
+        638,
         "Packet recovery on the CANVAS historical cohort",
         &format!(
-            "{} unique packets within observations for Telemetry Yield progressive versus {} in the tested Dire Wolf and gr-satellites union. {} added; {} missed; +{:.2}% net. {} exposed development recordings; substantially more compute, not an equal-compute test.",
+            "{} unique packets within observations for FrameLift (Telemetry Yield progressive) versus {} in the tested Dire Wolf and gr-satellites union. {} added; {} missed; +{:.2}% net. {} exposed development recordings; substantially more compute, not an equal-compute test.",
             m.ours,
             m.baseline,
             m.added,
@@ -169,71 +166,57 @@ fn packet_recovery(s: &Value, m: &Metrics) -> Result<String> {
         ),
     );
     svg.header(
-        "01 / PACKET RECOVERY",
-        "More telemetry. Same recordings.",
-        "Unique AX.25 UI packets, counted within each observation",
+        "Recovered packets",
+        &format!("{} CANVAS recordings", m.observations),
     );
-    svg.text(48.0, 242.0, 78, INK, 700, &grouped(m.ours));
-    svg.text(
-        48.0,
-        275.0,
-        20,
-        MUTED,
-        400,
-        "RECOVERED BY THE PROGRESSIVE RECEIVER",
-    );
+    svg.text(48.0, 194.0, 72, INK, 700, &grouped(m.ours));
+    svg.text(48.0, 230.0, 25, MUTED, 400, "FrameLift");
     svg.text(
         780.0,
-        238.0,
+        194.0,
         62,
         TEAL,
         700,
         &format!("+{:.2}%", m.percent()),
     );
-    svg.text(785.0, 275.0, 20, MUTED, 400, "NET GAIN VS REFERENCE UNION");
-    svg.line(48.0, 303.0, 1152.0, 303.0);
+    svg.text(
+        785.0,
+        230.0,
+        25,
+        MUTED,
+        400,
+        "Net increase over reference union",
+    );
     for (label, n, y, color) in [
-        ("Dire Wolf", direwolf, 335.0, GREY),
-        ("gr-satellites", grsat, 397.0, GREY),
-        ("Reference union", m.baseline, 459.0, "#435f75"),
-        ("Telemetry Yield", m.ours, 521.0, TEAL),
+        ("Dire Wolf", direwolf, 285.0, GREY),
+        ("gr-satellites", grsat, 345.0, GREY),
+        ("Reference union", m.baseline, 405.0, "#435f75"),
+        ("FrameLift", m.ours, 465.0, TEAL),
     ] {
         svg.bar(label, n, maximum, y, color);
     }
-    svg.axis(maximum, &[0, 2000, 4000, 6000, maximum], 585.0);
+    svg.axis(maximum, &[0, 2000, 4000, 6000, maximum], 530.0);
     svg.text(
         48.0,
-        655.0,
-        24,
+        608.0,
+        25,
         INK,
-        700,
+        400,
         &format!(
-            "+{} added packets   /   {} reference packets missed",
+            "{} additional packets; {} reference packets missed",
             grouped(m.added),
             m.lost
         ),
     );
-    svg.text(48.0,691.0,20,MUTED,400,&format!("{} historical CANVAS recordings · exposed development cohort · tested configurations only",m.observations));
-    svg.text(
-        48.0,
-        719.0,
-        20,
-        MUTED,
-        400,
-        "Same PCM input. Additional recovery costs substantially more computation.",
-    );
     Ok(svg.finish())
 }
 
-fn data_recovery(m: &Metrics) -> Result<String> {
-    if m.observations != 266 {
-        return Err("the observation grid is sized for the frozen 266-recording cohort".into());
-    }
+fn data_recovery(m: &Metrics) -> String {
     let mut svg = Svg::new(
-        730,
+        520,
         "Additional received bytes and observations with a gain",
         &format!(
-            "{} bytes in additional PDUs minus {} bytes in missed PDUs equals {} net extra bytes. Headers included, FCS excluded; not application-only bytes. {} of {} observations have an added packet. The grid groups outcomes, not time; these are not independent trials.",
+            "{} bytes in additional PDUs minus {} bytes in missed PDUs equals {} net extra bytes. Headers included, FCS excluded; not application-only bytes. {} of {} observations have an added packet. Additions can coexist with missed packets; these are not independent trials.",
             m.added_bytes,
             m.lost_bytes,
             m.added_bytes - m.lost_bytes,
@@ -242,16 +225,15 @@ fn data_recovery(m: &Metrics) -> Result<String> {
         ),
     );
     svg.header(
-        "02 / DATA RECOVERY",
-        "Additional data, with losses accounted for.",
-        "Bytes in observation-level PDUs · headers included · FCS excluded",
+        "Additional received data",
+        "Protocol bytes (including headers; excluding FCS)",
     );
-    svg.text(48.0, 202.0, 19, TEAL, 700, "ADDED BYTES");
-    svg.text(440.0, 202.0, 19, RUST, 700, "MISSED BYTES");
-    svg.text(820.0, 202.0, 19, INK, 700, "NET EXTRA BYTES");
+    svg.text(48.0, 165.0, 25, TEAL, 400, "Added bytes");
+    svg.text(440.0, 165.0, 25, RUST, 400, "Missed bytes");
+    svg.text(820.0, 165.0, 25, INK, 400, "Net extra bytes");
     svg.text(
         48.0,
-        261.0,
+        228.0,
         51,
         TEAL,
         700,
@@ -259,7 +241,7 @@ fn data_recovery(m: &Metrics) -> Result<String> {
     );
     svg.text(
         440.0,
-        261.0,
+        228.0,
         51,
         RUST,
         700,
@@ -267,70 +249,79 @@ fn data_recovery(m: &Metrics) -> Result<String> {
     );
     svg.text(
         820.0,
-        261.0,
+        228.0,
         51,
         INK,
         700,
         &grouped(m.added_bytes - m.lost_bytes),
     );
+
     svg.text(
         48.0,
-        297.0,
-        22,
-        MUTED,
-        400,
-        &format!("{} additional packets", grouped(m.added)),
-    );
-    svg.text(
-        440.0,
-        297.0,
-        22,
-        MUTED,
-        400,
-        &format!("{} reference packets", m.lost),
-    );
-    svg.text(820.0, 297.0, 22, MUTED, 400, "after subtracting misses");
-    svg.line(48.0, 328.0, 1152.0, 328.0);
-    svg.text(
-        48.0,
-        375.0,
+        320.0,
         27,
         INK,
         700,
-        &format!("Gain in {} of {} recordings", m.with_gain, m.observations),
+        "Recordings with additional packets",
+    );
+    svg.text(
+        48.0,
+        385.0,
+        46,
+        INK,
+        700,
+        &format!("{} / {}", m.with_gain, m.observations),
     );
     svg.text(
         949.0,
-        375.0,
-        33,
+        385.0,
+        40,
         TEAL,
         700,
         &format!("{:.2}%", m.gain_frequency()),
     );
-    for i in 0..m.observations {
-        let gain = i < m.with_gain;
-        svg.0.push_str(&format!("<rect data-role=\"observation\" data-gain=\"{gain}\" x=\"{}\" y=\"{}\" width=\"21\" height=\"21\" rx=\"2\" fill=\"{}\"/>\n",48+(i%38)*29,405+(i/38)*29,if gain {TEAL} else {"#e3eaf0"}));
+
+    // Both segments use the same observation denominator, never packet counts.
+    let width = 1104.0;
+    let gained_width = width * m.with_gain as f64 / m.observations as f64;
+    for (gain, count, x, segment_width, color) in [
+        (true, m.with_gain, 48.0, gained_width, TEAL),
+        (
+            false,
+            m.observations - m.with_gain,
+            48.0 + gained_width,
+            width - gained_width,
+            "#e3eaf0",
+        ),
+    ] {
+        svg.0.push_str(&format!(
+            "<rect data-role=\"observation-share\" data-gain=\"{gain}\" data-value=\"{count}\" data-total=\"{}\" x=\"{x:.3}\" y=\"418\" width=\"{segment_width:.3}\" height=\"32\" fill=\"{color}\"/>\n",
+            m.observations
+        ));
     }
-    svg.rect(48.0, 628.0, 17.0, 17.0, TEAL);
-    svg.text(77.0, 643.0, 21, INK, 400, "At least one added packet");
-    svg.rect(440.0, 628.0, 17.0, 17.0, "#e3eaf0");
-    svg.text(469.0, 643.0, 21, INK, 400, "No added packet");
-    svg.text(48.0,687.0,20,MUTED,400,"One square = one observation. Grouped by outcome, not time; gains can coexist with losses.");
     svg.text(
         48.0,
-        715.0,
-        20,
+        490.0,
+        25,
+        INK,
+        400,
+        &format!("{} with additions", m.with_gain),
+    );
+    svg.text(
+        820.0,
+        490.0,
+        25,
         MUTED,
         400,
-        "PDU bytes are not application-only measurements or globally unique telemetry.",
+        &format!("{} without additions", m.observations - m.with_gain),
     );
-    Ok(svg.finish())
+    svg.finish()
 }
 
 fn signal_recovery(m: &Metrics) -> String {
     let maximum = m.ours.max(m.baseline).div_ceil(50) * 50;
     let mut svg = Svg::new(
-        590,
+        545,
         "Recovery in the separately reported signal-labelled subset",
         &format!(
             "{} observations with frozen waterfall_status=with-signal metadata: {} progressive packets versus {} reference-union packets. {} added, {} missed, +{:.2}% net. Gain in {} observations. Exploratory subset of the same exposed historical cohort; not independent signal truth.",
@@ -344,42 +335,48 @@ fn signal_recovery(m: &Metrics) -> String {
         ),
     );
     svg.header(
-        "03 / SIGNAL-LABELLED SUBSET",
-        "Visible signal. Measurable extra recovery.",
-        &format!(
-            "{} observations with a frozen “with-signal” archive label",
-            m.observations
-        ),
+        "Recordings labelled with-signal",
+        &format!("{} observations from the same CANVAS study", m.observations),
     );
-    svg.text(48.0, 235.0, 64, TEAL, 700, &format!("+{:.2}%", m.percent()));
+    svg.text(48.0, 195.0, 64, TEAL, 700, &format!("+{:.2}%", m.percent()));
     svg.text(
-        500.0,
-        214.0,
+        48.0,
+        233.0,
+        25,
+        MUTED,
+        400,
+        "Net increase over reference union",
+    );
+    svg.text(
+        600.0,
+        183.0,
         28,
         INK,
         700,
-        &format!("{} added packets · {} missed", m.added, m.lost),
+        &format!("{} additional packets", m.added),
     );
     svg.text(
-        500.0,
-        251.0,
-        23,
+        600.0,
+        224.0,
+        25,
         MUTED,
         400,
-        &format!("Gain in {} of {} observations", m.with_gain, m.observations),
+        &format!("{} reference packets missed", m.lost),
     );
-    svg.bar("Reference union", m.baseline, maximum, 305.0, "#435f75");
-    svg.bar("Telemetry Yield", m.ours, maximum, 381.0, TEAL);
-    svg.axis(maximum, &[0, 50, 100, 150, maximum], 453.0);
+    svg.bar("Reference union", m.baseline, maximum, 292.0, "#435f75");
+    svg.bar("FrameLift", m.ours, maximum, 368.0, TEAL);
+    svg.axis(maximum, &[0, 50, 100, 150, maximum], 435.0);
     svg.text(
         48.0,
-        532.0,
-        20,
-        MUTED,
+        515.0,
+        25,
+        INK,
         400,
-        "Exploratory metadata subgroup, not independent signal truth or spacecraft identification.",
+        &format!(
+            "Additional packets in {} of {} recordings",
+            m.with_gain, m.observations
+        ),
     );
-    svg.text(48.0,563.0,20,MUTED,400,"Subset of the same exposed CANVAS cohort, not an additional trial. Reference = tested union.");
     svg.finish()
 }
 
@@ -388,7 +385,7 @@ pub(super) fn render(summary: &Value, output: &Path) -> Result<()> {
     let signal = Metrics::parse(&summary["with_signal"])?;
     let figures = [
         ("packet-recovery.svg", packet_recovery(summary, &all)?),
-        ("data-recovery.svg", data_recovery(&all)?),
+        ("data-recovery.svg", data_recovery(&all)),
         ("signal-recovery.svg", signal_recovery(&signal)),
     ];
     fs::create_dir_all(output)?;
@@ -422,12 +419,14 @@ mod tests {
     }
 
     #[test]
-    fn grid_counts_observations_not_packets() {
+    fn observation_bar_counts_recordings_not_packets() {
         let m = Metrics::parse(&summary()["all"]).unwrap();
-        let svg = data_recovery(&m).unwrap();
-        assert_eq!(svg.matches("data-role=\"observation\"").count(), 266);
-        assert_eq!(svg.matches("data-gain=\"true\"").count(), 141);
-        assert_eq!(svg.matches("data-gain=\"false\"").count(), 125);
+        let svg = data_recovery(&m);
+        assert_eq!(svg.matches("data-role=\"observation-share\"").count(), 2);
+        assert!(svg.contains("data-gain=\"true\" data-value=\"141\" data-total=\"266\""));
+        assert!(svg.contains("data-gain=\"false\" data-value=\"125\" data-total=\"266\""));
+        assert!(svg.contains(&format!("width=\"{:.3}\"", 1104.0 * 141.0 / 266.0)));
+        assert!(svg.contains("53.01%"));
         assert!(svg.contains("401,136"));
         assert!(svg.contains("1,056"));
     }
@@ -514,6 +513,14 @@ mod tests {
             assert!(svg.contains("<desc"));
             assert!(!svg.contains("<script"));
             assert!(!svg.contains("foreignObject"));
+            assert!(!svg.contains('·'));
+            assert!(!svg.contains(" / PACKET"));
+            assert!(!svg.contains("<circle"));
+            assert!(!svg.contains("rx=\""));
+            for text in svg.split("font-size=\"").skip(1) {
+                let size: u32 = text.split('"').next().unwrap().parse().unwrap();
+                assert!(size >= 24, "small decorative text has returned");
+            }
         }
     }
 }

@@ -60,7 +60,8 @@ better RF sensitivity, or better performance at equal compute.
 
 These are received protocol bytes, **including headers and excluding FCS**,
 not application-only measurements. Identical bytes in different observations can
-count again. A green square means an addition, not perfect recovery of that pass.
+count again. The observation bar counts recordings with at least one addition;
+those recordings can also contain missed reference packets.
 
 ### Recordings with a reported signal
 

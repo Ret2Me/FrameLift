@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# Virtual environments and local configuration
+.venv/
+.env
+.env.*
+!.env.example
+
+# Raw and generated research data
+data/
+artifacts/
+work/
+db/*.db
+db/*.sqlite*
+
+# Editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+
+# Rust build output, including independent research crates.
+target/
+
+# Local knowledge index and caches are not release inputs.
+graphify-out/
+
+# Frozen local runtimes, host state and bulk experiment output are not source releases.
+/releases/
+/reports/**
+!/reports/**/
+!/reports/**/*.md
+*.log
+*.pid
+*.sock
+
+# Paper build intermediates; retain the final manuscripts and evidence bundles.
+*.aux
+*.blg
+*.out
+*.fls
+*.fdb_latexmk
+/publication/recovery-visuals-v1/extract-beacons
+/publication/recovery-visuals-v1/extract-beacons-tests
+/publication/recovery-visuals-v1/sources/*.ogg
+/publication/recovery-visuals-v1/sources/*.wav
+
+# Uncatalogued captures in the original research workspace.
+/0.jpg
+/1.jpg
+/spectrum_start_*

@@ -21,6 +21,8 @@ pub struct RecoveryOptions {
     pub workers: usize,
     pub coherent_cpm: bool,
     pub tracking: Option<crate::recovery_tracking::Config>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub soft_acquisition: Option<crate::acquisition::Config>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -108,6 +110,9 @@ impl Config {
             }
         }
         if let Some(options) = &self.recovery {
+            if let Some(acquisition) = &options.soft_acquisition {
+                acquisition.validate(self.syncword.len())?;
+            }
             if options.workers > 64 {
                 return Err("recovery workers must be 0..64 (zero selects serial)".into());
             }
@@ -294,10 +299,13 @@ pub struct Report {
     pub coherent: Vec<serde_json::Value>,
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub rejected_lanes: Vec<serde_json::Value>,
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub soft_acquisition: Vec<crate::acquisition::Receipt>,
 }
 
 #[derive(Clone)]
 struct Candidate {
+    soft_sync: Option<crate::acquisition::Score>,
     samples: Vec<f64>,
     channel: soft_sequence::Channel,
     header: Vec<u8>,
@@ -717,9 +725,14 @@ fn empty_attempt() -> turbo::Report {
     }
 }
 
-fn acquire(iq: &[Complex64], rate: u32, c: &Config) -> Result<Vec<Candidate>, String> {
+fn acquire(
+    iq: &[Complex64],
+    rate: u32,
+    c: &Config,
+    search: &mut Option<crate::acquisition::Search<'_>>,
+) -> Result<Vec<Candidate>, String> {
     if c.modulation != "bpsk_rectangular" {
-        return frontend::acquire(iq, rate, c);
+        return frontend::acquire(iq, rate, c, search);
     }
     let mut found = Vec::new();
     let header_bits = c
@@ -785,9 +798,19 @@ fn acquire(iq: &[Complex64], rate: u32, c: &Config) -> Result<Vec<Candidate>, St
                             | u128::from(symbols[start + c.syncword.len() - 1].re > 0.);
                     }
                     let distance = (observed ^ pattern).count_ones() as usize;
-                    if distance.min(c.syncword.len() - distance) > c.maximum_sync_hamming {
+                    let errors = distance.min(c.syncword.len() - distance);
+                    let soft_sync = if errors <= c.maximum_sync_hamming {
+                        None
+                    } else if let Some(search) = search {
+                        let Some(score) =
+                            search.complex(&symbols[start..start + c.syncword.len()], errors)?
+                        else {
+                            continue;
+                        };
+                        Some(score)
+                    } else {
                         continue;
-                    }
+                    };
                     let correlation = c
                         .syncword
                         .iter()
@@ -827,6 +850,7 @@ fn acquire(iq: &[Complex64], rate: u32, c: &Config) -> Result<Vec<Candidate>, St
                         continue;
                     }
                     found.push(Candidate {
+                        soft_sync: soft_sync.clone(),
                         samples: symbols[payload..payload + c.coded_bits()]
                             .iter()
                             .map(|z| (z * rotate).re)
@@ -841,13 +865,33 @@ fn acquire(iq: &[Complex64], rate: u32, c: &Config) -> Result<Vec<Candidate>, St
                         geometry: None,
                         channel_cache: std::sync::OnceLock::new(),
                     });
-                    if found.len() > c.maximum_candidates * 256 {
+                    if soft_sync.is_some() {
+                        search.as_mut().unwrap().admit_candidate()?;
+                    }
+                    if found.len()
+                        - search
+                            .as_ref()
+                            .map(|s| s.receipt.raw_candidates)
+                            .unwrap_or(0)
+                        > c.maximum_candidates * 256
+                    {
                         return Err("raw acquisition candidate budget exceeded".into());
                     }
                 }
             }
         }
     }
+    select_candidates(found, c, search)
+}
+
+fn select_candidates(
+    found: Vec<Candidate>,
+    c: &Config,
+    search: &mut Option<crate::acquisition::Search<'_>>,
+) -> Result<Vec<Candidate>, String> {
+    let (mut found, mut soft): (Vec<_>, Vec<_>) = found
+        .into_iter()
+        .partition(|candidate| candidate.soft_sync.is_none());
     found.sort_by(|a, b| {
         b.score
             .total_cmp(&a.score)
@@ -869,6 +913,30 @@ fn acquire(iq: &[Complex64], rate: u32, c: &Config) -> Result<Vec<Candidate>, St
             return Err("acquired burst budget exceeded".into());
         }
     }
+    // The legacy candidate set is frozen first. Soft alternatives neither
+    // replace its representatives nor participate in repeat/SIC decisions.
+    soft.sort_by(|a, b| {
+        b.score
+            .total_cmp(&a.score)
+            .then_with(|| a.start.total_cmp(&b.start))
+            .then_with(|| a.carrier.total_cmp(&b.carrier))
+    });
+    let mut supplemental: Vec<Candidate> = Vec::new();
+    for candidate in soft {
+        if supplemental.iter().any(|old| {
+            (old.start - candidate.start).abs() < candidate.step * 2.
+                && (old.carrier - candidate.carrier).abs() < c.symbol_rate * 0.01
+        }) {
+            continue;
+        }
+        search.as_mut().unwrap().select(
+            candidate.start,
+            candidate.carrier,
+            candidate.soft_sync.clone().unwrap(),
+        )?;
+        supplemental.push(candidate);
+    }
+    selected.extend(supplemental);
     selected.sort_by(|a, b| {
         a.start
             .total_cmp(&b.start)
@@ -967,6 +1035,7 @@ pub fn decode(
         refinement: Vec::new(),
         coherent: Vec::new(),
         rejected_lanes: Vec::new(),
+        soft_acquisition: Vec::new(),
     };
     let mut frames = BTreeMap::new();
     let mut cancelled = Vec::<(usize, String)>::new();
@@ -977,7 +1046,33 @@ pub fn decode(
         .transpose()
         .map_err(|e| e.to_string())?;
     for round in 0..=rounds {
-        let candidates = acquire(&residual, rate, c)?;
+        let mut acquisition_config = c
+            .recovery
+            .as_ref()
+            .and_then(|r| r.soft_acquisition.as_ref())
+            .cloned();
+        if let Some(config) = &mut acquisition_config {
+            let remaining = c.maximum_work.saturating_sub(report.consumed_work);
+            if remaining == 0 {
+                return Err("aggregate soft acquisition work budget exhausted".into());
+            }
+            config.maximum_work = config.maximum_work.min(remaining);
+        }
+        let mut search = acquisition_config
+            .as_ref()
+            .map(|config| crate::acquisition::Search::new(config, &c.syncword, round))
+            .transpose()?;
+        let candidates = acquire(&residual, rate, c, &mut search)?;
+        if let Some(search) = search {
+            report.consumed_work = report
+                .consumed_work
+                .checked_add(search.receipt.consumed_work)
+                .ok_or("soft acquisition work overflow")?;
+            if report.consumed_work > c.maximum_work {
+                return Err("aggregate soft acquisition work budget exceeded".into());
+            }
+            report.soft_acquisition.push(search.receipt);
+        }
         report.candidates += candidates.len();
         for _ in &candidates {
             charge(&mut report.consumed_work, c, 1)?;
@@ -1121,13 +1216,18 @@ pub fn decode(
             let (start, end) = candidate.bounds(c);
             let provenance = |lane: &str, copies| Provenance {
                 round,
-                lane: lane.into(),
+                lane: if candidate.soft_sync.is_some() {
+                    format!("soft_acquisition/{lane}")
+                } else {
+                    lane.into()
+                },
                 start_sample: start,
                 end_sample: end,
                 carrier_hz: candidate.carrier,
                 copies,
             };
             if round == 0
+                && candidate.soft_sync.is_none()
                 && let Some(hex) = &best.frame_hex
             {
                 report.baseline_frames.push(hex.clone());
@@ -1177,12 +1277,17 @@ pub fn decode(
             if !best.accepted {
                 report.rejected_candidates += 1;
             }
-            if let Some(bits) = best.validated_codeword {
+            if candidate.soft_sync.is_none()
+                && let Some(bits) = best.validated_codeword
+            {
                 reconstructions.push((candidate.clone(), best.frame_hex.unwrap(), bits));
             }
             // Repetition uses raw-channel extrinsic only, never decoder APP or
             // turbo feedback; otherwise the same parity evidence is counted twice.
-            if c.repetition.as_ref().is_some_and(|r| r.combine) && round == 0 {
+            if c.repetition.as_ref().is_some_and(|r| r.combine)
+                && round == 0
+                && candidate.soft_sync.is_none()
+            {
                 let llr = candidate.channel_llr(c)?;
                 let mut code_llr = vec![0.; llr.len()];
                 for (wire, &value) in llr.iter().enumerate() {
@@ -1463,6 +1568,11 @@ pub fn decode_file(
 }
 
 pub(crate) fn offset_report(report: &mut Report, offset: usize) -> Result<(), String> {
+    for receipt in &mut report.soft_acquisition {
+        for candidate in &mut receipt.selected {
+            candidate.start_sample += offset as f64;
+        }
+    }
     let add = |x: &mut usize| -> Result<(), String> {
         *x = x
             .checked_add(offset)

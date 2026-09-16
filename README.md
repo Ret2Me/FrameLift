@@ -238,7 +238,15 @@ transmitter/framing profile is still required: fixed-frame AX.25 validation is
 not streaming HDLC acquisition, and coherent processing does not apply to OGG.
 The separate [variable-length HDLC IQ receiver](docs/recovery-hdlc.md) handles
 AX.25 UI with explicit NRZI/G3RUH and an additive, disjoint-anchor BCJR lane.
-It preserves its baseline; it does not yet extend fixed-codeword CPM/SIC to HDLC.
+It preserves its baseline. Optional [coherent CPM](docs/hdlc-cpm.md) now uses
+received repeated flags for variable-length HDLC; this is not HDLC SIC.
+[Causal channel memory](docs/hdlc-channel-memory.md) reuses earlier baseline
+anchors and offers a signal-only bootstrap with disjoint acceptance guards.
+[Soft marker acquisition](docs/soft-acquisition.md) extends the fixed-frame IQ
+search without replacing hard candidates. [FEC-assisted acquisition](docs/fec-assisted-sync.md)
+adds a bounded relaxed-marker RS/LDPC path to the generic receiver.
+These remain opt-in engineering paths,
+not independently established field-yield improvements.
 The [paired-study summarizer](docs/recovery-study.md) reports additions, losses,
 failed attempts, exposure strata and independently labelled signal-positive
 observations without promoting decoder attestations to received-CRC evidence.

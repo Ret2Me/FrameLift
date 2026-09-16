@@ -279,6 +279,48 @@ fn recovery_hdlc_cli_decodes_received_fcs_and_preserves_baseline_union() {
         assert!(actual.contains(key.as_str().unwrap()));
     }
     cli(&args, None).failure();
+    let pass_source = temp.path().join("pass.cf32");
+    let one = fs::read(&source).unwrap();
+    fs::write(&pass_source, [one.as_slice(), one.as_slice()].concat()).unwrap();
+    let pass_profile = temp.path().join("pass.json");
+    write_json(
+        &pass_profile,
+        &json!({
+            "format":"cf32_le","sample_rate_hz":48000,
+            "receiver":read_json(&profile)["receiver"],
+            "memory":{"maximum_age_samples":480000,"maximum_models":4,"blind_bootstrap":false,"work_budget":2000000000u64},
+            "windows":[{"start_sample":0,"sample_count":levels.len()},{"start_sample":levels.len(),"sample_count":levels.len()}]
+        }),
+    );
+    let pass_output = temp.path().join("pass-output");
+    let pass_args = [
+        "decode-recovery-hdlc-memory",
+        "--input",
+        string(&pass_source),
+        "--profile",
+        string(&pass_profile),
+        "--output",
+        string(&pass_output),
+    ];
+    let summary = cli(&pass_args, None).json();
+    assert_eq!(summary["status"], "complete");
+    assert_eq!(summary["frames"].as_array().unwrap().len(), actual.len());
+    assert!(
+        summary["memory_added_frames"]
+            .as_array()
+            .unwrap()
+            .is_empty()
+    );
+    let second = read_json(&pass_output.join("window-0001.json"));
+    assert!(!second["receipts"].as_array().unwrap().is_empty());
+    assert!(second["frames"].as_array().unwrap().iter().all(|f| {
+        f["provenance"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .all(|p| p["start_sample"].as_u64().unwrap() >= levels.len() as u64)
+    }));
+    cli(&pass_args, None).failure();
 }
 
 #[test]

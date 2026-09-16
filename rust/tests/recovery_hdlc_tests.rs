@@ -26,6 +26,7 @@ fn config() -> Config {
         sequence: Some(SequenceConfig {
             maximum_training_frames: 1,
         }),
+        coherent_cpm: None,
         workers: 1,
         work_budget: 2_000_000_000,
     }
@@ -367,4 +368,240 @@ fn profile_bounds_and_budget_are_fail_closed() {
     c = config();
     c.waveform.psk = Some(Default::default());
     assert!(c.validate(9600, 8192).is_err());
+}
+
+fn cpm_config(gaussian_bt: Option<f64>) -> CoherentCpmConfig {
+    CoherentCpmConfig {
+        modulation_index_numerator: 1,
+        modulation_index_denominator: 2,
+        gaussian_bt,
+        phase_offsets_samples: vec![0],
+        carrier_centers_hz: vec![0.],
+        max_residual_carrier_hz: 50.,
+        preamble_flags: 8,
+        maximum_candidate_symbols: 2048,
+        maximum_candidates: 16,
+        minimum_training_coherence: 0.8,
+    }
+}
+
+/// Transmitter implemented independently of the receiver's pulse and trellis.
+/// Frequency values are oversampled first, Gaussian-filtered, then integrated.
+fn cpm_transmit(bits: &[u8], sps: usize, bt: Option<f64>) -> Vec<Complex64> {
+    let nrz: Vec<_> = bits
+        .iter()
+        .flat_map(|b| std::iter::repeat_n(2. * f64::from(*b) - 1., sps))
+        .collect();
+    let frequency = if let Some(bt) = bt {
+        let width = 2 * sps;
+        let taps: Vec<_> = (0..=2 * width)
+            .map(|j| {
+                let t = (j as f64 - width as f64) / sps as f64;
+                (-2. * std::f64::consts::PI.powi(2) * bt * bt * t * t / 2_f64.ln()).exp()
+            })
+            .collect();
+        let norm = taps.iter().sum::<f64>();
+        (0..nrz.len())
+            .map(|i| {
+                taps.iter()
+                    .enumerate()
+                    .filter_map(|(j, h)| {
+                        let source = i as isize + j as isize - width as isize;
+                        nrz.get(usize::try_from(source).ok()?).map(|x| h * x / norm)
+                    })
+                    .sum::<f64>()
+            })
+            .collect::<Vec<_>>()
+    } else {
+        nrz
+    };
+    let mut phase = 0.23;
+    frequency
+        .into_iter()
+        .map(|x| {
+            phase += std::f64::consts::PI * 0.5 * x / sps as f64;
+            Complex64::from_polar(1., phase)
+        })
+        .collect()
+}
+
+#[test]
+fn coherent_cpm_variable_hdlc_fsk_gmsk_and_unknown_scrambler_history() {
+    let expected = vec![frame(29, 13), frame(87, 211)];
+    for bt in [None, Some(0.5)] {
+        for scrambler in [Scrambler::None, Scrambler::G3ruh] {
+            let mut c = config();
+            c.scrambler = scrambler;
+            c.sequence = None;
+            let (bits, _) = levels(&expected, &c);
+            let full = cpm_transmit(&bits, 8, bt);
+            // Capture starts mid-stream, with nonzero and unknown scrambler,
+            // NRZI and CPM state. No reset-state metadata enters the receiver.
+            let mut iq = full[91 * 8..].to_vec();
+            let mut options = cpm_config(bt);
+            if bt.is_some() && scrambler == Scrambler::G3ruh {
+                iq.splice(0..0, [Complex64::new(1., 0.); 3]);
+                for (i, z) in iq.iter_mut().enumerate() {
+                    *z *= Complex64::from_polar(1., TAU * 212. * i as f64 / 9600.);
+                }
+                options.phase_offsets_samples = vec![3];
+                options.carrier_centers_hz = vec![200.];
+            }
+            let baseline = decode(&iq, 9600, &c, &"8".repeat(64)).unwrap();
+            c.coherent_cpm = Some(options);
+            let recovered = decode(&iq, 9600, &c, &"8".repeat(64)).unwrap();
+            assert_eq!(baseline.baseline_frames, recovered.baseline_frames);
+            let cpm_frames: BTreeSet<_> = recovered
+                .frames
+                .iter()
+                .filter(|f| {
+                    f.provenance
+                        .iter()
+                        .any(|p| p.lane.starts_with("coherent_cpm:"))
+                })
+                .map(|f| f.hex.clone())
+                .collect();
+            assert_eq!(
+                cpm_frames,
+                expected.iter().map(hex::encode).collect(),
+                "BT={bt:?},scrambler={scrambler:?}, receipts={:?}",
+                recovered.coherent_cpm
+            );
+            assert!(
+                recovered
+                    .frames
+                    .iter()
+                    .all(|f| expected.iter().any(|x| hex::encode(x) == f.hex))
+            );
+            assert!(
+                baseline
+                    .frames
+                    .iter()
+                    .all(|f| recovered.frames.iter().any(|r| r.hex == f.hex))
+            );
+        }
+    }
+}
+
+#[test]
+fn coherent_cpm_does_not_repair_wrong_fcs_or_truncated_flags() {
+    let mut c = config();
+    c.scrambler = Scrambler::G3ruh;
+    c.sequence = None;
+    c.coherent_cpm = Some(cpm_config(Some(0.5)));
+    let mut bad = frame(100, 47);
+    *bad.last_mut().unwrap() ^= 128;
+    let (bits, _) = levels(&[bad], &c);
+    let iq = cpm_transmit(&bits, 8, Some(0.5));
+    let rejected = decode(&iq, 9600, &c, &"9".repeat(64)).unwrap();
+    assert!(rejected.frames.is_empty());
+    assert!(!rejected.coherent_cpm.is_empty());
+    let (bits, bounds) = levels(&[frame(100, 47)], &c);
+    let iq = cpm_transmit(&bits, 8, Some(0.5));
+    let truncated = &iq[..(bounds[0].1 + 7) * 8];
+    assert!(
+        decode(truncated, 9600, &c, &"9".repeat(64))
+            .unwrap()
+            .frames
+            .is_empty()
+    );
+    let mut state = 783521_u64;
+    let mut random = || {
+        state ^= state << 13;
+        state ^= state >> 7;
+        state ^= state << 17;
+        (state >> 11) as f64 / (1_u64 << 53) as f64 - 0.5
+    };
+    let noise: Vec<_> = (0..16384)
+        .map(|_| Complex64::new(random(), random()))
+        .collect();
+    assert!(
+        decode(&noise, 9600, &c, &"9".repeat(64))
+            .unwrap()
+            .frames
+            .is_empty()
+    );
+}
+
+#[test]
+fn coherent_cpm_disabled_serialization_and_admission_bounds() {
+    let mut c = config();
+    let serialized = serde_json::to_value(&c).unwrap();
+    assert!(serialized.get("coherent_cpm").is_none());
+    let roundtrip: Config = serde_json::from_value(serialized).unwrap();
+    assert!(roundtrip.coherent_cpm.is_none());
+    c.coherent_cpm = Some(cpm_config(Some(0.5)));
+    assert!(c.validate(9600, 16384).is_ok());
+    c.waveform.dsp.rate_errors_ppm = vec![1.];
+    assert!(c.validate(9600, 16384).is_err());
+    c.waveform.dsp.rate_errors_ppm = vec![0.];
+    c.coherent_cpm.as_mut().unwrap().phase_offsets_samples = vec![8];
+    assert!(c.validate(9600, 16384).is_err());
+    c.coherent_cpm.as_mut().unwrap().phase_offsets_samples = vec![0];
+    c.coherent_cpm
+        .as_mut()
+        .unwrap()
+        .modulation_index_denominator = 0;
+    assert!(c.validate(9600, 16384).is_err());
+}
+
+#[test]
+fn coherent_cpm_candidate_and_work_caps_never_prune_silently() {
+    let mut c = config();
+    c.sequence = None;
+    let expected = vec![frame(29, 13), frame(87, 211)];
+    let (bits, _) = levels(&expected, &c);
+    let iq = cpm_transmit(&bits, 8, Some(0.5));
+    let baseline = decode(&iq, 9600, &c, &"6".repeat(64)).unwrap();
+    c.coherent_cpm = Some(cpm_config(Some(0.5)));
+    c.coherent_cpm.as_mut().unwrap().maximum_candidates = 1;
+    assert!(
+        decode(&iq, 9600, &c, &"6".repeat(64))
+            .unwrap_err()
+            .contains("candidate budget")
+    );
+    c.coherent_cpm.as_mut().unwrap().maximum_candidates = 16;
+    c.work_budget = baseline.consumed_work + 1;
+    assert!(
+        decode(&iq, 9600, &c, &"6".repeat(64))
+            .unwrap_err()
+            .contains("work budget")
+    );
+}
+
+#[test]
+fn coherent_cpm_retains_phase_information_through_a_short_cycle_slip() {
+    let mut c = config();
+    c.scrambler = Scrambler::G3ruh;
+    c.sequence = None;
+    let expected = frame(100, 73);
+    let (bits, bounds) = levels(std::slice::from_ref(&expected), &c);
+    let target = (bounds[0].0 + 60..bounds[0].1 - 60)
+        .find(|i| bits[*i - 1..=*i + 1] == [0, 0, 0])
+        .unwrap();
+    let mut iq = cpm_transmit(&bits, 8, Some(0.5));
+    // An isolated received phase excursion returns to the identical waveform.
+    // Its unwrapped discriminator integrates an extra cycle, while coherent
+    // detection retains the surrounding phase evidence. No bit/FCS is edited.
+    for j in 0..=4 {
+        iq[target * 8 + 2 + j] *= Complex64::from_polar(1., std::f64::consts::FRAC_PI_2 * j as f64);
+    }
+    let baseline = decode(&iq, 9600, &c, &"7".repeat(64)).unwrap();
+    c.coherent_cpm = Some(cpm_config(Some(0.5)));
+    let recovered = decode(&iq, 9600, &c, &"7".repeat(64)).unwrap();
+    assert!(
+        baseline.frames.is_empty(),
+        "cycle slip did not defeat the declared baseline"
+    );
+    assert_eq!(
+        recovered
+            .frames
+            .iter()
+            .map(|f| f.hex.clone())
+            .collect::<Vec<_>>(),
+        vec![hex::encode(expected)],
+        "receipts={:?}",
+        recovered.coherent_cpm
+    );
+    assert_eq!(recovered.added_frames.len(), 1);
 }

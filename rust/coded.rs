@@ -260,18 +260,7 @@ pub fn decode_sync(
     let encoded = config.code.encoded_bits(config.frame_bytes)?;
     // Bound the product of candidate count and decoder work, not just each
     // dimension separately. These conservative units are not CPU seconds.
-    let candidate_work: u128 = match &config.code {
-        fec::FrameCode::None => encoded as u128,
-        fec::FrameCode::ReedSolomon { config: c } => {
-            let parity = c.parity_symbols as u128;
-            (8 * c.codeword_symbols() as u128 * parity + 2 * (parity / 2).pow(3))
-                * c.interleaving as u128
-        }
-        fec::FrameCode::Ldpc { config: c } => {
-            let edges: u128 = c.checks.iter().map(|row| row.len() as u128).sum();
-            (6 * edges + 4 * c.codeword_bits as u128) * c.max_iterations as u128
-        }
-    };
+    let candidate_work = candidate_work(config, encoded);
     let mut accumulated_work = 0u128;
     let width = config.syncword.len() + encoded;
     let mut candidates = 0;
@@ -333,6 +322,23 @@ pub fn decode_sync(
         });
     }
     Ok(frames)
+}
+
+/// Conservative decoder work estimate shared with optional acquisition paths.
+/// Inputs must already have passed `CodedSyncConfig::validate`.
+pub(crate) fn candidate_work(config: &CodedSyncConfig, encoded: usize) -> u128 {
+    match &config.code {
+        fec::FrameCode::None => encoded as u128,
+        fec::FrameCode::ReedSolomon { config: c } => {
+            let parity = c.parity_symbols as u128;
+            (8 * c.codeword_symbols() as u128 * parity + 2 * (parity / 2).pow(3))
+                * c.interleaving as u128
+        }
+        fec::FrameCode::Ldpc { config: c } => {
+            let edges: u128 = c.checks.iter().map(|row| row.len() as u128).sum();
+            (6 * edges + 4 * c.codeword_bits as u128) * c.max_iterations as u128
+        }
+    }
 }
 
 #[cfg(test)]

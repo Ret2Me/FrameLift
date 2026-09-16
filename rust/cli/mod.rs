@@ -196,6 +196,15 @@ pub(super) fn run() -> Result<Value, String> {
                 telemetry_yield_rs::archive::read(&profile)?;
             telemetry_yield_rs::recovery_hdlc::decode_file(&source, &plan, &output)
         }
+        Commands::DecodeRecoveryHdlcMemory {
+            input: source,
+            profile,
+            output,
+        } => {
+            let plan: telemetry_yield_rs::recovery_hdlc::memory::FilePlan =
+                telemetry_yield_rs::archive::read(&profile)?;
+            telemetry_yield_rs::recovery_hdlc::memory::decode_file(&source, &plan, &output)
+        }
         Commands::SummarizeRecoveryStudy {
             input: source,
             output,

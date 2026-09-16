@@ -148,6 +148,15 @@ pub(super) enum Commands {
         #[arg(long)]
         output: PathBuf,
     },
+    /// Causal HDLC IQ channel reuse and optional signal-only blind bootstrap.
+    DecodeRecoveryHdlcMemory {
+        #[arg(long)]
+        input: PathBuf,
+        #[arg(long)]
+        profile: PathBuf,
+        #[arg(long)]
+        output: PathBuf,
+    },
     /// Immutable IQ window worklist; completed windows survive restart.
     DecodeRecoverySession {
         #[arg(long)]

@@ -21,6 +21,10 @@
 | [Repository migration status](rust-migration-status.md) | Verified Rust replacements and remaining Python responsibilities |
 | [Progressive execution](how-it-works.md#progressive-execution) | Quick/deep/full budgets, checkpoints and resumption |
 | [CPU/CUDA configuration](enterprise-compute-and-benchmark-v1.md) | Backend scope, identity and parity checks |
+| [HDLC channel memory](hdlc-channel-memory.md) | Causal cross-window IQ models and signal-only bootstrap; experimental |
+| [HDLC coherent CPM](hdlc-cpm.md) | Flag-trained complex-IQ recovery of variable-length AX.25 frames |
+| [Soft marker acquisition](soft-acquisition.md) | Additive fixed-frame IQ acquisition with bounded search and unchanged integrity checks |
+| [FEC-assisted acquisition](fec-assisted-sync.md) | Damaged-marker RS/LDPC recovery with separate received-integrity validation |
 | [Operations](operations.md) | Worker isolation, input safety, failures and restart behavior |
 | [Contribution guide](../CONTRIBUTING.md) | Tests, coding rules and evidence-preserving changes |
 

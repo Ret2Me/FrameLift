@@ -64,6 +64,11 @@ pub enum ProtocolConfig {
     CodedSync {
         config: crate::coded::CodedSyncConfig,
     },
+    /// Optional bounded relaxed-marker acquisition; final CRC/FECF is mandatory.
+    FecAssistedSync {
+        config: crate::coded::CodedSyncConfig,
+        recovery: crate::fec_sync::Config,
+    },
 }
 
 pub trait ProtocolDecoder: Send + Sync {
@@ -125,6 +130,9 @@ impl ProtocolDecoder for ProtocolConfig {
                 })
             }
             Self::CodedSync { config } => crate::coded::decode_sync(soft, threshold, config),
+            Self::FecAssistedSync { config, recovery } => {
+                Ok(crate::fec_sync::decode(soft, threshold, config, recovery)?.frames)
+            }
         }
     }
     fn validate(&self) -> Result<(), String> {
@@ -1116,7 +1124,10 @@ fn verify_window(
         {
             return Err("cached AX25 frame fails independent boundary replay".into());
         }
-        if let Some(ProtocolConfig::CodedSync { config }) = plan.protocols.get(&frame.protocol_id) {
+        if let Some(
+            ProtocolConfig::CodedSync { config } | ProtocolConfig::FecAssistedSync { config, .. },
+        ) = plan.protocols.get(&frame.protocol_id)
+        {
             if bytes.len() != config.frame_bytes {
                 return Err("cached coded frame has wrong decoded length".into());
             }

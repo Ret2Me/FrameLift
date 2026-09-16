@@ -1,4 +1,5 @@
 //! Standalone Rust receiver. Python is a frozen test oracle, never a runtime.
+pub mod acquisition;
 /// Opt-in, signal-only cross-window sequence receiver development pipeline.
 pub mod adaptive;
 pub mod advanced_iq;
@@ -32,6 +33,7 @@ pub mod convolutional;
 pub mod cw;
 pub mod dsp;
 pub mod fec;
+pub mod fec_sync;
 pub mod formats;
 pub mod generic;
 pub mod geoscan;

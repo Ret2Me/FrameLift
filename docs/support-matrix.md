@@ -21,6 +21,9 @@ Demodulation, channel coding, framing and application interpretation are separat
 | Coherent BPSK / QPSK / OQPSK IQ | Generic `decode` / `decode-metadata` | Native synchronization and ambiguity hypotheses; synthetic qualification, no established orbital PSK yield advantage |
 | Physical bits without framing | `physical-decode` | Unaligned decisions are not validated telemetry |
 | SigMF / raw IQ manifests | `inspect-metadata`, `decode-metadata` | Supported layouts are validated explicitly; not every extension |
+| Experimental fixed-frame IQ acquisition | `decode-advanced-iq`, optional `recovery.soft_acquisition` | Bounded soft marker gate; explicit transmitter profile and received integrity still required |
+| Experimental variable-length AX.25 IQ | `decode-recovery-hdlc` | Optional flag-trained coherent CPM for integer-SPS CPFSK/GMSK; not arbitrary pulse shaping or markerless acquisition |
+| Experimental causal IQ channel memory | `decode-recovery-hdlc-memory` | Prior disjoint baseline anchors; optional blind fits exclude fitting and validation regions |
 
 ## Framing and channel coding
 
@@ -36,6 +39,7 @@ Demodulation, channel coding, framing and application interpretation are separat
 | Reed–Solomon | GF(256), shortening, interleaving, CCSDS dual basis; RS(255,223) preset | Not all shortening/interleaver choices are mission-qualified |
 | LDPC | Soft normalized min-sum with explicit sparse H/output map; TC128 and TC512 presets | Not every CCSDS LDPC family, puncturing or concatenation |
 | Derandomization | Explicit none / TM255 / TM131071 / TC255 | Order and settings are part of the link plan |
+| Experimental FEC-assisted acquisition | Generic `fec_assisted_sync` protocol; RS/LDPC | Relaxed but present marker, codeword consistency and mandatory received CRC/FECF; no K7/markerless claim |
 
 FEC convergence is different from a received CRC check. Corrected data must retain
 its correction and integrity provenance. A header parser is not a mission-specific

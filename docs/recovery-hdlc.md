@@ -43,6 +43,10 @@ window by using a packet from an archive. Time-varying channels may invalidate
 the transferred model; the baseline stays available. CRC-16 is an integrity
 check, not authentication or an absolute guarantee against false acceptance.
 
+A separate optional [coherent CPM lane](hdlc-cpm.md) now processes the original
+IQ using repeated HDLC flags for acquisition. It does not replace the baseline
+or this anchor-trained lane; omission of its option preserves existing behavior.
+
 ## Explicit run and ablation
 
 ```sh

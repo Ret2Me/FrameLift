@@ -38,6 +38,7 @@ fn scan(
     geometry: &Geometry,
     iq_len: usize,
     found: &mut Vec<Candidate>,
+    search: &mut Option<crate::acquisition::Search<'_>>,
 ) -> Result<(), String> {
     let arms = if wave::quadrature(c) { 2 } else { 1 };
     let header_bits = c
@@ -66,11 +67,20 @@ fn scan(
             observed =
                 ((observed << 1) & mask) | u128::from(values[start + c.syncword.len() - 1] > 0.);
         }
-        if !start.is_multiple_of(arms)
-            || (observed ^ pattern).count_ones() as usize > c.maximum_sync_hamming
-        {
+        if !start.is_multiple_of(arms) {
             continue;
         }
+        let errors = (observed ^ pattern).count_ones() as usize;
+        let soft_sync = if errors <= c.maximum_sync_hamming {
+            None
+        } else if let Some(search) = search {
+            let Some(score) = search.real(&values[start..start + c.syncword.len()], errors)? else {
+                continue;
+            };
+            Some(score)
+        } else {
+            continue;
+        };
         let mut channels = Vec::with_capacity(arms);
         for arm in 0..arms {
             let pilot: Vec<_> = values[start..start + c.syncword.len()]
@@ -123,6 +133,7 @@ fn scan(
             .map(|h| h.taps[1].powi(2) / h.noise_variance)
             .fold(f64::INFINITY, f64::min);
         found.push(Candidate {
+            soft_sync: soft_sync.clone(),
             samples: values[payload..payload + c.coded_bits()].to_vec(),
             channel: channels[0].clone(),
             branch_channels: channels,
@@ -134,7 +145,16 @@ fn scan(
             geometry: Some(g),
             channel_cache: std::sync::OnceLock::new(),
         });
-        if found.len() > c.maximum_candidates * 256 {
+        if soft_sync.is_some() {
+            search.as_mut().unwrap().admit_candidate()?;
+        }
+        if found.len()
+            - search
+                .as_ref()
+                .map(|s| s.receipt.raw_candidates)
+                .unwrap_or(0)
+            > c.maximum_candidates * 256
+        {
             return Err("raw acquisition candidate budget exceeded".into());
         }
     }
@@ -259,6 +279,7 @@ pub(super) fn psk_at(
     }
     let _ = rate;
     Ok(Candidate {
+        soft_sync: None,
         samples: values[payload..].to_vec(),
         channel: channels[0].clone(),
         branch_channels: channels,
@@ -272,7 +293,12 @@ pub(super) fn psk_at(
     })
 }
 
-pub(super) fn acquire(iq: &[Complex64], rate: u32, c: &Config) -> Result<Vec<Candidate>, String> {
+pub(super) fn acquire(
+    iq: &[Complex64],
+    rate: u32,
+    c: &Config,
+    search: &mut Option<crate::acquisition::Search<'_>>,
+) -> Result<Vec<Candidate>, String> {
     let mut found = Vec::new();
     let quadrature = wave::quadrature(c);
     let psk = wave::psk(c);
@@ -354,7 +380,7 @@ pub(super) fn acquire(iq: &[Complex64], rate: u32, c: &Config) -> Result<Vec<Can
                             .map(|i| mean(&cumulative, offset + i as f64 * step, step).re)
                             .collect()
                     };
-                    scan(&values, c, rate, &geometry, iq.len(), &mut found)?;
+                    scan(&values, c, rate, &geometry, iq.len(), &mut found, search)?;
                     continue;
                 }
                 let delays: &[bool] = if c.modulation == "oqpsk" {
@@ -412,36 +438,12 @@ pub(super) fn acquire(iq: &[Complex64], rate: u32, c: &Config) -> Result<Vec<Can
                             let mut geometry = geometry.clone();
                             geometry.delayed_q = delayed_q;
                             geometry.conjugated = conjugated;
-                            scan(&values, c, rate, &geometry, iq.len(), &mut found)?;
+                            scan(&values, c, rate, &geometry, iq.len(), &mut found, search)?;
                         }
                     }
                 }
             }
         }
     }
-    found.sort_by(|a, b| {
-        b.score
-            .total_cmp(&a.score)
-            .then_with(|| a.start.total_cmp(&b.start))
-            .then_with(|| a.carrier.total_cmp(&b.carrier))
-    });
-    let mut selected: Vec<Candidate> = Vec::new();
-    for candidate in found {
-        if selected.iter().any(|old| {
-            (old.start - candidate.start).abs() < candidate.step * 2.
-                && (old.carrier - candidate.carrier).abs() < c.symbol_rate * 0.01
-        }) {
-            continue;
-        }
-        selected.push(candidate);
-        if selected.len() > c.maximum_candidates {
-            return Err("acquired burst budget exceeded".into());
-        }
-    }
-    selected.sort_by(|a, b| {
-        a.start
-            .total_cmp(&b.start)
-            .then_with(|| a.carrier.total_cmp(&b.carrier))
-    });
-    Ok(selected)
+    super::select_candidates(found, c, search)
 }

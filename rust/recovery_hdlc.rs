@@ -22,6 +22,12 @@ const MAX_STREAMS: usize = 4096;
 const MAX_SOFT_VISITS: usize = 16_777_216;
 const FLAG: [u8; 8] = [0, 1, 1, 1, 1, 1, 1, 0];
 
+#[path = "recovery_hdlc_cpm.rs"]
+mod cpm;
+pub use cpm::{Config as CoherentCpmConfig, Receipt as CoherentCpmReceipt};
+#[path = "recovery_hdlc_memory.rs"]
+pub mod memory;
+
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub enum LineCoding {
@@ -51,6 +57,8 @@ pub struct Config {
     pub line_coding: LineCoding,
     pub scrambler: Scrambler,
     pub sequence: Option<SequenceConfig>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub coherent_cpm: Option<CoherentCpmConfig>,
     pub workers: usize,
     pub work_budget: u64,
 }
@@ -104,6 +112,8 @@ pub struct Report {
     pub added_frames: Vec<String>,
     pub frames: Vec<Frame>,
     pub sequence: Vec<SequenceReceipt>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub coherent_cpm: Vec<CoherentCpmReceipt>,
     pub consumed_work: u64,
 }
 
@@ -158,6 +168,9 @@ impl Config {
                 }
             },
             _ => return Err("HDLC IQ supports phase_fsk, channel_conditioned_phase_fsk, bell202_afsk, iq_bpsk, iq_qpsk, iq_oqpsk with matching DSP modes".into()),
+        }
+        if let Some(cpm) = &self.coherent_cpm {
+            cpm.validate(self, rate)?;
         }
         Ok(())
     }
@@ -362,20 +375,13 @@ fn sequence_stream(stream: &Stream, anchors: &[Span], c: &Config, index: usize) 
     result
 }
 
-pub fn decode(
-    iq: &[Complex64],
-    rate: u32,
-    c: &Config,
-    source_sha256: &str,
-) -> Result<Report, String> {
+fn collect_streams(iq: &[Complex64], rate: u32, c: &Config) -> Result<(Vec<Stream>, u64), String> {
     c.validate(rate, iq.len())?;
-    if source_sha256.len() != 64
-        || !source_sha256.bytes().all(|x| x.is_ascii_hexdigit())
-        || iq
-            .iter()
-            .any(|z| !z.re.is_finite() || !z.im.is_finite() || z.norm() > 1e6)
+    if iq
+        .iter()
+        .any(|z| !z.re.is_finite() || !z.im.is_finite() || z.norm() > 1e6)
     {
-        return Err("HDLC input needs a SHA-256 identity and finite bounded IQ".into());
+        return Err("HDLC input needs finite bounded IQ".into());
     }
     let w = &c.waveform;
     // Conservative visits: sequence includes sum-product plus framing; this is
@@ -451,6 +457,19 @@ pub fn decode(
             }
         }
     }
+    Ok((streams, work))
+}
+
+pub fn decode(
+    iq: &[Complex64],
+    rate: u32,
+    c: &Config,
+    source_sha256: &str,
+) -> Result<Report, String> {
+    if source_sha256.len() != 64 || !source_sha256.bytes().all(|x| x.is_ascii_hexdigit()) {
+        return Err("HDLC input needs a SHA-256 identity".into());
+    }
+    let (streams, mut work) = collect_streams(iq, rate, c)?;
     let run = |(index, stream): (usize, &Stream)| {
         let anchors = spans(&stream.soft, stream.threshold, c);
         sequence_stream(stream, &anchors, c, index)
@@ -501,17 +520,38 @@ pub fn decode(
             receipts.push(receipt);
         }
     }
+    let coherent = cpm::recover(iq, rate, c, streams.len(), &mut work)?;
+    for (span, provenance) in coherent.frames {
+        let hex = hex::encode(span.frame);
+        all.entry(hex.clone())
+            .or_insert_with(|| Frame {
+                hex,
+                validation_layers: vec![
+                    "crc16_x25_received_fcs".into(),
+                    "independent_received_residue_f0b8".into(),
+                    "ax25_ui".into(),
+                ],
+                provenance: vec![],
+            })
+            .provenance
+            .push(provenance);
+    }
     let mut hash = Sha256::new();
     for z in iq {
         hash.update(z.re.to_bits().to_le_bytes());
         hash.update(z.im.to_bits().to_le_bytes());
     }
     Ok(Report {
-        schema: "framelift-recovery-hdlc-v1".into(),
+        schema: if c.coherent_cpm.is_some() {
+            "framelift-recovery-hdlc-v2"
+        } else {
+            "framelift-recovery-hdlc-v1"
+        }
+        .into(),
         source_sha256: source_sha256.into(),
         iq_f64_le_sha256: hex::encode(hash.finalize()),
         sample_count: iq.len(),
-        streams: streams.len(),
+        streams: streams.len() + coherent.receipts.len(),
         baseline_frames: baseline.iter().cloned().collect(),
         added_frames: all
             .keys()
@@ -520,6 +560,7 @@ pub fn decode(
             .collect(),
         frames: all.into_values().collect(),
         sequence: receipts,
+        coherent_cpm: coherent.receipts,
         consumed_work: work,
     })
 }
@@ -539,8 +580,7 @@ pub fn decode_file(
             "HDLC recovery requires original coherent IQ: ci16_le, cf32_le or cf64_le".into(),
         );
     }
-    let end = plan
-        .start_sample
+    plan.start_sample
         .checked_add(plan.sample_count as u64)
         .ok_or("sample interval overflow")?;
     let out = input::existing_new_dir(output)?;
@@ -563,9 +603,25 @@ pub fn decode_file(
         )?;
         for frame in &mut report.frames {
             for p in &mut frame.provenance {
-                p.start_sample = plan.start_sample;
-                p.end_sample = end;
+                p.start_sample = p
+                    .start_sample
+                    .checked_add(plan.start_sample)
+                    .ok_or("provenance offset overflow")?;
+                p.end_sample = p
+                    .end_sample
+                    .checked_add(plan.start_sample)
+                    .ok_or("provenance offset overflow")?;
             }
+        }
+        for receipt in &mut report.coherent_cpm {
+            receipt.start_sample = receipt
+                .start_sample
+                .checked_add(plan.start_sample)
+                .ok_or("CPM receipt offset overflow")?;
+            receipt.end_sample = receipt
+                .end_sample
+                .checked_add(plan.start_sample)
+                .ok_or("CPM receipt offset overflow")?;
         }
         guard.verify()?;
         runtime.verify()?;

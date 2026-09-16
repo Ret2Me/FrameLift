@@ -1,0 +1,12 @@
+name: SONATE-2 explicit offline comparator
+norad: 59112
+data:
+  &raw Raw: unknown
+transmitters:
+  telemetry:
+    frequency: 437025000
+    modulation: FSK
+    baudrate: 9600
+    framing: AX.25 G3RUH
+    data:
+    - *raw

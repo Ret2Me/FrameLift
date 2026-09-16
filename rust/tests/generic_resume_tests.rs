@@ -528,6 +528,10 @@ fn abrupt_owned_process_interruption_preserves_commits_and_restarts_remaining_wi
             .unwrap()
     };
     let mut child = run("0");
+    // This is a hang guard, not a receiver deadline. Each subprocess verifies
+    // the complete debug executable; parallel qualification can saturate I/O.
+    // Keep checkpoint contents and resume assertions unchanged under that load.
+    let helper_deadline = Duration::from_secs(60);
     let started = Instant::now();
     while !dir.path().join("output/windows/00000000.json").exists() {
         assert!(
@@ -535,7 +539,7 @@ fn abrupt_owned_process_interruption_preserves_commits_and_restarts_remaining_wi
             "helper exited before first checkpoint"
         );
         assert!(
-            started.elapsed() < Duration::from_secs(15),
+            started.elapsed() < helper_deadline,
             "bounded first checkpoint wait"
         );
         std::thread::sleep(Duration::from_millis(5));
@@ -550,7 +554,7 @@ fn abrupt_owned_process_interruption_preserves_commits_and_restarts_remaining_wi
             assert!(status.success(), "resumed helper failed");
             break;
         }
-        if started.elapsed() > Duration::from_secs(15) {
+        if started.elapsed() > helper_deadline {
             let _ = child.kill();
             let _ = child.wait();
             panic!("bounded resume helper wait");

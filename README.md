@@ -223,6 +223,31 @@ marginal-yield scheduler and matched fixed-order controls. Its new benchmark is
 separate from the completed 266-recording study above; implementation and unit
 tests alone do not establish an additional gain.
 
+The optional [soft/iterative receiver](docs/soft-iterative-receiver.md) adds
+BCJR bit likelihoods, LDPC extrinsic feedback and a bounded audio comparison
+pilot. It is experimental, CPU-only and separate from the qualified defaults;
+its symbol-block turbo API operates on explicitly synchronized symbols.
+The separate [integrated IQ path](docs/advanced-iq-receiver.md) adds bounded
+BPSK/QPSK/OQPSK (rectangular or RRC), FSK/GFSK/GMSK and FM-AFSK acquisition,
+pilot-estimated/varying channels, protected-repeat combining and checked
+waveform-specific cancellation. The [recovery extensions](docs/recovery-extensions.md)
+add explicit uncoded/K7/RS/concatenated profiles, coherent CPM, guarded PSK
+synchronization refinement, mission-header repeat identities, parallel candidates
+and resumable IQ windows. Existing LDPC profiles remain readable. A matching
+transmitter/framing profile is still required: fixed-frame AX.25 validation is
+not streaming HDLC acquisition, and coherent processing does not apply to OGG.
+The separate [variable-length HDLC IQ receiver](docs/recovery-hdlc.md) handles
+AX.25 UI with explicit NRZI/G3RUH and an additive, disjoint-anchor BCJR lane.
+It preserves its baseline; it does not yet extend fixed-codeword CPM/SIC to HDLC.
+The [paired-study summarizer](docs/recovery-study.md) reports additions, losses,
+failed attempts, exposure strata and independently labelled signal-positive
+observations without promoting decoder attestations to received-CRC evidence.
+The original BPSK experiment remains reproducible; these development matrices
+are engineering evidence, not additional field-yield measurements.
+The [latest qualification report](reports/recovery-program-20260916.md) separates
+synthetic gains and exact-output speedups from the historical field pilot,
+which found no incremental frame gain over the previous receiver.
+
 Raw recordings, `work/`, caches, frozen local runtimes and bulk experiment outputs
 are laboratory material, not a source release. The repository retains narrative
 reports, test fixtures and the versioned manuscript evidence bundles. A public

@@ -1,0 +1,12 @@
+name: CANVAS explicit offline comparator
+norad: 68635
+data:
+  &raw Raw: unknown
+transmitters:
+  telemetry:
+    frequency: 437250000
+    modulation: FSK
+    baudrate: 9600
+    framing: AX.25 G3RUH
+    data:
+    - *raw

@@ -22,6 +22,15 @@ pub(super) fn run() -> Result<Value, String> {
     let cli = Cli::parse();
     let compute_options = cli.compute_options();
     compute_options.validate()?;
+    if matches!(
+        cli.command,
+        Commands::DecodeSoftSequence
+            | Commands::DecodeTurboBlock
+            | Commands::DecodeBcjrAudio { .. }
+    ) && compute_options.backend != compute::Backend::Cpu
+    {
+        return Err("standalone BCJR/turbo commands currently require --compute cpu".into());
+    }
     // Never initialize a CUDA context in a parent about to fork/exec a worker.
     if !matches!(
         &cli.command,
@@ -130,6 +139,81 @@ pub(super) fn run() -> Result<Value, String> {
             Ok(
                 json!({"schema":"rust-frame-codeword-v1","decoded":decoded,"telemetry_validated":false}),
             )
+        }
+        Commands::DecodeSoftSequence => {
+            #[derive(serde::Deserialize)]
+            #[serde(deny_unknown_fields)]
+            struct Request {
+                samples: Vec<f64>,
+                channel: telemetry_yield_rs::soft_sequence::Channel,
+                #[serde(default)]
+                prior: Vec<f64>,
+            }
+            let request: Request =
+                serde_json::from_value(stdin_json()?).map_err(|e| e.to_string())?;
+            let result = telemetry_yield_rs::soft_sequence::detect(
+                &request.samples,
+                &request.channel,
+                &request.prior,
+            )?;
+            Ok(
+                json!({"schema":"framelift-soft-sequence-v1","experimental":true,"telemetry_validated":false,"result":result}),
+            )
+        }
+        Commands::DecodeTurboBlock => {
+            let request: telemetry_yield_rs::turbo::Request =
+                serde_json::from_value(stdin_json()?).map_err(|e| e.to_string())?;
+            serde_json::to_value(telemetry_yield_rs::turbo::decode(&request)?)
+                .map_err(|e| e.to_string())
+        }
+        Commands::DecodeRecoverySession {
+            input,
+            profile,
+            output,
+            resume,
+            max_windows,
+        } => {
+            let plan: telemetry_yield_rs::recovery_session::Plan =
+                serde_json::from_value(input::read_json(&profile)?).map_err(|e| e.to_string())?;
+            telemetry_yield_rs::recovery_session::run(&input, &plan, &output, resume, max_windows)
+        }
+        Commands::DecodeAdvancedIq {
+            input,
+            profile,
+            output,
+        } => {
+            let plan: telemetry_yield_rs::advanced_iq::FilePlan =
+                serde_json::from_value(telemetry_yield_rs::input::read_json(&profile)?)
+                    .map_err(|e| e.to_string())?;
+            telemetry_yield_rs::advanced_iq::decode_file(&input, &plan, &output)
+        }
+        Commands::DecodeRecoveryHdlc {
+            input: source,
+            profile,
+            output,
+        } => {
+            let plan: telemetry_yield_rs::recovery_hdlc::FilePlan =
+                telemetry_yield_rs::archive::read(&profile)?;
+            telemetry_yield_rs::recovery_hdlc::decode_file(&source, &plan, &output)
+        }
+        Commands::SummarizeRecoveryStudy {
+            input: source,
+            output,
+        } => {
+            let study: telemetry_yield_rs::recovery_metrics::Study =
+                telemetry_yield_rs::archive::read(&source)?;
+            let report = telemetry_yield_rs::recovery_metrics::summarize(&study)?;
+            input::write_json_new(&output, &report)?;
+            Ok(report)
+        }
+        Commands::DecodeBcjrAudio {
+            input,
+            output,
+            duration_seconds,
+            baud,
+            threads,
+        } => {
+            telemetry_yield_rs::soft_audio::replay(&input, &output, duration_seconds, baud, threads)
         }
         Commands::FecProfile {
             profile,

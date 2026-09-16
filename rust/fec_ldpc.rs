@@ -5,6 +5,18 @@ use serde::{Deserialize, Serialize};
 const MAX_EDGES: usize = 1_048_576;
 const MAX_EDGE_ITERATIONS: usize = 100_000_000;
 
+/// Soft messages remain useful when decoding has not converged. Such a result
+/// is NOT a valid codeword; callers must check `converged` and packet integrity.
+#[derive(Clone, Debug, Serialize)]
+pub struct LdpcSoftOutput {
+    pub output_bits: Vec<u8>,
+    pub codeword_bits: Vec<u8>,
+    pub posterior_llr: Vec<f64>,
+    pub extrinsic_llr: Vec<f64>,
+    pub iterations: usize,
+    pub converged: bool,
+}
+
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct LdpcConfig {
@@ -144,6 +156,19 @@ impl LdpcConfig {
     /// Normalize a calibrated LLR upstream if available; internal message
     /// saturation is explicit in config and part of this approximate decoder.
     pub fn decode(&self, soft: &[f64]) -> Result<(Vec<u8>, usize), String> {
+        let result = self.decode_soft(soft)?;
+        if !result.converged {
+            return Err(
+                "LDPC did not converge to a zero-syndrome codeword within iteration budget".into(),
+            );
+        }
+        Ok((result.output_bits, result.iterations))
+    }
+
+    /// Fresh normalized-min-sum pass with signed ONE-positive extrinsic output.
+    /// Incoming evidence is subtracted before output clipping. Internal state
+    /// is never retained across turbo passes (which would count evidence twice).
+    pub fn decode_soft(&self, soft: &[f64]) -> Result<LdpcSoftOutput, String> {
         self.validate()?;
         if soft.len() != self.codeword_bits || soft.iter().any(|x| !x.is_finite()) {
             return Err("LDPC needs one finite soft value per configured bit".into());
@@ -157,7 +182,7 @@ impl LdpcConfig {
             .collect();
         let mut hard: Vec<u8> = channel.iter().map(|&llr| u8::from(llr <= 0.0)).collect();
         if self.syndrome_validated(&hard) {
-            return Ok((self.output_bits.iter().map(|&i| hard[i]).collect(), 0));
+            return Ok(self.soft_output(&channel, &channel, hard, 0, true));
         }
         let offsets: Vec<usize> = self
             .checks
@@ -213,19 +238,81 @@ impl LdpcConfig {
                 *bit = u8::from(llr <= 0.0);
             }
             if self.syndrome_validated(&hard) {
-                return Ok((
-                    self.output_bits.iter().map(|&i| hard[i]).collect(),
-                    iteration,
-                ));
+                return Ok(self.soft_output(&posterior, &channel, hard, iteration, true));
             }
         }
-        Err("LDPC did not converge to a zero-syndrome codeword within iteration budget".into())
+        Ok(self.soft_output(&posterior, &channel, hard, self.max_iterations, false))
+    }
+
+    fn soft_output(
+        &self,
+        posterior: &[f64],
+        channel: &[f64],
+        hard: Vec<u8>,
+        iterations: usize,
+        converged: bool,
+    ) -> LdpcSoftOutput {
+        LdpcSoftOutput {
+            output_bits: self.output_bits.iter().map(|&i| hard[i]).collect(),
+            codeword_bits: hard,
+            posterior_llr: posterior
+                .iter()
+                .map(|p| (-p).clamp(-self.llr_clip, self.llr_clip))
+                .collect(),
+            extrinsic_llr: posterior
+                .iter()
+                .zip(channel)
+                .map(|(p, c)| (c - p).clamp(-self.llr_clip, self.llr_clip))
+                .collect(),
+            iterations,
+            converged,
+        }
     }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn extrinsic_excludes_incoming_evidence_and_resets_messages() {
+        let config = LdpcConfig {
+            codeword_bits: 16,
+            checks: (0..8).map(|i| vec![i, i + 8]).collect(),
+            output_bits: (0..8).collect(),
+            max_iterations: 5,
+            normalization: 1.0,
+            llr_clip: 50.0,
+        };
+        let input: Vec<_> = (0..16).map(|i| if i < 8 { -0.5 } else { 2.0 }).collect();
+        let result = config.decode_soft(&input).unwrap();
+        assert!(result.converged);
+        for i in 0..16 {
+            assert_eq!(result.posterior_llr[i], 1.5);
+            assert_eq!(result.extrinsic_llr[i], if i < 8 { 2.0 } else { -0.5 });
+        }
+        assert_eq!(
+            result.extrinsic_llr,
+            config.decode_soft(&input).unwrap().extrinsic_llr
+        );
+        assert_eq!(
+            config.decode(&input).unwrap(),
+            (result.output_bits, result.iterations)
+        );
+    }
+
+    #[test]
+    fn nonconverged_soft_result_is_not_accepted_by_hard_api() {
+        let mut config = LdpcConfig::ccsds_tc128();
+        config.max_iterations = 1;
+        let input: Vec<_> = (0..128)
+            .map(|i| if i % 7 < 3 { -1.0 } else { 0.3 })
+            .collect();
+        let result = config.decode_soft(&input).unwrap();
+        assert!(!result.converged);
+        assert_eq!(result.extrinsic_llr.len(), 128);
+        assert!(config.decode(&input).is_err());
+    }
     // Independent generator rows from CCSDS231.0-B-4 table4-1; H is not
     // used to produce these words. Right rotate separately inside each 16-bit
     // circulant, not the whole 64-bit parity row.

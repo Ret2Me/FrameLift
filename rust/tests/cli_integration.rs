@@ -1,7 +1,7 @@
 //! Black-box receiver CLI contracts. Every tested command runs with an empty
 //! PATH and without Python, FFmpeg, external decoders or network access.
 use serde_json::{Value, json};
-use sha2::{Digest, Sha512};
+use sha2::{Digest, Sha256, Sha512};
 use std::fs::{self, File};
 use std::io::Write;
 use std::path::{Path, PathBuf};
@@ -10,6 +10,325 @@ use std::sync::Mutex;
 use std::time::{Duration, Instant};
 
 const BINARY: &str = env!("CARGO_BIN_EXE_telemetry-yield-rs");
+
+#[path = "../../examples/support/advanced_iq_fixture.rs"]
+mod advanced_fixture;
+
+#[path = "../../examples/support/multimode_fixture.rs"]
+#[allow(dead_code)] // This CLI test uses the shared transmitter's clean lane.
+mod multimode_fixture;
+
+#[test]
+fn multimode_iq_cli_matches_library_on_identical_cf32_bytes() {
+    use telemetry_yield_rs::{advanced_iq, generic, input};
+    let temp = tempfile::tempdir().unwrap();
+    for mode in multimode_fixture::MODES {
+        let c = multimode_fixture::config(mode);
+        let mut iq = advanced_fixture::Noise(919).fill(multimode_fixture::LENGTH, 0.001);
+        multimode_fixture::add(
+            &mut iq,
+            &c,
+            &advanced_fixture::frame(19),
+            None,
+            multimode_fixture::Tx::default(),
+        );
+        let raw: Vec<_> = iq
+            .iter()
+            .flat_map(|z| {
+                (z.re as f32)
+                    .to_le_bytes()
+                    .into_iter()
+                    .chain((z.im as f32).to_le_bytes())
+            })
+            .collect();
+        let iq: Vec<_> = raw
+            .as_chunks::<8>()
+            .0
+            .iter()
+            .map(|b| {
+                num_complex::Complex64::new(
+                    f32::from_le_bytes(b[..4].try_into().unwrap()) as f64,
+                    f32::from_le_bytes(b[4..].try_into().unwrap()) as f64,
+                )
+            })
+            .collect();
+        let path = temp.path().join(format!("{mode}.cf32"));
+        std::fs::write(&path, &raw).unwrap();
+        let expected = advanced_iq::decode(
+            &iq,
+            multimode_fixture::RATE,
+            &c,
+            &hex::encode(Sha256::digest(&raw)),
+        )
+        .unwrap();
+        let plan = advanced_iq::FilePlan {
+            format: generic::InputFormat::Cf32Le,
+            sample_rate_hz: multimode_fixture::RATE,
+            start_sample: 0,
+            sample_count: iq.len(),
+            receiver: c,
+        };
+        let profile = temp.path().join(format!("{mode}.json"));
+        input::write_json_new(&profile, &plan).unwrap();
+        let out = temp.path().join(format!("{mode}-out"));
+        let result = cli(
+            &[
+                "decode-advanced-iq",
+                "--input",
+                path.to_str().unwrap(),
+                "--profile",
+                profile.to_str().unwrap(),
+                "--output",
+                out.to_str().unwrap(),
+            ],
+            None,
+        )
+        .json();
+        assert_eq!(result["frames"], 1, "{mode}");
+        assert_eq!(
+            input::read_json(&out.join("report.json")).unwrap(),
+            serde_json::to_value(expected).unwrap(),
+            "{mode}"
+        );
+    }
+}
+
+#[test]
+fn advanced_iq_cli_decodes_file_and_rejects_gpu_and_reuse() {
+    let temp = tempfile::tempdir().unwrap();
+    let mut iq = advanced_fixture::Noise(391).fill(2048, 0.01);
+    let receiver = advanced_fixture::config();
+    let bytes = advanced_fixture::frame(12);
+    advanced_fixture::add(
+        &mut iq,
+        &advanced_fixture::symbols(&receiver, &bytes, None),
+        128,
+        1.,
+        0.,
+    );
+    let path = temp.path().join("input.cf32");
+    let raw: Vec<u8> = iq
+        .iter()
+        .flat_map(|z| {
+            (z.re as f32)
+                .to_le_bytes()
+                .into_iter()
+                .chain((z.im as f32).to_le_bytes())
+        })
+        .collect();
+    std::fs::write(&path, raw).unwrap();
+    let plan = telemetry_yield_rs::advanced_iq::FilePlan {
+        format: telemetry_yield_rs::generic::InputFormat::Cf32Le,
+        sample_rate_hz: 4000,
+        start_sample: 0,
+        sample_count: 2048,
+        receiver,
+    };
+    let profile = temp.path().join("profile.json");
+    telemetry_yield_rs::input::write_json_new(&profile, &plan).unwrap();
+    let out = temp.path().join("output");
+    let args = [
+        "decode-advanced-iq",
+        "--input",
+        path.to_str().unwrap(),
+        "--profile",
+        profile.to_str().unwrap(),
+        "--output",
+        out.to_str().unwrap(),
+    ];
+    let summary = cli(&args, None).json();
+    assert_eq!(summary["frames"], 1);
+    let report = telemetry_yield_rs::input::read_json(&out.join("report.json")).unwrap();
+    assert_eq!(report["frames"][0]["frame_hex"], hex::encode(bytes));
+    cli(&args, None).failure();
+    let mut gpu = args.to_vec();
+    gpu.extend(["--compute", "cuda"]);
+    cli(&gpu, None).failure();
+}
+
+#[test]
+fn recovery_session_cli_resumes_exact_windows_and_rejects_changed_plan() {
+    let temp = tempfile::tempdir().unwrap();
+    let receiver = advanced_fixture::config();
+    let mut iq = advanced_fixture::Noise(91).fill(4096, 0.001);
+    for (offset, number) in [(128, 11), (2176, 12)] {
+        advanced_fixture::add(
+            &mut iq,
+            &advanced_fixture::symbols(&receiver, &advanced_fixture::frame(number), None),
+            offset,
+            1.,
+            0.,
+        );
+    }
+    let raw: Vec<_> = iq
+        .iter()
+        .flat_map(|z| {
+            (z.re as f32)
+                .to_le_bytes()
+                .into_iter()
+                .chain((z.im as f32).to_le_bytes())
+        })
+        .collect();
+    let source = temp.path().join("input.cf32");
+    fs::write(&source, raw).unwrap();
+    let profile = temp.path().join("windows.json");
+    let mut plan = json!({"format":"cf32_le","sample_rate_hz":4000,"windows":[{"start_sample":0,"sample_count":2048},{"start_sample":2048,"sample_count":2048}],"receiver":receiver});
+    write_json(&profile, &plan);
+    let output = temp.path().join("session");
+    let args = [
+        "decode-recovery-session",
+        "--input",
+        string(&source),
+        "--profile",
+        string(&profile),
+        "--output",
+        string(&output),
+        "--max-windows",
+        "1",
+    ];
+    let first = cli(&args, None).json();
+    assert_eq!(first["summary"]["status"], "paused");
+    let mut resumed_args = args.to_vec();
+    resumed_args.push("--resume");
+    let second = cli(&resumed_args, None).json();
+    assert_eq!(second["summary"]["status"], "complete");
+    assert_eq!(second["summary"]["unique_frames"], 2);
+    assert_eq!(second["reused_windows"], 1);
+    let third = cli(&resumed_args, None).json();
+    assert_eq!(third["executed_windows"], 0);
+    assert_eq!(third["summary"], second["summary"]);
+    plan["receiver"]["maximum_work"] = json!(12345678);
+    write_json(&profile, &plan);
+    cli(&resumed_args, None).failure();
+}
+
+#[test]
+fn recovery_study_cli_retains_missing_arms_without_claiming_publication_readiness() {
+    let temp = tempfile::tempdir().unwrap();
+    let source = temp.path().join("study.json");
+    write_json(
+        &source,
+        &json!({"schema":"framelift-recovery-study-v1","baseline_arm":"baseline","candidate_arms":["candidate"],"observations":[{
+            "id":"fixture","mission":"fixture","station":1,"pass_group":"pass","input_sha256":"a".repeat(64),"exposure":"development",
+            "confirmed_signal":null,"signal_evidence":null,"negative_control":false,"duration_seconds":1.0,"arms":[]
+        }]}),
+    );
+    let output = temp.path().join("report.json");
+    let args = [
+        "summarize-recovery-study",
+        "--input",
+        string(&source),
+        "--output",
+        string(&output),
+    ];
+    let v = cli(&args, None).json();
+    assert_eq!(v["publication_ready"], false);
+    assert_eq!(v["failures_and_missing"].as_array().unwrap().len(), 2);
+    assert!(v["aggregates"].as_array().unwrap().is_empty());
+    cli(&args, None).failure();
+    assert!(cli(&["decode-recovery-hdlc", "--help"], None).success);
+}
+
+#[test]
+fn recovery_hdlc_cli_decodes_received_fcs_and_preserves_baseline_union() {
+    let temp = tempfile::tempdir().unwrap();
+    let (levels, expected) = positive_samples();
+    let mut phase = 0.0;
+    let raw: Vec<_> = levels
+        .iter()
+        .flat_map(|level| {
+            phase += std::f64::consts::TAU * 0.2 / 5.0 * f64::from(*level) / 0.75;
+            let (q, i) = phase.sin_cos();
+            (i as f32)
+                .to_le_bytes()
+                .into_iter()
+                .chain((q as f32).to_le_bytes())
+        })
+        .collect();
+    let source = temp.path().join("hdlc.cf32");
+    fs::write(&source, raw).unwrap();
+    let profile = temp.path().join("hdlc.json");
+    write_json(
+        &profile,
+        &json!({"format":"cf32_le","sample_rate_hz":48000,"start_sample":0,"sample_count":levels.len(),
+        "receiver":{"waveform":{"hypothesis_id":"oracle-fsk","demodulator_id":"phase_fsk","decimation":1,"cutoff_hz":7200.0,
+            "dsp":{"mode":"fsk","baud":9600.0,"phase_bins":8,"rate_errors_ppm":[0.0],"bank":"full","top_timing":8}},
+            "line_coding":"nrzi","scrambler":"none","sequence":{"maximum_training_frames":1},"workers":2,"work_budget":2000000000}}),
+    );
+    let output = temp.path().join("hdlc-output");
+    let args = [
+        "decode-recovery-hdlc",
+        "--input",
+        string(&source),
+        "--profile",
+        string(&profile),
+        "--output",
+        string(&output),
+    ];
+    let result = cli(&args, None).json();
+    assert_eq!(result["frames"], expected.len());
+    let report = read_json(&output.join("report.json"));
+    let actual: std::collections::BTreeSet<_> = report["frames"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|f| f["hex"].as_str().unwrap().to_owned())
+        .collect();
+    assert_eq!(actual, expected.into_iter().collect());
+    for key in report["baseline_frames"].as_array().unwrap() {
+        assert!(actual.contains(key.as_str().unwrap()));
+    }
+    cli(&args, None).failure();
+}
+
+#[test]
+fn experimental_bcjr_cli_has_explicit_likelihood_and_validation_contracts() {
+    let request = json!({"samples":[0.0,0.5,0.0],
+        "channel":{"taps":[0.0,1.0,0.0],"bias":0.0,"noise_variance":1.0}});
+    let result = cli(&["decode-soft-sequence"], Some(&request)).json();
+    assert_eq!(result["telemetry_validated"], false);
+    assert_eq!(result["result"]["posterior_llr"][1], 1.0);
+    let mut invalid = request;
+    invalid["prior"] = json!([1.0]);
+    cli(&["decode-soft-sequence"], Some(&invalid)).failure();
+    cli(&["decode-turbo-block"], Some(&json!({}))).failure();
+    assert!(cli(&["decode-bcjr-audio", "--help"], None).success);
+}
+
+#[test]
+fn experimental_turbo_cli_never_exports_crc_invalid_payloads() {
+    let mut frame = vec![0u8, 1, 0, 1];
+    let crc = telemetry_yield_rs::space_link::csp_crc32c(&frame);
+    frame.extend_from_slice(&crc.to_be_bytes());
+    let samples = |bytes: &[u8]| -> Vec<f64> {
+        bytes
+            .iter()
+            .chain(bytes)
+            .flat_map(|b| {
+                (0..8)
+                    .rev()
+                    .map(move |i| if b & (1 << i) == 0 { -1.0 } else { 1.0 })
+            })
+            .collect()
+    };
+    // Deliberate synthetic repetition code, NOT a mission profile.
+    let mut request = json!({"samples":samples(&frame),
+        "channel":{"taps":[0.0,1.0,0.0],"bias":0.0,"noise_variance":0.1},
+        "code":{"codeword_bits":128,"checks":(0..64).map(|i|vec![i,i+64]).collect::<Vec<_>>(),
+            "output_bits":(0..64).collect::<Vec<_>>(),"max_iterations":8,"normalization":1.0,"llr_clip":50.0},
+        "validator":{"type":"space_link","config":{"type":"csp_v1","crc32":"required_header_and_payload"}},
+        "iterations":4,"damping":0.7});
+    let result = cli(&["decode-turbo-block"], Some(&request)).json();
+    assert_eq!(result["accepted"], true);
+    assert_eq!(result["frame_hex"], hex::encode(&frame));
+    frame[7] ^= 1;
+    request["samples"] = json!(samples(&frame));
+    let invalid = cli(&["decode-turbo-block"], Some(&request)).json();
+    assert_eq!(invalid["accepted"], false);
+    assert!(invalid["frame_hex"].is_null());
+    request["wire_to_code"] = json!(vec![0; 128]);
+    cli(&["decode-turbo-block"], Some(&request)).failure();
+}
 
 #[test]
 fn array_results_keep_the_success_exit_contract() {

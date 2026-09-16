@@ -5,7 +5,8 @@
 //! is not the full progressive portfolio, a GPU backend, or a frozen field test.
 
 use crate::{
-    adaptive, anchors, dsp, innovation_audio, receiver, robust_sequence, sequence, uncertainty,
+    adaptive, anchors, dsp, innovation_audio, receiver, robust_sequence, sequence, soft_sequence,
+    uncertainty,
 };
 use rayon::prelude::*;
 use serde::Serialize;
@@ -26,6 +27,7 @@ enum ReplayMetric {
     Uncertainty(f64),
     Huber,
     StudentT,
+    Bcjr,
 }
 
 impl ReplayMetric {
@@ -35,6 +37,7 @@ impl ReplayMetric {
             Self::Uncertainty(strength) => format!("uncertainty-{strength}"),
             Self::Huber => "huber-2".into(),
             Self::StudentT => "student-t-3".into(),
+            Self::Bcjr => "bcjr-gaussian".into(),
         }
     }
 }
@@ -49,6 +52,7 @@ const ROBUST_BANK: [ReplayMetric; 3] = [
     ReplayMetric::Huber,
     ReplayMetric::StudentT,
 ];
+const BCJR_BANK: [ReplayMetric; 2] = [ReplayMetric::Point, ReplayMetric::Bcjr];
 
 #[derive(Serialize)]
 pub struct Source {
@@ -173,7 +177,7 @@ struct ReplayContext<'a> {
     all_anchors: &'a [adaptive::AnchorModel],
     sources: &'a [Source],
     expected: &'a BTreeMap<TrialKey, ExpectedTrial>,
-    bank: &'a [ReplayMetric; 3],
+    bank: &'a [ReplayMetric],
 }
 
 fn target_window(
@@ -233,6 +237,18 @@ fn target_window(
                         .to_vec(),
                         ReplayMetric::Uncertainty(strength) => {
                             uncertainty::detect(&soft, &source.fit, gain, strength)?
+                        }
+                        ReplayMetric::Bcjr => {
+                            let channel = soft_sequence::Channel {
+                                taps: source.fit.model.taps.map(|x| x * gain),
+                                bias: source.fit.model.bias * gain,
+                                noise_variance: source.fit.noise_variance * gain * gain,
+                            };
+                            soft_sequence::detect(&soft, &channel, &[])?
+                                .hard_bits
+                                .iter()
+                                .map(|b| 2.0 * f64::from(*b) - 1.0)
+                                .collect()
                         }
                         ReplayMetric::Huber | ReplayMetric::StudentT => robust_sequence::detect(
                             &soft,
@@ -319,11 +335,22 @@ pub fn decode_robust_samples(
     decode_bank(samples, sample_rate, config, &ROBUST_BANK)
 }
 
+/// Paired BCJR/MLSE replay on identical source fits and target hypotheses.
+/// Hard bit marginals are checked with the unchanged received-FCS validator;
+/// this uncoded AX.25 experiment does NOT invoke LDPC or CRC-guided repair.
+pub fn decode_bcjr_samples(
+    samples: &[f64],
+    sample_rate: u32,
+    config: &adaptive::AdaptiveConfig,
+) -> Result<Report, String> {
+    decode_bank(samples, sample_rate, config, &BCJR_BANK)
+}
+
 fn decode_bank(
     samples: &[f64],
     sample_rate: u32,
     config: &adaptive::AdaptiveConfig,
-    bank: &[ReplayMetric; 3],
+    bank: &[ReplayMetric],
 ) -> Result<Report, String> {
     let started = Instant::now();
     let reference = innovation_audio::decode_samples(samples, sample_rate, config, None)?;

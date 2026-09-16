@@ -1,0 +1,14 @@
+name: ISS APRS explicit offline comparator
+norad: 25544
+data:
+  &raw Raw: unknown
+transmitters:
+  APRS:
+    frequency: 145825000
+    modulation: AFSK
+    baudrate: 1200
+    af_carrier: 1700
+    deviation: 500
+    framing: AX.25
+    data:
+    - *raw

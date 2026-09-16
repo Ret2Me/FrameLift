@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 mod ldpc;
 #[path = "fec_rs.rs"]
 mod rs;
-pub use ldpc::LdpcConfig;
+pub use ldpc::{LdpcConfig, LdpcSoftOutput};
 pub use rs::{ReedSolomonConfig, SymbolBasis};
 
 pub const MAX_FRAME_CODE_BITS: usize = 65_536;

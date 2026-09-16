@@ -5,7 +5,7 @@ pub mod exposure;
 pub mod report;
 pub mod runner;
 pub mod transport;
-mod uncertainty;
+pub(crate) mod uncertainty;
 
 use crate::{input, research};
 use serde::de::DeserializeOwned;

@@ -125,6 +125,63 @@ pub(super) enum Commands {
     /// Decode one explicit FEC word. stdin: {code, soft, decoded_bytes}.
     /// FEC convergence alone is NOT a validated telemetry packet.
     DecodeCodeword,
+    /// Experimental Gaussian three-tap BCJR. stdin: {samples, channel, prior?}.
+    DecodeSoftSequence,
+    /// Experimental aligned symbol-block BCJR/LDPC iteration; requires CRC validator.
+    /// Does not acquire or synchronize IQ/audio. See docs/soft-iterative-receiver.md.
+    DecodeTurboBlock,
+    /// Experimental PSK/(G)FSK/GMSK/AFSK IQ, pilot-estimated turbo/FEC, repeats and SIC.
+    DecodeAdvancedIq {
+        #[arg(long)]
+        input: PathBuf,
+        #[arg(long)]
+        profile: PathBuf,
+        #[arg(long)]
+        output: PathBuf,
+    },
+    /// Variable-length AX.25 UI IQ recovery with an additive soft-sequence lane.
+    DecodeRecoveryHdlc {
+        #[arg(long)]
+        input: PathBuf,
+        #[arg(long)]
+        profile: PathBuf,
+        #[arg(long)]
+        output: PathBuf,
+    },
+    /// Immutable IQ window worklist; completed windows survive restart.
+    DecodeRecoverySession {
+        #[arg(long)]
+        input: PathBuf,
+        #[arg(long)]
+        profile: PathBuf,
+        #[arg(long)]
+        output: PathBuf,
+        #[arg(long)]
+        resume: bool,
+        /// Stop only between windows. This is not a wall-clock deadline.
+        #[arg(long, default_value_t = 4096)]
+        max_windows: usize,
+    },
+    /// Paired receipt accounting; does not certify provenance or publication readiness.
+    SummarizeRecoveryStudy {
+        #[arg(long)]
+        input: PathBuf,
+        #[arg(long)]
+        output: PathBuf,
+    },
+    /// Development-only mono WAV/OGG BCJR/MLSE comparison, not a full progressive run.
+    DecodeBcjrAudio {
+        #[arg(long)]
+        input: PathBuf,
+        #[arg(long)]
+        output: PathBuf,
+        #[arg(long, default_value_t = 90.0)]
+        duration_seconds: f64,
+        #[arg(long, default_value_t = 9600.0)]
+        baud: f64,
+        #[arg(long, default_value_t = 1)]
+        threads: usize,
+    },
     /// Print an explicit named native FEC configuration (no waveform decoding).
     FecProfile {
         #[arg(long,value_parser=["ccsds-rs255-223","ccsds-tc128","ccsds-tc512"])]

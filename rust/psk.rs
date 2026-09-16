@@ -238,7 +238,7 @@ pub fn validate_waveform(rate: u32, w: &Waveform) -> Result<(), String> {
     Ok(())
 }
 
-fn taps(filter: &MatchedFilter, sps: f64) -> Vec<f64> {
+pub(crate) fn taps(filter: &MatchedFilter, sps: f64) -> Vec<f64> {
     match filter {
         MatchedFilter::Rectangular => vec![1.0 / sps.round(); sps.round() as usize],
         MatchedFilter::RootRaisedCosine {
@@ -267,7 +267,7 @@ fn taps(filter: &MatchedFilter, sps: f64) -> Vec<f64> {
         }
     }
 }
-fn filter(signal: &[Complex64], taps: &[f64]) -> Result<Vec<Complex64>, String> {
+pub(crate) fn filter(signal: &[Complex64], taps: &[f64]) -> Result<Vec<Complex64>, String> {
     crate::compute::current().fir_complex(signal, taps, 1, true)
 }
 fn interpolate(values: &[Complex64], t: f64) -> Complex64 {

@@ -3,7 +3,7 @@
 use serde_json::{Value, json};
 use std::collections::BTreeMap;
 
-pub(super) struct Pair {
+pub(crate) struct Pair {
     pub station: u64,
     pub group: String,
     pub reference: usize,
@@ -18,7 +18,7 @@ fn root(parents: &mut [usize], mut i: usize) -> usize {
     i
 }
 
-pub(super) fn bootstrap(pairs: &[Pair]) -> Value {
+pub(crate) fn bootstrap(pairs: &[Pair]) -> Value {
     let mut parents: Vec<_> = (0..pairs.len()).collect();
     let mut stations = BTreeMap::new();
     let mut groups = BTreeMap::new();

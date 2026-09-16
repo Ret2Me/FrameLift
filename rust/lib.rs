@@ -3,6 +3,7 @@
 pub mod adaptive;
 pub mod afsk_legacy;
 pub mod anchors;
+pub mod archive;
 pub mod audit;
 pub mod backends;
 pub mod benchmark;

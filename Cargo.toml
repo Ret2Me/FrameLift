@@ -28,6 +28,10 @@ path = "rust/tests/cli_integration.rs"
 name = "research_cli"
 path = "rust/tests/research_cli.rs"
 
+[[test]]
+name = "archive_cli"
+path = "rust/tests/archive_cli.rs"
+
 [[bin]]
 name = "telemetry-sstv"
 path = "rust/sstv_cli.rs"
@@ -39,6 +43,10 @@ path = "rust/meteor_cli.rs"
 [[bin]]
 name = "framelift-research"
 path = "rust/research_cli.rs"
+
+[[bin]]
+name = "framelift-campaign"
+path = "rust/archive_cli.rs"
 
 [dependencies]
 base64 = "0.22"

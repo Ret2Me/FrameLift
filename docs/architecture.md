@@ -31,7 +31,7 @@ modulations or coding families.
 
 ## Packages and entry points
 
-The package `telemetry-yield-rs` contains the native library and three Linux CLI
+The package `telemetry-yield-rs` contains the native library and five Linux CLI
 programs. `tools/xtask` is development tooling, not a receiver dependency. The
 default workspace member remains the receiver; historical examples keep their
 original Cargo names and paths.
@@ -55,6 +55,8 @@ as standalone packages. CI checks the image tool separately.
 | Waveform processing | `rust/dsp.rs`, `rust/psk*.rs`, `rust/sequence.rs` | Signal conditioning, synchronization and sequence decisions |
 | Framing and coding | `rust/protocol.rs`, `rust/space_link.rs`, `rust/fec*.rs` | Framing, explicit integrity checks and error-correction primitives |
 | Evidence | `rust/audit*.rs`, `rust/compute_session_audit.rs` | Independently validate artifacts and compare full results |
+| Research primitives | `rust/research/`, `rust/research_cli.rs` | Offline audits, selection, metrics and SQLite attempts |
+| Archival experiments | `rust/archive/`, `rust/archive_cli.rs` | Bounded acquisition, frozen cohorts/runtimes, paired runs and re-audited reports |
 | File/process boundary | `rust/input.rs`, `rust/backends.rs` | Bounded input, atomic output and owned external-process execution |
 
 The CLI contains no alternate DSP implementation. Experimental lanes remain
@@ -79,6 +81,12 @@ flowchart LR
 The resume edge must revalidate the input, binary, policy and backend identity.
 It does not mean a new build may consume a checkpoint from an old experiment.
 An incomplete result is a first-class state, distinct from zero valid packets.
+
+The optional marginal-yield scheduler adds an immutable decision journal before
+each four-task batch. It learns only after the batch barrier, credits duplicate
+packets once, and never moves tasks across the frozen anchor-generation phases.
+The default fixed-order scheduler remains the controlled comparison. Adaptive
+ordering is not pruning, a change to packet validation, or a proven yield gain.
 
 Progressive work is supervised in an owned worker process. The supervisor must
 not initialize a CUDA context before fork/exec. A worker initializes the selected

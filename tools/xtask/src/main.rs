@@ -20,8 +20,10 @@ const FORMAT_ROOTS: &[&str] = &[
     "rust/sstv_cli.rs",
     "rust/meteor_cli.rs",
     "rust/research_cli.rs",
+    "rust/archive_cli.rs",
     "rust/tests/cli_integration.rs",
     "rust/tests/research_cli.rs",
+    "rust/tests/archive_cli.rs",
     "tools/xtask/src/main.rs",
 ];
 
@@ -92,6 +94,8 @@ fn plan(task: &str) -> Result<Vec<Step>, String> {
                 "cli_integration",
                 "--test",
                 "research_cli",
+                "--test",
+                "archive_cli",
                 "--example",
                 "decoder_readiness_audit",
             ]),

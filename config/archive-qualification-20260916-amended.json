@@ -1,0 +1,22 @@
+{
+  "schema": "framelift-archive-protocol-v1",
+  "start": "2026-07-08T00:00:00Z",
+  "end": "2026-07-22T00:00:00Z",
+  "rank_salt": "framelift-archive-marginal-yield-v1-20260916",
+  "missions": [
+    {"name":"NORBI","norad":46494,"baud":9600,"deviation_hz":4800,"profile_source":"https://github.com/daniestevez/gr-satellites/blob/master/python/satyaml/NORBI.yml"},
+    {"name":"SONATE-2","norad":59112,"baud":9600,"deviation_hz":2400,"profile_source":"https://github.com/daniestevez/gr-satellites/blob/master/python/satyaml/SONATE-2.yml"},
+    {"name":"UNISAT-7","norad":47945,"baud":9600,"deviation_hz":2400,"profile_source":"https://github.com/daniestevez/gr-satellites/blob/master/python/satyaml/UNISAT-7.yml"},
+    {"name":"CANVAS","norad":68635,"baud":9600,"deviation_hz":2400,"profile_source":"https://github.com/Ret2Me/FrameLift/blob/main/docs/innovation-benchmark-protocol-20260911-repaired.md"}
+  ],
+  "target": 96,
+  "per_mission": 40,
+  "per_station": 12,
+  "minimum_missions": 3,
+  "minimum_stations": 10,
+  "pass_gap_seconds": 1800,
+  "budgets_ms": [3000, 10000, 60000],
+  "threads": 4,
+  "max_pages_per_mission": 120
+}
+

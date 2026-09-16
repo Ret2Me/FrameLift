@@ -208,6 +208,7 @@ reports that result rather than attributing the main gain to codec conditioning.
 ```text
 rust/          Receiver library, CLI, DSP, protocols and integrity tests
 rust/research/ Native cohort, packet, metric and attempt-store tools
+rust/archive/  Native archival acquisition, frozen experiments and audited reports
 config/rust/   Explicit native receiver plans
 tools/xtask/   Maintained developer quality gates
 docs/          Product, architecture, comparison and operational guides
@@ -216,6 +217,11 @@ reports/       Dated engineering and research reports
 examples/      Reproducible experiments and reporting tools
 src/, tests/   Retained Python research and reference oracles; not runtime dependencies
 ```
+
+The [native archival workflow](docs/native-archive-workflow.md) includes an opt-in
+marginal-yield scheduler and matched fixed-order controls. Its new benchmark is
+separate from the completed 266-recording study above; implementation and unit
+tests alone do not establish an additional gain.
 
 Raw recordings, `work/`, caches, frozen local runtimes and bulk experiment outputs
 are laboratory material, not a source release. The repository retains narrative

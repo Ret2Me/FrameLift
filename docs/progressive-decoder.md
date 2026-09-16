@@ -43,6 +43,12 @@ zdążyć zakończyć się w minutę.
 
 ## Co jest w banku
 
+Nowa opcja `--scheduler marginal-yield` zmienia wyłącznie kolejność gotowych
+zadań. Zachowuje pełny bank, granice generacji kotwic i możliwość wznowienia.
+Domyślną kontrolą pozostaje `--scheduler fixed`. Dziennik decyzji, model kosztu
+i ograniczenia porównania opisuje [natywny workflow badawczy](native-archive-workflow.md#adaptive-ordering).
+Zysk czasowy wymaga pomiaru; sama implementacja nie jest dowodem przewagi.
+
 Każde okno ma 6 s, przesunięcie wynosi 3 s. Kolejność:
 
 1. `quick`: pierwsze 8 ocenionych na podstawie sygnału zegarów i pierwsze

@@ -395,6 +395,50 @@ fn progressive_full_preserves_positive_baseline() {
                 .contains(&json!(frame))
         );
     }
+    let adaptive = tmp.path().join("adaptive-order");
+    let adaptive_run = cli(
+        &[
+            "decode-progressive",
+            "--input",
+            string(&source),
+            "--output",
+            string(&adaptive),
+            "--mode",
+            "full",
+            "--threads",
+            "1",
+            "--scheduler",
+            "marginal-yield",
+            "--no-blind",
+            "--no-multi-anchor",
+        ],
+        None,
+    )
+    .json();
+    assert_eq!(adaptive_run["complete"], true);
+    let adaptive_result = read_json(&adaptive.join("result.json"));
+    assert_eq!(
+        adaptive_result["frame_with_fcs_hex"],
+        report["frame_with_fcs_hex"]
+    );
+    assert_eq!(
+        adaptive_result["stage_frame_with_fcs_hex"],
+        report["stage_frame_with_fcs_hex"]
+    );
+    assert_eq!(
+        adaptive_result["completed_tasks"],
+        report["completed_tasks"]
+    );
+    for task in fs::read_dir(session.join("tasks")).unwrap() {
+        let task = task.unwrap();
+        let mut left = without_task_times(read_json(&task.path())["task"].clone());
+        let mut right = without_task_times(
+            read_json(&adaptive.join("tasks").join(task.file_name()))["task"].clone(),
+        );
+        left.as_object_mut().unwrap().remove("session_sha256");
+        right.as_object_mut().unwrap().remove("session_sha256");
+        assert_eq!(left, right, "scheduler changed task contents");
+    }
     let mut changed = samples;
     changed[0] = 0.123;
     wav(&source, 1, &changed);
@@ -414,6 +458,68 @@ fn progressive_full_preserves_positive_baseline() {
         None,
     )
     .failure();
+}
+
+#[test]
+fn adaptive_schedule_resume_policy_and_journal_are_bound() {
+    let tmp = tempfile::tempdir().unwrap();
+    let source = tmp.path().join("quiet.wav");
+    wav(&source, 1, &vec![0.0; 48_000 * 7]);
+    let session = tmp.path().join("session");
+    let base = [
+        "decode-progressive",
+        "--input",
+        string(&source),
+        "--output",
+        string(&session),
+        "--mode",
+        "full",
+        "--scheduler",
+        "marginal-yield",
+    ];
+    cli(&base, None).json();
+    let before = read_json(&session.join("result.json"));
+    assert_eq!(before["complete"], true);
+    let mut resume = base.to_vec();
+    resume.extend(["--resume", "--threads", "1"]);
+    cli(&resume, None).json();
+    assert_eq!(read_json(&session.join("result.json")), before);
+    let mut changed_policy = resume.clone();
+    let index = changed_policy
+        .iter()
+        .position(|s| *s == "marginal-yield")
+        .unwrap();
+    changed_policy[index] = "fixed";
+    cli(&changed_policy, None).failure();
+
+    let journal = session.join("schedule/batch-000000000.json");
+    let saved = fs::read(&journal).unwrap();
+    let mut changed = read_json(&journal);
+    changed["tasks"][0]["window"] = json!(999);
+    write_json(&journal, &changed);
+    cli(&resume, None).failure();
+    fs::write(&journal, saved).unwrap();
+    // Simulate interruption during the last causal batch. Earlier immutable
+    // commits must be kept and the missing task must be computed on resume.
+    let mut journals: Vec<_> = fs::read_dir(session.join("schedule"))
+        .unwrap()
+        .map(|e| e.unwrap().path())
+        .collect();
+    journals.sort();
+    let last = read_json(journals.last().unwrap());
+    let key = &last["tasks"][0];
+    let missing = session.join(format!(
+        "tasks/{}-{:06}.json",
+        key["stage"].as_str().unwrap(),
+        key["window"].as_u64().unwrap()
+    ));
+    fs::remove_file(&missing).unwrap();
+    let first_task = session.join("tasks/quick-000000.json");
+    let original = fs::read(&first_task).unwrap();
+    cli(&resume, None).json();
+    assert!(missing.is_file());
+    assert_eq!(fs::read(first_task).unwrap(), original);
+    assert_eq!(read_json(&session.join("result.json")), before);
 }
 
 #[test]

@@ -23,6 +23,8 @@ const MAX_CACHE_MIB: usize = 4096;
 
 #[path = "compute_session_audit.rs"]
 pub mod compute_audit;
+#[path = "progressive_scheduler.rs"]
+pub mod scheduler;
 #[cfg(target_os = "linux")]
 #[path = "progressive_signals.rs"]
 mod signals;
@@ -59,6 +61,8 @@ pub struct Options {
     /// Invocation-local exact preparation cache; zero disables retention, not work.
     #[serde(default = "default_cache_mib")]
     pub cache_mib: usize,
+    #[serde(default)]
+    pub scheduler: scheduler::Policy,
     pub baud: f64,
     pub no_blind: bool,
     pub no_multi_anchor: bool,
@@ -71,6 +75,7 @@ impl Default for Options {
             budget_ms: None,
             threads: 2,
             cache_mib: DEFAULT_CACHE_MIB,
+            scheduler: scheduler::Policy::default(),
             baud: 9600.0,
             no_blind: false,
             no_multi_anchor: false,
@@ -99,10 +104,16 @@ impl Options {
         Ok(value.map(Duration::from_millis))
     }
     fn policy(&self) -> Value {
-        json!({"baud":self.baud,"blind":!self.no_blind,"multi_anchor":!self.no_multi_anchor,
+        let mut policy = json!({"baud":self.baud,"blind":!self.no_blind,"multi_anchor":!self.no_multi_anchor,
             "window_seconds":6.0,"hop_seconds":3.0,"fast_timings":8,"fast_gardner":2,
             "protocol":"AX25_UI_received_FCS_plain_or_G3RUH","version":2,
-            "anchor_generations":"frozen quick prefix for exploratory tasks; frozen complete baseline for final tasks"})
+            "anchor_generations":"frozen quick prefix for exploratory tasks; frozen complete baseline for final tasks"});
+        // Preserve the established fixed-order policy identity. Executable
+        // identity still forbids resuming sessions produced by another build.
+        if self.scheduler != scheduler::Policy::Fixed {
+            policy["scheduler"] = self.scheduler.identity();
+        }
+        policy
     }
 }
 
@@ -244,6 +255,7 @@ struct State {
     done: BTreeSet<(String, usize)>,
     anchors: Vec<adaptive::AnchorModel>,
     quick_anchors: Vec<adaptive::AnchorModel>,
+    evidence: BTreeMap<scheduler::Key, scheduler::Evidence>,
 }
 impl State {
     fn add(&mut self, task: &TaskRecord) -> Result<(), String> {
@@ -276,6 +288,19 @@ impl State {
             self.anchors.extend(baseline.anchors);
         }
         self.frames.extend(task.frame_with_fcs_hex.iter().cloned());
+        if !task.elapsed_seconds.is_finite() || task.elapsed_seconds < 0.0 {
+            return Err("invalid elapsed time in task checkpoint".into());
+        }
+        self.evidence.insert(
+            scheduler::Key {
+                stage: task.stage.clone(),
+                window: task.window,
+            },
+            scheduler::Evidence {
+                frames: task.frame_with_fcs_hex.clone(),
+                elapsed_seconds: task.elapsed_seconds,
+            },
+        );
         self.stage_frames
             .entry(task.stage.clone())
             .or_default()
@@ -374,6 +399,29 @@ pub fn worker(
         }
         preceding_complete &= stage_complete;
     }
+    let schedule_dir = out.join("schedule");
+    if options.scheduler == scheduler::Policy::MarginalYield {
+        fs::create_dir_all(&schedule_dir).map_err(|e| e.to_string())?;
+        let mut paths = fs::read_dir(&schedule_dir)
+            .map_err(|e| e.to_string())?
+            .map(|e| e.map(|e| e.path()).map_err(|e| e.to_string()))
+            .collect::<Result<Vec<_>, _>>()?;
+        paths.sort();
+        let mut decisions = Vec::new();
+        for (serial, path) in paths.iter().enumerate() {
+            if *path != schedule_dir.join(format!("batch-{serial:09}.json")) {
+                return Err("unexpected scheduler journal entry or sequence gap".into());
+            }
+            decisions.push(read_typed::<scheduler::Decision>(path)?);
+        }
+        scheduler::audit(
+            &session,
+            &ordered_phases,
+            bounds.len(),
+            &decisions,
+            &state.evidence,
+        )?;
+    }
     publish(
         &out.join("result.json"),
         &state.snapshot(&session, total, bounds.len()),
@@ -414,6 +462,7 @@ pub fn worker(
     // cross-window lock is held during DSP, and exhausted cache never drops work.
     let prepared_windows: Vec<OnceLock<Result<Option<adaptive::PreparedWindow>, String>>> =
         (0..bounds.len()).map(|_| OnceLock::new()).collect();
+    let mut scheduler_engine = scheduler::Engine::new(&session, &ordered_phases, bounds.len());
     for (phase_index, phase) in ordered_phases.into_iter().enumerate() {
         let anchors = {
             let state = state.lock().map_err(|e| e.to_string())?;
@@ -430,108 +479,141 @@ pub fn worker(
                 .filter(|(stage, i)| !state.done.contains(&(stage.to_string(), *i)))
                 .collect()
         };
-        pool.install(|| {
-            pending
-                .par_iter()
-                .try_for_each(|&(stage, index)| -> Result<(), String> {
-                    let started = Instant::now();
-                    let samples = audio.get_window(bounds[index].0, bounds[index].1)?;
-                    let prepared = if reservations[index] == 0 {
-                        None
-                    } else {
-                        prepared_windows[index]
-                            .get_or_init(|| {
-                                let window = adaptive::PreparedWindow::new(
+        let execute_batch = |pending: &[(&str, usize)]| -> Result<(), String> {
+            pool.install(|| {
+                pending
+                    .par_iter()
+                    .try_for_each(|&(stage, index)| -> Result<(), String> {
+                        let started = Instant::now();
+                        let samples = audio.get_window(bounds[index].0, bounds[index].1)?;
+                        let prepared = if reservations[index] == 0 {
+                            None
+                        } else {
+                            prepared_windows[index]
+                                .get_or_init(|| {
+                                    let window = adaptive::PreparedWindow::new(
+                                        &samples,
+                                        manifest.audio.sample_rate,
+                                        &config,
+                                    )?;
+                                    Ok((window.retained_bytes() <= reservations[index])
+                                        .then_some(window))
+                                })
+                                .as_ref()
+                                .map_err(Clone::clone)?
+                                .as_ref()
+                        };
+                        let (detail, frames) = match stage {
+                            "quick" | "baseline-remainder" => {
+                                let r = adaptive::progressive_baseline_local_prepared(
                                     &samples,
                                     manifest.audio.sample_rate,
+                                    index,
+                                    bounds[index],
                                     &config,
+                                    stage == "quick",
+                                    prepared,
                                 )?;
-                                Ok((window.retained_bytes() <= reservations[index])
-                                    .then_some(window))
-                            })
-                            .as_ref()
-                            .map_err(Clone::clone)?
-                            .as_ref()
-                    };
-                    let (detail, frames) = match stage {
-                        "quick" | "baseline-remainder" => {
-                            let r = adaptive::progressive_baseline_local_prepared(
-                                &samples,
-                                manifest.audio.sample_rate,
-                                index,
-                                bounds[index],
-                                &config,
-                                stage == "quick",
-                                prepared,
-                            )?;
-                            let f = r
-                                .trials
-                                .iter()
-                                .flat_map(|t| t.frame_with_fcs_hex.iter().cloned())
-                                .collect();
-                            (serde_json::to_value(r).map_err(|e| e.to_string())?, f)
-                        }
-                        "nearest" | "early-nearest" => {
-                            let r = adaptive::progressive_supplemental_local_prepared(
-                                &samples,
-                                manifest.audio.sample_rate,
-                                index,
-                                bounds[index],
-                                &config,
-                                &anchors,
-                                prepared,
-                            )?;
-                            let f = r
-                                .iter()
-                                .flat_map(|t| t.frame_with_fcs_hex.iter().cloned())
-                                .collect();
-                            (serde_json::to_value(r).map_err(|e| e.to_string())?, f)
-                        }
-                        "blind" | "multi-anchor" | "early-multi" => {
-                            let r = adaptive::progressive_new_channel_local_prepared(
-                                &samples,
-                                manifest.audio.sample_rate,
-                                index,
-                                bounds[index],
-                                &config,
-                                &anchors,
-                                stage == "blind",
-                                stage != "blind",
-                                prepared,
-                            )?;
-                            let f = r
-                                .trials
-                                .iter()
-                                .flat_map(|t| t.frame_with_fcs_hex.iter().cloned())
-                                .collect();
-                            (serde_json::to_value(r).map_err(|e| e.to_string())?, f)
-                        }
-                        _ => unreachable!(),
-                    };
-                    let task = TaskRecord {
-                        schema: TASK_SCHEMA.into(),
-                        session_sha256: session.clone(),
-                        stage: stage.into(),
-                        window: index,
-                        elapsed_seconds: started.elapsed().as_secs_f64(),
-                        frame_with_fcs_hex: frames,
-                        detail,
-                    };
-                    let commit = TaskCommit {
-                        sha256: hash_json(&task)?,
-                        task,
-                    };
-                    publish(&task_path(out, stage, index), &commit, scratch, false)?;
-                    let mut state = state.lock().map_err(|e| e.to_string())?;
-                    state.add(&commit.task)?;
-                    publish(
-                        &out.join("result.json"),
-                        &state.snapshot(&session, total, bounds.len()),
-                        scratch,
-                        true,
-                    )
-                })
-        })?;
+                                let f = r
+                                    .trials
+                                    .iter()
+                                    .flat_map(|t| t.frame_with_fcs_hex.iter().cloned())
+                                    .collect();
+                                (serde_json::to_value(r).map_err(|e| e.to_string())?, f)
+                            }
+                            "nearest" | "early-nearest" => {
+                                let r = adaptive::progressive_supplemental_local_prepared(
+                                    &samples,
+                                    manifest.audio.sample_rate,
+                                    index,
+                                    bounds[index],
+                                    &config,
+                                    &anchors,
+                                    prepared,
+                                )?;
+                                let f = r
+                                    .iter()
+                                    .flat_map(|t| t.frame_with_fcs_hex.iter().cloned())
+                                    .collect();
+                                (serde_json::to_value(r).map_err(|e| e.to_string())?, f)
+                            }
+                            "blind" | "multi-anchor" | "early-multi" => {
+                                let r = adaptive::progressive_new_channel_local_prepared(
+                                    &samples,
+                                    manifest.audio.sample_rate,
+                                    index,
+                                    bounds[index],
+                                    &config,
+                                    &anchors,
+                                    stage == "blind",
+                                    stage != "blind",
+                                    prepared,
+                                )?;
+                                let f = r
+                                    .trials
+                                    .iter()
+                                    .flat_map(|t| t.frame_with_fcs_hex.iter().cloned())
+                                    .collect();
+                                (serde_json::to_value(r).map_err(|e| e.to_string())?, f)
+                            }
+                            _ => unreachable!(),
+                        };
+                        let task = TaskRecord {
+                            schema: TASK_SCHEMA.into(),
+                            session_sha256: session.clone(),
+                            stage: stage.into(),
+                            window: index,
+                            elapsed_seconds: started.elapsed().as_secs_f64(),
+                            frame_with_fcs_hex: frames,
+                            detail,
+                        };
+                        let commit = TaskCommit {
+                            sha256: hash_json(&task)?,
+                            task,
+                        };
+                        publish(&task_path(out, stage, index), &commit, scratch, false)?;
+                        let mut state = state.lock().map_err(|e| e.to_string())?;
+                        state.add(&commit.task)?;
+                        publish(
+                            &out.join("result.json"),
+                            &state.snapshot(&session, total, bounds.len()),
+                            scratch,
+                            true,
+                        )
+                    })
+            })
+        };
+        if options.scheduler == scheduler::Policy::Fixed {
+            execute_batch(&pending)?;
+        } else {
+            while scheduler_engine.phase == phase_index {
+                let Some(decision) = scheduler_engine.next() else {
+                    break;
+                };
+                let path = schedule_dir.join(format!("batch-{:09}.json", decision.serial));
+                if path.exists() {
+                    if read_typed::<scheduler::Decision>(&path)? != decision {
+                        return Err("scheduler decision differs on resume".into());
+                    }
+                } else {
+                    publish(&path, &decision, scratch, false)?;
+                }
+                let batch: Vec<_> = {
+                    let state = state.lock().map_err(|e| e.to_string())?;
+                    decision
+                        .tasks
+                        .iter()
+                        .filter(|key| !state.evidence.contains_key(*key))
+                        .map(|key| (key.stage.as_str(), key.window))
+                        .collect()
+                };
+                execute_batch(&batch)?;
+                scheduler_engine.commit(
+                    &decision,
+                    &state.lock().map_err(|e| e.to_string())?.evidence,
+                )?;
+            }
+        }
     }
     input::write_json_new(
         &invocation.join("compute-finish.json"),

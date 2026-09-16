@@ -149,6 +149,9 @@ pub(super) enum Commands {
         /// Exact preparation cache per process in MiB (0 disables caching, not decoding).
         #[arg(long, default_value_t = progressive::DEFAULT_CACHE_MIB)]
         cache_mib: usize,
+        /// Task ordering only; marginal-yield retains the complete bank and phase barriers.
+        #[arg(long, value_enum, default_value_t = progressive::scheduler::Policy::Fixed)]
+        scheduler: progressive::scheduler::Policy,
         #[arg(long, default_value_t = 9600.0)]
         baud: f64,
         #[arg(long)]

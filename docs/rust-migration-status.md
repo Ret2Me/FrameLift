@@ -1,6 +1,6 @@
 # Repository-wide Rust migration
 
-Status date: 15 September 2026. **Incomplete.** The receiver runtime is native;
+Status date: 16 September 2026. **Incomplete.** The receiver runtime is native;
 the entire repository is not yet Rust-only. The September 8 plan covered the
 receiver and excluded the independent planning project. The current requested
 scope includes the remaining tools and tests as well; that earlier exclusion
@@ -31,9 +31,18 @@ They supplement the existing native receiver, image tools, progressive runner,
 comparison programs and paper-evidence tools. The historical Python commands
 have not all been redirected or retired, so they remain available as references.
 
+The September 16 increment adds `framelift-campaign`: native public SatNOGS
+metadata acquisition, conservative exposure inventory, grouped cohort freezing,
+executable registration, waveform acquisition, paired CPU execution and audited
+reporting. This completes a supported **FSK9600 archival experiment path** without
+FrameLift Python orchestration; it does not replace every historical acquisition
+adapter or the planning application. External codecs/reference decoders retain
+their own runtimes. [Workflow and boundaries](native-archive-workflow.md).
+
 ## Work still required before declaring full migration
 
-1. Port the remaining archive/S3/CAMRAS acquisition and dataset adapters,
+1. Port the remaining S3/CAMRAS acquisition and dataset adapters beyond the
+   new public SatNOGS audio workflow,
    including RML dataset handling, with captured-response and malformed-input tests.
 2. Replace the remaining research orchestration, reporting/readiness commands,
    environment inventory and IQ/TLE diagnostics. Audit every Python CLI command

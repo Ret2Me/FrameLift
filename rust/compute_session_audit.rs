@@ -28,7 +28,7 @@ fn without_elapsed(value: &mut Value) {
 }
 
 #[cfg(target_os = "linux")]
-fn check(root: &Path) -> Result<CheckedSession, String> {
+fn check(root: &Path, require_complete: bool) -> Result<CheckedSession, String> {
     use std::os::fd::AsRawFd;
     use std::os::unix::fs::OpenOptionsExt;
     let root = root.canonicalize().map_err(|e| e.to_string())?;
@@ -57,6 +57,11 @@ fn check(root: &Path) -> Result<CheckedSession, String> {
     }
     let session = hash_json(&manifest)?;
     let options = Options {
+        scheduler: if manifest.policy.get("scheduler").is_some() {
+            scheduler::Policy::MarginalYield
+        } else {
+            scheduler::Policy::Fixed
+        },
         baud: manifest.policy["baud"].as_f64().ok_or("missing baud")?,
         no_blind: !manifest.policy["blind"]
             .as_bool()
@@ -84,7 +89,8 @@ fn check(root: &Path) -> Result<CheckedSession, String> {
     {
         return Err("task directory must not be a symlink".into());
     }
-    if fs::read_dir(&tasks_dir).map_err(|e| e.to_string())?.count() != expected {
+    let actual_count = fs::read_dir(&tasks_dir).map_err(|e| e.to_string())?.count();
+    if require_complete && actual_count != expected {
         return Err("missing or unexpected task files".into());
     }
     let mut state = State::default();
@@ -93,6 +99,9 @@ fn check(root: &Path) -> Result<CheckedSession, String> {
     for stage in stages {
         for window in 0..bounds.len() {
             let path = task_path(&root, stage, window);
+            if !require_complete && !path.exists() {
+                continue;
+            }
             let record: TaskCommit = read_typed(&path)?;
             if record.sha256 != hash_json(&record.task)?
                 || record.task.schema != TASK_SCHEMA
@@ -117,21 +126,75 @@ fn check(root: &Path) -> Result<CheckedSession, String> {
                 .push(json!({"stage":stage,"window":window,"task_sha256":record.sha256}));
         }
     }
+    if tasks.len() != actual_count {
+        return Err("unexpected task file".into());
+    }
+    let mut preceding_complete = true;
+    for phase in phases(&options) {
+        let count = phase
+            .iter()
+            .map(|stage| {
+                (0..bounds.len())
+                    .filter(|window| state.done.contains(&(stage.to_string(), *window)))
+                    .count()
+            })
+            .sum::<usize>();
+        if !preceding_complete && count != 0 {
+            return Err("partial session violates anchor phase dependencies".into());
+        }
+        preceding_complete &= count == phase.len() * bounds.len();
+    }
+    if options.scheduler == scheduler::Policy::MarginalYield {
+        let mut entries: Vec<_> = fs::read_dir(root.join("schedule"))
+            .map_err(|e| e.to_string())?
+            .map(|e| e.map(|e| e.path()).map_err(|e| e.to_string()))
+            .collect::<Result<_, _>>()?;
+        entries.sort();
+        let mut decisions = Vec::new();
+        for (serial, path) in entries.iter().enumerate() {
+            if *path != root.join(format!("schedule/batch-{serial:09}.json")) {
+                return Err("unexpected scheduler journal file".into());
+            }
+            decisions.push(read_typed::<scheduler::Decision>(path)?);
+        }
+        scheduler::audit(
+            &session,
+            &phases(&options),
+            bounds.len(),
+            &decisions,
+            &state.evidence,
+        )?;
+    }
     let snapshot = input::read_json(&root.join("result.json"))?;
-    if snapshot != state.snapshot(&session, expected, bounds.len()) {
+    let snapshot_current = snapshot == state.snapshot(&session, expected, bounds.len());
+    if require_complete && !snapshot_current {
         return Err(
             "snapshot is partial, stale, tampered or inconsistent with committed tasks".into(),
         );
     }
+    let completed = tasks.len();
     Ok(CheckedSession {
         _lock: lock,
         frames: state.frames,
         tasks,
         evidence: json!({"root":root,"manifest_sha256":session,"executable_sha256":manifest.executable_sha256,
+            "complete":completed==expected,"completed_tasks":completed,"total_tasks":expected,"snapshot_current":snapshot_current,
             "compute_identity":manifest.compute_identity,"task_commitments":artifact_hashes,
             "result":input::identity(&root.join("result.json"))?}),
         manifest,
     })
+}
+
+/// Read committed packets after a bounded run, including commits newer than a
+/// timeout-interrupted snapshot. Does not treat an unprepared input as zero.
+#[cfg(target_os = "linux")]
+pub fn inspect_partial(root: &Path) -> Result<Value, String> {
+    let session = check(root, false)?;
+    Ok(
+        json!({"evidence":session.evidence,"policy":session.manifest.policy,
+        "source":session.manifest.audio.source,"wav":session.manifest.audio.wav,
+        "frame_with_fcs_hex":session.frames,"received_fcs_independently_verified":true}),
+    )
 }
 
 fn same_input(a: &Manifest, b: &Manifest) -> bool {
@@ -156,8 +219,8 @@ pub fn run(cpu: &Path, candidate: &Path, out: &Path) -> Result<Value, String> {
         {
             return Err("two distinct sessions are required".into());
         }
-        let a = check(cpu)?;
-        let b = check(candidate)?;
+        let a = check(cpu, true)?;
+        let b = check(candidate, true)?;
         if a.manifest.compute_identity["backend"] != "cpu" {
             return Err("reference session must use CPU".into());
         }

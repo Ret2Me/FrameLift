@@ -256,6 +256,12 @@ The [latest qualification report](reports/recovery-program-20260916.md) separate
 synthetic gains and exact-output speedups from the historical field pilot,
 which found no incremental frame gain over the previous receiver.
 
+The [acquisition follow-up](reports/acquisition-recovery-20260919.md) records
+72 → 78 correct cases on the same 108-positive synthetic stress grid, with zero
+accepted negative controls after fixing redundant timing retries. On two complete
+CANVAS IQ recordings, all four receiver arms still recover the same nine PDUs.
+These are development results, not a held-out orbital improvement claim.
+
 Raw recordings, `work/`, caches, frozen local runtimes and bulk experiment outputs
 are laboratory material, not a source release. The repository retains narrative
 reports, test fixtures and the versioned manuscript evidence bundles. A public

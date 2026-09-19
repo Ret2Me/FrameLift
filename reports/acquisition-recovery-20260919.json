@@ -1,0 +1,94 @@
+{
+  "schema": "framelift-acquisition-recovery-evidence-v1",
+  "date": "2026-09-19",
+  "exposure": "development",
+  "publication_ready": false,
+  "synthetic": {
+    "positive_cases": 108,
+    "negative_executions": 216,
+    "noise_only_executions": 108,
+    "distinct_noise_only_inputs": 12,
+    "distinct_expected_payloads": 1,
+    "reference": "hard acquisition plus coherent CPM, not an external decoder",
+    "initial_replay": {
+      "hard_correct": 72,
+      "soft_correct": 78,
+      "soft_false_acceptances": 3,
+      "raw_added_count_in_original_report": 9,
+      "correct_added_count": 6,
+      "report_sha256": "590019d0941c46c2fc5ef65f3e134dbd4347e7f9b0692f160d84a090ad5b300f"
+    },
+    "corrected_replay": {
+      "hard_correct": 72,
+      "soft_correct": 78,
+      "correct_additions": 6,
+      "lost": 0,
+      "false_acceptances": 0,
+      "errors_all_arms": 0,
+      "frozen_disabled_reports_identical": 324,
+      "enabled_serial_parallel_reports_identical": 324,
+      "report_sha256": "1f9fc4ae399070de3f720a5995718fbcd58d6d8132c90f4a4c393ab09578f48d",
+      "runner_sha256": "8a49e218df231c98a95ae6bac443724b6db2ea1f1ea5c17a9c75acb7ca9562f8"
+    },
+    "gain_cells": {
+      "modulation": "gfsk",
+      "sigma": 0.70,
+      "seeds": [0, 3],
+      "codes": ["uncoded", "conv", "ldpc"]
+    },
+    "fix_selected_after_development_failures": true,
+    "fix": "Apply existing signal-only burst identity across hard and soft candidates before CRC/FEC; hard candidates keep priority.",
+    "false_accept_probability_calibrated": false
+  },
+  "field": {
+    "source_ids": [14115025, 14366383],
+    "source_sha256": [
+      "d82ef05b77c013d4412c6e2ec17b4ae30fb2f43c940ddf07bc78fa6a0bc11163",
+      "46743e6fe24e8c4a585b97646d7a06f039b01ccfae6ce49db0b4627a321e602b"
+    ],
+    "windows": 34,
+    "completed_window_arm_runs": 136,
+    "completed_observation_arms": 8,
+    "failed_observation_arms": 0,
+    "frame_unit": "unique AX.25 UI PDU excluding received FCS, within observation",
+    "arms": [
+      {"name": "local_sequence", "pdus_by_observation": [8, 1], "added": 0, "missed": 0, "wall_seconds": 11.399512507, "cpu_seconds": 12.187728},
+      {"name": "causal_memory", "pdus_by_observation": [8, 1], "added": 0, "missed": 0, "wall_seconds": 32.771789742, "cpu_seconds": 33.436226},
+      {"name": "causal_memory_blind", "pdus_by_observation": [8, 1], "added": 0, "missed": 0, "wall_seconds": 35.249003552, "cpu_seconds": 36.007747},
+      {"name": "local_sequence_cpm", "pdus_by_observation": [8, 1], "added": 0, "missed": 0, "wall_seconds": 15.069957618, "cpu_seconds": 15.506289}
+    ],
+    "confirmed_signal": {
+      "definition": "Prior received-FCS and AX.25 UI evidence on identical source bytes, before this replay; not independent waterfall labels",
+      "source_count": 2,
+      "local_pdus": 9,
+      "pdus_each_new_arm": 9,
+      "additions_each_new_arm": 0,
+      "losses_each_new_arm": 0
+    },
+    "runner_sha256": "aa48574b01f999788ffd0b4cc35edf73ed944363a50a32ffe7a563287360e625",
+    "freeze_sha256": "5aea93c43de42055178f780a6771404fb374058b8257b97a0803c5396550f9e6",
+    "study_sha256": "37c48b399cdf60d44433cf10c4b1676c9faede5aa3fc961801e84fd41b00b8d0",
+    "comparison_sha256": "b5d5b50c3ef8aec9d68933e39bdba1e7b0a4514a63ac441551c9ed2a9e152b72",
+    "isolated_performance_measurement": false,
+    "equal_compute": false
+  },
+  "engineering_checks": {
+    "library": {
+      "passed": 636,
+      "ignored": 6,
+      "failed": 0,
+      "wall_seconds": 634.63,
+      "executable_sha256": "83c03d6602c06d94f2acd621a8fa7c189aee10f63c757dccd9443e45639d2198",
+      "log_sha256": "369d7c44cedf43df0e9222b4252eca3da72c2e7b60e2dca0fcd0f21fe4e2d776"
+    },
+    "receiver_cli_passed": 28,
+    "research_cli_passed": 9,
+    "archive_cli_passed": 5,
+    "field_benchmark_unit_passed": 3,
+    "strict_production_cpu_clippy": "passed",
+    "strict_production_cuda_feature_clippy": "passed",
+    "strict_library_documentation": "passed",
+    "format_check": "passed",
+    "cuda_hardware_executed": false
+  }
+}

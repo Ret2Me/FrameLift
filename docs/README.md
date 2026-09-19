@@ -33,6 +33,7 @@
 | Guide | Purpose |
 |---|---|
 | [Benchmark results](benchmarks.md) | Complete 266-observation result and honest cost accounting |
+| [Acquisition follow-up](../reports/acquisition-recovery-20260919.md) | Synthetic gain, retained false-accept failure and null incremental real-IQ result |
 | [Reproduction](reproducibility.md) | Verify the compact evidence; distinguish that from replaying DSP |
 | [Current paper](../publication/decoder-paper-v2/README.md) | IEEE-style manuscript, PDF, bibliography and source |
 | [Roadmap](roadmap.md) | Remaining scientific and operational acceptance gates |

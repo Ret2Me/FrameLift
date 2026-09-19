@@ -165,7 +165,9 @@ fn run(args: Args) -> Result<(), String> {
                             "baseline_equals_frozen":scientific[0]==old_report,
                             "serial_parallel_identical":!scientific[1].is_null() && scientific[1]==scientific[2],
                             "added":frame_sets[1].difference(&frame_sets[0]).collect::<Vec<_>>(),
-                            "lost":frame_sets[0].difference(&frame_sets[1]).collect::<Vec<_>>()}));
+                            "lost":frame_sets[0].difference(&frame_sets[1]).collect::<Vec<_>>(),
+                            "added_correct":frame_sets[1].difference(&frame_sets[0]).filter(|f|expected.contains(*f)).collect::<Vec<_>>(),
+                            "lost_correct":frame_sets[0].difference(&frame_sets[1]).filter(|f|expected.contains(*f)).collect::<Vec<_>>()}));
                     }
                 }
             }
@@ -183,8 +185,8 @@ fn run(args: Args) -> Result<(), String> {
         "files":rows.len(),"totals":totals,
         "all_baselines_equal_frozen":rows.iter().all(|r|r["baseline_equals_frozen"]==true),
         "all_serial_parallel_identical":rows.iter().all(|r|r["serial_parallel_identical"]==true),
-        "added_frames":rows.iter().map(|r|r["added"].as_array().unwrap().len()).sum::<usize>(),
-        "lost_frames":rows.iter().map(|r|r["lost"].as_array().unwrap().len()).sum::<usize>(),
+        "added_frames":rows.iter().map(|r|r["added_correct"].as_array().unwrap().len()).sum::<usize>(),
+        "lost_frames":rows.iter().map(|r|r["lost_correct"].as_array().unwrap().len()).sum::<usize>(),
         "rows":rows,"publication_ready":false,
         "interpretation":"Synthetic engineering stress only. All predeclared cells retained, including failures and errors. No orbital, external-decoder, calibrated false-alarm or equal-compute claim."});
     input::write_json_new(&output.join("report.json"), &report)?;

@@ -256,6 +256,7 @@ struct State {
     anchors: Vec<adaptive::AnchorModel>,
     quick_anchors: Vec<adaptive::AnchorModel>,
     evidence: BTreeMap<scheduler::Key, scheduler::Evidence>,
+    skipped: BTreeSet<scheduler::Key>,
 }
 impl State {
     fn add(&mut self, task: &TaskRecord) -> Result<(), String> {
@@ -313,10 +314,17 @@ impl State {
         for (stage, _) in &self.done {
             *counts.entry(stage.clone()).or_default() += 1;
         }
+        let mut skipped_counts = BTreeMap::<String, usize>::new();
+        for key in &self.skipped {
+            *skipped_counts.entry(key.stage.clone()).or_default() += 1;
+        }
         json!({"schema":"progressive-audio-result-v1","session_sha256":session,
-            "complete":self.done.len()==total,"status":if self.done.len()==total {"complete"}else{"partial"},
+            "complete":self.done.len()+self.skipped.len()==total,
+            "status":if self.done.len()+self.skipped.len()==total {"complete"}else{"partial"},
             "completed_tasks":self.done.len(),"total_tasks":total,"window_count":windows,
-            "stage_counts":counts,"stage_frame_with_fcs_hex":self.stage_frames,
+            "stage_counts":counts,"skipped_tasks":self.skipped.len(),
+            "skipped_stage_counts":skipped_counts,
+            "stage_frame_with_fcs_hex":self.stage_frames,
             "frame_with_fcs_hex":self.frames,"union_count":self.frames.len(),
             "publication_ready":false,"deployment_ready":false,"bit_repair_enabled":false,
             "frame_validation":"received CRC16/X25 plus AX25 UI structure",
@@ -374,7 +382,7 @@ pub fn worker(
             for index in 0..bounds.len() {
                 let path = task_path(out, stage, index);
                 if path.exists() {
-                    if !preceding_complete {
+                    if !preceding_complete && options.scheduler == scheduler::Policy::Fixed {
                         return Err(
                             "checkpoint has tasks before dependency stages completed".into()
                         );
@@ -400,7 +408,7 @@ pub fn worker(
         preceding_complete &= stage_complete;
     }
     let schedule_dir = out.join("schedule");
-    if options.scheduler == scheduler::Policy::MarginalYield {
+    if options.scheduler != scheduler::Policy::Fixed {
         fs::create_dir_all(&schedule_dir).map_err(|e| e.to_string())?;
         let mut paths = fs::read_dir(&schedule_dir)
             .map_err(|e| e.to_string())?
@@ -414,8 +422,9 @@ pub fn worker(
             }
             decisions.push(read_typed::<scheduler::Decision>(path)?);
         }
-        scheduler::audit(
+        state.skipped = scheduler::audit(
             &session,
+            options.scheduler,
             &ordered_phases,
             bounds.len(),
             &decisions,
@@ -462,7 +471,8 @@ pub fn worker(
     // cross-window lock is held during DSP, and exhausted cache never drops work.
     let prepared_windows: Vec<OnceLock<Result<Option<adaptive::PreparedWindow>, String>>> =
         (0..bounds.len()).map(|_| OnceLock::new()).collect();
-    let mut scheduler_engine = scheduler::Engine::new(&session, &ordered_phases, bounds.len());
+    let mut scheduler_engine =
+        scheduler::Engine::new(&session, options.scheduler, &ordered_phases, bounds.len());
     for (phase_index, phase) in ordered_phases.into_iter().enumerate() {
         let anchors = {
             let state = state.lock().map_err(|e| e.to_string())?;
@@ -611,6 +621,14 @@ pub fn worker(
                 scheduler_engine.commit(
                     &decision,
                     &state.lock().map_err(|e| e.to_string())?.evidence,
+                )?;
+                let mut state = state.lock().map_err(|e| e.to_string())?;
+                state.skipped = scheduler_engine.skipped().clone();
+                publish(
+                    &out.join("result.json"),
+                    &state.snapshot(&session, total, bounds.len()),
+                    scratch,
+                    true,
                 )?;
             }
         }

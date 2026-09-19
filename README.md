@@ -262,6 +262,14 @@ accepted negative controls after fixing redundant timing retries. On two complet
 CANVAS IQ recordings, all four receiver arms still recover the same nine PDUs.
 These are development results, not a held-out orbital improvement claim.
 
+Optional [soft-list FEC, cross-observation combining and unresolved-only
+scheduling](docs/soft-list-combining-scheduler.md) extend the experimental
+receiver without changing default profiles. Every recovered frame still needs
+received integrity; the adaptive scheduler reports skipped work explicitly. The
+[implementation validation](reports/soft-recovery-validation-20260919.md)
+records controlled gains and the full regression receipt without presenting
+them as a real-orbit yield result.
+
 Raw recordings, `work/`, caches, frozen local runtimes and bulk experiment outputs
 are laboratory material, not a source release. The repository retains narrative
 reports, test fixtures and the versioned manuscript evidence bundles. A public

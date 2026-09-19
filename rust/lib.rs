@@ -47,6 +47,8 @@ pub mod ledger;
 pub mod meteor;
 /// Opt-in established Mueller-Muller real pre-clock timing detector.
 pub mod mm_clock;
+/// Reproducible Amdahl scenarios; not a substitute for GPU execution.
+pub mod performance_model;
 pub mod physical;
 pub mod progressive;
 pub mod progressive_audio;
@@ -67,6 +69,8 @@ pub mod sequence;
 pub mod soft;
 /// Source-bound development replay of the optional soft sequence detector.
 pub mod soft_audio;
+/// Evidence-preserving combining of aligned coded-bit observations.
+pub mod soft_combine;
 /// Opt-in log-MAP sequence detector with explicit extrinsic information.
 pub mod soft_sequence;
 #[cfg(test)]

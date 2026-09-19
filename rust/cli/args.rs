@@ -77,6 +77,8 @@ impl Settings {
 pub(super) enum Commands {
     /// Probe selected backend, initialize it and report exact capabilities.
     ComputeInfo,
+    /// Evaluate an explicit measured-stage GPU scenario from stdin JSON.
+    EstimateGpu,
     /// Same-build end-to-end progressive CPU/backend benchmark with strict parity audit.
     BenchmarkComputePair {
         #[arg(long)]
@@ -130,6 +132,9 @@ pub(super) enum Commands {
     /// Experimental aligned symbol-block BCJR/LDPC iteration; requires CRC validator.
     /// Does not acquire or synchronize IQ/audio. See docs/soft-iterative-receiver.md.
     DecodeTurboBlock,
+    /// Combine aligned soft coded-bit copies from fragments/observations/stations.
+    /// stdin: a soft_combine::Plan; output is accepted only by received integrity.
+    CombineSoftCopies,
     /// Experimental PSK/(G)FSK/GMSK/AFSK IQ, pilot-estimated turbo/FEC, repeats and SIC.
     DecodeAdvancedIq {
         #[arg(long)]
@@ -215,7 +220,8 @@ pub(super) enum Commands {
         /// Exact preparation cache per process in MiB (0 disables caching, not decoding).
         #[arg(long, default_value_t = progressive::DEFAULT_CACHE_MIB)]
         cache_mib: usize,
-        /// Task ordering only; marginal-yield retains the complete bank and phase barriers.
+        /// fixed/marginal-yield retain the complete bank; unresolved-only gates
+        /// expensive per-window tasks after quick received-FCS success.
         #[arg(long, value_enum, default_value_t = progressive::scheduler::Policy::Fixed)]
         scheduler: progressive::scheduler::Policy,
         #[arg(long, default_value_t = 9600.0)]

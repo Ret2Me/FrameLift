@@ -57,10 +57,11 @@ fn check(root: &Path, require_complete: bool) -> Result<CheckedSession, String> 
     }
     let session = hash_json(&manifest)?;
     let options = Options {
-        scheduler: if manifest.policy.get("scheduler").is_some() {
-            scheduler::Policy::MarginalYield
-        } else {
-            scheduler::Policy::Fixed
+        scheduler: match manifest.policy["scheduler"]["name"].as_str() {
+            Some("marginal-yield") => scheduler::Policy::MarginalYield,
+            Some("unresolved-only") => scheduler::Policy::UnresolvedOnly,
+            Some(_) => return Err("unknown scheduler policy".into()),
+            None => scheduler::Policy::Fixed,
         },
         baud: manifest.policy["baud"].as_f64().ok_or("missing baud")?,
         no_blind: !manifest.policy["blind"]
@@ -90,16 +91,13 @@ fn check(root: &Path, require_complete: bool) -> Result<CheckedSession, String> 
         return Err("task directory must not be a symlink".into());
     }
     let actual_count = fs::read_dir(&tasks_dir).map_err(|e| e.to_string())?.count();
-    if require_complete && actual_count != expected {
-        return Err("missing or unexpected task files".into());
-    }
     let mut state = State::default();
     let mut tasks = BTreeMap::new();
     let mut artifact_hashes = Vec::new();
     for stage in stages {
         for window in 0..bounds.len() {
             let path = task_path(&root, stage, window);
-            if !require_complete && !path.exists() {
+            if !path.exists() {
                 continue;
             }
             let record: TaskCommit = read_typed(&path)?;
@@ -139,12 +137,12 @@ fn check(root: &Path, require_complete: bool) -> Result<CheckedSession, String> 
                     .count()
             })
             .sum::<usize>();
-        if !preceding_complete && count != 0 {
+        if options.scheduler == scheduler::Policy::Fixed && !preceding_complete && count != 0 {
             return Err("partial session violates anchor phase dependencies".into());
         }
         preceding_complete &= count == phase.len() * bounds.len();
     }
-    if options.scheduler == scheduler::Policy::MarginalYield {
+    if options.scheduler != scheduler::Policy::Fixed {
         let mut entries: Vec<_> = fs::read_dir(root.join("schedule"))
             .map_err(|e| e.to_string())?
             .map(|e| e.map(|e| e.path()).map_err(|e| e.to_string()))
@@ -157,13 +155,17 @@ fn check(root: &Path, require_complete: bool) -> Result<CheckedSession, String> 
             }
             decisions.push(read_typed::<scheduler::Decision>(path)?);
         }
-        scheduler::audit(
+        state.skipped = scheduler::audit(
             &session,
+            options.scheduler,
             &phases(&options),
             bounds.len(),
             &decisions,
             &state.evidence,
         )?;
+    }
+    if require_complete && state.done.len() + state.skipped.len() != expected {
+        return Err("missing, unexpected or unaudited skipped task files".into());
     }
     let snapshot = input::read_json(&root.join("result.json"))?;
     let snapshot_current = snapshot == state.snapshot(&session, expected, bounds.len());
@@ -178,7 +180,8 @@ fn check(root: &Path, require_complete: bool) -> Result<CheckedSession, String> 
         frames: state.frames,
         tasks,
         evidence: json!({"root":root,"manifest_sha256":session,"executable_sha256":manifest.executable_sha256,
-            "complete":completed==expected,"completed_tasks":completed,"total_tasks":expected,"snapshot_current":snapshot_current,
+            "complete":completed+state.skipped.len()==expected,"completed_tasks":completed,
+            "skipped_tasks":state.skipped.len(),"total_tasks":expected,"snapshot_current":snapshot_current,
             "compute_identity":manifest.compute_identity,"task_commitments":artifact_hashes,
             "result":input::identity(&root.join("result.json"))?}),
         manifest,

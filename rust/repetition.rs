@@ -2,6 +2,10 @@
 //! independently checked repeat key may enter; timing variants are NOT copies.
 use serde::{Deserialize, Serialize};
 
+/// Hard allocation bound shared with the recovery-code interface. Sixteen
+/// maximum-size copies retain at most 1,048,576 finite LLR values.
+pub const MAX_COMBINED_BITS: usize = 65_536;
+
 /// A mission's existing independently protected header, not a new on-air header.
 /// A profile must document that its selected fields name one immutable codeword
 /// throughout the configured repeat window. Packet type alone is insufficient.
@@ -155,8 +159,8 @@ pub fn combine_with_layout(
     };
     let expected = checked_key(&copies[0].header)?;
     let n = copies[0].llr.len();
-    if !(8..=4096).contains(&n) {
-        return Err("combined block needs 8..4096 bits".into());
+    if !(8..=MAX_COMBINED_BITS).contains(&n) {
+        return Err("combined block needs 8..65536 bits".into());
     }
     for (i, a) in copies.iter().enumerate() {
         if a.start_sample >= a.end_sample

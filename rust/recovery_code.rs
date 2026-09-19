@@ -16,6 +16,62 @@ pub const MAX_CODE_BITS: usize = 65_536;
 const LLR_LIMIT: f64 = 64.0;
 const STATES: usize = 64;
 
+/// Bounded reliability-ordered list decoding. The baseline decoder is always
+/// attempted first. Additional hypotheses may only become frames through the
+/// same independent received-integrity validator as the baseline path.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(default, deny_unknown_fields)]
+pub struct ListConfig {
+    pub maximum_hypotheses: usize,
+    pub unreliable_bits: usize,
+    pub forcing_llr: f64,
+    pub maximum_work: u64,
+}
+
+impl Default for ListConfig {
+    fn default() -> Self {
+        Self {
+            maximum_hypotheses: 32,
+            unreliable_bits: 10,
+            forcing_llr: 8.0,
+            maximum_work: 100_000_000_000,
+        }
+    }
+}
+
+impl ListConfig {
+    pub fn work_per_call(&self, profile: &CodeProfile) -> Result<u64, String> {
+        let decoding = profile
+            .work_per_pass()?
+            .checked_mul(self.maximum_hypotheses.saturating_sub(1) as u64)
+            .ok_or("soft-list work overflow")?;
+        let ranking = 1u64
+            .checked_shl(self.unreliable_bits as u32)
+            .ok_or("soft-list ranking work overflow")?
+            .checked_mul(self.unreliable_bits as u64)
+            .ok_or("soft-list ranking work overflow")?;
+        decoding
+            .checked_add(ranking)
+            .ok_or_else(|| "soft-list work overflow".into())
+    }
+
+    pub fn validate(&self, profile: &CodeProfile) -> Result<(), String> {
+        if !(2..=256).contains(&self.maximum_hypotheses)
+            || !(1..=16).contains(&self.unreliable_bits)
+            || !self.forcing_llr.is_finite()
+            || !(0.25..=LLR_LIMIT).contains(&self.forcing_llr)
+            || self.maximum_work == 0
+        {
+            return Err("soft list requires 2..256 hypotheses, 1..16 unreliable bits, forcing LLR 0.25..64 and positive work budget".into());
+        }
+        let work = self.work_per_call(profile)?;
+        if work > self.maximum_work {
+            return Err("soft-list worst-case work exceeds its explicit budget".into());
+        }
+        Ok(())
+    }
+}
+
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum ConvolutionalTermination {
@@ -226,6 +282,10 @@ pub struct RecoveryOutput {
     pub corrected_symbols: Option<usize>,
     pub iterations: Option<usize>,
     pub rejection_reason: Option<String>,
+    /// Additional reliability-ordered hypotheses actually evaluated.
+    pub list_hypotheses: usize,
+    /// One-based additional hypothesis that passed received integrity.
+    pub accepted_hypothesis: Option<usize>,
 }
 
 impl RecoveryOutput {
@@ -238,6 +298,8 @@ impl RecoveryOutput {
             corrected_symbols: None,
             iterations: None,
             rejection_reason: Some(reason.into()),
+            list_hypotheses: 0,
+            accepted_hypothesis: None,
         }
     }
 }
@@ -470,6 +532,171 @@ impl CodeProfile {
         }
         Ok(output)
     }
+
+    /// Decode the ordinary maximum-posterior result and, only after it fails,
+    /// try a bounded reliability-ordered list. This is not CRC bit repair: the
+    /// CRC/FECF is part of every candidate and is checked as received.
+    pub fn decode_list(
+        &self,
+        soft: &[f64],
+        validator: &FrameValidator,
+        config: &ListConfig,
+    ) -> Result<RecoveryOutput, String> {
+        config.validate(self)?;
+        let mut baseline = self.decode(soft, validator)?;
+        if baseline.accepted.is_some() {
+            return Ok(baseline);
+        }
+        match self {
+            Self::Uncoded { .. } => Ok(baseline),
+            Self::Ldpc { .. } | Self::ReedSolomon { .. } => {
+                let reliability = baseline.posterior_llr.as_deref().unwrap_or(soft);
+                for (index, mask) in ranked_flip_masks(
+                    reliability,
+                    config.unreliable_bits,
+                    config.maximum_hypotheses - 1,
+                )
+                .into_iter()
+                .enumerate()
+                {
+                    baseline.list_hypotheses += 1;
+                    let candidate = forced_hypothesis(soft, &mask, config.forcing_llr);
+                    let mut decoded = self.decode(&candidate, validator)?;
+                    if let Some(frame) = &mut decoded.accepted {
+                        frame.validation_layers.insert(
+                            0,
+                            match self {
+                                Self::Ldpc { .. } => "ldpc_reliability_list",
+                                _ => "reed_solomon_reliability_list",
+                            }
+                            .into(),
+                        );
+                        decoded.list_hypotheses = baseline.list_hypotheses;
+                        decoded.accepted_hypothesis = Some(index + 1);
+                        return Ok(decoded);
+                    }
+                }
+                Ok(baseline)
+            }
+            Self::ConvolutionalK7 {
+                frame_bytes,
+                config: convolutional,
+            } => {
+                let decoded = bcjr(soft, frame_bytes * 8, convolutional);
+                baseline.posterior_llr = Some(decoded.posterior.clone());
+                baseline.extrinsic_llr = Some(decoded.extrinsic.clone());
+                for (index, mask) in ranked_flip_masks(
+                    &decoded.information_llr,
+                    config.unreliable_bits,
+                    config.maximum_hypotheses - 1,
+                )
+                .into_iter()
+                .enumerate()
+                {
+                    baseline.list_hypotheses += 1;
+                    let mut bits = decoded.bits.clone();
+                    for bit in mask {
+                        bits[bit] ^= 1;
+                    }
+                    let bytes = bytes_from_bits(&bits);
+                    if let Ok(mut layers) = validator.decode(&bytes) {
+                        layers.insert(0, "convolutional_k7_log_map_list".into());
+                        baseline.accepted = Some(AcceptedFrame {
+                            validated_codeword: convolutional.encode(&bits),
+                            bytes,
+                            validation_layers: layers,
+                        });
+                        baseline.accepted_hypothesis = Some(index + 1);
+                        baseline.rejection_reason = None;
+                        return Ok(baseline);
+                    }
+                }
+                Ok(baseline)
+            }
+            Self::ConvolutionalReedSolomon {
+                convolutional,
+                reed_solomon,
+                interstage_randomizer,
+            } => {
+                let rs_bits = reed_solomon.codeword_symbols() * reed_solomon.interleaving * 8;
+                let mut decoded = bcjr(soft, rs_bits, convolutional);
+                crate::coded::derandomize(&mut decoded.information_llr, interstage_randomizer);
+                baseline.posterior_llr = Some(decoded.posterior.clone());
+                baseline.extrinsic_llr = Some(decoded.extrinsic.clone());
+                for (index, mask) in ranked_flip_masks(
+                    &decoded.information_llr,
+                    config.unreliable_bits,
+                    config.maximum_hypotheses - 1,
+                )
+                .into_iter()
+                .enumerate()
+                {
+                    baseline.list_hypotheses += 1;
+                    let candidate =
+                        forced_hypothesis(&decoded.information_llr, &mask, config.forcing_llr);
+                    let Ok((bytes, corrected)) = reed_solomon.decode(&hard_bytes(&candidate))
+                    else {
+                        continue;
+                    };
+                    let Ok(mut layers) = validator.decode(&bytes) else {
+                        continue;
+                    };
+                    layers.insert(0, "convolutional_k7_rs_reliability_list".into());
+                    let mut rs_word: Vec<f64> = bits_from_bytes(&reed_solomon.encode(&bytes)?)
+                        .into_iter()
+                        .map(|bit| 2.0 * bit as f64 - 1.0)
+                        .collect();
+                    crate::coded::derandomize(&mut rs_word, interstage_randomizer);
+                    baseline.accepted = Some(AcceptedFrame {
+                        validated_codeword: convolutional.encode(&hard_bits(&rs_word)),
+                        bytes,
+                        validation_layers: layers,
+                    });
+                    baseline.corrected_symbols = Some(corrected);
+                    baseline.parity_verified = true;
+                    baseline.accepted_hypothesis = Some(index + 1);
+                    baseline.rejection_reason = None;
+                    return Ok(baseline);
+                }
+                Ok(baseline)
+            }
+        }
+    }
+}
+
+fn ranked_flip_masks(soft: &[f64], unreliable_bits: usize, limit: usize) -> Vec<Vec<usize>> {
+    let mut positions: Vec<_> = (0..soft.len()).collect();
+    positions.sort_by(|&a, &b| soft[a].abs().total_cmp(&soft[b].abs()).then(a.cmp(&b)));
+    positions.truncate(unreliable_bits.min(soft.len()));
+    let mut masks: Vec<_> = (1usize..1usize << positions.len())
+        .map(|mask| {
+            let selected: Vec<_> = positions
+                .iter()
+                .enumerate()
+                .filter_map(|(bit, &position)| ((mask >> bit) & 1 == 1).then_some(position))
+                .collect();
+            let cost = selected.iter().map(|&i| soft[i].abs()).sum::<f64>();
+            (cost, selected.len(), mask, selected)
+        })
+        .collect();
+    masks.sort_by(|a, b| a.0.total_cmp(&b.0).then(a.1.cmp(&b.1)).then(a.2.cmp(&b.2)));
+    masks
+        .into_iter()
+        .take(limit)
+        .map(|(_, _, _, selected)| selected)
+        .collect()
+}
+
+fn forced_hypothesis(soft: &[f64], mask: &[usize], magnitude: f64) -> Vec<f64> {
+    let mut candidate = soft.to_vec();
+    for &bit in mask {
+        candidate[bit] = if soft[bit] >= 0.0 {
+            -magnitude
+        } else {
+            magnitude
+        };
+    }
+    candidate
 }
 
 fn hard_bits(soft: &[f64]) -> Vec<u8> {

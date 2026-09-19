@@ -518,12 +518,57 @@ fn ldpc_matches_existing_soft_decoder_and_needs_received_crc() {
 }
 
 #[test]
+fn ldpc_reliability_list_has_a_deterministic_trapping_set_escape() {
+    let mut frame = [0_u8, 1, 0, 1, 0, 0, 0, 0];
+    let crc = crate::space_link::csp_crc32c(&frame[..4]);
+    frame[4..].copy_from_slice(&crc.to_be_bytes());
+    let word = tc128_oracle(&frame);
+    let mut wrong_frame = frame;
+    wrong_frame[0] ^= 0x80;
+    let wrong_word = tc128_oracle(&wrong_frame);
+    let profile = CodeProfile::from(LdpcConfig::ccsds_tc128());
+    // Two legitimate LDPC words share all strong equal positions. Differing
+    // positions are weakly biased toward the word with the invalid received
+    // CRC. The bounded channel list must be able to leave that local decision.
+    let soft: Vec<f64> = word
+        .iter()
+        .zip(&wrong_word)
+        .map(|(&valid, &wrong)| {
+            if valid == wrong {
+                if valid == 1 { 8.0 } else { -8.0 }
+            } else if wrong == 1 {
+                0.05
+            } else {
+                -0.05
+            }
+        })
+        .collect();
+    assert!(
+        profile
+            .decode(&soft, &csp_validator())
+            .unwrap()
+            .accepted
+            .is_none()
+    );
+    let list = ListConfig {
+        maximum_hypotheses: 256,
+        unreliable_bits: 8,
+        maximum_work: u64::MAX,
+        ..ListConfig::default()
+    };
+    let output = profile.decode_list(&soft, &csp_validator(), &list).unwrap();
+    assert_eq!(output.accepted.as_ref().unwrap().bytes, frame);
+    assert!(output.accepted_hypothesis.is_some());
+    assert!(output.parity_verified);
+}
+
+#[test]
 fn beyond_rs_radius_is_rejected_without_aborting_capture() {
     let bytes = ax25();
     let config = rs_config(bytes.len());
     let mut word = rs_oracle(&bytes, &config);
     for (i, byte) in word[..9].iter_mut().enumerate() {
-        *byte ^= 1 + i as u8;
+        *byte ^= 13 + i as u8;
     }
     let profile = CodeProfile::ReedSolomon { config };
     let output = profile
@@ -532,6 +577,100 @@ fn beyond_rs_radius_is_rejected_without_aborting_capture() {
     assert!(output.accepted.is_none());
     assert!(output.rejection_reason.is_some());
     assert!(output.extrinsic_llr.is_none());
+}
+
+#[test]
+fn rs_reliability_list_recovers_one_symbol_beyond_hard_radius() {
+    let frame = ax25();
+    let config = rs_config(frame.len());
+    let mut word = rs_oracle(&frame, &config);
+    for (i, byte) in word[..9].iter_mut().enumerate() {
+        *byte ^= 1 + i as u8;
+    }
+    let profile = CodeProfile::ReedSolomon { config };
+    let mut soft = llr(&bits_from_bytes(&word));
+    // Make all changed bits in the first damaged symbol uniquely uncertain.
+    // Flipping them leaves the independently exercised eight-symbol pattern.
+    for bit in [4, 5, 7] {
+        soft[bit] = soft[bit].signum() * 0.01;
+    }
+    assert!(
+        profile
+            .decode(&soft, &FrameValidator::Ax25)
+            .unwrap()
+            .accepted
+            .is_none()
+    );
+    let output = profile
+        .decode_list(
+            &soft,
+            &FrameValidator::Ax25,
+            &ListConfig {
+                maximum_hypotheses: 8,
+                unreliable_bits: 3,
+                ..ListConfig::default()
+            },
+        )
+        .unwrap();
+    assert_eq!(output.accepted.as_ref().unwrap().bytes, frame);
+    assert_eq!(output.accepted_hypothesis, Some(3));
+    assert_eq!(output.list_hypotheses, 3);
+    assert!(output.accepted.unwrap().validation_layers[0].contains("reliability_list"));
+}
+
+#[test]
+fn convolutional_list_uses_information_probability_and_received_crc() {
+    let frame = ax25();
+    let mut wrong = frame.clone();
+    wrong[0] ^= 0x80;
+    let convolutional = convolutional(ConvolutionalTermination::ZeroTail);
+    let profile = CodeProfile::ConvolutionalK7 {
+        frame_bytes: frame.len(),
+        config: convolutional.clone(),
+    };
+    let soft = llr(&conv_oracle(&bits_from_bytes(&wrong), &convolutional));
+    assert!(
+        profile
+            .decode(&soft, &FrameValidator::Ax25)
+            .unwrap()
+            .accepted
+            .is_none()
+    );
+    let output = profile
+        .decode_list(
+            &soft,
+            &FrameValidator::Ax25,
+            &ListConfig {
+                maximum_hypotheses: 2,
+                unreliable_bits: 1,
+                ..ListConfig::default()
+            },
+        )
+        .unwrap();
+    assert_eq!(output.accepted.as_ref().unwrap().bytes, frame);
+    assert_eq!(output.accepted_hypothesis, Some(1));
+    assert_eq!(
+        output.accepted.unwrap().validated_codeword,
+        conv_oracle(&bits_from_bytes(&frame), &convolutional)
+    );
+}
+
+#[test]
+fn list_configuration_is_explicitly_work_bounded() {
+    let profile = CodeProfile::Ldpc {
+        config: LdpcConfig::ccsds_tc128(),
+    };
+    let mut config = ListConfig::default();
+    config.maximum_work = 1;
+    assert!(config.validate(&profile).is_err());
+    config.maximum_work = u64::MAX;
+    for invalid in [0, 1, 257] {
+        config.maximum_hypotheses = invalid;
+        assert!(config.validate(&profile).is_err());
+    }
+    config.maximum_hypotheses = 2;
+    config.unreliable_bits = 17;
+    assert!(config.validate(&profile).is_err());
 }
 
 #[test]

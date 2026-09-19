@@ -19,6 +19,90 @@ mod advanced_fixture;
 mod multimode_fixture;
 
 #[test]
+fn soft_combine_and_gpu_estimate_cli_keep_evidence_scope_explicit() {
+    use telemetry_yield_rs::{
+        coded::FrameValidator,
+        performance_model::{GpuScenario, Stage},
+        recovery_code::CodeProfile,
+        soft_combine::{Config, Copy, Plan},
+        space_link::{CspCrc32Mode, SpaceLinkConfig},
+    };
+    let frame = advanced_fixture::frame(31);
+    let bits: Vec<u8> = frame
+        .iter()
+        .flat_map(|byte| (0..8).rev().map(move |bit| (byte >> bit) & 1))
+        .collect();
+    let mut first: Vec<f64> = bits
+        .iter()
+        .map(|bit| if *bit == 1 { 2.0 } else { -2.0 })
+        .collect();
+    let mut second = first.clone();
+    first[19] = -0.4 * first[19].signum();
+    second[47] = -0.4 * second[47].signum();
+    let mut header = vec![0, 0, 0, 31];
+    header.extend(telemetry_yield_rs::space_link::csp_crc32c(&header).to_be_bytes());
+    let copy = |source: u8, station: &str, llr| Copy {
+        source_sha256: format!("{source:02x}").repeat(32),
+        observation_id: source.to_string(),
+        station_id: station.into(),
+        start_sample: 0,
+        end_sample: 100,
+        header: header.clone(),
+        llr,
+    };
+    let plan = Plan {
+        config: Config {
+            minimum_distinct_sources: 2,
+            minimum_distinct_stations: 2,
+            ..Config::default()
+        },
+        code: CodeProfile::Uncoded {
+            frame_bytes: frame.len(),
+        },
+        validator: FrameValidator::SpaceLink {
+            config: SpaceLinkConfig::CspV1 {
+                crc32: CspCrc32Mode::RequiredHeaderAndPayload,
+            },
+        },
+        copies: vec![copy(1, "A", first), copy(2, "B", second)],
+    };
+    let combined = cli(
+        &["combine-soft-copies"],
+        Some(&serde_json::to_value(plan).unwrap()),
+    )
+    .json();
+    assert_eq!(combined["status"], "accepted");
+    assert_eq!(combined["accepted_frame_hex"], hex::encode(frame));
+    assert_eq!(combined["distinct_stations"], 2);
+
+    let estimate = cli(
+        &["estimate-gpu"],
+        Some(
+            &serde_json::to_value(GpuScenario {
+                label: "auditable example".into(),
+                fixed_overhead_seconds: 3.0,
+                stages: vec![
+                    Stage {
+                        name: "host".into(),
+                        cpu_seconds: 75.0,
+                        assumed_speedup: 1.0,
+                    },
+                    Stage {
+                        name: "device".into(),
+                        cpu_seconds: 25.0,
+                        assumed_speedup: 10.0,
+                    },
+                ],
+            })
+            .unwrap(),
+        ),
+    )
+    .json();
+    assert_eq!(estimate["hardware_benchmark"], false);
+    assert!((estimate["estimated_speedup"].as_f64().unwrap() - 100.0 / 80.5).abs() < 1e-12);
+}
+
+#[test]
 fn multimode_iq_cli_matches_library_on_identical_cf32_bytes() {
     use telemetry_yield_rs::{advanced_iq, generic, input};
     let temp = tempfile::tempdir().unwrap();
@@ -800,6 +884,52 @@ fn progressive_full_preserves_positive_baseline() {
         right.as_object_mut().unwrap().remove("session_sha256");
         assert_eq!(left, right, "scheduler changed task contents");
     }
+    let gated = tmp.path().join("unresolved-only");
+    let gated_args = [
+        "decode-progressive",
+        "--input",
+        string(&source),
+        "--output",
+        string(&gated),
+        "--mode",
+        "full",
+        "--threads",
+        "1",
+        "--scheduler",
+        "unresolved-only",
+        "--no-blind",
+        "--no-multi-anchor",
+    ];
+    assert_eq!(cli(&gated_args, None).json()["complete"], true);
+    let gated_result = read_json(&gated.join("result.json"));
+    assert!(gated_result["skipped_tasks"].as_u64().unwrap() > 0);
+    assert_eq!(
+        gated_result["completed_tasks"].as_u64().unwrap()
+            + gated_result["skipped_tasks"].as_u64().unwrap(),
+        gated_result["total_tasks"].as_u64().unwrap()
+    );
+    let mut resume = gated_args.to_vec();
+    resume.push("--resume");
+    assert_eq!(cli(&resume, None).json()["complete"], true);
+    assert_eq!(read_json(&gated.join("result.json")), gated_result);
+    let gated_peer = tmp.path().join("unresolved-only-peer");
+    let mut gated_peer_args = gated_args.to_vec();
+    gated_peer_args[4] = string(&gated_peer);
+    assert_eq!(cli(&gated_peer_args, None).json()["complete"], true);
+    let gated_audit = cli(
+        &[
+            "audit-compute-pair",
+            "--cpu-session",
+            string(&gated),
+            "--candidate-session",
+            string(&gated_peer),
+            "--output",
+            string(&tmp.path().join("unresolved-audit.json")),
+        ],
+        None,
+    )
+    .json();
+    assert_eq!(gated_audit["pass"], true);
     let mut changed = samples;
     changed[0] = 0.123;
     wav(&source, 1, &changed);

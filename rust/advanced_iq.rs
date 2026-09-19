@@ -2,8 +2,8 @@
 //! detection, optional coherent CPM/PSK refinement and checked cancellation.
 //! No transmitter payload or oracle channel enters acquisition or estimation.
 use crate::{
-    coded, generic, input, interference, joint_sequence, protocol, recovery_code::CodeProfile,
-    repetition, soft_sequence, turbo,
+    coded, generic, input, interference, joint_sequence, recovery_code::CodeProfile, repetition,
+    soft_sequence, turbo,
 };
 use num_complex::Complex64;
 use rayon::prelude::*;
@@ -23,6 +23,9 @@ pub struct RecoveryOptions {
     pub tracking: Option<crate::recovery_tracking::Config>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub soft_acquisition: Option<crate::acquisition::Config>,
+    /// Reliability-ordered FEC hypotheses after the ordinary decoder fails.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub soft_list: Option<crate::recovery_code::ListConfig>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -112,6 +115,9 @@ impl Config {
         if let Some(options) = &self.recovery {
             if let Some(acquisition) = &options.soft_acquisition {
                 acquisition.validate(self.syncword.len())?;
+            }
+            if let Some(list) = &options.soft_list {
+                list.validate(&self.code)?;
             }
             if options.workers > 64 {
                 return Err("recovery workers must be 0..64 (zero selects serial)".into());
@@ -369,7 +375,15 @@ impl Candidate {
         if c.code.as_ldpc().is_some() {
             let mut request = self.request(c);
             request.iterations = iterations;
-            return self.decode(&request, joint);
+            let mut report = self.decode(&request, joint)?;
+            if !report.accepted
+                && let Some(config) = c.recovery.as_ref().and_then(|r| r.soft_list.as_ref())
+            {
+                let input = self.code_channel_llr(c)?;
+                let decoded = c.code.decode_list(&input, &c.validator, config)?;
+                apply_recovery_output(&mut report, decoded);
+            }
+            return Ok(report);
         }
         self.run_general(c, iterations, joint)
     }
@@ -409,6 +423,15 @@ impl Candidate {
             .map_err(Clone::clone)
     }
 
+    fn code_channel_llr(&self, c: &Config) -> Result<Vec<f64>, String> {
+        let mut code_llr = vec![0.; c.coded_bits()];
+        for (wire, &llr) in self.channel_llr(c)?.iter().enumerate() {
+            code_llr[c.wire_to_code.get(wire).copied().unwrap_or(wire)] = llr;
+        }
+        coded::derandomize(&mut code_llr, &c.randomizer);
+        Ok(code_llr)
+    }
+
     fn refine(
         &self,
         iq: &[Complex64],
@@ -416,12 +439,8 @@ impl Candidate {
         c: &Config,
         config: &crate::recovery_tracking::Config,
     ) -> Result<Option<(Candidate, crate::recovery_tracking::Report)>, String> {
-        let mut code_llr = vec![0.; c.coded_bits()];
-        for (wire, &llr) in self.channel_llr(c)?.iter().enumerate() {
-            code_llr[c.wire_to_code.get(wire).copied().unwrap_or(wire)] = llr;
-        }
-        coded::derandomize(&mut code_llr, &c.randomizer);
-        let output = c.code.decode(&code_llr, &c.validator)?;
+        let code_llr = self.code_channel_llr(c)?;
+        let output = decode_code(c, &code_llr)?;
         let extrinsic = if let Some(accepted) = output.accepted {
             // Independent received integrity has already passed; these hard
             // bits may guide a data-aided fit, but are never repeat evidence.
@@ -540,7 +559,7 @@ impl Candidate {
                 let index = c.wire_to_code.get(wire).copied().unwrap_or(wire);
                 input[index] = value * polarity[index];
             }
-            let decoded = c.code.decode(&input, &c.validator)?;
+            let decoded = decode_code(c, &input)?;
             report.iterations.push(turbo::Iteration {
                 index: pass + 1,
                 ldpc_iterations: 0,
@@ -666,7 +685,7 @@ impl Candidate {
                 let index = c.wire_to_code.get(wire).copied().unwrap_or(wire);
                 input[index] = value * polarity[index];
             }
-            let decoded = c.code.decode(&input, &c.validator)?;
+            let decoded = decode_code(c, &input)?;
             if let Some(accepted) = decoded.accepted {
                 report.accepted = true;
                 report.frame_hex = Some(hex::encode(accepted.bytes));
@@ -722,6 +741,29 @@ fn empty_attempt() -> turbo::Report {
         experimental: true,
         channel_history: Vec::new(),
         validated_codeword: None,
+    }
+}
+
+fn decode_code(c: &Config, input: &[f64]) -> Result<crate::recovery_code::RecoveryOutput, String> {
+    if let Some(list) = c.recovery.as_ref().and_then(|r| r.soft_list.as_ref()) {
+        c.code.decode_list(input, &c.validator, list)
+    } else {
+        c.code.decode(input, &c.validator)
+    }
+}
+
+fn apply_recovery_output(report: &mut turbo::Report, output: crate::recovery_code::RecoveryOutput) {
+    let list_accepted = output.accepted_hypothesis.is_some();
+    if let Some(accepted) = output.accepted {
+        report.accepted = true;
+        report.frame_hex = Some(hex::encode(accepted.bytes));
+        report.validation_layers = accepted.validation_layers;
+        report.validated_codeword = Some(accepted.validated_codeword);
+        report.stop_reason = if list_accepted {
+            "validated_soft_list_frame"
+        } else {
+            "validated_fec_fallback_frame"
+        };
     }
 }
 
@@ -965,6 +1007,23 @@ fn charge(work: &mut u64, c: &Config, passes: usize) -> Result<(), String> {
     Ok(())
 }
 
+fn charge_list(work: &mut u64, c: &Config, invocations: usize) -> Result<(), String> {
+    let Some(list) = c.recovery.as_ref().and_then(|r| r.soft_list.as_ref()) else {
+        return Ok(());
+    };
+    let cost = list
+        .work_per_call(&c.code)?
+        .checked_mul(invocations as u64)
+        .ok_or("aggregate soft-list work overflow")?;
+    *work = work
+        .checked_add(cost)
+        .ok_or("aggregate soft-list work overflow")?;
+    if *work > c.maximum_work {
+        return Err("aggregate soft-list work exhausted; no partial success".into());
+    }
+    Ok(())
+}
+
 fn record(
     frames: &mut BTreeMap<String, Frame>,
     report: &turbo::Report,
@@ -1079,14 +1138,18 @@ pub fn decode(
         report.candidates += candidates.len();
         for _ in &candidates {
             charge(&mut report.consumed_work, c, 1)?;
+            let mut list_invocations = 1;
             if c.turbo_iterations > 1 {
                 charge(&mut report.consumed_work, c, c.turbo_iterations)?;
+                list_invocations += c.turbo_iterations;
             }
             if c.joint.is_some() {
                 charge(&mut report.consumed_work, c, c.turbo_iterations)?;
+                list_invocations += c.turbo_iterations;
             }
             if let Some(tracking) = c.recovery.as_ref().and_then(|r| r.tracking.as_ref()) {
                 charge(&mut report.consumed_work, c, 1 + c.turbo_iterations)?;
+                list_invocations += 1 + c.turbo_iterations;
                 report.consumed_work = report
                     .consumed_work
                     .checked_add(tracking.maximum_work)
@@ -1097,6 +1160,7 @@ pub fn decode(
             }
             if c.recovery.as_ref().is_some_and(|r| r.coherent_cpm) {
                 charge(&mut report.consumed_work, c, c.turbo_iterations)?;
+                list_invocations += c.turbo_iterations;
                 let cost = (c.syncword.len()
                     + c.coded_bits()
                     + c.repetition
@@ -1113,6 +1177,7 @@ pub fn decode(
                     return Err("aggregate coherent CPM work exhausted".into());
                 }
             }
+            charge_list(&mut report.consumed_work, c, list_invocations)?;
         }
         let evaluate = |candidate: &Candidate| -> Result<_, String> {
             let mut rejected = Vec::new();
@@ -1345,24 +1410,12 @@ pub fn decode(
                     continue;
                 };
                 charge(&mut report.consumed_work, c, 1)?;
+                charge_list(&mut report.consumed_work, c, 1)?;
                 report.combined_groups += 1;
-                let (bytes, layers) = if let Some(code) = c.code.as_ldpc() {
-                    let word = code.decode_soft(&llr)?;
-                    if !word.converged {
-                        continue;
-                    }
-                    let bytes = protocol::bits_to_bytes(&word.output_bits, false)?;
-                    let Ok(mut layers) = c.validator.decode(&bytes) else {
-                        continue;
-                    };
-                    layers.push("ldpc_syndrome_verified".into());
-                    (bytes, layers)
-                } else {
-                    let Some(accepted) = c.code.decode(&llr, &c.validator)?.accepted else {
-                        continue;
-                    };
-                    (accepted.bytes, accepted.validation_layers)
+                let Some(accepted) = decode_code(c, &llr)?.accepted else {
+                    continue;
                 };
+                let (bytes, layers) = (accepted.bytes, accepted.validation_layers);
                 let hex = hex::encode(bytes);
                 let frame = frames.entry(hex.clone()).or_insert_with(|| Frame {
                     frame_hex: hex,

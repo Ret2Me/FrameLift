@@ -42,6 +42,12 @@ pub(super) fn run() -> Result<Value, String> {
     }
     match cli.command {
         Commands::ComputeInfo => Ok(compute::current().report()),
+        Commands::EstimateGpu => {
+            let scenario: telemetry_yield_rs::performance_model::GpuScenario =
+                serde_json::from_value(stdin_json()?).map_err(|e| e.to_string())?;
+            serde_json::to_value(telemetry_yield_rs::performance_model::estimate(&scenario)?)
+                .map_err(|e| e.to_string())
+        }
         Commands::BenchmarkComputePair {
             input,
             output,
@@ -164,6 +170,12 @@ pub(super) fn run() -> Result<Value, String> {
             let request: telemetry_yield_rs::turbo::Request =
                 serde_json::from_value(stdin_json()?).map_err(|e| e.to_string())?;
             serde_json::to_value(telemetry_yield_rs::turbo::decode(&request)?)
+                .map_err(|e| e.to_string())
+        }
+        Commands::CombineSoftCopies => {
+            let plan: telemetry_yield_rs::soft_combine::Plan =
+                serde_json::from_value(stdin_json()?).map_err(|e| e.to_string())?;
+            serde_json::to_value(telemetry_yield_rs::soft_combine::decode(&plan)?)
                 .map_err(|e| e.to_string())
         }
         Commands::DecodeRecoverySession {

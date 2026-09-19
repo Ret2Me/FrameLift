@@ -70,6 +70,7 @@ pub fn config(mode: &str, family: &str, workers: usize, coherent: bool) -> Confi
         coherent_cpm: coherent,
         tracking: None,
         soft_acquisition: None,
+        soft_list: None,
     });
     c
 }

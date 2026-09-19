@@ -15,6 +15,9 @@ pub enum Policy {
     #[default]
     Fixed,
     MarginalYield,
+    /// Skip expensive tasks for windows where the quick stage already found
+    /// received-FCS telemetry. This trades exhaustive per-window recall for cost.
+    UnresolvedOnly,
 }
 
 impl Policy {
@@ -32,6 +35,12 @@ impl Policy {
                 "reward":"new received-FCS validated payload bytes; canonical batch order",
                 "cost":"ceil(task elapsed milliseconds), minimum 1",
                 "full_bank_pruning":false
+            }),
+            Self::UnresolvedOnly => json!({
+                "name":"unresolved-only","version":1,"batch_size":BATCH_SIZE,
+                "gate":"skip all non-quick tasks for a window after quick emits at least one received-FCS AX.25 UI frame",
+                "journal":"causal batch decisions plus deterministically replayed skipped task set",
+                "recall_guarantee":false
             }),
         }
     }
@@ -113,7 +122,9 @@ impl Learner {
 
 pub(super) struct Engine {
     session: String,
+    policy: Policy,
     phases: Vec<Vec<Key>>,
+    skipped: BTreeSet<Key>,
     pub phase: usize,
     serial: usize,
     learner: Learner,
@@ -135,9 +146,10 @@ fn coverage_order(windows: usize) -> Vec<usize> {
 }
 
 impl Engine {
-    pub fn new(session: &str, phases: &[Vec<&str>], windows: usize) -> Self {
+    pub fn new(session: &str, policy: Policy, phases: &[Vec<&str>], windows: usize) -> Self {
         Self {
             session: session.into(),
+            policy,
             phases: phases
                 .iter()
                 .enumerate()
@@ -158,6 +170,7 @@ impl Engine {
                         .collect()
                 })
                 .collect(),
+            skipped: BTreeSet::new(),
             phase: 0,
             serial: 0,
             learner: Learner::default(),
@@ -172,7 +185,8 @@ impl Engine {
         let mut ranked: Vec<_> = remaining.iter().enumerate().collect();
         // The initial sweep covers the recording at multiple scales. Later
         // reserved exploration batches retain the established source order.
-        if self.phase != 0 && !self.serial.is_multiple_of(4) {
+        if self.policy == Policy::MarginalYield && self.phase != 0 && !self.serial.is_multiple_of(4)
+        {
             ranked.sort_by(|(a_index, a), (b_index, b)| {
                 let (an, ad) = self.learner.score(a);
                 let (bn, bd) = self.learner.score(b);
@@ -208,12 +222,42 @@ impl Engine {
             self.learner
                 .observe(key, evidence.get(key).ok_or("incomplete scheduler batch")?)?;
         }
+        if self.policy == Policy::UnresolvedOnly {
+            let resolved: BTreeSet<_> = decision
+                .tasks
+                .iter()
+                .filter(|key| {
+                    key.stage == "quick"
+                        && evidence
+                            .get(*key)
+                            .is_some_and(|value| !value.frames.is_empty())
+                })
+                .map(|key| key.window)
+                .collect();
+            for phase in &mut self.phases {
+                phase.retain(|key| {
+                    let skip = key.stage != "quick" && resolved.contains(&key.window);
+                    if skip {
+                        self.skipped.insert(key.clone());
+                    }
+                    !skip
+                });
+            }
+        }
         self.phases[self.phase].retain(|key| !decision.tasks.contains(key));
-        if self.phases[self.phase].is_empty() {
+        while self
+            .phases
+            .get(self.phase)
+            .is_some_and(|phase| phase.is_empty())
+        {
             self.phase += 1;
         }
         self.serial += 1;
         Ok(())
+    }
+
+    pub fn skipped(&self) -> &BTreeSet<Key> {
+        &self.skipped
     }
 }
 
@@ -221,12 +265,13 @@ impl Engine {
 /// batch may be incomplete. Unknown records never silently train the policy.
 pub(super) fn audit(
     session: &str,
+    policy: Policy,
     phases: &[Vec<&str>],
     windows: usize,
     decisions: &[Decision],
     evidence: &BTreeMap<Key, Evidence>,
-) -> Result<(), String> {
-    let mut engine = Engine::new(session, phases, windows);
+) -> Result<BTreeSet<Key>, String> {
+    let mut engine = Engine::new(session, policy, phases, windows);
     let mut accounted = BTreeSet::new();
     for (index, decision) in decisions.iter().enumerate() {
         if engine.next().as_ref() != Some(decision) {
@@ -249,7 +294,7 @@ pub(super) fn audit(
     if accounted != evidence.keys().cloned().collect() {
         return Err("committed task is missing its scheduler decision".into());
     }
-    Ok(())
+    Ok(engine.skipped)
 }
 
 #[cfg(test)]
@@ -294,7 +339,7 @@ mod tests {
             vec!["blind", "early-nearest", "baseline-remainder"],
             vec!["nearest"],
         ];
-        let mut engine = Engine::new("session", &phases, 7);
+        let mut engine = Engine::new("session", Policy::MarginalYield, &phases, 7);
         let mut evidence = BTreeMap::new();
         let mut decisions = vec![];
         while let Some(decision) = engine.next() {
@@ -307,19 +352,50 @@ mod tests {
             }
             engine.commit(&decision, &evidence).unwrap();
             decisions.push(decision);
-            audit("session", &phases, 7, &decisions, &evidence).unwrap();
+            audit(
+                "session",
+                Policy::MarginalYield,
+                &phases,
+                7,
+                &decisions,
+                &evidence,
+            )
+            .unwrap();
         }
         assert_eq!(evidence.len(), 35);
         let last = decisions.last().unwrap().tasks.last().unwrap().clone();
         evidence.remove(&last);
-        audit("session", &phases, 7, &decisions, &evidence).unwrap();
+        audit(
+            "session",
+            Policy::MarginalYield,
+            &phases,
+            7,
+            &decisions,
+            &evidence,
+        )
+        .unwrap();
         decisions[0].tasks.swap(0, 1);
-        assert!(audit("session", &phases, 7, &decisions, &evidence).is_err());
+        assert!(
+            audit(
+                "session",
+                Policy::MarginalYield,
+                &phases,
+                7,
+                &decisions,
+                &evidence
+            )
+            .is_err()
+        );
     }
 
     #[test]
     fn observed_yield_changes_rank_but_exploration_keeps_unpromising_tasks() {
-        let mut engine = Engine::new("x", &[vec!["quick"], vec!["blind", "nearest"]], 4);
+        let mut engine = Engine::new(
+            "x",
+            Policy::MarginalYield,
+            &[vec!["quick"], vec!["blind", "nearest"]],
+            4,
+        );
         let first = engine.next().unwrap();
         let evidence = first
             .tasks
@@ -352,14 +428,75 @@ mod tests {
     #[test]
     fn orphan_nonfinite_and_future_evidence_are_rejected() {
         let phases = vec![vec!["quick"], vec!["blind"]];
-        let mut engine = Engine::new("x", &phases, 1);
+        let mut engine = Engine::new("x", Policy::MarginalYield, &phases, 1);
         let first = engine.next().unwrap();
         let key = first.tasks[0].clone();
         let mut evidence = BTreeMap::from([(key.clone(), sample(1))]);
-        assert!(audit("x", &phases, 1, &[], &evidence).is_err());
+        assert!(audit("x", Policy::MarginalYield, &phases, 1, &[], &evidence).is_err());
         evidence.get_mut(&key).unwrap().elapsed_seconds = f64::NAN;
         assert!(engine.commit(&first, &evidence).is_err());
         evidence.clear();
-        assert!(audit("x", &phases, 1, &[first.clone(), first], &evidence).is_err());
+        assert!(
+            audit(
+                "x",
+                Policy::MarginalYield,
+                &phases,
+                1,
+                &[first.clone(), first],
+                &evidence
+            )
+            .is_err()
+        );
+    }
+
+    #[test]
+    fn unresolved_only_prunes_only_expensive_tasks_for_quick_successes() {
+        let phases = vec![
+            vec!["quick"],
+            vec!["blind", "baseline-remainder"],
+            vec!["nearest"],
+        ];
+        let mut engine = Engine::new("x", Policy::UnresolvedOnly, &phases, 5);
+        let mut evidence = BTreeMap::new();
+        let mut decisions = Vec::new();
+        while let Some(decision) = engine.next() {
+            for key in &decision.tasks {
+                let value = if key.stage == "quick" && key.window % 2 == 0 {
+                    sample(key.window as u8)
+                } else {
+                    Evidence {
+                        frames: BTreeSet::new(),
+                        elapsed_seconds: 0.1,
+                    }
+                };
+                evidence.insert(key.clone(), value);
+            }
+            engine.commit(&decision, &evidence).unwrap();
+            decisions.push(decision);
+        }
+        assert_eq!(engine.skipped().len(), 3 * 3);
+        assert!(
+            engine
+                .skipped()
+                .iter()
+                .all(|key| key.window % 2 == 0 && key.stage != "quick")
+        );
+        assert!(
+            evidence
+                .keys()
+                .all(|key| key.stage == "quick" || key.window % 2 == 1)
+        );
+        assert_eq!(
+            audit(
+                "x",
+                Policy::UnresolvedOnly,
+                &phases,
+                5,
+                &decisions,
+                &evidence
+            )
+            .unwrap(),
+            engine.skipped().clone()
+        );
     }
 }

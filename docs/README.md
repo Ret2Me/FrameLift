@@ -34,6 +34,9 @@
 |---|---|
 | [Benchmark results](benchmarks.md) | Complete 266-observation result and honest cost accounting |
 | [Acquisition follow-up](../reports/acquisition-recovery-20260919.md) | Synthetic gain, retained false-accept failure and null incremental real-IQ result |
+| [Soft-list, combining and scheduler](soft-list-combining-scheduler.md) | Reliability-ordered FEC, cross-observation LLR fusion, adaptive gating and GPU estimate contract |
+| [Soft-recovery validation](../reports/soft-recovery-validation-20260919.md) | Controlled gains, scheduler task reduction, regression receipt and evidence boundary |
+| [GPU estimate](../reports/gpu-speedup-estimate-20260919.md) | Amdahl scenarios for current FIR-only and future batched FEC acceleration |
 | [Reproduction](reproducibility.md) | Verify the compact evidence; distinguish that from replaying DSP |
 | [Current paper](../publication/decoder-paper-v2/README.md) | IEEE-style manuscript, PDF, bibliography and source |
 | [Roadmap](roadmap.md) | Remaining scientific and operational acceptance gates |

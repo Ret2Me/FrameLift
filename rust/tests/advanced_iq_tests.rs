@@ -4,6 +4,63 @@ mod fixture;
 const SOURCE: &str = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
 
 #[test]
+fn soft_acquisition_deduplicates_hard_bursts_but_preserves_time_and_carrier_diversity() {
+    let c = fixture::config();
+    let options = crate::acquisition::Config {
+        minimum_correlation: 0.7,
+        maximum_hard_errors: 12,
+        maximum_candidates: 8,
+        maximum_work: 1_000_000,
+    };
+    let candidate = |start, carrier, soft| Candidate {
+        soft_sync: if soft {
+            Some(crate::acquisition::Score {
+                normalized_correlation: 0.8,
+                hard_errors: 6,
+            })
+        } else {
+            None
+        },
+        samples: vec![],
+        channel: soft_sequence::Channel {
+            taps: [0., 1., 0.],
+            bias: 0.,
+            noise_variance: 0.1,
+        },
+        header: vec![],
+        start,
+        step: 8.,
+        carrier,
+        score: if soft { 10. } else { 1. },
+        branch_channels: vec![],
+        geometry: None,
+        channel_cache: std::sync::OnceLock::new(),
+    };
+    let mut search = Some(crate::acquisition::Search::new(&options, &c.syncword, 0).unwrap());
+    let selected = select_candidates(
+        vec![
+            candidate(260., 0., true),
+            candidate(256., 0., false),
+            candidate(260., c.symbol_rate * 0.02, true),
+            candidate(300., 0., true),
+        ],
+        &c,
+        &mut search,
+    )
+    .unwrap();
+    assert_eq!(selected.len(), 3);
+    assert!(
+        selected
+            .iter()
+            .any(|x| x.start == 256. && x.soft_sync.is_none())
+    );
+    assert!(!selected.iter().any(|x| x.start == 260. && x.carrier == 0.));
+    assert!(selected.iter().any(|x| x.carrier == c.symbol_rate * 0.02));
+    assert!(selected.iter().any(|x| x.start == 300.));
+    assert_eq!(search.unwrap().receipt.selected.len(), 2);
+}
+
+#[test]
 fn existing_mission_header_can_group_repeats_without_legacy_wire_header() {
     let mut c = fixture::config();
     let layout = repetition::HeaderLayout {

@@ -20,6 +20,36 @@ fn marker() -> Vec<u8> {
 }
 
 #[test]
+fn weaker_soft_timing_duplicate_cannot_retry_a_hard_acquired_bad_crc() {
+    // These development regressions were discovered by the complete frozen
+    // stress grid, not selected to define a population false-accept estimate.
+    // The fix uses the pre-existing burst identity rule, not CRC outcomes.
+    for (mode, sigma, seed) in [("gfsk", 0.10, 2), ("gfsk", 0.35, 1), ("gmsk", 0.10, 2)] {
+        let c = fixture::config(mode, "uncoded", 1, true);
+        let mut frame = fixture::base::frame(17);
+        frame[7] ^= 1;
+        let mut iq = fixture::base::Noise(0x2026_0917_1375 ^ seed).fill(fixture::LENGTH, sigma);
+        fixture::add(&mut iq, &c, &frame, 0.);
+        // Match the frozen CF32 recorder, independently of JSON result files.
+        for z in &mut iq {
+            *z = Complex64::new(z.re as f32 as f64, z.im as f32 as f64);
+        }
+        let hard = advanced_iq::decode(&iq, fixture::RATE, &c, SOURCE).unwrap();
+        assert_eq!(hard.candidates, 1);
+        assert!(hard.frames.is_empty());
+        let recovered = advanced_iq::decode(&iq, fixture::RATE, &enabled(c), SOURCE).unwrap();
+        assert_eq!(recovered.candidates, hard.candidates);
+        assert!(recovered.frames.is_empty());
+        assert!(
+            recovered
+                .soft_acquisition
+                .iter()
+                .all(|r| r.selected.is_empty())
+        );
+    }
+}
+
+#[test]
 fn centered_gate_preserves_gain_offset_and_unresolved_bpsk_phase() {
     let c = config();
     let bits = marker();

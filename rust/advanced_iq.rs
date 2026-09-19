@@ -923,7 +923,10 @@ fn select_candidates(
     });
     let mut supplemental: Vec<Candidate> = Vec::new();
     for candidate in soft {
-        if supplemental.iter().any(|old| {
+        // Soft acquisition supplements missing bursts, not weaker timing
+        // duplicates of a burst already admitted by the hard marker. Apply the
+        // same signal-only identity guard across both sets, before any CRC/FEC.
+        if selected.iter().chain(&supplemental).any(|old| {
             (old.start - candidate.start).abs() < candidate.step * 2.
                 && (old.carrier - candidate.carrier).abs() < c.symbol_rate * 0.01
         }) {

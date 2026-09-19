@@ -47,9 +47,14 @@ Hard candidates are selected first with their unchanged ranking and duplicate
 rules. Additional candidates have a separate limit and cannot displace them.
 Soft-only candidates are decoded using the configured downstream mechanisms,
 but do not seed cancellation or repetition combining: they cannot alter later
-baseline residuals or the baseline's training/grouping decisions. They may
-recover the same physical burst using an alternative timing hypothesis; those
-alternatives are never counted as independent repeat evidence.
+baseline residuals or the baseline's training/grouping decisions. The existing
+burst-identity guard (start times less than two candidate symbol periods apart
+and carrier separation below 1% of symbol rate) also suppresses soft duplicates
+of hard-acquired bursts, before decoding either candidate. This path therefore
+addresses missing acquisition, not a second timing bank for an already acquired
+burst. Distinct carriers and sufficiently separated bursts remain eligible.
+This is a fixed engineering identity heuristic, not a universal guarantee that
+overlapping transmissions can be separated.
 
 `baseline_frames` retains hard-acquired first-pass frames. Supplementary frame
 provenance is prefixed `soft_acquisition/`; the receiver still deduplicates the
